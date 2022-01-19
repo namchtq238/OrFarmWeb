@@ -1,0 +1,94 @@
+.cd-bread ul{
+    display: flex;
+    flex-direction: row;
+}
+.cd-bread li{
+    display: inline-block;
+    border-radius: 6px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+
+}
+.notifi-cate {
+    order: 2;
+    position: absolute !important;
+    right: 0;
+    top: 10px;
+    background: #d03838 !important;
+    width: 18px;
+    height: 18px;
+    padding: 0 !important;
+    text-align: center;
+    line-height: 20px;
+    border: none !important;
+    color: #fff !important;
+    border-radius: 50%;
+    font-size: 10px;
+}
+.sidebar-theme{
+    background: #fff;
+    border-right: 2px solid #e9ecef;
+}
+.sidebar-wrapper{
+    width: 255px;
+}
+.o-cards i{
+    font-size: 60px ;
+}
+.card-attr{
+    background-color: white;
+}
+.form-horizontal {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px;
+}
+#filter input,#filter select, #filter button{
+    max-width: 200px;
+    display: inline-block;
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+.widget-total-stats i{
+    background: none !important;
+}
+.note-editor {
+    padding: 5px 10px 10px 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    display: block;
+    min-height: auto;
+}
+.check-time{
+    display: flex;
+    text-align: right;
+}
+.check-time span{
+    display:block;
+    width: 120px;
+    margin-right:10px;
+}
+.groupcheck{
+    display: flex;
+}
+@media screen and (max-width: 48em){
+    .check-time{
+        flex-direction: column;
+        text-align: left;
+    }
+    .check-time span{
+        margin-right: 0;
+        width: 115px;
+    }
+    .groupcheck{
+        display: flex;
+        flex-direction: column;
+    }
+    .setting-nav .nav-item{
+        border: 1px solid ;
+        border-radius: 0.25rem;
+    }
+}
+

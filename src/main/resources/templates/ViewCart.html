@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace = "~{header :: html_header}">
+<body>
+    <header th:replace="header :: my-header"></header>
+
+    <section class="breadcrum">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb container">
+                <li class="breadcrumb-item"><a href="./index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Xem giỏ hàng</li>
+            </ol>
+        </nav>
+    </section>
+    <!--====== SHOPPING CART PART START ======-->
+
+    <div class="amm-shopping-cart-wrapper">
+        <div class="amm-shopping-cart-canvas" id="amm-shopping-cart-canvas">
+            <div class="amm-shopping_cart">
+                <div class="amm-shopping_cart-top-bar d-flex justify-content-between">
+                    <h6>Giỏ hàng</h6>
+                    <button onclick="removeShoppingCart()" class="amm-shopping-cart-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div><!-- shopping cart top bar -->
+                <div class="amm-shopping_cart-list-items mt-30" id="showCart">
+                    <ul>
+                        
+                    </ul>
+                </div> <!-- shopping_cart list items -->
+                <div class="amm-shopping_cart-btn">
+                    <div class="total pt-35 d-flex justify-content-between">
+                        <h5>Tổng tiền:</h5>
+                        <p><span>0 <sup>đ</sup></span></p>
+                        
+                    </div>
+                    <div class="cart-btn pt-25">
+                        <a class="main-btn" onclick="viewCarts()" href="./ViewCart.html">Xem giỏ hàng</a>
+                        <a class="main-btn main-btn-2" href="./payment.html">Thanh toán</a>
+                    </div>
+                </div>
+            </div> <!-- shopping_cart -->
+        </div>
+        <div onclick="openOverlay()" class="overlay" id="overlay"></div>
+    </div>
+    <!--====== SHOPPING CART PART ENDS ======-->
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 mt-70 mb-50">
+                    <div class="common-view-cart pt-4 pb-4">
+                        <p class="text-cart  mb-0 ">Giỏ hàng</p>
+                    </div>
+                    <div class="displayProduct row pt-3 pb-3">
+                        <ul id="mainCart">
+                            
+                        </ul>
+                        <div class="cart-link row pt-3 pb-3 " style="width: 835px;">
+                            <a href="./shop.html">Tiếp tục mua hàng</a>
+                            <a href="#" class="delete">Xóa tất cả</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 box-fee mt-70 mb-50 pt-3">
+                    <div class="immidiate-fee ">
+                        Tạm tính: <span class="prices">0</span> <sup>đ</sup>
+                    </div>
+
+                    <div class="shipping-fee pt-4">
+                        <p>Phí ship: <span class="prices">0</span> <sup>đ</sup></p>
+                       
+                        
+                            <p class="pt-2" ><Strong style="color: brown;">Ưu đãi từ cửa hàng:</Strong> OrFarm hỗ trợ
+                                khách hàng miễn phí vận chuyển với những đơn hàng có giá trị từ 50.000đ trở lên.
+                            </p>
+                        </div>
+                        <div class="immidiate-fee sum-fee" style="color: rgb(49, 189, 21);">
+                            Tổng tiền: <span class="prices">0 </span> <sup>đ</sup>
+                        </div>
+                        <div class="payment">
+                            <a href="./payment.html" class="pt-50 pl-50">Tiến hành thanh toán</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <footer th:replace = "~{footer :: html_footer}"> </footer>
+</body>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <th:block th:insert="~{header :: script}"></th:block>
+<!--====== Main js ======-->
+<!-- <script src="assets/js/main.js"></script> -->
+<script type="text/javascript">
+    $(window).load(function () {
+        showProduct();
+        immidiateSum();
+        
+    }); 
+
+
+ </script>
+</html>
