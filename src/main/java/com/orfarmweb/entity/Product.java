@@ -17,7 +17,7 @@ public class Product {
     private Float salePrice;
     private Float percentDiscount;
     private Integer quantityProd;
-    private boolean isHot;
+    private boolean isHot = false;
     private String image;
     @ManyToOne(targetEntity = Category.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "cate_id", referencedColumnName = "id")

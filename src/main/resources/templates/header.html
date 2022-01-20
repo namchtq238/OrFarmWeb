@@ -85,16 +85,14 @@
                         <li class="nav-item">
                             <div class="dropdown">
                                 <a class="nav-link waves-effect text-header dropdown-toggle"
-                                   href="./shop.html" target="_blank">Cửa hàng
-
+                                   href="./raucusach.html" target="_blank">Cửa hàng
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-collection">
-                                    <a class="dropdown-item" href="./raucusach.html">Rau củ sạch</a>
-                                    <a class="dropdown-item" href="./hoaqua.html">Hoa quả</a>
-                                    <a class="dropdown-item" href="./dokho.html">Đồ khô</a>
-                                    <a class="dropdown-item" href="./vungmien.html">Đặc sản vùng miền</a>
-                                    <a class="dropdown-item" href="./tuoisong.html">Thực phẩm tươi sống</a>
-                                    <a class="dropdown-item" href="./thucphamkhac.html">Sản phẩm khác</a>
+                                    <ul>
+                                        <li th:each="item, state : ${listCategory}">
+                                        <a class="dropdown-item" th:href="@{'/category/'+ ${item.getId()}}" th:text ="${item.getName()}"></a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
 
