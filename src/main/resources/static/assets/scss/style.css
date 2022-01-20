@@ -9467,4 +9467,11 @@ blockquote cite {
 .shop-related-product-slider-active .slick-dots li.slick-active button {
   background: #2b70fa;
 }
+
+/*header-home*/
+.dropdown-user .dropdown-toggle::after {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
 /*# sourceMappingURL=style.css.map */

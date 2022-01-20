@@ -554,12 +554,12 @@
     </section>
     <!--====== SHOPPING CART PART START ======-->
 
-    <div class="amm-shopping-cart-wrapper">
+    <div class="amm-shopping-cart-wrapper" th:fragment="my-cart">
         <div class="amm-shopping-cart-canvas" id="amm-shopping-cart-canvas">
             <div class="amm-shopping_cart">
                 <div class="amm-shopping_cart-top-bar d-flex justify-content-between">
                     <h6>Giỏ hàng</h6>
-                    <button onclick="removeShoppingCart()" class="amm-shopping-cart-close">
+                    <button class="amm-shopping-cart-close">
                         <i class="fas fa-times"></i>
                     </button>
                 </div><!-- shopping cart top bar -->
@@ -575,13 +575,13 @@
 
                     </div>
                     <div class="cart-btn pt-25">
-                        <a class="main-btn" onclick="viewCarts()" href="./ViewCart.html">Xem giỏ hàng</a>
+                        <a class="main-btn"  href="./ViewCart.html">Xem giỏ hàng</a>
                         <a class="main-btn main-btn-2" href="./payment.html">Thanh toán</a>
                     </div>
                 </div>
             </div> <!-- shopping_cart -->
         </div>
-        <div onclick="openOverlay()" class="overlay" id="overlay"></div>
+        <div class="overlay" id="overlay"></div>
     </div>
 
 <!--====== SHOPPING CART PART ENDS ======-->

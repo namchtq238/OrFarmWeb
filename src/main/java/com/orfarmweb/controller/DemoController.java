@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DemoController {
     @RequestMapping
     public String init(){
-        return "ViewCart";
+        return "index";
     }
 
     @RequestMapping("/createAccount")

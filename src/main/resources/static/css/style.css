@@ -1,5 +1,4 @@
 body {
-    max-width: 1440px;
     margin: 0 auto;
     font-family: 'Roboto', sans-serif;
   }
@@ -554,6 +553,9 @@ breadcrumb-item .active{
     -webkit-transition: all linear 0.5s;
     transition: all linear 0.5s;
   }
+.dropdown-item:focus, .dropdown-item:hover{
+    background-color: #eee !important;
+}
   .pro-loop .cart-list-icon ul {
     margin: 0;
     padding: 0;
