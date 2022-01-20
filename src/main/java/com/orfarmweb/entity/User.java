@@ -1,4 +1,5 @@
 package com.orfarmweb.entity;
+import com.orfarmweb.constaint.Role;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,4 +14,5 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private Role role;
 }
