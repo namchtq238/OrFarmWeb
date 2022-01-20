@@ -47,7 +47,7 @@
 
                 <!-- Brand -->
                 <a class="navbar-brand waves-effect" href="#" target="_blank">
-                    <img style="height: 54px;" src="./image/coollogo_com-7162464-removebg-preview.png" alt="">
+                    <img style="height: 54px;" th:src="@{/image/coollogo_com-7162464-removebg-preview.png}" alt="">
                 </a>
 
                 <!-- Collapse -->
@@ -246,30 +246,30 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <!--====== jquery js ======-->
-<script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script th:src="@{assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+<script th:src="@{assets/js/vendor/jquery-1.12.4.min.js}"></script>
 
 <!--====== Bootstrap js ======-->
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
+<script th:src="@{assets/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/js/popper.min.js}"></script>
 
 <!--====== wow js ======-->
-<script src="assets/js/wow.js"></script>
+<script th:src="@{assets/js/wow.js}"></script>
 
 <!--====== Slick js ======-->
-<script src="assets/js/jquery.counterup.min.js"></script>
-<script src="assets/js/waypoints.min.js"></script>
+<script th:src="@{assets/js/jquery.counterup.min.js}"></script>
+<script th:src="@{assets/js/waypoints.min.js}"></script>
 
 <!--====== TweenMax js ======-->
-<script src="assets/js/TweenMax.min.js"></script>
+<script th:src="@{assets/js/TweenMax.min.js}"></script>
 
 <!--====== Slick js ======-->
-<script src="assets/js/slick.min.js"></script>
+<script th:src="@{assets/js/slick.min.js}"></script>
 
 <!--====== Magnific Popup js ======-->
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script th:src="@{assets/js/jquery.magnific-popup.min.js}"></script>
 
 <!--====== Main js ======-->
-<script src="assets/js/main.js"></script>
-<script src="./cart.js"></script>
+<script th:src="@{assets/js/main.js}"></script>
+<script th:src="@{/cart.js}"></script>
 </html>

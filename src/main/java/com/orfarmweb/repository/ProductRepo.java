@@ -13,4 +13,6 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query(value = "select * from product left join category on product.cate_id = category.id " +
             "where product.sale_price between ?1 and ?2 and category.id = ?3", nativeQuery = true)
     List<Product> listFill(int a, int b, int id);
+    @Query(value = "select sum(quantity_prod) from product left join category on product.cate_id = category.id where category.id = ?",nativeQuery = true)
+    int getTotal(int id);
 }

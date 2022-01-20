@@ -32,4 +32,9 @@ public class ProductServiceImp implements ProductService {
         Product product = productRepo.getById(id);
         return product;
     }
+
+    @Override
+    public int getTotal(int id) {
+        return productRepo.getTotal(id);
+    }
 }

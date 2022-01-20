@@ -9,4 +9,5 @@ public interface ProductService {
     List<Product> listAllByCategoryId(int id);
     List<Product> listFill(int a, int b, int id);
     Product findById(int id);
+    int getTotal(int id);
 }

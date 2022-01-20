@@ -25,6 +25,9 @@ public class ProductController {
     @GetMapping("/category/{id}")
     public String showViewProduct(@PathVariable("id") int id, @ModelAttribute("listCategory") Category category, Model model){
             List<Category> list = categoryRepo.findAll();
+            Integer sum = productService.getTotal(category.getId());
+            if(sum.equals(null)) sum = 0;
+        model.addAttribute("sum", sum);
             model.addAttribute("listCategory",list);
             model.addAttribute("listProduct", productService.listAllByCategoryId(category.getId()));
         return "raucusach";
