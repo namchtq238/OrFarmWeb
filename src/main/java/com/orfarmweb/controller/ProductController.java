@@ -12,25 +12,27 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/")
 public class ProductController {
     @Autowired
     private ProductService productService;
     @Autowired
     private CategoryRepo categoryRepo;
-    @GetMapping("/category")
-    public String getCategoryInput(Model model){
-        List<Category> list = categoryRepo.findAll();
-        model.addAttribute("listCategory",list);
-        return "raucusach";
-    }
+//    @GetMapping("/category")
+//    public String getCategoryInput(Model model){
+//
+//        return "raucusach";
+//    }
     @GetMapping("/category/{id}")
     public String showViewProduct(@PathVariable("id") int id, @ModelAttribute("listCategory") Category category, Model model){
+            List<Category> list = categoryRepo.findAll();
+            model.addAttribute("listCategory",list);
             model.addAttribute("listProduct", productService.listAllByCategoryId(category.getId()));
         return "raucusach";
     }
     @GetMapping("/product/{id}")
     public String showViewProductDetail(@PathVariable int id, Model model){
+        List<Category> list = categoryRepo.findAll();
+        model.addAttribute("listCategory",list);
         model.addAttribute("product", productService.findById(id));
         return "productdetail";
     }

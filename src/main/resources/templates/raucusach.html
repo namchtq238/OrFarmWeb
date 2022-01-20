@@ -75,7 +75,7 @@
                             <h4 class="title">Danh Mục Sản Phẩm</h4>
                             <ul>
                                 <li class="fruit" th:each="item, state : ${listCategory}">
-                                    <a th:href="@{'/category/' + ${item.getId()}}" th:text ="${item.getName()}"></a>
+                                    <a th:href="@{'/category/' + ${item.id}}" th:text ="${item.name}"></a>
                                 </li>
 <!--                                <li><a href="./hoaqua.html">Hoa quả</a></li>-->
 <!--                                <li><a href="./dokho.html">Đồ khô</a></li>-->
@@ -150,13 +150,13 @@
                     </div>
                     <div class="row">
 <!--                        <ul>-->
-                        <th:block th:each="item, state : ${listProduct}"><div class="col-lg-4 col-md-6">
+                        <th:block th:each="pro, state : ${listProduct}"><div class="col-lg-4 col-md-6">
                             <div class="single-shop-box">
                                 <div class="thumb text-center">
                                     <img src="./image/shop-grid-1.jpg" alt="">
-<!--                                    <div class="reborn">-->
-<!--                                        <span>Sale</span>-->
-<!--                                    </div>-->
+                                    <div class="reborn">
+                                        <span>Sale</span>
+                                    </div>
                                     <div class="cart-list-icon">
                                         <ul>
                                             <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
@@ -174,10 +174,10 @@
                                         <li><i class="fas fa-star-half-alt"></i></li>
                                     </ul>
                                     <input type="hidden" id="productId" value="1">
-                                    <a href="#" th:text="${item.getName()}"></a>
+                                    <a th:href="@{'/product/' + ${pro.id}}" th:text="${pro.name}"></a>
                                     <div class="pricing">
-                                        <div class="discount-price"><span th:text="${item.getSalePrice()}"></span></div>
-                                        <div class="regular-price"><span th:text="${item.getSalePrice()}"></span> </div>
+                                        <div class="discount-price"><span th:text="${pro.salePrice}"></span></div>
+                                        <div class="regular-price"><span th:text="${pro.salePrice}"></span> </div>
                                     </div>
                                 </div>
                             </div>

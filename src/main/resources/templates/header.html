@@ -5,37 +5,37 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/png">
 
     <!--====== Bootstrap css ======-->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
 
     <!--====== Fontawesome css ======-->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}">
 
     <!--====== Magnific Popup css ======-->
-    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" th:href="@{/assets/css/animate.min.css}">
 
     <!--====== Magnific Popup css ======-->
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" th:href="@{/assets/css/magnific-popup.css}">
 
     <!--====== Slick css ======-->
-    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" th:href="@{/assets/css/slick.css}">
 
     <!--====== Default css ======-->
-    <link rel="stylesheet" href="assets/css/custom-animation.css">
-    <link rel="stylesheet" href="assets/css/default.css">
+    <link rel="stylesheet" th:href="@{/assets/css/custom-animation.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/default.css}">
 
     <!--====== Style css ======-->
-    <link rel="stylesheet" href="assets/scss/style.css">
+    <link rel="stylesheet" th:href="@{/assets/scss/style.css}">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css}"/>
 </head>
 <body>
     <header class="header"  th:fragment="my-header">
@@ -90,7 +90,7 @@
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-collection">
                                     <ul>
                                         <li th:each="item, state : ${listCategory}">
-                                        <a class="dropdown-item" th:href="@{'/category/'+ ${item.getId()}}" th:text ="${item.getName()}"></a>
+                                        <a class="dropdown-item" th:href="@{'/category/'+ ${item.id}}" th:text ="${item.name}"></a>
                                         </li>
                                     </ul>
                                 </div>
