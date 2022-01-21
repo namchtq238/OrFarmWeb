@@ -6,36 +6,7 @@
 
 <header th:replace="header :: my-header"></header>
 
-<div class="amm-shopping-cart-wrapper">
-        <div class="amm-shopping-cart-canvas">
-            <div class="amm-shopping_cart">
-                <div class="amm-shopping_cart-top-bar d-flex justify-content-between">
-                    <h6>Giỏ hàng</h6>
-                    <button class="amm-shopping-cart-close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div><!-- shopping cart top bar -->
-                <div class="amm-shopping_cart-list-items mt-30">
-                    <ul>
-                        
-                    </ul>
-                </div> <!-- shopping_cart list items -->
-                <div class="amm-shopping_cart-btn">
-                    <div class="total pt-35 d-flex justify-content-between">
-                        <h5>Tổng tiền:</h5>
-                        <p>0 <span>đ</span></p>
-                        
-                    </div>
-                    <div class="cart-btn pt-25">
-                        <a class="main-btn" href="./ViewCart.html">Xem giỏ hàng</a>
-                        <a class="main-btn main-btn-2" href="./payment.html">Thanh toán</a>
-                    </div>
-                </div>
-            </div> <!-- shopping_cart -->
-        </div>
-        <div class="overlay"></div>
-    </div>
-
+<div th:replace="index :: my-cart"></div>
     <!--====== SHOPPING CART PART ENDS ======-->
 
 <section class="breadcrum" >

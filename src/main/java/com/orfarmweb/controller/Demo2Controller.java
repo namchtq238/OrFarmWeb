@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Demo2Controller {
     @RequestMapping
     public String demo(){
-        return "productdetail";
+        return "admin-page/admin";
     }
 }

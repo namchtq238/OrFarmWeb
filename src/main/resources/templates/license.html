@@ -6,36 +6,7 @@
 
     <header th:replace="header :: my-header"></header>
 
-<div class="amm-shopping-cart-wrapper">
-        <div class="amm-shopping-cart-canvas">
-            <div class="amm-shopping_cart">
-                <div class="amm-shopping_cart-top-bar d-flex justify-content-between">
-                    <h6>Giỏ hàng</h6>
-                    <button class="amm-shopping-cart-close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div><!-- shopping cart top bar -->
-                <div class="amm-shopping_cart-list-items mt-30">
-                    <ul>
-                        
-                    </ul>
-                </div> <!-- shopping_cart list items -->
-                <div class="amm-shopping_cart-btn">
-                    <div class="total pt-35 d-flex justify-content-between">
-                        <h5>Tổng tiền:</h5>
-                        <p>0 <span>đ</span></p>
-                        
-                    </div>
-                    <div class="cart-btn pt-25">
-                        <a class="main-btn" href="./ViewCart.html">Xem giỏ hàng</a>
-                        <a class="main-btn main-btn-2" href="./payment.html">Thanh toán</a>
-                    </div>
-                </div>
-            </div> <!-- shopping_cart -->
-        </div>
-        <div class="overlay"></div>
-    </div>
-
+    <div th:replace="index :: my-cart"></div>
     <!--====== SHOPPING CART PART ENDS ======-->
     <main>
         <section class="orfarm-hero-area orfarm-hero-6-area">
@@ -197,62 +168,7 @@ Thành tựu 6 năm liên tiếp đạt chứng nhận EM Green là minh chứng
             
     </div>
 </section>
-<div class="amm-shopping-cart-wrapper">
-    <div class="amm-shopping-cart-canvas">
-        <div class="amm-shopping_cart">
-            <div class="amm-shopping_cart-top-bar d-flex justify-content-between">
-                <h6>Giỏ hàng</h6>
-                <button class="amm-shopping-cart-close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div><!-- shopping cart top bar -->
-            <div class="amm-shopping_cart-list-items mt-30">
-                <ul>
-                    
-                    <li>
-                        <div class="amm-single-shopping-cart media">
-                            <div class="cart-image">
-                                <img src="assets/images/cart-2.jpg" alt="Cart">
-                            </div>
-                            <div class="cart-content media-body pl-15">
-                                <h6><a href="#">Nho</a></h6>
-                                <span class="quality">SL: 01</span>
-                                <span class="price-discount">50.000đ</span>
-                                <span class="price-close">60.000đ</span>
-                                <a class="remove" href="#"><i class="fa fa-times"></i></a>
-                            </div>
-                        </div> <!-- single shopping cart -->
-                    </li>
-                    <li>
-                        <div class="amm-single-shopping-cart media">
-                            <div class="cart-image">
-                                <img src="assets/images/cart-2.jpg" alt="Cart">
-                            </div>
-                            <div class="cart-content media-body pl-15">
-                                <h6><a href="#">Nho</a></h6>
-                                <span class="quality">SL: 01</span>
-                                <span class="price-discount">50.000đ</span>
-                                <span class="price-close">60.000đ</span>
-                                <a class="remove" href="#"><i class="fa fa-times"></i></a>
-                            </div>
-                        </div> <!-- single shopping cart -->
-                    </li>
-                </ul>
-            </div> <!-- shopping_cart list items -->
-            <div class="amm-shopping_cart-btn">
-                <div class="total pt-35 d-flex justify-content-between">
-                    <h5>Tổng tiền:</h5>
-                    <p>240.000đ</p>
-                </div>
-                <div class="cart-btn pt-25">
-                    <a class="main-btn" href="./ViewCart.html">Xem giỏ hàng</a>
-                    <a class="main-btn main-btn-2" href="./payment.html">Thanh toán</a>
-                </div>
-            </div>
-        </div> <!-- shopping_cart -->
-    </div>
-    <div class="overlay"></div>
-</div>
+
 <section class="orfarm-blog-3-area orfarm-blog-6-area pt-5 pb-100">
     <div class="container">
         <div class="row">
