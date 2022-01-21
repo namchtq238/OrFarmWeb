@@ -22,7 +22,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<Product> listFill(int a, int b, int id) {
+    public List<Product> listFill(float a, float b, int id) {
         List<Product> list = productRepo.listFill(a, b, id);
         return list;
     }

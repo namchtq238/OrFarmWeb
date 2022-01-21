@@ -2,7 +2,7 @@ package com.orfarmweb.controller;
 
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
-import com.orfarmweb.repository.CategoryRepo;
+import com.orfarmweb.modelutil.FilterProduct;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +30,17 @@ public class ProductController {
             model.addAttribute("category", categoryService.findById(id).get());
         return "raucusach";
     }
+    @PostMapping("/category/{id}/fill-result")
+    public String showViewProductFill(@PathVariable("id") int id, @ModelAttribute FilterProduct filter, Model model){
+        model.addAttribute("productFill", productService.listFill(filter.getFillStart(), filter.getFillEnd(), id));
+        return "dokho";
+    }
     @GetMapping("/product/{id}")
     public String showViewProductDetail(@PathVariable int id, Model model){
         model.addAttribute("productDetail", productService.findById(id));
         return "productdetail";
     }
+
     @GetMapping("/testapi")
     public  @ResponseBody Product getApi(){
         Product p = new Product();

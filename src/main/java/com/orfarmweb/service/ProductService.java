@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ProductService {
     List<Product> listAllByCategoryId(int id);
-    List<Product> listFill(int a, int b, int id);
+    List<Product> listFill(float a, float b, int id);
     Product findById(int id);
     int getTotal(int id);
     List<Product> getListProductByHot();
