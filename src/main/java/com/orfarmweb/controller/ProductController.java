@@ -21,11 +21,11 @@ public class ProductController {
     model.addAttribute("listCategory",list);
 }
     @GetMapping("/category/{id}")
-    public String showViewProduct(@PathVariable("id") int id, @ModelAttribute("listCategory") Category category, Model model){
-            Integer sum = productService.getTotal(category.getId());
+    public String showViewProduct(@PathVariable("id") int id, Model model){
+            Integer sum = productService.getTotal(id);
             if(sum.equals(null)) sum = 0;
             model.addAttribute("sum", sum);
-            model.addAttribute("listProduct", productService.listAllByCategoryId(category.getId()));
+            model.addAttribute("listProduct", productService.listAllByCategoryId(id));
         return "raucusach";
     }
     @GetMapping("/product/{id}")
