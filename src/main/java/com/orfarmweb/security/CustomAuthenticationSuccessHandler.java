@@ -21,7 +21,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         if (userDetails.hasRole("ADMIN")) {
             redirectURL = "admin";
         } else if (userDetails.hasRole("CUSTOMER")) {
-            redirectURL = "index";
+            redirectURL = "home";
         }
         HttpSession session =  request.getSession();
         session.setAttribute("username", userDetails.getUsername());

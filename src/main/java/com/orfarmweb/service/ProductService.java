@@ -10,4 +10,6 @@ public interface ProductService {
     List<Product> listFill(int a, int b, int id);
     Product findById(int id);
     int getTotal(int id);
+    List<Product> getListProductByHot();
+    List<Product> getListSaleProduct();
 }

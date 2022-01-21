@@ -17,4 +17,8 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     int getTotal(int id);
     @Query(value = "select * from product where id = ?", nativeQuery = true)
     Product getAllById(int id);
+    @Query(value = "select * from product where is_hot= 1", nativeQuery = true)
+    List<Product> getProductByHot();
+    @Query(value = "select * from product where percent_discount <> 0", nativeQuery = true)
+    List<Product> getSaleProduct();
 }

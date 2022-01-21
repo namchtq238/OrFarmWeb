@@ -36,4 +36,14 @@ public class ProductServiceImp implements ProductService {
     public int getTotal(int id) {
         return productRepo.getTotal(id);
     }
+
+    @Override
+    public List<Product> getListProductByHot() {
+        return productRepo.getProductByHot();
+    }
+
+    @Override
+    public List<Product> getListSaleProduct() {
+        return productRepo.getSaleProduct();
+    }
 }
