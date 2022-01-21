@@ -62,7 +62,7 @@
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active" style="padding-left: 40px;">
-                            <a class="nav-link waves-effect  text-header" href="./index.html">Trang chủ
+                            <a class="nav-link waves-effect  text-header" th:href="@{/}">Trang chủ
 
                                 <span class="sr-only">(current)</span>
                             </a>
@@ -73,7 +73,7 @@
                                    href="" target="_blank">Giới thiệu
 
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-collection">
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
                                     <a class="dropdown-item" href="./information.html">Về chúng tôi</a>
                                     <a class="dropdown-item" href="./license.html">Giấy chứng nhận</a>
                                     <a class="dropdown-item" href="./recruit.html">Tuyển dụng</a>
@@ -116,8 +116,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="./login.html" class="nav-link border border-light rounded waves-effect"
-                               target="_blank">
+                            <a th:href="@{/login}" class="nav-link border border-light rounded waves-effect"                            >
                                 <i class="fas fa-user"></i>Đăng Nhập
                             </a>
                         </li>
