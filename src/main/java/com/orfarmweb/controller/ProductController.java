@@ -15,27 +15,22 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private CategoryRepo categoryRepo;
-//    @GetMapping("/category")
-//    public String getCategoryInput(Model model){
-//
-//        return "raucusach";
-//    }
+    @ModelAttribute
+    public void check(Model model){
+    List<Category> list = categoryRepo.findAll();
+    model.addAttribute("listCategory",list);
+}
     @GetMapping("/category/{id}")
     public String showViewProduct(@PathVariable("id") int id, @ModelAttribute("listCategory") Category category, Model model){
-            List<Category> list = categoryRepo.findAll();
             Integer sum = productService.getTotal(category.getId());
             if(sum.equals(null)) sum = 0;
             model.addAttribute("sum", sum);
-            model.addAttribute("listCategory",list);
             model.addAttribute("listProduct", productService.listAllByCategoryId(category.getId()));
         return "raucusach";
     }
     @GetMapping("/product/{id}")
     public String showViewProductDetail(@PathVariable int id, Model model){
-        List<Category> list = categoryRepo.findAll();
-        model.addAttribute("listCategory",list);
         model.addAttribute("productDetail", productService.findById(id));
-//        System.err.println(productService.findById(id).toString());
         return "productdetail";
     }
     @GetMapping("/testapi")
