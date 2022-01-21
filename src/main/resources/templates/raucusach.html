@@ -149,11 +149,10 @@
                         </select>
                     </div>
                     <div class="row">
-                        <ul>
-                        <li th:each="pro, state : ${listProduct}"><div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6" th:each="pro, state : ${listProduct}">
                             <div class="single-shop-box">
                                 <div class="thumb text-center">
-                                    <img th:src="@{/image/shop-grid-1.jpg}" alt="">
+                                    <img th:src="@{'/'+${pro.image}}" alt="">
                                     <div class="reborn">
                                         <span>Sale</span>
                                     </div>
@@ -176,13 +175,12 @@
                                     <input type="hidden" id="productId" value="1">
                                     <a th:href="@{'/product/' + ${pro.id}}" th:text="${pro.name}"></a>
                                     <div class="pricing">
-                                        <div class="discount-price"><span th:text="${pro.salePrice}"></span></div>
-                                        <div class="regular-price"><span th:text="${pro.salePrice}"></span> </div>
+                                        <div class="discount-price"><span th:text="(1-(${pro.percentDiscount}/100))*${pro.salePrice}"></span> </div>
+                                        <div class="regular-price"><span th:text="${pro.salePrice}"></span></div>
                                     </div>
                                 </div>
                             </div>
-                        </div></li>
-                        </ul>
+                        </div>
 <!--                        <div class="col-lg-12">-->
 <!--                            <div class="bisylms-pagination">-->
 <!--                                <span class="current">1</span>-->

@@ -24,4 +24,6 @@ public class Product {
     private Category category;
     @OneToMany(targetEntity = OrderDetail.class, mappedBy = "product")
     private Set<OrderDetail> orderDetail;
+    @Column(name = "cost")
+    private Float cost;
 }

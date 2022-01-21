@@ -82,11 +82,11 @@
                     <div class="col-lg-6" th:object="${product}">
                         <div class="shop-product-details-content pl-70 mt-35">
                             <span>Trong kho</span>
-                            <h2 class="title">Cải Bắp</h2>
+                            <h2 class="title" th:text="${product.name}"></h2>
                             <input type="hidden" id="productId" value="1">
                             <div class="pricing">
-                                <div class="discount-price mr-15"><span>25.000</span> </div>
-                                <div class="regular-price"><span>30.000</span> <sup>đ</sup></div>
+                                <div class="discount-price mr-15"><span th:text="(1-(${product.percentDiscount}/100))*${pro.salePrice}"></span> </div>
+                                <div class="regular-price"><span th:text="${product.salePrice}"></span> <sup>đ</sup></div>
                             </div>
                             <div class="review">
                                 <ul>
