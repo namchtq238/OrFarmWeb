@@ -29,8 +29,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public Product findById(int id) {
-        Product product = productRepo.getById(id);
-        return product;
+        return productRepo.getAllById(id);
     }
 
     @Override

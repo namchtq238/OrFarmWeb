@@ -12,7 +12,11 @@ import java.util.List;
 public class MainController {
     @Autowired
     private CategoryRepo categoryRepo;
-    @GetMapping
+    @GetMapping("/")
+    public String returnIndex(){
+        return "redirect:index";
+    }
+    @GetMapping("/index")
     public String getCategoryInput(Model model){
         List<Category> list = categoryRepo.findAll();
         model.addAttribute("listCategory",list);

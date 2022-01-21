@@ -15,4 +15,6 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Product> listFill(int a, int b, int id);
     @Query(value = "select count(product.id) from product left join category on product.cate_id = category.id where category.id = ?",nativeQuery = true)
     int getTotal(int id);
+    @Query(value = "select * from product where id = ?", nativeQuery = true)
+    Product getAllById(int id);
 }

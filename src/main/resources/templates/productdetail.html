@@ -53,12 +53,12 @@
     <main>
         <section class="shop-details-area pt-100 pb-100">
             <div class="container">
-                <div class="row ">
+                <div class="row" th:object="${productDetail}">
                     <div class="col-lg-6">
                         <div class="shop-details-thumb">
                             <div class="shop-details-thumb-slider-active">
                                 <div class="item ">
-                                    <img th:src="@{https://hoaquafuji.com/storage/app/media/cong-dung-le-nam-phi-fuji.jpg}" alt="">
+                                    <img th:src="@{'/image/ImageOrFarm/'+ ${productDetail.getImage}}" alt="">
                                 </div>
 
                             </div>
@@ -79,14 +79,14 @@
                             
                         </div>
                     </div>
-                    <div class="col-lg-6" th:object="${product}">
+                    <div class="col-lg-6">
                         <div class="shop-product-details-content pl-70 mt-35">
                             <span>Trong kho</span>
-                            <h2 class="title" th:text="${product.name}"></h2>
+                            <h2 class="title" th:utext="*{name}"></h2>
                             <input type="hidden" id="productId" value="1">
                             <div class="pricing">
-                                <div class="discount-price mr-15"><span th:text="(1-(${product.percentDiscount}/100))*${pro.salePrice}"></span> </div>
-                                <div class="regular-price"><span th:text="${product.salePrice}"></span> <sup>đ</sup></div>
+                                <div class="discount-price mr-15"><span th:utext="*{salePrice}"></span> </div>
+                                <div class="regular-price"><span th:utext="*{salePrice}"></span> <sup>đ</sup></div>
                             </div>
                             <div class="review">
                                 <ul>
@@ -98,19 +98,20 @@
                                 </ul>
                                 <span>(4 bình luận)</span>
                             </div>
-                            <p>Dưỡng chất trong bắp cải: rau cải bắp có chứa hàm lượng dưỡng chất gấp lên tới 4,5 lần so với cà rốt và với khoai tây là 3,5 lần. Ngoài ra còn có chứa rất nhiều hàm lượng vitamin tốt cho cơ thể. Vitamin A và vitamin B có chứa trong bắp cải có tác dụng giúp cho sáng mắt, giúp cho sáng da, mượt tóc, chống lại quá trình bị lão hóa, kích thích ăn uống,... đặc biệt có thể hạn chế được bệnh ung thư.</p>
+                            <h5 th:utext = "*{briefDesc}"></h5>
+                            <p th:utext="*{description}"></p>
                             <div class="shop-buttons d-block d-sm-flex align-items-center">
                                 <div class="product-quantity" id="quantity">
                                     <button type="button" id="sub" class="sub">-</button>
                                     <input type="text" id="1" value="1" />
                                     <button type="button" id="add" class="add">+</button>
                                 </div>
-                                <a class="main-btn ml-10" href="#">Thêm vào giỏ</a>
+                                <a class="main-btn ml-10" th:href="@{/cart}">Thêm vào giỏ</a>
                             </div> 
                             <div class="details-info">
                                 <ul>
                                     <li><span>SKU:</span> 42725-AB-6 </li>
-                                    <li><span>Phân loại: </span> Rau củ sạch </li>
+                                    <li><span >Phân loại: </span><th:block th:utext = " ${productDetail.getCategory.getName}"></th:block></li>
                                     <li><span>Tags:</span> Cải Bắp, Sạch, Rau </li>
                                 </ul>
                             </div>

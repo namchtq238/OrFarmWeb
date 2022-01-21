@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
-
 @Controller
 public class ProductController {
     @Autowired
@@ -27,7 +25,7 @@ public class ProductController {
             List<Category> list = categoryRepo.findAll();
             Integer sum = productService.getTotal(category.getId());
             if(sum.equals(null)) sum = 0;
-        model.addAttribute("sum", sum);
+            model.addAttribute("sum", sum);
             model.addAttribute("listCategory",list);
             model.addAttribute("listProduct", productService.listAllByCategoryId(category.getId()));
         return "raucusach";
@@ -36,7 +34,8 @@ public class ProductController {
     public String showViewProductDetail(@PathVariable int id, Model model){
         List<Category> list = categoryRepo.findAll();
         model.addAttribute("listCategory",list);
-        model.addAttribute("product", productService.findById(id));
+        model.addAttribute("productDetail", productService.findById(id));
+//        System.err.println(productService.findById(id).toString());
         return "productdetail";
     }
     @GetMapping("/testapi")
