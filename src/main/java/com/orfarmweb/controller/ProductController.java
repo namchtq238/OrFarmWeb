@@ -3,6 +3,7 @@ package com.orfarmweb.controller;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.repository.CategoryRepo;
+import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,12 +15,12 @@ public class ProductController {
     @Autowired
     private ProductService productService;
     @Autowired
-    private CategoryRepo categoryRepo;
+    private CategoryService categoryService;
     @ModelAttribute
-    public void check(Model model){
-    List<Category> list = categoryRepo.findAll();
-    model.addAttribute("listCategory",list);
-}
+    public void addCategoryToHeader(Model model){
+        List<Category> listCategory = categoryService.getListCategory();
+        model.addAttribute("listCategory",listCategory);
+    }
     @GetMapping("/category/{id}")
     public String showViewProduct(@PathVariable("id") int id, Model model){
             Integer sum = productService.getTotal(id);

@@ -19,6 +19,10 @@ public class MainController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @GetMapping("/login")
+    public String getLoginPage(){
+        return "login";
+    }
     @GetMapping("/")
     public String returnIndex(){
         return "redirect:/home";
