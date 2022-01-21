@@ -5,7 +5,6 @@
 
 <body>
 <header th:replace="header :: my-header"></header>
-
 <section class="breadcrum">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb container">
@@ -47,19 +46,21 @@
                         <div class="shop-category-widget">
                             <h4 class="title">Danh Mục Sản Phẩm</h4>
                             <ul>
-                                <li class="fruit"><a href="./raucusach.html" >Rau củ sạch</a></li>
-                                <li><a href="./hoaqua.html">Hoa quả</a></li>
-                                <li><a href="./dokho.html">Đồ khô</a></li>
-                                <li><a href="./vungmien.html">Đặc sản vùng miền</a></li>
-                                <li><a href="./tuoisong.html">Thực phẩm tươi sống</a></li>
-                                <li><a href="./thucphamkhac.html">Sản phẩm khác</a></li>
+                                <li class="fruit" th:each="item, state : ${listCategory}">
+                                    <a th:href="@{'/category/' + ${item.id}}" th:text ="${item.name}"></a>
+                                </li>
+<!--                                <li><a href="./hoaqua.html">Hoa quả</a></li>-->
+<!--                                <li><a href="./dokho.html">Đồ khô</a></li>-->
+<!--                                <li><a href="./vungmien.html">Đặc sản vùng miền</a></li>-->
+<!--                                <li><a href="./tuoisong.html">Thực phẩm tươi sống</a></li>-->
+<!--                                <li><a href="./thucphamkhac.html">Sản phẩm khác</a></li>-->
                             </ul>
                         </div>
                         <div class="shop-best-product-widget">
                             <h4 class="title">Best Seller</h4>
                             <div class="shop-product">
                                 <div class="thumb">
-                                    <img src="./image/cà chua.jpg" alt="">
+                                    <img th:src="@{/image/cà chua.jpg}" alt="">
                                 </div>
                                 <div class="content">
                                     <a href="./productdetail.html">Cà Chua Mộc Châu</a>
@@ -68,7 +69,7 @@
                             </div>
                             <div class="shop-product">
                                 <div class="thumb">
-                                    <img src="./image/cải bắp.jpg" alt="">
+                                    <img th:src="@{/image/cải bắp.jpg}" alt="">
                                 </div>
                                 <div class="content">
                                     <a href="./productdetail.html">Cải Bắp Đà Lạt</a>
@@ -77,7 +78,7 @@
                             </div>
                             <div class="shop-product">
                                 <div class="thumb">
-                                    <img src="./image/đậu.jpg" alt="">
+                                    <img th:src="@{/image/đậu.jpg}" alt="">
                                 </div>
                                 <div class="content">
                                     <a href="./productdetail.html">Đậu Xanh Hải Dương</a>
@@ -100,7 +101,7 @@
                         </div>
                         <div class="shop-sidebar">
                             <a href="./shop.html" class="image-hover">
-                                <img src="./image/banner10-min.jpg" alt="">
+                                <img th:src="@{/image/banner10-min.jpg}" alt="">
                             </a>
                         </div>
                     </div>
@@ -108,11 +109,11 @@
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="row">
                         <div class="banner-collection pb-5 w-300">
-                            <img src="./image/20200929091644852gia-thuc-pham-ngay-299-thi-truong-soi-dong-hon-khi-14-0.jpg"  height="262px" alt="">
+                            <img th:src="@{/image/20200929091644852gia-thuc-pham-ngay-299-thi-truong-soi-dong-hon-khi-14-0.jpg}"  height="262px" alt="">
                         </div>
                     </div>
                     <div class="shop-grid-topbar d-flex justify-content-between align-items-center">
-                        <span>Hiện thị tổng số <span>12</span> sản phẩm.</span>
+                        <span>Tổng số <span th:text="${sum}"></span> sản phẩm.</span>
                         <select id="product">
                             <option value="volvo">Mới nhất</option>
                             <option value="saab">Bán chạy nhất</option>
@@ -120,18 +121,18 @@
                         </select>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6" th:each="pro, state : ${listProduct}">
                             <div class="single-shop-box">
                                 <div class="thumb text-center">
-                                    <img src="./image/shop-grid-1.jpg" alt="">
+                                    <img th:src="@{'/image/ImageOrFarm/'+${pro.image}}" alt="">
                                     <div class="reborn">
                                         <span>Sale</span>
                                     </div>
                                     <div class="cart-list-icon">
                                         <ul>
                                             <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
+                                            <li><a th:href="@{#}"><i class="fal fa-heart"></i></a></li>
+                                            <li><a th:href="@{#}"><i class="fal fa-eye"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -144,375 +145,29 @@
                                         <li><i class="fas fa-star-half-alt"></i></li>
                                     </ul>
                                     <input type="hidden" id="productId" value="1">
-                                    <a href="#">Cải Bắp</a>
+                                    <a th:href="@{'/product/' + ${pro.id}}" th:text="${pro.name}"></a>
                                     <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
+                                        <div class="discount-price"><span th:text="(1-(${pro.percentDiscount}/100))*${pro.salePrice}"></span> </div>
+                                        <div class="regular-price"><span th:text="${pro.salePrice}"></span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-2.jpg" alt="">
-                                    <div class="reborn">
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="2">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-3.jpg" alt="">
-                                    <div class="reborn">
-                                        <span>Hot</span>
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="3">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-1.jpg" alt="">
-                                    <div class="reborn">
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="4">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-4.jpg" alt="">
-                                    <div class="reborn">
-                                        <span>New</span>
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="5">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-6.jpg" alt="">
-                                    <div class="reborn">
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="6">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-7.jpg" alt="">
-                                    <div class="reborn">
-                                        <span>Hot</span>
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="7">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-8.jpg" alt="">
-                                    <div class="reborn">
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="8" >
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-9.jpg" alt="">
-                                    <div class="reborn">
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="9">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-10.jpg" alt="">
-                                    <div class="reborn">
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="10">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-11.jpg" alt="">
-                                    <div class="reborn">
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="11">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span>  </div> 
-                                        <div class="regular-price"><span>30.000 </span>  <sup>đ</sup></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-shop-box">
-                                <div class="thumb text-center">
-                                    <img src="./image/shop-grid-12.jpg" alt="">
-                                    <div class="reborn">
-                                        <span>Sale</span>
-                                    </div>
-                                    <div class="cart-list-icon">
-                                        <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fal fa-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <input type="hidden" id="productId" value="12">
-                                    <a href="#">Cải Bắp</a>
-                                    <div class="pricing">
-                                        <div class="discount-price"><span>25.000 </span> </div> 
-                                        <div class="regular-price"><span>30.000 </span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="bisylms-pagination">
-                                <span class="current">1</span>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a class="next" href="#">next<i class="fal fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+<!--                        <div class="col-lg-12">-->
+<!--                            <div class="bisylms-pagination">-->
+<!--                                <span class="current">1</span>-->
+<!--                                <a href="#">2</a>-->
+<!--                                <a href="#">3</a>-->
+<!--                                <a class="next" href="#">next<i class="fal fa-arrow-right"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
     </div>
     <footer th:replace = "~{footer :: html_footer}"> </footer>
-    </body>
+    </div></body>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <th:block th:insert="~{header :: script}"></th:block>
 </html>
