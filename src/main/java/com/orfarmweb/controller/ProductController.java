@@ -27,6 +27,7 @@ public class ProductController {
             if(sum.equals(null)) sum = 0;
             model.addAttribute("sum", sum);
             model.addAttribute("listProduct", productService.listAllByCategoryId(id));
+            model.addAttribute("category", categoryService.findById(id).get());
         return "raucusach";
     }
     @GetMapping("/product/{id}")
