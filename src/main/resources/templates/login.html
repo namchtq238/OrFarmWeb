@@ -21,6 +21,9 @@
                 <div class="row log-acc-page register-acc-page pt-5 justify-content-center">
                     <div class="col-lg-4 col-sm-12">
                         <div class="acc-page">
+                            <div th:if="${param.error != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Incorrect email or password.
+                            </div>
                             <div class="login">
                                 <form th:action="@{/authen}" method="post">
                                     <div class="login-form-container">
