@@ -26,6 +26,6 @@ public class Product {
     private Set<OrderDetail> orderDetail;
     @Column(name = "cost")
     private Float cost;
-    @ManyToOne(targetEntity = Cart.class, cascade = CascadeType.ALL)
-    private Cart cart;
+    @OneToMany(targetEntity = Cart.class, cascade = CascadeType.ALL, mappedBy = "product")
+    private Set<Cart> cart;
 }

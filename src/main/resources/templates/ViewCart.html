@@ -27,7 +27,13 @@
                     </div>
                     <div class="displayProduct row pt-3 pb-3">
                         <ul id="mainCart">
-                            
+                            <div th:each="cartItem : ${listCart}">
+                                <li>
+                                    <img th:src="@{'/image/ImageOrFarm/' + ${cartItem.getImage()}}">
+                                    <span th:text="${cartItem.getProductName()}"></span>
+                                    <span th:text="${cartItem.getProductPrice()}"></span>
+                                </li>
+                            </div>
                         </ul>
                         <div class="cart-link row pt-3 pb-3 " style="width: 835px;">
                             <a href="./shop.html">Tiếp tục mua hàng</a>

@@ -33,6 +33,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
+        // đặt tên là username cho đỡ bị nhầm cái security
         return user.getEmail();
     }
     public String getFullname() {
