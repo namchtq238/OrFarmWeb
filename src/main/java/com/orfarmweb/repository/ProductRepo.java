@@ -21,4 +21,6 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Product> getProductByHot();
     @Query(value = "select * from product where percent_discount <> 0", nativeQuery = true)
     List<Product> getSaleProduct();
+    @Query(value = "select sale_price from product where product.id = ?", nativeQuery = true)
+    Float getSalePrice(int id);
 }
