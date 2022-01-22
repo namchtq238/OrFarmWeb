@@ -48,7 +48,8 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public String getSalePriceById(int id) {
-        return formatPrice.formatPrice(productRepo.getSalePrice(id));
+        Float s = productRepo.getSalePrice(id);
+        return formatPrice.formatPrice(s);
     }
 
     @Override
@@ -67,6 +68,11 @@ public class ProductServiceImp implements ProductService {
     @Override
     public List<Product> getByPage(long currentPage, int id) {
         return productRepo.findByPage((currentPage - 1) * pageSize, pageSize, id);
+    }
+
+    @Override
+    public int getCategoryId(int id) {
+        return productRepo.findCateGoryIdByProdId(id);
     }
 
 }

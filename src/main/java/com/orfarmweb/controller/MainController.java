@@ -53,19 +53,23 @@ public class MainController {
         List<Product> hotproductList = productService.getListProductByHot();
         int numberOfHotProduct = 6;
         Collections.shuffle(hotproductList);
-        model.addAttribute("listHotProduct", hotproductList.subList(0, numberOfHotProduct));
+        if(hotproductList.size()<7) model.addAttribute("listHotProduct", hotproductList);
+        else model.addAttribute("listHotProduct", hotproductList.subList(0, numberOfHotProduct));
         List<Product> productList = productService.getListSaleProduct();
         int numberOfSaleProduct = 8;
-        Collections.shuffle(productList);
         HashMap<Integer,String> getListSale = new HashMap<>();
         HashMap<Integer,String> getListDiscount = new HashMap<>();
-        for (Product p :productList.subList(0, numberOfSaleProduct)) {
-            getListSale.put(p.getId(), formatPrice.formatPrice(p.getSalePrice()));
-            getListDiscount.put(p.getId(),formatPrice.formatPrice(p.getSalePrice()*(1-p.getPercentDiscount()/100)));
+        Collections.shuffle(productList);
+        if(productList.size()<9) model.addAttribute("listSaleProduct",productList);
+        else{
+        for (Product p : productList.subList(0, numberOfSaleProduct)) {
+            getListSale.put(p.getId(), productService.getSalePriceById(p.getId()));
+            getListDiscount.put(p.getId(),productService.getDiscountPriceById(p.getId()));
         }
+        model.addAttribute("listSaleProduct", productList.subList(0, numberOfSaleProduct));
         model.addAttribute("getListSale",getListSale);
         model.addAttribute("getListDiscount",getListDiscount);
-        model.addAttribute("listSaleProduct", productList.subList(0, numberOfSaleProduct));
+        }
 //        List<Product> products = Stream.concat(hotproductList.stream(), productList.stream())
 //                .collect(Collectors.toList());
 //        Collections.shuffle(products);

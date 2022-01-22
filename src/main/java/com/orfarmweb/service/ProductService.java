@@ -12,8 +12,7 @@ public interface ProductService {
     List<Product> getListSaleProduct();
     String getSalePriceById(int id);
     String getDiscountPriceById(int id);
-
     long getTotalPage(int id);
-
     List<Product> getByPage(long currentPage, int id);
+    int getCategoryId(int id);
 }

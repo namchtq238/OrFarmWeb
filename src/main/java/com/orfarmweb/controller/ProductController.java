@@ -31,7 +31,6 @@ public class ProductController {
         List<Category> listCategory = categoryService.getListCategory();
         model.addAttribute("listCategory", listCategory);
     }
-
     @GetMapping("/category/{id}")
     public String showViewProduct(@PathVariable("id") int id) {
         return "redirect:/category/{id}/1";
@@ -54,16 +53,16 @@ public class ProductController {
         }
         List<Product> productList = productService.getListProductByHot();
         Collections.shuffle(productList);
-
+        if(productList.size()<4) model.addAttribute("bestSeller", productList);
+        else model.addAttribute("bestSeller", productList.subList(0, 3));
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("categoryId", id);
         model.addAttribute("salePrice", hashMap);
         model.addAttribute("discountPrice", hashMap1);
-        model.addAttribute("bestSeller", productList.subList(0, 3));
         model.addAttribute("sum", sum);
         model.addAttribute("listProduct", productService.getByPage(currentPage, id));
-        System.out.println("id:"+  id + " ----- list product size" + productService.getByPage(currentPage, id).size());
+        hashMap.forEach((k,v)-> System.err.println("key:"+k+"----- value:"+v));
         model.addAttribute("category", categoryService.findById(id).get());
         return "raucusach";
     }
@@ -76,6 +75,19 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public String showViewProductDetail(@PathVariable int id, Model model) {
+        Integer idCategory = productService.getCategoryId(id);
+        List<Product> list = productService.listAllByCategoryId(idCategory);
+        if(list.size()<9) model.addAttribute("listSimilar", list);
+        else model.addAttribute("listSimilar", list.subList(0,8));
+        Collections.shuffle(list);
+        HashMap<Integer, String> listPrice = new HashMap<Integer,String>();
+        HashMap<Integer, String> listDiscount = new HashMap<Integer,String>();
+        for (Product p : list.subList(0,8)){
+            listPrice.put(p.getId(), productService.getSalePriceById(p.getId()));
+            listDiscount.put(p.getId(), productService.getDiscountPriceById(p.getId()));
+        }
+        model.addAttribute("listSimilarPrice",listPrice);
+        model.addAttribute("listSimilarDiscount",listDiscount);
         model.addAttribute("salePriceDetail", productService.getSalePriceById(id));
         model.addAttribute("discountPriceDetail", productService.getDiscountPriceById(id));
         model.addAttribute("productDetail", productService.findById(id));
