@@ -61,7 +61,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/index")
+                .logoutSuccessUrl("/home")
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");
     }

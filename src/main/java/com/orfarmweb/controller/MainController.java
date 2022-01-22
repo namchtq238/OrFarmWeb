@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Controller
 public class MainController {
     @Autowired
@@ -32,6 +35,10 @@ public class MainController {
     public String getHomePage(){
         return "index";
     }
+    @GetMapping("/createAccount")
+    public String getCreateAccountPage(){
+        return "createAccount";
+    }
     @ModelAttribute
     public void addCategoryToHeader(Model model){
         List<Category> listCategory = categoryService.getListCategory();
@@ -47,6 +54,10 @@ public class MainController {
         int numberOfSaleProduct = 8;
         Collections.shuffle(productList);
         model.addAttribute("listSaleProduct", productList.subList(0, numberOfSaleProduct));
+//        List<Product> products = Stream.concat(hotproductList.stream(), productList.stream())
+//                .collect(Collectors.toList());
+//        Collections.shuffle(products);
+//        model.addAttribute("products", products.subList(0, 8));
     }
 
 }
