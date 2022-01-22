@@ -85,8 +85,9 @@
                             <h2 class="title" th:utext="*{name}"></h2>
                             <input type="hidden" id="productId" value="1">
                             <div class="pricing">
-                                <div class="discount-price mr-15"><span th:utext="${salePriceDetail}"></span> </div>
-                                <div class="regular-price"><span th:if="${discountPriceDetail!=null}" th:utext="${discountPriceDetail}"></span></div>
+                                <div class="discount-price mr-15"><span th:if="${discountPriceDetail!=null}" th:utext="${discountPriceDetail}"></span>
+                                </div>
+                                <div class="regular-price"><span th:utext="${salePriceDetail}"></span> </div>
                             </div>
                             <div class="review">
                                 <ul>
