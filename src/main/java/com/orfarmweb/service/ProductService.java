@@ -12,4 +12,6 @@ public interface ProductService {
     int getTotal(int id);
     List<Product> getListProductByHot();
     List<Product> getListSaleProduct();
+    String getSalePriceById(int id);
+    String getDiscountPriceById(int id);
 }

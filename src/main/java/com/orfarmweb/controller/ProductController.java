@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 @Controller
 public class ProductController {
@@ -25,6 +29,18 @@ public class ProductController {
     public String showViewProduct(@PathVariable("id") int id, Model model){
             Integer sum = productService.getTotal(id);
             if(sum.equals(null)) sum = 0;
+            List<String> s = new ArrayList<>();
+            HashMap<Integer, String> hashMap = new HashMap<Integer,String>();
+            for(Product p: productService.listAllByCategoryId(id)){
+                hashMap.put(p.getId(), productService.getSalePriceById(p.getId()));
+            }
+            HashMap<Integer, String> hashMap1 = new HashMap<Integer,String>();
+            for(Product p: productService.listAllByCategoryId(id)){
+                hashMap1.put(p.getId(), productService.getDiscountPriceById(p.getId()));
+            }
+            model.addAttribute("salePrice", hashMap);
+            model.addAttribute("discountPrice", hashMap1);
+            model.addAttribute("bestSeller", productService.getListProductByHot().subList(0,3));
             model.addAttribute("sum", sum);
             model.addAttribute("listProduct", productService.listAllByCategoryId(id));
             model.addAttribute("category", categoryService.findById(id).get());

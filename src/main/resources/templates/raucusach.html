@@ -58,31 +58,13 @@
                         </div>
                         <div class="shop-best-product-widget">
                             <h4 class="title">Best Seller</h4>
-                            <div class="shop-product">
+                            <div class="shop-product" th:each="best, state : ${bestSeller}">
                                 <div class="thumb">
-                                    <img th:src="@{/image/cà chua.jpg}" alt="">
+                                    <img th:src="@{'/image/ImageOrFarm/'+${best.image}}" alt="">
                                 </div>
                                 <div class="content">
-                                    <a href="./productdetail.html">Cà Chua Mộc Châu</a>
-                                    <span>45.000đ</span>
-                                </div>
-                            </div>
-                            <div class="shop-product">
-                                <div class="thumb">
-                                    <img th:src="@{/image/cải bắp.jpg}" alt="">
-                                </div>
-                                <div class="content">
-                                    <a href="./productdetail.html">Cải Bắp Đà Lạt</a>
-                                    <span>18.000đ</span>
-                                </div>
-                            </div>
-                            <div class="shop-product">
-                                <div class="thumb">
-                                    <img th:src="@{/image/đậu.jpg}" alt="">
-                                </div>
-                                <div class="content">
-                                    <a href="./productdetail.html">Đậu Xanh Hải Dương</a>
-                                    <span>23.000đ</span>
+                                    <a href="@{'/product/' + ${best.id}}" th:text="${best.name}"></a>
+                                    <span th:text="${best.salePrice}"></span>
                                 </div>
                             </div>
                         </div>
@@ -147,8 +129,8 @@
                                     <input type="hidden" id="productId" value="1">
                                     <a th:href="@{'/product/' + ${pro.id}}" th:text="${pro.name}"></a>
                                     <div class="pricing">
-                                        <div class="discount-price"><span th:text="(1-(${pro.percentDiscount}/100))*${pro.salePrice}"></span> </div>
-                                        <div class="regular-price"><span th:text="${pro.salePrice}"></span></div>
+                                        <div class="discount-price"><span th:text="${discountPrice.get(pro.id)}"></span> </div>
+                                        <div class="regular-price"><span th:text="${salePrice.get(pro.id)}"></span></div>
                                     </div>
                                 </div>
                             </div>
