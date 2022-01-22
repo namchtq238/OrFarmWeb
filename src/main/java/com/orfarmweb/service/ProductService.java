@@ -3,8 +3,6 @@ package com.orfarmweb.service;
 import com.orfarmweb.entity.Product;
 
 import java.util.List;
-import java.util.Optional;
-
 public interface ProductService {
     List<Product> listAllByCategoryId(int id);
     List<Product> listFill(float a, float b, int id);

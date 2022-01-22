@@ -1,5 +1,6 @@
 package com.orfarmweb.controller;
 
+import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.repository.CategoryRepo;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 @Controller
 public class MainController {
@@ -20,6 +22,8 @@ public class MainController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private FormatPrice formatPrice;
     @GetMapping("/login")
     public String getLoginPage(){
         return "login";
@@ -46,7 +50,14 @@ public class MainController {
         List<Product> productList = productService.getListSaleProduct();
         int numberOfSaleProduct = 8;
         Collections.shuffle(productList);
+        HashMap<Integer,String> getListSale = new HashMap<>();
+        HashMap<Integer,String> getListDiscount = new HashMap<>();
+        for (Product p :productList.subList(0, numberOfSaleProduct)) {
+            getListSale.put(p.getId(), formatPrice.formatPrice(p.getSalePrice()));
+            getListDiscount.put(p.getId(),formatPrice.formatPrice(p.getSalePrice()*(1-p.getPercentDiscount()/100)));
+        }
+        model.addAttribute("getListSale",getListSale);
+        model.addAttribute("getListDiscount",getListDiscount);
         model.addAttribute("listSaleProduct", productList.subList(0, numberOfSaleProduct));
     }
-
 }

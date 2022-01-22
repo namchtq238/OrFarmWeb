@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="content">
                                     <a href="@{'/product/' + ${best.id}}" th:text="${best.name}"></a>
-                                    <span th:text="${best.salePrice}"></span>
+                                    <span th:text="${salePrice.get(best.id)}"></span>
                                 </div>
                             </div>
                         </div>
@@ -108,13 +108,13 @@
                                 <div class="thumb text-center">
                                     <img th:src="@{'/image/ImageOrFarm/'+${pro.image}}" alt="">
                                     <div class="reborn">
-                                        <span>Sale</span>
+                                        <span th:if="${pro.percentDiscount!=0}">Sale</span>
                                     </div>
                                     <div class="cart-list-icon">
                                         <ul>
-                                            <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>
+                                            <li class="shopping-bag"><a th:href="@{#}"><i class="fal fa-shopping-bag"></i></a></li>
                                             <li><a th:href="@{#}"><i class="fal fa-heart"></i></a></li>
-                                            <li><a th:href="@{#}"><i class="fal fa-eye"></i></a></li>
+                                            <li><a th:href="@{'/product/' + ${pro.id}}"><i class="fal fa-eye"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -129,9 +129,9 @@
                                     <input type="hidden" id="productId" value="1">
                                     <a th:href="@{'/product/' + ${pro.id}}" th:text="${pro.name}"></a>
                                     <div class="pricing">
-                                        <div class="discount-price"><span th:text="${discountPrice.get(pro.id)}"></span> </div>
-                                        <div class="regular-price"><span th:text="${salePrice.get(pro.id)}"></span></div>
-                                    </div>
+                                        <div class="discount-price" th:if="${discountPrice.get(pro.id)!=null}" ><span th:text="${discountPrice.get(pro.id)}"></span> </div>
+                                        <div class="regular-price" th:if="${discountPrice.get(pro.id)!=null}"><span th:text="${salePrice.get(pro.id)}"></span></div>
+                                        <div class="discount-price" th:if="${discountPrice.get(pro.id) == null}"><span th:text ="${salePrice.get(pro.id)}"></span></div>
                                 </div>
                             </div>
                         </div>

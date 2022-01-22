@@ -211,9 +211,9 @@
                                     </h3>
                                     <div class="box-pro-prices">
                                         <p class="pro-price highlight">
-                                            <span th:text="*{saleProduct.getCost()}"></span>
+                                            <span th:text="${getListDiscount.get(saleProduct.getId())}"></span>
                                             <span class="pro-price-del">
-                                                    <del class="compare-price" th:text="*{saleProduct.getSalePrice()}"></del>
+                                                    <del class="compare-price" th:text="${getListSale.get(saleProduct.getId())}"></del>
                                                 </span>
                                         </p>
                                     </div>

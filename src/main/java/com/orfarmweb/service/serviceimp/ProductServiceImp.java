@@ -53,6 +53,6 @@ public class ProductServiceImp implements ProductService {
     @Override
     public String getDiscountPriceById(int id) {
         Product p = productRepo.getAllById(id);
-        return formatPrice.formatPrice(p.getSalePrice()*(1-p.getPercentDiscount()/100));
+        return p.getPercentDiscount()!=0?formatPrice.formatPrice(p.getSalePrice()*(1-p.getPercentDiscount()/100)):null;
     }
 }
