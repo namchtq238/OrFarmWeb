@@ -123,6 +123,8 @@
 
             <div class="row">
                 <div class="cate-slider">
+<!--                    comment 6 casi div dưới nếu muốn load ảnh product từ db ra để slide-->
+<!--                    <div class="img-cate" th:each="product : ${products}"><img th:src="@{'/image/ImageOrFarm/' + ${product.getImage()}}" alt=""></div>-->
                     <div class="img-cate"><img src="./image/bơ1.jpg" alt=""></div>
                     <div class="img-cate"><img src="./image/hatj rẻ.jpg" alt=""></div>
                     <div class="img-cate"><img src="./image/bơ.jpg" alt=""></div>
@@ -143,13 +145,15 @@
             <div class="row">
                 <div class="product-slider" >
                     <div class="col-md-2" th:each="product : ${listHotProduct}">
-                        <div class="card">
-                            <img class="card-img-top" th:src="@{'/image/ImageOrFarm/' + ${product.getImage()}}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${product.getName()}"></h5>
-                                <h6 th:text="${product.getBriefDesc()}"></h6>
+                        <a th:href="@{'/product/' + ${product.getId()}}">
+                            <div class="card">
+                                <img class="card-img-top" th:src="@{'/image/ImageOrFarm/' + ${product.getImage()}}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${product.getName()}"></h5>
+                                    <h6 th:text="${product.getBriefDesc()}"></h6>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -178,7 +182,7 @@
 
         </div>
         <button type="button" class="btn btn-warning" style="margin: 0 46%;
-              height: 50px;"><a href="./hoaqua.html" style="text-decoration: none; color: #232323;">MUA NGAY</a></button>
+              height: 50px;"><a th:href="@{'/category/1'}" style="text-decoration: none; color: #232323;">MUA NGAY</a></button>
     </section>
     <div class="gallery">
         <div class="container">
@@ -222,263 +226,6 @@
                         </div>
                     </div>
                 </div>
-<!--                <div class="col-md-3 col-sm-6 mb-3">-->
-<!--                    <div class="pro-loop">-->
-<!--                        <div class="product-block product-resize">-->
-<!--                            <div class="product-img">-->
-<!--                                <div class="product-sale">-->
-<!--                                    <span>-17%</span>-->
-<!--                                </div>-->
-<!--                                <a href="#">-->
-<!--                                    <div class="fader">-->
-<!--                                        <img class="w-100" src="./image/cà tím.jpg" alt="">-->
-<!--                                        <img class="w-100" src="./image/cải bắp.jpg" alt="" style="display: none;">-->
-<!--                                    </div>-->
-<!--                                </a>-->
-<!--                                <div class="box-pro-detail">-->
-
-<!--                                    <h3 class="pro-name">-->
-<!--                                        <a href="#">-->
-<!--                                        </a><a href="#">Cà Tím Lai Châu</a>-->
-<!--                                    </h3>-->
-<!--                                    <div class="box-pro-prices">-->
-<!--                                        <p class="pro-price highlight">-->
-<!--                                            <span>54,000đ</span>-->
-<!--                                            <span class="pro-price-del">-->
-<!--                                                    <del class="compare-price">-->
-<!--                                                        65,000đ-->
-<!--                                                    </del>-->
-<!--                                                </span>-->
-<!--                                        </p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-3 col-sm-6 mb-3">-->
-<!--                    <div class="pro-loop">-->
-<!--                        <div class="product-block product-resize">-->
-<!--                            <div class="product-img">-->
-<!--                                <div class="product-sale">-->
-<!--                                    <span>-17%</span>-->
-<!--                                </div>-->
-<!--                                <a href="#">-->
-<!--                                    <div class="fader">-->
-<!--                                        <img class="w-100" src="./image/cải bắp.jpg" alt="">-->
-<!--                                        <img class="w-100" src="./image/bơ.jpg" alt="" style="display: none;">-->
-<!--                                    </div>-->
-<!--                                </a>-->
-<!--                                <div class="box-pro-detail">-->
-
-<!--                                    <h3 class="pro-name">-->
-<!--                                        <a href="#">-->
-<!--                                        </a><a href="#">Cải bắp Đà Lạt</a>-->
-<!--                                    </h3>-->
-<!--                                    <div class="box-pro-prices">-->
-<!--                                        <p class="pro-price highlight">-->
-<!--                                            <span>54,000đ</span>-->
-<!--                                            <span class="pro-price-del">-->
-<!--                                                    <del class="compare-price">-->
-<!--                                                        65,000đ-->
-<!--                                                    </del>-->
-<!--                                                </span>-->
-<!--                                        </p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-3 col-sm-6 mb-3">-->
-<!--                    <div class="pro-loop">-->
-<!--                        <div class="product-block product-resize">-->
-<!--                            <div class="product-img">-->
-<!--                                <div class="product-sale">-->
-<!--                                    <span>-17%</span>-->
-<!--                                </div>-->
-<!--                                <a href="#">-->
-<!--                                    <div class="fader">-->
-<!--                                        <img class="w-100" src="./image/bơ.jpg" alt="">-->
-<!--                                        <img class="w-100" src="./image/quả dừa.jpg" alt="" style="display: none;">-->
-<!--                                    </div>-->
-<!--                                </a>-->
-<!--                                <div class="box-pro-detail">-->
-
-<!--                                    <h3 class="pro-name">-->
-<!--                                        <a href="#">-->
-<!--                                        </a><a href="#">Súp Nơ Trắng Tây Nguyên</a>-->
-<!--                                    </h3>-->
-<!--                                    <div class="box-pro-prices">-->
-<!--                                        <p class="pro-price highlight">-->
-<!--                                            <span>54,000đ</span>-->
-<!--                                            <span class="pro-price-del">-->
-<!--                                                    <del class="compare-price">-->
-<!--                                                        65,000đ-->
-<!--                                                    </del>-->
-<!--                                                </span>-->
-<!--                                        </p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-3 col-sm-6 mb-3">-->
-<!--                    <div class="pro-loop">-->
-<!--                        <div class="product-block product-resize">-->
-<!--                            <div class="product-img">-->
-<!--                                <div class="product-sale">-->
-<!--                                    <span>-17%</span>-->
-<!--                                </div>-->
-<!--                                <a href="#">-->
-<!--                                    <div class="fader">-->
-<!--                                        <img class="w-100" src="./image/quả dừa.jpg" alt="">-->
-<!--                                        <img class="w-100" src="./image/quả vải.jpg" alt="" style="display: none;">-->
-<!--                                    </div>-->
-<!--                                </a>-->
-<!--                                <div class="box-pro-detail">-->
-
-<!--                                    <h3 class="pro-name">-->
-<!--                                        <a href="#">-->
-<!--                                        </a><a href="#">Dừa Bến Tre</a>-->
-<!--                                    </h3>-->
-<!--                                    <div class="box-pro-prices">-->
-<!--                                        <p class="pro-price highlight">-->
-<!--                                            <span>54,000đ</span>-->
-<!--                                            <span class="pro-price-del">-->
-<!--                                                    <del class="compare-price">-->
-<!--                                                        65,000đ-->
-<!--                                                    </del>-->
-<!--                                                </span>-->
-<!--                                        </p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-3 col-sm-6 mb-3">-->
-<!--                    <div class="pro-loop">-->
-<!--                        <div class="product-block product-resize">-->
-<!--                            <div class="product-img">-->
-<!--                                <div class="product-sale">-->
-<!--                                    <span>-17%</span>-->
-<!--                                </div>-->
-<!--                                <a href="#">-->
-<!--                                    <div class="fader">-->
-<!--                                        <img class="w-100" src="./image/quả vải.jpg" alt="">-->
-<!--                                        <img class="w-100" src="./image/đu đủ.jpg" alt="" style="display: none;">-->
-<!--                                    </div>-->
-<!--                                </a>-->
-<!--                                <div class="box-pro-detail">-->
-
-<!--                                    <h3 class="pro-name">-->
-<!--                                        <a href="#">-->
-<!--                                        </a><a href="#">Vải thiều Bắc Giang</a>-->
-<!--                                    </h3>-->
-<!--                                    <div class="box-pro-prices">-->
-<!--                                        <p class="pro-price highlight">-->
-<!--                                            <span>54,000đ</span>-->
-<!--                                            <span class="pro-price-del">-->
-<!--                                                    <del class="compare-price">-->
-<!--                                                        65,000đ-->
-<!--                                                    </del>-->
-<!--                                                </span>-->
-<!--                                        </p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-3 col-sm-6 mb-3">-->
-<!--                    <div class="pro-loop">-->
-<!--                        <div class="product-block product-resize">-->
-<!--                            <div class="product-img">-->
-<!--                                <div class="product-sale">-->
-<!--                                    <span>-17%</span>-->
-<!--                                </div>-->
-<!--                                <a href="#">-->
-<!--                                    <div class="fader">-->
-<!--                                        <img class="w-100" src="./image/nho đen.jpg" alt="">-->
-<!--                                        <img class="w-100" src="./image/1.jpg" alt="" style="display: none;">-->
-<!--                                    </div>-->
-<!--                                </a>-->
-<!--                                <div class="box-pro-detail">-->
-
-<!--                                    <h3 class="pro-name">-->
-<!--                                        <a href="#">-->
-<!--                                        </a><a href="#">Nho Ninh Thuận</a>-->
-<!--                                    </h3>-->
-<!--                                    <div class="box-pro-prices">-->
-<!--                                        <p class="pro-price highlight">-->
-<!--                                            <span>54,000đ</span>-->
-<!--                                            <span class="pro-price-del">-->
-<!--                                                    <del class="compare-price">-->
-<!--                                                        65,000đ-->
-<!--                                                    </del>-->
-<!--                                                </span>-->
-<!--                                        </p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-3 col-sm-6 mb-3">-->
-<!--                    <div class="pro-loop">-->
-<!--                        <div class="product-block product-resize">-->
-<!--                            <div class="product-img">-->
-<!--                                <div class="product-sale">-->
-<!--                                    <span>-17%</span>-->
-<!--                                </div>-->
-<!--                                <a href="#">-->
-<!--                                    <div class="fader">-->
-<!--                                        <img class="w-100" src="./image/cat3.jpg" alt="">-->
-<!--                                        <img class="w-100" src="./image/1.jpg" alt="" style="display: none;">-->
-<!--                                    </div>-->
-<!--                                </a>-->
-
-<!--                                <div class="box-pro-detail ">-->
-
-<!--                                    <h3 class="pro-name">-->
-<!--                                        <a href="#">-->
-<!--                                            &lt;!&ndash; cart-list-icon <ul style="list-style-type: none;">-->
-<!--                                                <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a></li>-->
-<!--                                                <li><a href="#"><i class="fal fa-heart"></i></a></li>-->
-<!--                                                <li><a href="#"><i class="fal fa-eye"></i></a></li>-->
-<!--                                            </ul> &ndash;&gt;-->
-<!--                                        </a><a href="#">Đào Mộc Châu</a>-->
-<!--                                    </h3>-->
-<!--                                    <div class="box-pro-prices">-->
-
-<!--                                        <p class="pro-price highlight">-->
-<!--                                            <span>54,000đ</span>-->
-<!--                                            <span class="pro-price-del">-->
-<!--                                                    <del class="compare-price">-->
-<!--                                                        65,000đ-->
-<!--                                                    </del>-->
-<!--                                                </span>-->
-<!--                                        </p>-->
-
-<!--                                    </div>-->
-
-
-<!--                                </div>-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-
             </div>
         </div>
     </div>
