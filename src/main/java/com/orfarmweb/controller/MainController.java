@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.Collections;
 import java.util.List;
 @Controller
 public class MainController {
@@ -24,11 +25,11 @@ public class MainController {
         return "login";
     }
     @GetMapping("/")
-    public String returnIndex(){
+    public String getIndex(){
         return "redirect:/home";
     }
     @GetMapping("/home")
-    public String getCategoryInput(Model model){
+    public String getHomePage(){
         return "index";
     }
     @ModelAttribute
@@ -39,9 +40,13 @@ public class MainController {
     @ModelAttribute
     public void addListProduct(Model model){
         List<Product> hotproductList = productService.getListProductByHot();
-        model.addAttribute("listHotProduct", hotproductList.subList(0, 6));
+        int numberOfHotProduct = 6;
+        Collections.shuffle(hotproductList);
+        model.addAttribute("listHotProduct", hotproductList.subList(0, numberOfHotProduct));
         List<Product> productList = productService.getListSaleProduct();
-        model.addAttribute("listSaleProduct", productList.subList(0,8));
+        int numberOfSaleProduct = 8;
+        Collections.shuffle(productList);
+        model.addAttribute("listSaleProduct", productList.subList(0, numberOfSaleProduct));
     }
 
 }

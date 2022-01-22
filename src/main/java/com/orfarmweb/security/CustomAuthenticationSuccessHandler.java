@@ -23,8 +23,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else if (userDetails.hasRole("CUSTOMER")) {
             redirectURL = "home";
         }
-        HttpSession session =  request.getSession();
-        session.setAttribute("username", userDetails.getUsername());
+//        HttpSession session =  request.getSession();
+//        session.setAttribute("username", userDetails.getUsername());
 
         response.sendRedirect(redirectURL);
 
