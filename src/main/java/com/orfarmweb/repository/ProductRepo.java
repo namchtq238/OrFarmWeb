@@ -3,6 +3,7 @@ package com.orfarmweb.repository;
 import com.orfarmweb.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,4 +24,10 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Product> getSaleProduct();
     @Query(value = "select sale_price from product where product.id = ?", nativeQuery = true)
     Float getSalePrice(int id);
+
+    @Query(value = "select COUNT(*) from product left join category on product.cate_id = category.id where category.id = ?", nativeQuery = true)
+    List<Long> countByCategoryId(int id);
+    @Query(value = "select * from product left join category on product.cate_id = category.id where category.id =:id LIMIT :start, :limit ", nativeQuery = true)
+    List<Product> findByPage(@RequestParam("start") long start, @RequestParam("limit") long limit, int id);
+
 }

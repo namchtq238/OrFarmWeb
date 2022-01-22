@@ -15,6 +15,7 @@ public class ProductServiceImp implements ProductService {
     private ProductRepo productRepo;
     @Autowired
     private FormatPrice formatPrice;
+    final long pageSize = 6;
     @Override
     public List<Product> listAllByCategoryId(int id) {
         return productRepo.findProductByCategoryId(id);
@@ -55,4 +56,17 @@ public class ProductServiceImp implements ProductService {
         Product p = productRepo.getAllById(id);
         return p.getPercentDiscount()!=0?formatPrice.formatPrice(p.getSalePrice()*(1-p.getPercentDiscount()/100)):null;
     }
+
+    @Override
+    public long getTotalPage(int id) {
+        return (productRepo.countByCategoryId(id).get(0) % pageSize == 0) ?
+                productRepo.countByCategoryId(id).get(0) / pageSize
+                : (productRepo.countByCategoryId(id).get(0) / pageSize) + 1;
+    }
+
+    @Override
+    public List<Product> getByPage(long currentPage, int id) {
+        return productRepo.findByPage((currentPage - 1) * pageSize, pageSize, id);
+    }
+
 }
