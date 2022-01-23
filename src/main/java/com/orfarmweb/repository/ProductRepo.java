@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query(value = "select * from product left join category on product.cate_id = category.id where product.cate_id = ?", nativeQuery = true)

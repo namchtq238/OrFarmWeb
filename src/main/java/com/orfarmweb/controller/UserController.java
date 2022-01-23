@@ -4,7 +4,6 @@ import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.User;
 import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
-import com.orfarmweb.service.ProductService;
 import com.orfarmweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +21,6 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-    private ProductService productService;
-    @Autowired
     private CategoryService categoryService;
     @Autowired
     private CartService cartService;
@@ -38,12 +35,12 @@ public class UserController {
         return "createAccount";
     }
     @ModelAttribute("countCartItem")
-    public Integer addNumberOfCartItemToHeader(Model model) {
+    public Integer addNumberOfCartItemToHeader() {
         return cartService.countNumberOfItemInCart();
     }
 
     @PostMapping("/processRegister")
-    public String showCreateAccountInformation(@ModelAttribute @Valid User user, BindingResult bindingResult, Model model){
+    public String showCreateAccountInformation(@ModelAttribute @Valid User user, BindingResult bindingResult){
         if(userService.checkExist(user.getEmail()))
             bindingResult.rejectValue("email","invalid","Email đã tồn tại");
         if (bindingResult.hasErrors()) {

@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import javax.validation.Validator;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -44,7 +43,6 @@ public class UserServiceImp implements UserService {
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        User user = userDetails.getUser();
-        return user;
+        return userDetails.getUser();
     }
 }

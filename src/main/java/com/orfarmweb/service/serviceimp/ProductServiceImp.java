@@ -4,7 +4,6 @@ import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Cart;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.CartItem;
-import com.orfarmweb.repository.CategoryRepo;
 import com.orfarmweb.repository.ProductRepo;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,7 +113,7 @@ public class ProductServiceImp implements ProductService {
         Float tempPrice = 0f;
         for (CartItem cartItem: itemList
              ) {
-            tempPrice += cartItem.getTotalPrice() * (1- cartItem.getDiscount()/100) * cartItem.getQuantity();
+            tempPrice += cartItem.getSalePrice() * (1- cartItem.getDiscount()/100) * cartItem.getQuantity();
         }
         return tempPrice;
     }

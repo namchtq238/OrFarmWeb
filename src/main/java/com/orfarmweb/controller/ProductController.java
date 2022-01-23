@@ -1,6 +1,5 @@
 package com.orfarmweb.controller;
 
-import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.FilterProduct;
@@ -24,8 +23,6 @@ public class ProductController {
     private CategoryService categoryService;
     @Autowired
     private CartService cartService;
-    @Autowired
-    private FormatPrice formatPrice;
 
     @ModelAttribute
     public void addCategoryToHeader(Model model) {
@@ -33,7 +30,7 @@ public class ProductController {
         model.addAttribute("listCategory", listCategory);
     }
     @ModelAttribute("countCartItem")
-    public Integer addNumberOfCartItemToHeader(Model model){
+    public Integer addNumberOfCartItemToHeader(){
         return cartService.countNumberOfItemInCart();
     }
     @GetMapping("/category/{id}")

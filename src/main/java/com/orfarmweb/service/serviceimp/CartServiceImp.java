@@ -3,10 +3,7 @@ package com.orfarmweb.service.serviceimp;
 import com.orfarmweb.entity.Cart;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.entity.User;
-import com.orfarmweb.modelutil.CartDTO;
 import com.orfarmweb.repository.CartRepo;
-import com.orfarmweb.repository.UserRepo;
-import com.orfarmweb.security.CustomUserDetails;
 import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +25,8 @@ public class CartServiceImp implements CartService  {
     @Override
     public boolean saveItemToCart(Product product, Integer quantity) {
         User user = userService.getCurrentUser();
-        Optional<Cart> cart = Optional.ofNullable(cartRepo.getCartByUserAndProduct(user, product));
+        Optional<Cart> cart = Optional.ofNullable(cartRepo.getCartByUserAndProductAndIsDelete(user, product, false));
+        System.err.println(user.getEmail());
         if(!cart.isPresent()){
             Cart newCart = new Cart();
             newCart.setUser(user);
@@ -48,7 +46,7 @@ public class CartServiceImp implements CartService  {
 
     @Override
     public List<Cart> getAllCartByUser() {
-        return cartRepo.getCartByUser(userService.getCurrentUser());
+        return cartRepo.getCartByUserAndIsDelete(userService.getCurrentUser(), false);
     }
 
     @Override
@@ -56,15 +54,27 @@ public class CartServiceImp implements CartService  {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) return 0;
         if(authentication.isAuthenticated()){
-            Integer number = cartRepo.countCartByUser(userService.getCurrentUser());
-            return number;
+            return cartRepo.countCartByUserAndIsDelete(userService.getCurrentUser(), false);
         }
         return 0;
     }
 
     @Override
     public boolean deleteAllItemInCart() {
-        cartRepo.deleteCartByUser(userService.getCurrentUser());
+        List<Cart> cartList = getAllCartByUser();
+        for (Cart cart: cartList
+             ) {
+            cart.setDelete(true);
+            cartRepo.save(cart);
+        }
         return true;
+    }
+
+    @Override
+    public void saveNewQuantity(List<Cart> cartList, List<Integer> soluong) {
+        for (int i = 0; i < cartList.size(); i++) {
+            cartList.get(i).setQuantity(soluong.get(i));
+            cartRepo.save(cartList.get(i));
+        }
     }
 }

@@ -29,7 +29,7 @@ public class MainController {
         model.addAttribute("listCategory",listCategory);
     }
     @ModelAttribute("countCartItem")
-    public Integer addNumberOfCartItemToHeader(Model model){
+    public Integer addNumberOfCartItemToHeader(){
         return cartService.countNumberOfItemInCart();
     }
     @ModelAttribute
@@ -54,11 +54,6 @@ public class MainController {
         model.addAttribute("getListSale",getListSale);
         model.addAttribute("getListDiscount",getListDiscount);
         }
-
-//        List<Product> products = Stream.concat(hotproductList.stream(), productList.stream())
-//                .collect(Collectors.toList());
-//        Collections.shuffle(products);
-//        model.addAttribute("products", products.subList(0, 8));
     }
     @GetMapping("/")
     public String getIndex(){

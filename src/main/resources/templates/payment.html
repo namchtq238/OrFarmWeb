@@ -12,29 +12,25 @@
                 <div class="name-store" style="color: #333333;">
                     <h4> OrFarm Store</h4>
                 </div>
-
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Thông tin liên hệ</label>
-                    <input required type="email" class="form-control" id="exampleInputEmail" placeholder="Email">
-
-
-                    <div class="form-group firstName_custormer pt-3">
-                        <input required type="text" class="form-control" id="exampleInputFirstName" width="50%"
-                               placeholder="Họ ">
-                    </div>
-                    <div class="form-group lastName_custormer pt-3">
-                        <input required type="text" class="form-control" id="exampleInputLastName" width="50%"
-                               placeholder="Tên">
-
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Số điện thoại </label>
-                        <input required type="text" maxlength="10" class="form-control" id="exampleInputPhone"
-                               placeholder="Số điện thoại">
-                    </div>
-                    <label>Địa chỉ đặt hàng</label>
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="inputGroupSelect01">
+                <div>
+                    <form th:action="@{/paymentProcess}" th:object="${paymentInformation}" method="post">
+                        <div class = "form-group">
+                            <label for="exampleInputEmail">Thông tin liên hệ</label>
+                            <label required type="email" class="form-control" id="exampleInputEmail" th:text="${userInformation.email}" th:field="${userInformation.email}" th:value="${userInformation.email}" th:utext="${userInformation.email}"></label>
+                            <div class="form-group firstName_custormer pt-3">
+                                <label required type="text" class="form-control" id="exampleInputFirstName" width="50%" th:field="${userInformation.firstName}" th:value="${userInformation.firstName}" th:utext="${userInformation.email}"></label>
+                            </div>
+                            <div class="form-group lastName_custormer pt-3">
+                                <label required type="text" class="form-control" id="exampleInputLastName" width="50%" th:field="${userInformation.lastName}" th:value="${userInformation.lastName}" th:utext="${userInformation.email}"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPhone">Số điện thoại </label>
+                            <input required type="text" maxlength="10" class="form-control" id="exampleInputPhone" placeholder="Số điện thoại" th:field="*{order.phoneNumber}">
+                        </div>
+                        <label>Địa chỉ đặt hàng</label>
+                        <div class="input-group mb-3">
+                            <select class="custom-select" id="inputGroupSelect01" th:field="*{order.address}">
                             <!-- <option value="Chọn Tỉnh/Thành">Chọn Tỉnh/Thành</option> -->
                             <option value="An Giang">An Giang</option>
                             <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
@@ -105,17 +101,19 @@
                     </div>
 
                     <div class="form-group">
-                        <input required type="text" class="form-control" id="exampleInputAddress" placeholder="Địa chỉ">
+                        <input required type="text" class="form-control"
+                               id="exampleInputAddress" placeholder="Địa chỉ" th:field="*{order.address}">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Ghi chú:</label>
+                        <label for="exampleFormControlTextarea1" th:field="*{order.note}">Ghi chú:</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
                     </div>
                     <div class="success-order row pb-5 ">
-                        <button id="btn-order" type="button" class="btn-buy btn btn-success mt-2 ml-3">Đặt hàng</button>
-                        <a href="./ViewCart.html" class="back">Quay lại</a>
+                        <button id="btn-order" type="submit" class="btn-buy btn btn-success mt-2 ml-3">Đặt hàng</button>
+                        <a th:href="@{/cart}" class="back">Quay lại</a>
                     </div>
-                </div>
+                    </form>
+                    </div>
                 <div class="right">
                     <p>Mọi sự riêng tư và thông tin của bạn đều được chúng tôi bảo mật.</p>
                 </div>
@@ -139,13 +137,13 @@
                         </div>
                     </div>
                     <div class="sumPriceproduct">
-                        <p>Tạm tính: <span class="padding-price1">0 </span><sup>đ</sup></p>
-                        <p>Phí ship: <span class="padding-price2">0 </span><sup>đ</sup></p>
-                        <p class="hidden-price">Giảm giá: <span class="padding-price3">0 </span><sup>đ</sup></p>
+                        <p>Tạm tính: <span class="prices" th:text="${tempPrice}"></span> <sup>đ</sup></p>
+                        <p>Phí ship: <span class="prices" th:text="${ship}"></span> <sup>đ</sup></p>
+                        <p class="hidden-price">Giảm giá: <span class="padding-price3"></span> <sup>đ</sup></p>
 
                     </div>
                     <div class="sumarizePrice ">
-                        <p>Tổng tiền: <span class="padding-price">0 </span><sup>đ</sup></p>
+                        <p>Tổng tiền: <span class="padding-price" th:text="${totalPrice}"></span> <sup>đ</sup></p>
                     </div>
                 </div>
             </div>

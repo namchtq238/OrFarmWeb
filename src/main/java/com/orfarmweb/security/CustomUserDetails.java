@@ -20,9 +20,7 @@ public class CustomUserDetails implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority(user.getRole().getType()));
     }
     public boolean hasRole(String rolename){
-        if(this.user.getRole().getType().equals(rolename))
-            return true;
-        return false;
+        return this.user.getRole().getType().equals(rolename);
     }
 
 

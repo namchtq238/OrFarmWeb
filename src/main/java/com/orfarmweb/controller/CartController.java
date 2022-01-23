@@ -1,17 +1,10 @@
 package com.orfarmweb.controller;
 
-import com.orfarmweb.entity.Cart;
-import com.orfarmweb.entity.Category;
-import com.orfarmweb.entity.Product;
-import com.orfarmweb.entity.User;
+import com.orfarmweb.entity.*;
 import com.orfarmweb.modelutil.CartDTO;
 import com.orfarmweb.modelutil.CartItem;
-import com.orfarmweb.repository.UserRepo;
-import com.orfarmweb.security.CustomUserDetails;
-import com.orfarmweb.service.CartService;
-import com.orfarmweb.service.CategoryService;
-import com.orfarmweb.service.ProductService;
-import com.orfarmweb.service.UserService;
+import com.orfarmweb.modelutil.PaymentInformation;
+import com.orfarmweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class CartController {
@@ -31,7 +26,12 @@ public class CartController {
     private CartService cartService;
     @Autowired
     private ProductService productService;
-
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private OrderDetailService orderDetailService;
     @ModelAttribute
     public void addCategoryToHeader(Model model) {
         List<Category> listCategory = categoryService.getListCategory();
@@ -44,13 +44,16 @@ public class CartController {
     }
 
     @GetMapping("/cart")
-    public String getCart(Model model, Authentication authentication) {
+    public String getCart(Model model) {
         List<Cart> listCart = cartService.getAllCartByUser();
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
+        System.out.println(listProductInCart.size());
         Float tempPrice = productService.getTempPrice(listProductInCart);
+        System.out.println(tempPrice);
         Float ship = 20000f;
         if(tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;
+        System.out.println(totalPrice);
         model.addAttribute("tempPrice", tempPrice);
         model.addAttribute("ship", ship);
         model.addAttribute("totalPrice", totalPrice);
@@ -61,7 +64,7 @@ public class CartController {
     }
 
     @PostMapping("/product/{id}")
-    public String addProductToCart(@PathVariable("id") int id, Model model,
+    public String addProductToCart(@PathVariable("id") int id,
                                    @RequestParam("quantity") Integer quantity) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) return "redirect:/login";
@@ -69,20 +72,54 @@ public class CartController {
         cartService.saveItemToCart(product, quantity);
         return "redirect:/product/{id}";
     }
-    @GetMapping("/payment")
-    public String payment(){
-        return "payment";
-    }
     @GetMapping("/cart/delete")
-    public String deleteAllProduct(Model model){
+    public String deleteAllProduct(){
         cartService.deleteAllItemInCart();
         return "redirect:/cart";
     }
     @PostMapping("/cart/save")
     public String saveNewCart(Model model, @RequestParam("soluong") String[] list){
+        List<Integer> soluong = new ArrayList<>();
         for(int i=0; i<list.length; i++){
-            System.out.println(Integer.parseInt(list[i]));
+            soluong.add(Integer.parseInt(list[i]));
         }
+        List<Cart> listCart = cartService.getAllCartByUser();
+        cartService.saveNewQuantity(listCart, soluong);
         return "redirect:/cart";
+    }
+    @GetMapping("/payment")
+    public String payment(Model model){
+        User user = userService.getCurrentUser();
+        List<Cart> listCart = cartService.getAllCartByUser();
+        List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
+        Float tempPrice = productService.getTempPrice(listProductInCart);
+        Float ship = 20000f;
+        if(tempPrice > 50000) ship = 0f;
+        Float totalPrice = tempPrice + ship;
+        model.addAttribute("tempPrice", tempPrice);
+        model.addAttribute("ship", ship);
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("userInformation", user);
+        model.addAttribute("paymentInformation", new PaymentInformation());
+        return "payment";
+    }
+    @PostMapping("/paymentProcess")
+    public String paymentProcess(@ModelAttribute PaymentInformation paymentInformation){
+        List<Cart> listCart = cartService.getAllCartByUser();
+        List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
+        Float tempPrice = productService.getTempPrice(listProductInCart);
+        Float ship = 20000f;
+        if(tempPrice > 50000) ship = 0f;
+        Float totalPrice = tempPrice + ship;
+        Orders orders = orderService.saveNewOrder(paymentInformation);
+        Set<OrderDetail> orderDetailList = new HashSet<>();
+        for (CartItem cart: listProductInCart) {
+            OrderDetail orderDetail = orderDetailService.saveOrderDetail(productService.findById(cart.getProductId()),
+                    orders, cart.getTotalPrice(), cart.getQuantity());
+            orderDetailList.add(orderDetail);
+        }
+        orderService.saveOrder(orders, totalPrice, orderDetailList);
+        cartService.deleteAllItemInCart();
+        return "redirect:/home";
     }
 }

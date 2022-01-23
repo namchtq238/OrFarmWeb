@@ -1,12 +1,11 @@
 package com.orfarmweb.entity;
+
 import com.orfarmweb.constaint.Role;
 import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.persistence.GenerationType;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
@@ -29,6 +28,6 @@ public class User {
     @NotEmpty(message = "Thiếu password")
     private String password;
     private Role role;
-    @OneToMany(targetEntity = Cart.class, mappedBy = "user")
+    @OneToMany(targetEntity = Cart.class, mappedBy = "user", cascade = CascadeType.MERGE)
     private Set<Cart> cart;
 }
