@@ -4,9 +4,14 @@ import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.FilterProduct;
+import com.orfarmweb.security.CustomUserDetails;
+import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +29,18 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
     @Autowired
+    private CartService cartService;
+    @Autowired
     private FormatPrice formatPrice;
 
     @ModelAttribute
     public void addCategoryToHeader(Model model) {
         List<Category> listCategory = categoryService.getListCategory();
         model.addAttribute("listCategory", listCategory);
+    }
+    @ModelAttribute("countCartItem")
+    public Integer addNumberOfCartItemToHeader(Model model){
+        return cartService.countNumberOfItemInCart();
     }
     @GetMapping("/category/{id}")
     public String showViewProduct(@PathVariable("id") int id) {

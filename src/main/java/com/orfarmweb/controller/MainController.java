@@ -5,14 +5,21 @@ import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.repository.CategoryRepo;
 import com.orfarmweb.repository.ProductRepo;
+import com.orfarmweb.security.CustomUserDetails;
+import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.security.Security;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +32,9 @@ public class MainController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private CartService cartService;
+
     @Autowired
     private FormatPrice formatPrice;
     @GetMapping("/login")
@@ -47,6 +57,10 @@ public class MainController {
     public void addCategoryToHeader(Model model){
         List<Category> listCategory = categoryService.getListCategory();
         model.addAttribute("listCategory",listCategory);
+    }
+    @ModelAttribute("countCartItem")
+    public Integer addNumberOfCartItemToHeader(Model model){
+        return cartService.countNumberOfItemInCart();
     }
     @ModelAttribute
     public void addListProduct(Model model){

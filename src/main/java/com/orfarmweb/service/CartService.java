@@ -10,4 +10,7 @@ import java.util.List;
 public interface CartService {
     List<CartDTO> getCartByUser(String email);
     boolean saveItemToCart(User user, Product product, Integer quantity);
+    List<Cart> getAllCartByUser(String email);
+    Integer countNumberOfItemInCart();
+
 }

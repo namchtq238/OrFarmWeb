@@ -1,12 +1,15 @@
 package com.orfarmweb.service.serviceimp;
 
 import com.orfarmweb.constaint.FormatPrice;
+import com.orfarmweb.entity.Cart;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.repository.CategoryRepo;
 import com.orfarmweb.repository.ProductRepo;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -73,6 +76,17 @@ public class ProductServiceImp implements ProductService {
     @Override
     public int getCategoryId(int id) {
         return productRepo.findCateGoryIdByProdId(id);
+    }
+
+    @Override
+    public List<Product> getProductFromCart(List<Cart> cartList) {
+        List<Product> list = new ArrayList<>();
+        for (Cart cart: cartList
+             ) {
+            Product product = findById(cart.getProduct().getId());
+            list.add(product);
+        }
+        return list;
     }
 
 }
