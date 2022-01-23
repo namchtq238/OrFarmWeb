@@ -44,8 +44,7 @@ public class UserServiceImp implements UserService {
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        String email = userDetails.getUsername();
-        User user = userRepo.findUserByEmail(email);
+        User user = userDetails.getUser();
         return user;
     }
 }
