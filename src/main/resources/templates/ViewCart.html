@@ -50,11 +50,13 @@
                                             </td>
                                             <td>
                                                 <div class="buttons_added" >
-                                                    <span th:text="${cartItem.quantity}"></span>
                                                     <input class="inputQuantity"
                                                            th:field="*{soluong}"
                                                            min='1' type='number' />
                                                 </div>
+                                            </td>
+                                            <td>
+                                                <span th:text="${cartItem.quantity}"></span>
                                             </td>
                                             <td>
                                                 <div class="icon-delete" id="1">

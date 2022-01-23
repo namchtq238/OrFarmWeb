@@ -8,6 +8,7 @@ import com.orfarmweb.repository.CartRepo;
 import com.orfarmweb.repository.UserRepo;
 import com.orfarmweb.security.CustomUserDetails;
 import com.orfarmweb.service.CartService;
+import com.orfarmweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,15 +23,11 @@ public class CartServiceImp implements CartService  {
     @Autowired
     private CartRepo cartRepo;
     @Autowired
-    private UserRepo userRepo;
+    private UserService userService;
 
     @Override
-    public List<CartDTO> getCartByUser(String email) {
-        return cartRepo.getCartByUser(email);
-    }
-
-    @Override
-    public boolean saveItemToCart(User user, Product product, Integer quantity) {
+    public boolean saveItemToCart(Product product, Integer quantity) {
+        User user = userService.getCurrentUser();
         Optional<Cart> cart = Optional.ofNullable(cartRepo.getCartByUserAndProduct(user, product));
         if(!cart.isPresent()){
             Cart newCart = new Cart();
@@ -50,8 +47,8 @@ public class CartServiceImp implements CartService  {
     }
 
     @Override
-    public List<Cart> getAllCartByUser(String email) {
-        return cartRepo.getCartByUser(userRepo.findUserByEmail(email));
+    public List<Cart> getAllCartByUser() {
+        return cartRepo.getCartByUser(userService.getCurrentUser());
     }
 
     @Override
@@ -59,9 +56,7 @@ public class CartServiceImp implements CartService  {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) return 0;
         if(authentication.isAuthenticated()){
-            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-            String email = userDetails.getUsername();
-            Integer number = cartRepo.countCartByUser(userRepo.findUserByEmail(email));
+            Integer number = cartRepo.countCartByUser(userService.getCurrentUser());
             return number;
         }
         return 0;
@@ -69,11 +64,7 @@ public class CartServiceImp implements CartService  {
 
     @Override
     public boolean deleteAllItemInCart() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        String email = userDetails.getUsername();
-        User user = userRepo.findUserByEmail(email);
-        cartRepo.deleteCartByUser(user);
+        cartRepo.deleteCartByUser(userService.getCurrentUser());
         return true;
     }
 }

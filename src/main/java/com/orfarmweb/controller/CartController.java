@@ -30,8 +30,6 @@ public class CartController {
     @Autowired
     private CartService cartService;
     @Autowired
-    private UserService userService;
-    @Autowired
     private ProductService productService;
 
     @ModelAttribute
@@ -47,9 +45,7 @@ public class CartController {
 
     @GetMapping("/cart")
     public String getCart(Model model, Authentication authentication) {
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        String email = userDetails.getUsername();
-        List<Cart> listCart = cartService.getAllCartByUser(email);
+        List<Cart> listCart = cartService.getAllCartByUser();
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
         Float tempPrice = productService.getTempPrice(listProductInCart);
         Float ship = 20000f;
@@ -69,11 +65,8 @@ public class CartController {
                                    @RequestParam("quantity") Integer quantity) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) return "redirect:/login";
-
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        User user = userService.getUserByEmail(userDetails.getUsername());
         Product product = productService.findById(id);
-        cartService.saveItemToCart(user, product, quantity);
+        cartService.saveItemToCart(product, quantity);
         return "redirect:/product/{id}";
     }
     @GetMapping("/payment")

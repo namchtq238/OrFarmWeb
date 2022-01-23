@@ -3,10 +3,13 @@ package com.orfarmweb.service.serviceimp;
 import com.orfarmweb.constaint.Role;
 import com.orfarmweb.entity.User;
 import com.orfarmweb.repository.UserRepo;
+import com.orfarmweb.security.CustomUserDetails;
 import com.orfarmweb.service.UserService;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +41,11 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return userRepo.findUserByEmail(email);
+    public User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        String email = userDetails.getUsername();
+        User user = userRepo.findUserByEmail(email);
+        return user;
     }
 }
