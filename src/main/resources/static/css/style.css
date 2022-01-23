@@ -374,7 +374,7 @@ background-position: center;
 }
 .breadcrum{
     margin-top: 70px;
-    background-color: #fafafa;
+    background-color: #eee;
 }
 .breadcrumb{
     background-color: transparent !important;
@@ -575,3 +575,7 @@ breadcrumb-item .active{
     background: #2b70fa;
     color: #fff;
   }
+ .single-shop-box .thumb img{
+     width: 550px;
+     height: 213px;
+ }

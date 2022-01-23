@@ -29,9 +29,10 @@
                         <h4 class="title">Lọc theo giá</h4>
                         <div class="price-range">
                             <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <span class="caret"></span></button>
-                                <select class="dropdown-toggle" th:field="${filter.fillStart}">
+                                <label class="pr-30">Từ:</label>
+<!--                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">-->
+<!--                                    <span class="caret"></span></button>-->
+                                <select  class="dropdown-toggle" th:field="${filter.fillStart}" style="width: 77%">
                                     <option th:value=0 th:text="0đ"></option>
                                     <option th:value=20000 th:text="20000đ"></option>
                                     <option th:value=30000 th:text="30000đ"></option>
@@ -42,9 +43,10 @@
                                 </select>
                             </div>
                             <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <span class="caret"></span></button>
-                                <select class="dropdown" th:field="${filter.fillEnd}">
+                                <label class="pr-20">Đến: </label>
+<!--                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">-->
+<!--                                    <span class="caret"></span></button>-->
+                                <select class="dropdown" th:field="${filter.fillEnd}" style="width: 77%">
                                     <option th:value=10001 th:text="10001đ"></option>
                                     <option th:value=20001 th:text="20001đ"></option>
                                     <option th:value=30001 th:text="30001đ"></option>
@@ -156,7 +158,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid__row grid__row--spbw grid__row--item-center mt-32" id="div-pageable">
+                <div class="grid__row grid__row--spbw grid__row--item-center mt-50" id="div-pageable">
                     <nav aria-label="Page navigation example"
                          class="grid__row grid__row--spbw grid__row--item-center text-font-16"
                          style="margin: auto; text-align: center;">
