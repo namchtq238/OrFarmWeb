@@ -26,25 +26,6 @@ public class MainController {
     private CategoryService categoryService;
     @Autowired
     private CartService cartService;
-
-    @Autowired
-    private FormatPrice formatPrice;
-    @GetMapping("/login")
-    public String getLoginPage(){
-        return "login";
-    }
-    @GetMapping("/")
-    public String getIndex(){
-        return "redirect:/home";
-    }
-    @GetMapping("/home")
-    public String getHomePage(){
-        return "index";
-    }
-    @GetMapping("/createAccount")
-    public String getCreateAccountPage(){
-        return "createAccount";
-    }
     @ModelAttribute
     public void addCategoryToHeader(Model model){
         List<Category> listCategory = categoryService.getListCategory();
