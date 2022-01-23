@@ -80,7 +80,7 @@ public class ProductController {
         model.addAttribute("category", categoryService.findById(id).get());
         return "raucusach";
     }
-    @GetMapping("/category/{id}/fill-result/{page}")
+    @PostMapping("/category/{id}/fill-result/{page}")
     public String showViewProductFill(@PathVariable("id") int id,
                                       @ModelAttribute FilterProduct filter,
                                       @PathVariable("page") long currentPage,
