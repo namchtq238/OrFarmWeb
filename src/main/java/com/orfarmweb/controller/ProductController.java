@@ -46,7 +46,10 @@ public class ProductController {
     public String showViewProduct(@PathVariable("id") int id) {
         return "redirect:/category/{id}/1";
     }
-
+    @GetMapping("/category/{id}/filter-result")
+    public String showViewProductFilter(@PathVariable("id")int id){
+        return "redirect:/category/{id}/filter-result/1";
+    }
     @GetMapping("/category/{id}/{page}")
     public String showViewProduct(@PathVariable("id") int id,
                                   @PathVariable("page") long currentPage,
@@ -74,15 +77,44 @@ public class ProductController {
         model.addAttribute("discountPrice", hashMap1);
         model.addAttribute("sum", sum);
         model.addAttribute("listProduct", productService.getByPage(currentPage, id));
-        hashMap.forEach((k,v)-> System.err.println("key:"+k+"----- value:"+v));
         model.addAttribute("category", categoryService.findById(id).get());
         return "raucusach";
     }
-    @PostMapping("/category/{id}/fill-result")
-    public String showViewProductFill(@PathVariable("id") int id, @ModelAttribute FilterProduct filter, Model model) {
+    @GetMapping("/category/{id}/fill-result/{page}")
+    public String showViewProductFill(@PathVariable("id") int id,
+                                      @ModelAttribute FilterProduct filter,
+                                      @PathVariable("page") long currentPage,
+                                      Model model) {
+        Float start = filter.getFillStart();
+        Float end = filter.getFillEnd();
+        if(start>end){
+            Float temp = start;
+            start = end;
+            end= temp;
+        }
+        Integer sum = productService.getTotalByFill(start,end,id);
+        long totalPage = productService.getTotalPageByFill(start, end, id);
+        HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
+        for (Product p : productService.listFillByPage(start,end,currentPage, id)) {
+            hashMap.put(p.getId(), productService.getSalePriceById(p.getId()));
+        }
+        HashMap<Integer, String> hashMap1 = new HashMap<Integer, String>();
+        for (Product p : productService.listFillByPage(start,end,currentPage, id)) {
+            hashMap1.put(p.getId(), productService.getDiscountPriceById(p.getId()));
+        }
+        List<Product> productList = productService.getListProductByHot();
+        Collections.shuffle(productList);
+        if(productList.size()<4) model.addAttribute("bestSeller", productList);
+        else model.addAttribute("bestSeller", productList.subList(0, 3));
         model.addAttribute("filter", new FilterProduct());
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
         model.addAttribute("categoryId", id);
-        model.addAttribute("productFill", productService.listFill(filter.getFillStart(), filter.getFillEnd(), id));
+        model.addAttribute("salePrice", hashMap);
+        model.addAttribute("discountPrice", hashMap1);
+        model.addAttribute("sum", sum);
+        model.addAttribute("listProduct", productService.listFillByPage(start,end,currentPage, id));
+        model.addAttribute("category", categoryService.findById(id).get());
         return "dokho";
     }
 

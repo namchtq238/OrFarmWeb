@@ -25,7 +25,7 @@
             <div class="col-lg-3 order-2 order-lg-1">
                 <div class="orfarm-shop-sidebar">
                     <div class="shop-price-filter">
-                        <form th:action="@{'/category/'+${categoryId}+'/fill-result'}" method="post" th:object="${filter}">
+                        <form th:action="@{'/category/'+${categoryId}+'/fill-result/1'}" method="get" th:object="${filter}">
                         <h4 class="title">Lọc theo giá</h4>
                         <div class="price-range">
                             <div class="dropdown">
@@ -202,7 +202,7 @@
                                 <th:block
                                         th:if="${currentPage > 5 && currentPage < totalPage - 4}">
                                     <li class="page-item"><a class="page-link"
-                                                             th:href="@{'/yta/list-benhan/' + ${currentPage - 5}}">...</a>
+                                                             th:href="@{'/category/'+${categoryId} +'/' + ${currentPage - 5}}">...</a>
                                     </li>
                                     <li
                                             th:each="i : ${#numbers.sequence(currentPage - 4, currentPage + 4)}"

@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-th:replace="~{header :: html_header}"
+
 <head th:replace="~{header :: html_header}"></head>
 
 <body>
 <header th:replace="header :: my-header"></header>
-
 <section class="breadcrum">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb container">
@@ -20,31 +19,41 @@ th:replace="~{header :: html_header}"
 
 <!--====== SHOPPING CART PART ENDS ======-->
 
-<!--====== SHOPPING CART PART ENDS ======-->
-
 <div class="orfarm-shop-grid-area pt-100 pb-50">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 order-2 order-lg-1">
                 <div class="orfarm-shop-sidebar">
                     <div class="shop-price-filter">
-                        <form th:action="@{'/category/'+${categoryId}+'/fill-result'}" method="post" th:object="${filter}">
+                        <form th:action="@{'/category/'+${categoryId}+'/fill-result/1'}" method="get" th:object="${filter}">
                             <h4 class="title">Lọc theo giá</h4>
                             <div class="price-range">
-                                <input type="checkbox" name="" id="">
-                                <label for="" th:field = "*{fillStart}" th:value="10000">10.000đ</label>-<label th:field = "*{fillEnd}" th:value="30000">30.000đ</label>
-                                <br>
-                                <input type="checkbox" name="" id="">
-                                <label for="" th:field = "*{fillStart}" th:value="30000">30.000đ</label>-<label th:field = "*{fillEnd}" th:value="50000">50.000đ</label>
-                                <br>
-                                <input type="checkbox" name="" id="">
-                                <label for="" th:field = "*{fillStart}" th:value="50000">50.000đ</label>-<label th:field = "*{fillEnd}" th:value="100000">100.000đ</label>
-                                <br>
-                                <input type="checkbox" name="" id="">
-                                <label for="" th:field = "*{fillStart}" th:value="100000">100.000đ</label>-<label th:field = "*{fillEnd}" th:value="200000">200.000đ</label>
-                                <br>
-                                <input type="checkbox" name="" id="">
-                                <label for="" th:field = "*{fillStart}" th:value="200000">>200.000đ</label><label th:field = "*{fillEnd}" th:value="1000000"></label>
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <span class="caret"></span></button>
+                                    <select class="dropdown-toggle" th:field="${filter.fillStart}">
+                                        <option th:value=0 th:text="0đ"></option>
+                                        <option th:value=20000 th:text="20000đ"></option>
+                                        <option th:value=30000 th:text="30000đ"></option>
+                                        <option th:value=40000 th:text="40000đ"></option>
+                                        <option th:value=50000 th:text="50000đ"></option>
+                                        <option th:value=100000 th:text="100000đ"></option>
+                                        <option th:value=200000 th:text="200000đ"></option>
+                                    </select>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <span class="caret"></span></button>
+                                    <select class="dropdown" th:field="${filter.fillEnd}">
+                                        <option th:value=10001 th:text="10001đ"></option>
+                                        <option th:value=20001 th:text="20001đ"></option>
+                                        <option th:value=30001 th:text="30001đ"></option>
+                                        <option th:value=50001 th:text="50001đ"></option>
+                                        <option th:value=100001 th:text="100001đ"></option>
+                                        <option th:value=200001 th:text="200001đ"></option>
+                                        <option th:value=1000000 th:text="1000000đ"></option>
+                                    </select>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-warning form-control">Lọc</button>
                         </form>
@@ -52,41 +61,25 @@ th:replace="~{header :: html_header}"
                     <div class="shop-category-widget">
                         <h4 class="title">Danh Mục Sản Phẩm</h4>
                         <ul>
-                            <li><a href="./raucusach.html">Rau củ sạch</a></li>
-                            <li><a href="./hoaqua.html">Hoa quả</a></li>
-                            <li class="fruit"><a href="./dokho.html">Đồ khô</a></li>
-                            <li><a href="./vungmien.html">Đặc sản vùng miền</a></li>
-                            <li><a href="./tuoisong.html">Thực phẩm tươi sống</a></li>
-                            <li><a href="./thucphamkhac.html">Sản phẩm khác</a></li>
+                            <li class="fruit" th:each="item, state : ${listCategory}">
+                                <a th:href="@{'/category/' + ${item.id}}" th:text="${item.name}"></a>
+                            </li>
+                            <!--                                <li><a href="./hoaqua.html">Hoa quả</a></li>-->
+                            <!--                                <li><a href="./dokho.html">Đồ khô</a></li>-->
+                            <!--                                <li><a href="./vungmien.html">Đặc sản vùng miền</a></li>-->
+                            <!--                                <li><a href="./tuoisong.html">Thực phẩm tươi sống</a></li>-->
+                            <!--                                <li><a href="./thucphamkhac.html">Sản phẩm khác</a></li>-->
                         </ul>
                     </div>
                     <div class="shop-best-product-widget">
                         <h4 class="title">Best Seller</h4>
-                        <div class="shop-product">
+                        <div class="shop-product" th:each="best, state : ${bestSeller}">
                             <div class="thumb">
-                                <img src="./image/tải xuống.jpg" alt="">
+                                <img th:src="@{'/image/ImageOrFarm/'+${best.image}}" alt="">
                             </div>
                             <div class="content">
-                                <a href="./productdetail.html">Mực một nắng Ninh Thuận</a>
-                                <span>820.000đ</span>
-                            </div>
-                        </div>
-                        <div class="shop-product">
-                            <div class="thumb">
-                                <img src="./image/Đặc-sản-Huế-Hạt-sen-khô-100gr-2.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <a href="#">Hạt sen khô</a>
-                                <span>90.000đ</span>
-                            </div>
-                        </div>
-                        <div class="shop-product">
-                            <div class="thumb">
-                                <img src="./image/images.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <a href="#">Cá chỉ vàng Nam Định</a>
-                                <span>110.000đ</span>
+                                <a th:href="@{'/product/' + ${best.id}}" th:text="${best.name}"></a>
+                                <span th:text="${salePrice.get(best.id)}"></span>
                             </div>
                         </div>
                     </div>
@@ -105,7 +98,7 @@ th:replace="~{header :: html_header}"
                     </div>
                     <div class="shop-sidebar">
                         <a href="./shop.html" class="image-hover">
-                            <img src="./image/banner10-min.jpg" alt="">
+                            <img th:src="@{/image/banner10-min.jpg}" alt="">
                         </a>
                     </div>
                 </div>
@@ -113,20 +106,19 @@ th:replace="~{header :: html_header}"
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="row">
                     <div class="banner-collection pb-5 w-300">
-                        <img src="./image/7-alternative-uses-for-herbs-and-spices-hero.jpg" height="262px" alt="">
+                        <img th:src="@{'/image/ImageOrFarm/'+${category.image}}" height="262px" alt="">
                     </div>
                 </div>
                 <div class="shop-grid-topbar d-flex justify-content-between align-items-center">
-                    <span>Hiện thị tổng số <span>12</span> sản phẩm.</span>
+                    <span>Tổng số <span th:text="${sum}"></span> sản phẩm.</span>
                     <select id="product">
                         <option value="volvo">Mới nhất</option>
                         <option value="saab">Bán chạy nhất</option>
                         <option value="vw">Đánh giá tốt</option>
-
                     </select>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6" th:each="pro, state : ${productFill}">
+                    <div class="col-lg-4 col-md-6" th:each="pro, state : ${listProduct}">
                         <div class="single-shop-box">
                             <div class="thumb text-center">
                                 <img th:src="@{'/image/ImageOrFarm/'+${pro.image}}" alt="">
@@ -135,9 +127,9 @@ th:replace="~{header :: html_header}"
                                 </div>
                                 <div class="cart-list-icon">
                                     <ul>
-                                        <li class="shopping-bag"><a href="#"><i class="fal fa-shopping-bag"></i></a>
-                                        </li>
-                                        <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                        <li class="shopping-bag"><a th:href="@{#}"><i
+                                                class="fal fa-shopping-bag"></i></a></li>
+                                        <li><a th:href="@{#}"><i class="fal fa-heart"></i></a></li>
                                         <li><a th:href="@{'/product/' + ${pro.id}}"><i class="fal fa-eye"></i></a></li>
                                     </ul>
                                 </div>
@@ -153,27 +145,100 @@ th:replace="~{header :: html_header}"
                                 <input type="hidden" id="productId" value="1">
                                 <a th:href="@{'/product/' + ${pro.id}}" th:text="${pro.name}"></a>
                                 <div class="pricing">
-                                    <div class="discount-price" th:text="${pro.salePrice}"><span></span></div>
-                                    <div class="regular-price" th:text="${pro.salePrice}"><span></span></div>
+                                    <div class="discount-price" th:if="${discountPrice.get(pro.id)!=null}"><span
+                                            th:text="${discountPrice.get(pro.id)}"></span></div>
+                                    <div class="regular-price" th:if="${discountPrice.get(pro.id)!=null}"><span
+                                            th:text="${salePrice.get(pro.id)}"></span></div>
+                                    <div class="discount-price" th:if="${discountPrice.get(pro.id) == null}"><span
+                                            th:text="${salePrice.get(pro.id)}"></span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="bisylms-pagination">
-                            <span class="current">1</span>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a class="next" href="#">next<i class="fal fa-arrow-right"></i></a>
-                        </div>
-                    </div>
+                </div>
+                <div class="grid__row grid__row--spbw grid__row--item-center mt-32" id="div-pageable">
+                    <nav aria-label="Page navigation example"
+                         class="grid__row grid__row--spbw grid__row--item-center text-font-16"
+                         style="margin: auto; text-align: center;">
+                        <ul class="pagination">
+                            <li
+                                    th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled' }"><a
+                                    class="page-link" th:href="@{'/category/' + ${categoryId} + '/fill-result//1'}"
+                                    tabindex="-1">First</a></li>
+                            <li
+                                    th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled' }">
+                                <a class="page-link"
+                                   th:href="@{'/category/' +${categoryId} + '/fill-result/' + ${currentPage - 1}}"
+                                   aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+
+                            </li>
+
+                            <th:block th:if="${totalPage <= 10}">
+                                <li th:each="i : ${#numbers.sequence(1, totalPage)}"
+                                    th:class="${currentPage != i ? 'page-item' : 'page-item active' }"><a
+                                        class="page-link" th:href="@{'/category/' + ${categoryId} + '/fill-result/' + ${i}}"
+                                        th:text="${i}"></a></li>
+                            </th:block>
+
+
+                            <th:block th:if="${totalPage > 10}">
+                                <th:block
+                                        th:if="${currentPage <= 5 || currentPage >= totalPage - 4}">
+                                    <li th:each="i : ${#numbers.sequence(1, 5)}"
+                                        th:class="${currentPage != i ? 'page-item' : 'page-item active' }"><a
+                                            class="page-link" th:href="@{'/category/' + ${categoryId} +'/'+ ${i}}"
+                                            th:text="${i}"></a></li>
+                                    <li class="page-item"><a class="page-link"
+                                                             th:href="@{'/category/' + ${categoryId} + '/6'}">...</a>
+                                    </li>
+                                    <li th:each="i : ${#numbers.sequence(totalPage - 4, totalPage)}"
+                                        th:class="${currentPage != i ? 'page-item' : 'page-item active' }"><a
+                                            class="page-link" th:href="@{'/category/' + ${categoryId} +'/fill-result/'+ ${i}}"
+                                            th:text="${i}"></a></li>
+                                </th:block>
+
+                                <th:block
+                                        th:if="${currentPage > 5 && currentPage < totalPage - 4}">
+                                    <li class="page-item"><a class="page-link"
+                                                             th:href="@{'/category/'+${categoryId}+'/fill-result/' + ${currentPage - 5}}">...</a>
+                                    </li>
+                                    <li
+                                            th:each="i : ${#numbers.sequence(currentPage - 4, currentPage + 4)}"
+                                            th:class="${currentPage != i ? 'page-item' : 'page-item active' }">
+                                        <a
+                                                class="page-link" th:href="@{'/category/' + ${categoryId} +'/fill-result/'+ ${i}}"
+                                                th:text="${i}"></a></li>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           th:href="@{'/category/' + ${categoryId} +'/fill-result/'+ ${currentPage  + 5}}">...</a>
+                                    </li>
+                                </th:block>
+
+                            </th:block>
+
+
+                            <li
+                                    th:class="${currentPage < totalPage ? 'page-item' : 'page-item disabled' }"><a
+                                    class="page-link"
+                                    th:href="@{'/category/' + ${categoryId} +'/fill-result'+ ${currentPage + 1}}"
+                                    aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
+                                    class="sr-only">Next</span>
+                            </a></li>
+                            <li
+                                    th:class="${currentPage < totalPage ? 'page-item' : 'page-item disabled' }"><a
+                                    class="page-link"
+                                    th:href="@{'/category/' + ${categoryId} +'/fill-result'+ ${totalPage}}" tabindex="-1">Last</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
+        <footer th:replace="~{footer :: html_footer}"></footer>
     </div>
 </div>
-
-<footer th:replace="~{footer :: html_footer}"></footer>
 </body>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <th:block th:insert="~{header :: script}"></th:block>

@@ -23,15 +23,16 @@ public class ProductServiceImp implements ProductService {
     public List<Product> listAllByCategoryId(int id) {
         return productRepo.findProductByCategoryId(id);
     }
-    @Override
-    public List<Product> listFill(float a, float b, int id) {
-        List<Product> list = productRepo.listFill(a, b, id);
-        return list;
-    }
+
 
     @Override
     public Product findById(int id) {
         return productRepo.getAllById(id);
+    }
+
+    @Override
+    public int getTotalByFill(float start, float end, int id) {
+        return productRepo.getTotalProductByFill(start, end, id);
     }
 
     @Override
@@ -72,7 +73,17 @@ public class ProductServiceImp implements ProductService {
     public List<Product> getByPage(long currentPage, int id) {
         return productRepo.findByPage((currentPage - 1) * pageSize, pageSize, id);
     }
+    @Override
+    public long getTotalPageByFill(float start, float end, int id) {
+        return (productRepo.countByCategoryIdAndFill(start,end,id).get(0) % pageSize == 0) ?
+                productRepo.countByCategoryIdAndFill(start,end,id).get(0) / pageSize
+                : (productRepo.countByCategoryIdAndFill(start,end,id).get(0) / pageSize) + 1;
+    }
 
+    @Override
+    public List<Product> listFillByPage(float start, float end, long currentPage, int id) {
+        return productRepo.listFill(start,end,id,(currentPage-1)*pageSize,pageSize);
+    }
     @Override
     public int getCategoryId(int id) {
         return productRepo.findCateGoryIdByProdId(id);

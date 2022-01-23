@@ -12,10 +12,16 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query(value = "select * from product left join category on product.cate_id = category.id where product.cate_id = ?", nativeQuery = true)
     List<Product> findProductByCategoryId(int id);
     @Query(value = "select * from product left join category on product.cate_id = category.id " +
-            "where product.sale_price between :a and :b and category.id = :id", nativeQuery = true)
-    List<Product> listFill(float a, float b, int id);
+            "where product.cate_id = :id and product.sale_price between :a and :b LIMIT :start, :offset", nativeQuery = true)
+    List<Product> listFill(float a, float b, int id, @RequestParam long start, @RequestParam long offset);
+    @Query(value = "select count(*) from product left join category on product.cate_id = category.id " +
+            "where product.cate_id = :idCategory and product.sale_price between :a and :b",nativeQuery = true)
+    List<Long> countByCategoryIdAndFill(float a, float b, int idCategory);
     @Query(value = "select count(product.id) from product left join category on product.cate_id = category.id where product.cate_id = ?",nativeQuery = true)
     int getTotal(int id);
+    @Query(value = "select count(product.id) from product left join category on product.cate_id = category.id " +
+            "where product.sale_price between :start and :end and product.cate_id = :id", nativeQuery = true)
+    int getTotalProductByFill(float start, float end, int id);
     @Query(value = "select * from product where id = ?", nativeQuery = true)
     Product getAllById(int id);
     @Query(value = "select * from product where is_hot= 1", nativeQuery = true)
