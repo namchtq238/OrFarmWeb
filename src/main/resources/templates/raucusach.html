@@ -28,20 +28,32 @@
                         <form th:action="@{'/category/'+${categoryId}+'/fill-result'}" method="post" th:object="${filter}">
                         <h4 class="title">Lọc theo giá</h4>
                         <div class="price-range">
-                            <input type="checkbox" name="" id="">
-                            <label for="" th:field = "*{fillStart}" th:value="10000">10.000đ</label>-<label th:field = "*{fillEnd}" th:value="30000">30.000đ</label>
-                            <br>
-                            <input type="checkbox" name="" id="">
-                            <label for="" th:field = "*{fillStart}" th:value="30000">30.000đ</label>-<label th:field = "*{fillEnd}" th:value="50000">50.000đ</label>
-                            <br>
-                            <input type="checkbox" name="" id="">
-                            <label for="" th:field = "*{fillStart}" th:value="50000">50.000đ</label>-<label th:field = "*{fillEnd}" th:value="100000">100.000đ</label>
-                            <br>
-                            <input type="checkbox" name="" id="">
-                            <label for="" th:field = "*{fillStart}" th:value="100000">100.000đ</label>-<label th:field = "*{fillEnd}" th:value="200000">200.000đ</label>
-                            <br>
-                            <input type="checkbox" name="" id="">
-                            <label for="" th:field = "*{fillStart}" th:value="200000">>200.000đ</label><label th:field = "*{fillEnd}" th:value="1000000"></label>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span></button>
+                                <select class="dropdown-toggle" th:field="${filter.fillStart}">
+                                    <option th:value=0 th:text="0đ"></option>
+                                    <option th:value=20000 th:text="20000đ"></option>
+                                    <option th:value=30000 th:text="30000đ"></option>
+                                    <option th:value=40000 th:text="40000đ"></option>
+                                    <option th:value=50000 th:text="50000đ"></option>
+                                    <option th:value=100000 th:text="100000đ"></option>
+                                    <option th:value=200000 th:text="200000đ"></option>
+                                </select>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span></button>
+                                <select class="dropdown" th:field="${filter.fillEnd}">
+                                    <option th:value=10001 th:text="10001đ"></option>
+                                    <option th:value=20001 th:text="20001đ"></option>
+                                    <option th:value=30001 th:text="30001đ"></option>
+                                    <option th:value=50001 th:text="50001đ"></option>
+                                    <option th:value=100001 th:text="100001đ"></option>
+                                    <option th:value=200001 th:text="200001đ"></option>
+                                    <option th:value=1000000 th:text="1000000đ"></option>
+                                </select>
+                            </div>
                         </div>
                     <button type="submit" class="btn btn-primary btn-warning form-control">Lọc</button>
                         </form>
