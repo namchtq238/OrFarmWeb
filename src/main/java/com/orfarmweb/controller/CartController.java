@@ -63,4 +63,8 @@ public class CartController {
         cartService.saveItemToCart(user, product, quantity);
         return "redirect:/product/{id}";
     }
+    @GetMapping("/payment")
+    public String payment(){
+        return "payment";
+    }
 }
