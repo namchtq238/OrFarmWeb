@@ -27,16 +27,16 @@
                     </div>
                     <div class="displayProduct row pt-3 pb-3">
                         <ul id="mainCart">
-                            <div th:each="cartItem : ${listCart}">
+                            <div th:each="cartItem : ${listProductInCart}">
                                 <li>
-                                    <img th:src="@{'/image/ImageOrFarm/' + ${cartItem.getImage()}}">
-                                    <span th:text="${cartItem.getProductName()}"></span>
-                                    <span th:text="${cartItem.getProductPrice()}"></span>
+                                    <img th:src="@{'/image/ImageOrFarm/' + ${cartItem.image}}">
+                                    <span th:text="${cartItem.name}"></span>
+                                    <span th:text="${cartItem.salePrice}"></span>
                                 </li>
                             </div>
                         </ul>
                         <div class="cart-link row pt-3 pb-3 " style="width: 835px;">
-                            <a href="./shop.html">Tiếp tục mua hàng</a>
+                            <a th:href="@{/category/1/1}">Tiếp tục mua hàng</a>
                             <a href="#" class="delete">Xóa tất cả</a>
                         </div>
 
@@ -59,7 +59,7 @@
                             Tổng tiền: <span class="prices">0 </span> <sup>đ</sup>
                         </div>
                         <div class="payment">
-                            <a href="./payment.html" class="pt-50 pl-50">Tiến hành thanh toán</a>
+                            <a th:href="@{/payment}" class="pt-50 pl-50">Tiến hành thanh toán</a>
                         </div>
                     </div>
                 </div>

@@ -17,4 +17,6 @@ public interface CartRepo extends JpaRepository<Cart, Integer> {
             "where user.email=:userEmail and is_delete = 0", nativeQuery = true)
     List<CartDTO> getCartByUser(String userEmail);
     Cart getCartByUserAndProduct(User user, Product product);
+    List<Cart> getCartByUser(User user);
+    Integer countCartByUser(User user);
 }
