@@ -66,6 +66,7 @@ public class ProductController {
         Collections.shuffle(productList);
         if(productList.size()<4) model.addAttribute("bestSeller", productList);
         else model.addAttribute("bestSeller", productList.subList(0, 3));
+        model.addAttribute("filter", new FilterProduct());
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("categoryId", id);
@@ -77,9 +78,10 @@ public class ProductController {
         model.addAttribute("category", categoryService.findById(id).get());
         return "raucusach";
     }
-
     @PostMapping("/category/{id}/fill-result")
     public String showViewProductFill(@PathVariable("id") int id, @ModelAttribute FilterProduct filter, Model model) {
+        model.addAttribute("filter", new FilterProduct());
+        model.addAttribute("categoryId", id);
         model.addAttribute("productFill", productService.listFill(filter.getFillStart(), filter.getFillEnd(), id));
         return "dokho";
     }

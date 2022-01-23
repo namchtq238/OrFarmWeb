@@ -25,23 +25,26 @@
             <div class="col-lg-3 order-2 order-lg-1">
                 <div class="orfarm-shop-sidebar">
                     <div class="shop-price-filter">
+                        <form th:action="@{'/category/'+${categoryId}+'/fill-result'}" method="post" th:object="${filter}">
                         <h4 class="title">Lọc theo giá</h4>
                         <div class="price-range">
                             <input type="checkbox" name="" id="">
-                            <label for="">10.000đ - 30.000đ</label>
+                            <label for="" th:field = "*{fillStart}" th:value="10000">10.000đ</label>-<label th:field = "*{fillEnd}" th:value="30000">30.000đ</label>
                             <br>
                             <input type="checkbox" name="" id="">
-                            <label for="">30.000đ - 50.000đ</label>
+                            <label for="" th:field = "*{fillStart}" th:value="30000">30.000đ</label>-<label th:field = "*{fillEnd}" th:value="50000">50.000đ</label>
                             <br>
                             <input type="checkbox" name="" id="">
-                            <label for="">50.000đ - 100.000đ</label>
+                            <label for="" th:field = "*{fillStart}" th:value="50000">50.000đ</label>-<label th:field = "*{fillEnd}" th:value="100000">100.000đ</label>
                             <br>
                             <input type="checkbox" name="" id="">
-                            <label for="">100.000đ - 200.000đ</label>
+                            <label for="" th:field = "*{fillStart}" th:value="100000">100.000đ</label>-<label th:field = "*{fillEnd}" th:value="200000">200.000đ</label>
                             <br>
                             <input type="checkbox" name="" id="">
-                            <label for="">> 200.000đ</label>
+                            <label for="" th:field = "*{fillStart}" th:value="200000">>200.000đ</label><label th:field = "*{fillEnd}" th:value="1000000"></label>
                         </div>
+                    <button type="submit" class="btn btn-primary btn-warning form-control">Lọc</button>
+                        </form>
                     </div>
                     <div class="shop-category-widget">
                         <h4 class="title">Danh Mục Sản Phẩm</h4>
@@ -223,6 +226,7 @@
         </div>
         <footer th:replace="~{footer :: html_footer}"></footer>
     </div>
+</div>
 </body>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <th:block th:insert="~{header :: script}"></th:block>
