@@ -22,8 +22,6 @@ public class Product {
     @ManyToOne(targetEntity = Category.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "cate_id", referencedColumnName = "id")
     private Category category;
-    @OneToMany(targetEntity = OrderDetail.class, mappedBy = "product")
-    private Set<OrderDetail> orderDetail;
     @Column(name = "cost")
     private Float cost;
 }

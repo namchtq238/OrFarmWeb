@@ -15,7 +15,7 @@ public class OrderDetail {
     @ManyToOne(targetEntity = Orders.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Orders orders;
-    @ManyToOne(targetEntity = Product.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    @ManyToOne(targetEntity = Cart.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private Cart cart;
 }
