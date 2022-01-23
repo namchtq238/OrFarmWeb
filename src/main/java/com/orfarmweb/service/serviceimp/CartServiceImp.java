@@ -66,4 +66,14 @@ public class CartServiceImp implements CartService  {
         }
         return 0;
     }
+
+    @Override
+    public boolean deleteAllItemInCart() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        String email = userDetails.getUsername();
+        User user = userRepo.findUserByEmail(email);
+        cartRepo.deleteCartByUser(user);
+        return true;
+    }
 }

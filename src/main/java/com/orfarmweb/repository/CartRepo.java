@@ -19,4 +19,5 @@ public interface CartRepo extends JpaRepository<Cart, Integer> {
     Cart getCartByUserAndProduct(User user, Product product);
     List<Cart> getCartByUser(User user);
     Integer countCartByUser(User user);
+    void deleteCartByUser(User user);
 }

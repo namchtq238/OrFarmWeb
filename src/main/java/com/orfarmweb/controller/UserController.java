@@ -2,6 +2,7 @@ package com.orfarmweb.controller;
 
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.User;
+import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
 import com.orfarmweb.service.UserService;
@@ -24,23 +25,23 @@ public class UserController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private CartService cartService;
     @GetMapping("/login")
     public String getLoginPage(){
         return "login";
     }
-    @GetMapping("/")
-    public String getIndex(){
-        return "redirect:/home";
-    }
-    @GetMapping("/home")
-    public String getHomePage(){
-        return "index";
-    }
+
     @GetMapping("/createAccount")
     public String getCreateAccountPage(Model model){
         model.addAttribute("user", new User());
         return "createAccount";
     }
+    @ModelAttribute("countCartItem")
+    public Integer addNumberOfCartItemToHeader(Model model) {
+        return cartService.countNumberOfItemInCart();
+    }
+
     @PostMapping("/processRegister")
     public String showCreateAccountInformation(@ModelAttribute @Valid User user, BindingResult bindingResult, Model model){
         if(userService.checkExist(user.getEmail()))

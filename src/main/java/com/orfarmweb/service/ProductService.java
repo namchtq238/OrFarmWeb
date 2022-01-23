@@ -2,6 +2,7 @@ package com.orfarmweb.service;
 
 import com.orfarmweb.entity.Cart;
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.modelutil.CartItem;
 
 import java.util.List;
 public interface ProductService {
@@ -19,5 +20,6 @@ public interface ProductService {
     long getTotalPage(int id);
     List<Product> getByPage(long currentPage, int id);
     int getCategoryId(int id);
-    List<Product> getProductFromCart(List<Cart> cartList);
+    List<CartItem> getProductFromCart(List<Cart> cartList);
+    Float getTempPrice(List<CartItem> itemList);
 }

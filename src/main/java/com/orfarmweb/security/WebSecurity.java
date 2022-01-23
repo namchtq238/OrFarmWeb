@@ -48,6 +48,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority(Role.ADMIN.getType())
+                .antMatchers("/cart/**").authenticated()
                 .antMatchers("/cart").authenticated()
                 .antMatchers("/payment").authenticated()
                 .anyRequest().permitAll()

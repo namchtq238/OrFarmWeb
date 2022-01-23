@@ -1,14 +1,11 @@
 package com.orfarmweb.controller;
 
-import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
-import com.orfarmweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,9 +54,18 @@ public class MainController {
         model.addAttribute("getListSale",getListSale);
         model.addAttribute("getListDiscount",getListDiscount);
         }
+
 //        List<Product> products = Stream.concat(hotproductList.stream(), productList.stream())
 //                .collect(Collectors.toList());
 //        Collections.shuffle(products);
 //        model.addAttribute("products", products.subList(0, 8));
+    }
+    @GetMapping("/")
+    public String getIndex(){
+        return "redirect:/home";
+    }
+    @GetMapping("/home")
+    public String getHomePage(){
+        return "index";
     }
 }

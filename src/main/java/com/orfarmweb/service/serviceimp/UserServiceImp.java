@@ -36,4 +36,9 @@ public class UserServiceImp implements UserService {
         }
         return false;
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepo.findUserByEmail(email);
+    }
 }

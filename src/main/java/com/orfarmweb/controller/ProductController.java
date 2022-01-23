@@ -4,20 +4,14 @@ import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.FilterProduct;
-import com.orfarmweb.security.CustomUserDetails;
 import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -122,12 +116,15 @@ public class ProductController {
     public String showViewProductDetail(@PathVariable int id, Model model) {
         Integer idCategory = productService.getCategoryId(id);
         List<Product> list = productService.listAllByCategoryId(idCategory);
-        if(list.size()<9) model.addAttribute("listSimilar", list);
-        else model.addAttribute("listSimilar", list.subList(0,8));
         Collections.shuffle(list);
+        if(list.size()<9) model.addAttribute("listSimilar", list);
+        else{
+            list = list.subList(0, 7);
+            model.addAttribute("listSimilar", list);
+        }
         HashMap<Integer, String> listPrice = new HashMap<Integer,String>();
         HashMap<Integer, String> listDiscount = new HashMap<Integer,String>();
-        for (Product p : list.subList(0,8)){
+        for (Product p : list){
             listPrice.put(p.getId(), productService.getSalePriceById(p.getId()));
             listDiscount.put(p.getId(), productService.getDiscountPriceById(p.getId()));
         }

@@ -25,7 +25,8 @@
                     <div class="common-view-cart pt-4 pb-4">
                         <p class="text-cart  mb-0 ">Giỏ hàng</p>
                     </div>
-                    <div class="displayProduct row pt-3 pb-3">
+                    <form method="post" th:action="@{/cart/save}" th:object="${listQuantity}">
+                        <div class="displayProduct row pt-3 pb-3">
                         <ul id="mainCart">
                             <div th:each="cartItem : ${listProductInCart}">
                                 <li>
@@ -33,24 +34,27 @@
                                         <tbody>
                                         <tr>
                                             <td><div class="img-product ">
-                                                <img src="./image/bơ.jpg" alt="">
+                                                <img th:src="@{'/image/ImageOrFarm/'+${cartItem.image}}" alt="">
                                             </div>
                                             </td>
                                             <td>
                                                 <div class="infor-product pl-3">
                                                     <input type="hidden" value="1" id="` + cartMain[i].productId + `">
-                                                    <a href="./productdetail.html">
-                                                        <h3>Bơ Đắk Lăk</h3>
+                                                    <a th:href="@{'/product/' + ${cartItem.productId}}">
+                                                        <h3 th:text="${cartItem.productName}"></h3>
                                                     </a>
                                                     <p><strong>Kích thước:</strong> <span>1</span>kg</p>
-                                                    <div class="discount-price"><span>25.000</span> </div>
+                                                    <div class="discount-price"><span th:text="${cartItem.salePrice}"></span> </div>
 
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="buttons_added" >
-                                                    <input class="inputQuantity"  id='1'  min='1' name='quantity' type='number' value='1' />
-
+                                                    <span th:text="${cartItem.quantity}"></span>
+                                                    <input class="inputQuantity"
+                                                           th:field="*{soluong}"
+                                                           min='1' type='number' />
+                                                </div>
                                             </td>
                                             <td>
                                                 <div class="icon-delete" id="1">
@@ -59,34 +63,31 @@
                                             </td>
                                             <td>
                                                 <div class="sumPro">
-                                                    <span>25.000</span><sup>đ</sup>
+                                                    <span th:text="${cartItem.totalPrice}"></span><sup>đ</sup>
                                                 </div>
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </li>
-                                <li>
-<!--                                    <img th:src="@{'/image/ImageOrFarm/' + ${cartItem.image}}">-->
-<!--                                    <span th:text="${cartItem.name}"></span>-->
-<!--                                    <span th:text="${cartItem.salePrice}"></span>-->
-                                </li>
                             </div>
                         </ul>
                         <div class="cart-link  pt-3 pb-3 " style="width: 835px;">
                             <a th:href="@{/category/1/1}">Tiếp tục mua hàng</a>
-                            <a href="#" class="delete">Xóa tất cả</a>
+                            <a th:href="@{/cart/delete}">Xoá tất cả</a>
+                            <button type="submit">Lưu lại giỏ hàng</button>
                         </div>
 
                     </div>
+                    </form>
                 </div>
                 <div class="col-lg-3 box-fee mt-70 mb-50 pt-3">
                     <div class="immidiate-fee ">
-                        Tạm tính: <span class="prices">0</span> <sup>đ</sup>
+                        Tạm tính: <span class="prices" th:text="${tempPrice}"></span> <sup>đ</sup>
                     </div>
 
                     <div class="shipping-fee pt-4">
-                        <p>Phí ship: <span class="prices">0</span> <sup>đ</sup></p>
+                        <p>Phí ship: <span class="prices" th:text="${ship}"></span> <sup>đ</sup></p>
                        
                         
                             <p class="pt-2" ><Strong style="color: brown;">Ưu đãi từ cửa hàng:</Strong> OrFarm hỗ trợ
@@ -94,7 +95,7 @@
                             </p>
                         </div>
                         <div class="immidiate-fee sum-fee" style="color: rgb(49, 189, 21);">
-                            Tổng tiền: <span class="prices">0 </span> <sup>đ</sup>
+                            Tổng tiền: <span class="prices" th:text="${totalPrice}"></span> <sup>đ</sup>
                         </div>
                         <div class="payment">
                             <a th:href="@{/payment}" class="pt-50 pl-50">Tiến hành thanh toán</a>

@@ -12,5 +12,5 @@ public interface CartService {
     boolean saveItemToCart(User user, Product product, Integer quantity);
     List<Cart> getAllCartByUser(String email);
     Integer countNumberOfItemInCart();
-
+    boolean deleteAllItemInCart();
 }

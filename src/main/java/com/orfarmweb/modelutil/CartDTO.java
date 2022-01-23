@@ -1,13 +1,13 @@
 package com.orfarmweb.modelutil;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.List;
 
-public interface CartDTO {
-     Integer getCartId();
-     String getProductName();
-     Integer getUserId();
-     Integer getProductQuantity();
-     Float getProductPrice();
-     String getImage();
+@Getter
+@Setter
+public class CartDTO {
+     List<Integer> soluong;
 }

@@ -3,6 +3,7 @@ package com.orfarmweb.service.serviceimp;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Cart;
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.modelutil.CartItem;
 import com.orfarmweb.repository.CategoryRepo;
 import com.orfarmweb.repository.ProductRepo;
 import com.orfarmweb.service.ProductService;
@@ -90,14 +91,32 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<Product> getProductFromCart(List<Cart> cartList) {
-        List<Product> list = new ArrayList<>();
+    public List<CartItem> getProductFromCart(List<Cart> cartList) {
+        List<CartItem> list = new ArrayList<>();
         for (Cart cart: cartList
              ) {
             Product product = findById(cart.getProduct().getId());
-            list.add(product);
+            CartItem cartItem = new CartItem();
+            cartItem.setProductId(product.getId());
+            cartItem.setProductName(product.getName());
+            cartItem.setDiscount(product.getPercentDiscount());
+            cartItem.setQuantity(cart.getQuantity());
+            cartItem.setImage(product.getImage());
+            cartItem.setSalePrice(product.getSalePrice());
+            cartItem.setTotalPrice(cart.getQuantity() * product.getSalePrice());
+            list.add(cartItem);
         }
         return list;
+    }
+
+    @Override
+    public Float getTempPrice(List<CartItem> itemList) {
+        Float tempPrice = 0f;
+        for (CartItem cartItem: itemList
+             ) {
+            tempPrice += cartItem.getTotalPrice() * (1- cartItem.getDiscount()/100) * cartItem.getQuantity();
+        }
+        return tempPrice;
     }
 
 }
