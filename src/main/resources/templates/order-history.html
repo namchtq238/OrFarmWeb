@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{header :: html_header}">
+
+<body>
+
+<header class="header">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar ">
+        <div class="container-fluid">
+
+            <!-- Brand -->
+            <a class="navbar-brand waves-effect" href="./index.html">
+                <img style="height: 40px;" src="./image/coollogo_com-7162464-removebg-preview.png" alt="">
+            </a>
+
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active" style="padding-left: 40px;">
+                        <a class="nav-link waves-effect  text-header" href="./index.html">Trang chủ
+
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link waves-effect text-header dropdown-toggle" href=""
+                               target="_blank">Giới thiệu
+
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                 id="dropdown-collection">
+                                <a class="dropdown-item" href="./information.html">Về chúng tôi</a>
+                                <a class="dropdown-item" href="./license.html">Giấy chứng nhận</a>
+                                <a class="dropdown-item" href="./recruit.html">Tuyển dụng</a>
+                                <a class="dropdown-item" href="./policy.html">Chính sách bảo mật</a>
+                                <a class="dropdown-item" href="./condition.html">Điều khoản dịch vụ</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link waves-effect text-header dropdown-toggle" href="./shop.html"
+                               target="_blank">Cửa hàng
+
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="./raucusach.html">Rau củ sạch</a>
+                                <a class="dropdown-item" href="./hoaqua.html">Hoa quả</a>
+                                <a class="dropdown-item" href="./dokho.html">Đồ khô</a>
+                                <a class="dropdown-item" href="./vungmien.html">Đặc sản vùng miền</a>
+                                <a class="dropdown-item" href="./tuoisong.html">Thực phẩm tươi sống</a>
+                                <a class="dropdown-item" href="./thucphamkhac.html">Sản phẩm khác</a>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect text-header" href="./blog.html">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect text-header" href="./contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+
+
+                <!-- Right -->
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item ">
+                        <a href="#" class="nav-link cart-btn amm-shopping-cart-open pr-3"><i
+                                onclick="shoppingCarts()" class="fas fa-shopping-cart"></i>
+                            <span class="quantity-amm-shopping-cart-open">0</span></a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <a href="./login.html" class="nav-link border border-light rounded waves-effect"
+                            target="_blank">
+                            <i class="fas fa-user"></i>Đăng Nhập
+                        </a> -->
+                        <div class="dropdown dropdown-user">
+                            <button class="btn  dropdown-toggle " type="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i> UserName
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="#">Lịch sử mua hàng</a>
+                                <a class="dropdown-item" href="#">Đăng xuất</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+<section class="breadcrum">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb container">
+            <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tài khoản</li>
+            <li class="breadcrumb-item active" aria-current="page">Lịch sử mua hàng</li>
+        </ol>
+    </nav>
+</section>
+<div class="container ">
+    <h1 class="text-center">LỊCH SỬ MUA HÀNG</h1>
+    <!--  trường hợp khách chưa đặt hàng
+    <div class="col-md-12  mt-50 mb-200">
+        <div class=" personal-infor ">
+            Bạn chưa đặt bất kì một đơn hàng nào!!!
+        </div>
+    </div> -->
+    <div class="ordered-detail container">
+        <div class="row " style="padding-top: 25px;">
+            <div class="col-md-4">
+                <img src="./image/bơ1.jpg" alt="">
+            </div>
+            <div class="col-md-8 ">
+                <div class="product-name">
+                    <p>Tên sản phẩm: <span><a href="./productdetail.html">Bơ Đắk Lắk</a></span></p>
+                </div>
+                <div class="product-id">
+                    <p>Mã đơn: <span>#00311</span></p>
+                </div>
+                <div class="product-date">
+                    <p>Ngày đặt: <span>02/10/2021</span></p>
+                </div>
+                <div class="product-quantity">
+                    <p>Số lượng: <span>5</span></p>
+                </div>
+                <div class="product-price">
+                    <p>Giá tiền: <span>250.000 <sup>đ</sup></span></p>
+                </div>
+                <div class="product-status">
+                    <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
+                </div>
+            </div>
+            <div class="col-sm-12 order-again">
+                <div><p>Tổng tiền: <span>250.000 <sup>đ</sup></span></p></div>
+                <br>
+                <div>
+                    <button type="button" class="btn btn-warning "><a href="#">Mua lại</a></button>
+                    <button type="button" class="btn btn-warning "><a href="#">Đánh giá</a></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="ordered-detail container">
+        <div class="row " style="padding-top: 25px;">
+            <div class="col-md-4">
+                <img src="./image/cải bắp.jpg" alt="">
+            </div>
+            <div class="col-md-8 ">
+                <div class="product-name">
+                    <p>Tên sản phẩm: <span><a href="./productdetail.html">Cải Bắp Đà Lạt</a></span></p>
+                </div>
+                <div class="product-id">
+                    <p>Mã đơn: <span>#00311</span></p>
+                </div>
+                <div class="product-date">
+                    <p>Ngày đặt: <span>02/10/2021</span></p>
+                </div>
+                <div class="product-quantity">
+                    <p>Số lượng: <span>5</span></p>
+                </div>
+                <div class="product-price">
+                    <p>Giá tiền: <span>250.000 <sup>đ</sup></span></p>
+                </div>
+                <div class="product-status">
+                    <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
+                </div>
+            </div>
+            <div class="col-sm-12 order-again">
+                <div><p>Tổng tiền: <span>250.000 <sup>đ</sup></span></p></div>
+                <br>
+                <div>
+                    <button type="button" class="btn btn-warning "><a href="#">Mua lại</a></button>
+                    <button type="button" class="btn btn-warning "><a href="#">Đánh giá</a></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="ordered-detail container">
+        <div class="row ">
+            <div class="col-md-4">
+                <img src="./image/quả vải.jpg" alt="">
+
+            </div>
+            <div class="col-md-8 mt-20">
+                <div class="product-name">
+                    <p>Tên sản phẩm: <span><a href="./productdetail.html">Vải thiều Bắc Giang</a></span></p>
+                </div>
+                <div class="product-id">
+                    <p>Mã đơn: <span>#00311</span></p>
+                </div>
+                <div class="product-date">
+                    <p>Ngày đặt: <span>02/10/2021</span></p>
+                </div>
+                <div class="product-price">
+                    <p>Tổng tiền: <span>250.000 <sup>đ</sup></span></p>
+                </div>
+                <div class="product-status">
+                    <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                <img src="./image/quả vải.jpg" alt="">
+
+            </div>
+            <div class="col-md-8 mt-20">
+                <div class="product-name">
+                    <p>Tên sản phẩm: <span><a href="./productdetail.html">Vải thiều Bắc Giang</a></span></p>
+                </div>
+                <div class="product-id">
+                    <p>Mã đơn: <span>#00311</span></p>
+                </div>
+                <div class="product-date">
+                    <p>Ngày đặt: <span>02/10/2021</span></p>
+                </div>
+                <div class="product-price">
+                    <p>Giá tiền: <span>250.000 <sup>đ</sup></span></p>
+                </div>
+                <div class="product-status">
+                    <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
+                </div>
+
+            </div>
+            <div class="col-sm-12 order-again">
+                <div><p>Giá tiền: <span>250.000 <sup>đ</sup></span></p></div>
+                <br>
+                <div>
+                    <button type="button" class="btn btn-warning "><a href="#">Mua lại</a></button>
+                    <button type="button" class="btn btn-warning "><a href="#">Đánh giá</a></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="ordered-detail container">
+    <div class="row " style="padding-top: 25px;">
+        <div class="col-md-4">
+            <img src="./image/quả dừa.jpg" alt="">
+        </div>
+        <div class="col-md-8 ">
+            <div class="product-name">
+                <p>Tên sản phẩm: <span><a href="./productdetail.html">Dừa Bến Tre</a></span></p>
+            </div>
+            <div class="product-id">
+                <p>Mã đơn: <span>#00311</span></p>
+            </div>
+            <div class="product-date">
+                <p>Ngày đặt: <span>02/10/2021</span></p>
+            </div>
+            <div class="product-quantity">
+                <p>Số lượng: <span>5</span></p>
+            </div>
+            <div class="product-price">
+                <p>Giá tiền: <span>250.000 <sup>đ</sup></span></p>
+            </div>
+            <div class="product-status">
+                <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
+            </div>
+        </div>
+        <div class="col-sm-12 order-again">
+            <div><p>Tổng tiền: <span>250.000 <sup>đ</sup></span></p></div>
+            <br>
+            <div>
+                <button type="button" class="btn btn-warning "><a href="#">Mua lại</a></button>
+                <button type="button" class="btn btn-warning "><a href="#">Đánh giá</a></button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+
+<div class="amm-shopping-cart-wrapper">
+    <div class="amm-shopping-cart-canvas">
+        <div class="amm-shopping_cart">
+            <div class="amm-shopping_cart-top-bar d-flex justify-content-between">
+                <h8 col-sm-6>Giỏ hàng</h6>
+                    <button class="amm-shopping-cart-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+            </div><!-- shopping cart top bar -->
+            <div class="amm-shopping_cart-list-items mt-30">
+                <ul>
+
+                </ul>
+            </div> <!-- shopping_cart list items -->
+            <div class="amm-shopping_cart-btn">
+                <div class="total pt-35 d-flex justify-content-between">
+                    <h5>Tổng tiền:</h5>
+                    <p>0 <span>đ</span></p>
+
+                </div>
+                <div class="cart-btn pt-25">
+                    <a class="main-btn" href="./ViewCart.html">Xem giỏ hàng</a>
+                    <a class="main-btn main-btn-2" href="./payment.html">Thanh toán</a>
+                </div>
+            </div>
+        </div> <!-- shopping_cart -->
+    </div>
+    <div class="overlay"></div>
+</div>
+
+<footer th:replace = "~{footer :: html_footer}"> </footer>
+</body>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<th:block th:insert="~{header :: script}"></th:block>
+
+</body>
+
+</html>

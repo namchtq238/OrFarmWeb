@@ -147,4 +147,8 @@ public class ProductController {
         p.setName(productService.listAllByCategoryId(1).get(0).getName());
         return p;
     }
+    @RequestMapping("/personalInfor")
+    public String personalInfor(){return "personal-infor";}
+    @RequestMapping("/orderHistory")
+    public String orderHistory(){return "order-history";}
 }
