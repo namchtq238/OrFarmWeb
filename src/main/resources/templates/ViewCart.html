@@ -29,13 +29,51 @@
                         <ul id="mainCart">
                             <div th:each="cartItem : ${listProductInCart}">
                                 <li>
-                                    <img th:src="@{'/image/ImageOrFarm/' + ${cartItem.image}}">
-                                    <span th:text="${cartItem.name}"></span>
-                                    <span th:text="${cartItem.salePrice}"></span>
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td><div class="img-product ">
+                                                <img src="./image/bơ.jpg" alt="">
+                                            </div>
+                                            </td>
+                                            <td>
+                                                <div class="infor-product pl-3">
+                                                    <input type="hidden" value="1" id="` + cartMain[i].productId + `">
+                                                    <a href="./productdetail.html">
+                                                        <h3>Bơ Đắk Lăk</h3>
+                                                    </a>
+                                                    <p><strong>Kích thước:</strong> <span>1</span>kg</p>
+                                                    <div class="discount-price"><span>25.000</span> </div>
+
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="buttons_added" >
+                                                    <input class="inputQuantity"  id='1'  min='1' name='quantity' type='number' value='1' />
+
+                                            </td>
+                                            <td>
+                                                <div class="icon-delete" id="1">
+                                                    <i class="icon-delete1 fas fa-trash-alt"></i>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="sumPro">
+                                                    <span>25.000</span><sup>đ</sup>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>
+<!--                                    <img th:src="@{'/image/ImageOrFarm/' + ${cartItem.image}}">-->
+<!--                                    <span th:text="${cartItem.name}"></span>-->
+<!--                                    <span th:text="${cartItem.salePrice}"></span>-->
                                 </li>
                             </div>
                         </ul>
-                        <div class="cart-link row pt-3 pb-3 " style="width: 835px;">
+                        <div class="cart-link  pt-3 pb-3 " style="width: 835px;">
                             <a th:href="@{/category/1/1}">Tiếp tục mua hàng</a>
                             <a href="#" class="delete">Xóa tất cả</a>
                         </div>

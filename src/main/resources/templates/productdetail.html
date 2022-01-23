@@ -15,41 +15,6 @@
             </ol>
           </nav>
     </section>
-    <title>Orfarm Store</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-
-    <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" th:href="@{assets/images/favicon.png}" type="image/png">
-
-    <!--====== Bootstrap css ======-->
-    <link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}">
-
-    <!--====== Fontawesome css ======-->
-    <link rel="stylesheet" th:href="@{assets/css/font-awesome.min.css}">
-
-    <!--====== Magnific Popup css ======-->
-    <link rel="stylesheet" th:href="@{assets/css/animate.min.css}">
-
-    <!--====== Magnific Popup css ======-->
-    <link rel="stylesheet" th:href="@{assets/css/magnific-popup.css}">
-
-    <!--====== Slick css ======-->
-    <link rel="stylesheet" th:href="@{assets/css/slick.css}">
-
-    <!--====== Default css ======-->
-    <link rel="stylesheet" th:href="@{assets/css/custom-animation.css}">
-    <link rel="stylesheet" th:href="@{assets/css/default.css}">
-
-    <!--====== Style css ======-->
-    <link rel="stylesheet" th:href="@{assets/scss/style.css}">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css}">
-    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" th:href="@{https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css}" />
     <main>
         <section class="shop-details-area pt-100 pb-100">
             <div class="container">
@@ -105,8 +70,11 @@
                                 <div class="shop-buttons d-block d-sm-flex align-items-center">
                                     <div class="product-quantity" id="quantity">
                                         <button type="button" id="sub" class="sub">-</button>
-                                        <input type="number" id="1" value="1" th:name="quantity"/>
+                                        <input type="text" id="1" value="1" />
                                         <button type="button" id="add" class="add">+</button>
+<!--                                        <button type="button" id="sub" class="sub">-</button>-->
+<!--                                        <input type="number" id="1" value="1" th:name="quantity"/>-->
+<!--                                        <button type="button" id="add" class="add">+</button>-->
                                     </div>
                                     <button class="main-btn ml-10" type="submit">Thêm vào giỏ</button>
                                 </div>

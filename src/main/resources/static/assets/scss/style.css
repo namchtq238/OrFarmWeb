@@ -831,25 +831,29 @@ p {
   width: 70px;
   height: 70px;
 }
-
-.displayProduct .cover-product .img-product img{
+.img-product img{
   height: 150px;
   width: 150px;
 }
-.displayProduct .change-pro .icon-delete i{
+
+.icon-delete i{
   font-size: 20px;
-  padding-left: 76px;
-  padding-top: 5px;
+  padding-left: 125px;
+  padding-top: 60%;
+  margin-bottom: 58%;
 }
 .change-pro{
   padding-left: 65px;
 }
-.displayProduct .cover-product .icon-delete i:hover{
+
+.icon-delete i:hover{
   color: #9c9ea4;
 }
-.displayProduct .cover-product .sumPro{
+
+.sumPro{
   padding-left: 200px;
   padding-top: 56px;
+  margin-bottom: 21%;
 }
 /* .displayProduct{
   border-bottom:  1px solid #eee;
@@ -8972,6 +8976,7 @@ blockquote cite {
   padding-left: 50px;
   padding-top: 54px;
   height: 80px;
+  margin-bottom: 51%;
 }
 .is-form {
   overflow:hidden;
