@@ -3,21 +3,20 @@ package com.orfarmweb.controller;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
-import com.orfarmweb.repository.CategoryRepo;
-import com.orfarmweb.repository.ProductRepo;
+import com.orfarmweb.entity.User;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
+import com.orfarmweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 public class MainController {
@@ -25,24 +24,6 @@ public class MainController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
-    @Autowired
-    private FormatPrice formatPrice;
-    @GetMapping("/login")
-    public String getLoginPage(){
-        return "login";
-    }
-    @GetMapping("/")
-    public String getIndex(){
-        return "redirect:/home";
-    }
-    @GetMapping("/home")
-    public String getHomePage(){
-        return "index";
-    }
-    @GetMapping("/createAccount")
-    public String getCreateAccountPage(){
-        return "createAccount";
-    }
     @ModelAttribute
     public void addCategoryToHeader(Model model){
         List<Category> listCategory = categoryService.getListCategory();
