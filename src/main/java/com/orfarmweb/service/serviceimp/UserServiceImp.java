@@ -45,4 +45,12 @@ public class UserServiceImp implements UserService {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         return userDetails.getUser();
     }
+
+    @Override
+    public boolean editUser(String firstName, String lastName, String email) {
+        userRepo.editNameUser(firstName,lastName,email);
+        return true;
+    }
+
+
 }
