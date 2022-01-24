@@ -101,8 +101,8 @@ public class ProductServiceImp implements ProductService {
             cartItem.setDiscount(product.getPercentDiscount());
             cartItem.setQuantity(cart.getQuantity());
             cartItem.setImage(product.getImage());
-            cartItem.setSalePrice(product.getSalePrice());
-            cartItem.setTotalPrice(cart.getQuantity() * product.getSalePrice());
+            cartItem.setSalePrice(product.getSalePrice() * (1- cartItem.getDiscount()/100));
+            cartItem.setTotalPrice(cartItem.getSalePrice() * cartItem.getQuantity());
             list.add(cartItem);
         }
         return list;

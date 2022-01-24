@@ -49,11 +49,9 @@ public class CartController {
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
         System.out.println(listProductInCart.size());
         Float tempPrice = productService.getTempPrice(listProductInCart);
-        System.out.println(tempPrice);
         Float ship = 20000f;
         if(tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;
-        System.out.println(totalPrice);
         model.addAttribute("tempPrice", tempPrice);
         model.addAttribute("ship", ship);
         model.addAttribute("totalPrice", totalPrice);
@@ -99,6 +97,7 @@ public class CartController {
         model.addAttribute("tempPrice", tempPrice);
         model.addAttribute("ship", ship);
         model.addAttribute("totalPrice", totalPrice);
+
         model.addAttribute("userInformation", user);
         model.addAttribute("paymentInformation", new PaymentInformation());
         return "payment";

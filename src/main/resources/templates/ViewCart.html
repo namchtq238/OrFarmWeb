@@ -51,12 +51,12 @@
                                             <td>
                                                 <div class="buttons_added" >
                                                     <input class="inputQuantity"
-                                                           th:field="*{soluong}"
-                                                           min='1' type='number' />
+                                                           name="soluong"
+                                                           id="soluong"
+                                                           min='1' type='number'
+                                                            th:value="${cartItem.quantity}"
+                                                    />
                                                 </div>
-                                            </td>
-                                            <td>
-                                                <span th:text="${cartItem.quantity}"></span>
                                             </td>
                                             <td>
                                                 <div class="icon-delete" id="1">
