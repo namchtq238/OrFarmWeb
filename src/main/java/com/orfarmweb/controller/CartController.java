@@ -1,5 +1,6 @@
 package com.orfarmweb.controller;
 
+import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.*;
 import com.orfarmweb.modelutil.CartDTO;
 import com.orfarmweb.modelutil.CartItem;
@@ -32,6 +33,8 @@ public class CartController {
     private OrderService orderService;
     @Autowired
     private OrderDetailService orderDetailService;
+    @Autowired
+    private FormatPrice format;
     @ModelAttribute
     public void addCategoryToHeader(Model model) {
         List<Category> listCategory = categoryService.getListCategory();
@@ -52,9 +55,9 @@ public class CartController {
         Float ship = 20000f;
         if(tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;
-        model.addAttribute("tempPrice", tempPrice);
-        model.addAttribute("ship", ship);
-        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("tempPrice", format.formatPrice(tempPrice));
+        model.addAttribute("ship", format.formatPrice(ship));
+        model.addAttribute("totalPrice", format.formatPrice(totalPrice));
         model.addAttribute("listProductInCart", listProductInCart);
         CartDTO cartDTO = new CartDTO();
         model.addAttribute("listQuantity", cartDTO);
@@ -94,9 +97,9 @@ public class CartController {
         Float ship = 20000f;
         if(tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;
-        model.addAttribute("tempPrice", tempPrice);
-        model.addAttribute("ship", ship);
-        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("tempPrice", format.formatPrice(tempPrice));
+        model.addAttribute("ship", format.formatPrice(ship));
+        model.addAttribute("totalPrice", format.formatPrice(totalPrice));
 
         model.addAttribute("userInformation", user);
         model.addAttribute("paymentInformation", new PaymentInformation());
