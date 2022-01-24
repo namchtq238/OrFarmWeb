@@ -22,7 +22,8 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
-    public boolean saveOrder(Orders orders, Float totalPrice, Set<OrderDetail> orderDetailList) {
+    public boolean saveOrder(Orders orders, Float totalPrice, String note, Set<OrderDetail> orderDetailList) {
+        orders.setNote(note);
         orders.setTotalPrice(totalPrice);
         orders.setOrderDetails(orderDetailList);
         orders.setStatus("0");
@@ -30,6 +31,8 @@ public class OrderServiceImp implements OrderService {
         ordersRepo.save(orders);
         return true;
     }
+
+
 
     @Override
     public boolean saveNoteToOrder(String note, int id) {
