@@ -50,7 +50,6 @@ public class CartController {
     public String getCart(Model model) {
         List<Cart> listCart = cartService.getAllCartByUser();
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
-        System.out.println(listProductInCart.size());
         Float tempPrice = productService.getTempPrice(listProductInCart);
         Float ship = 20000f;
         if(tempPrice > 50000) ship = 0f;
@@ -58,6 +57,7 @@ public class CartController {
         model.addAttribute("tempPrice", format.formatPrice(tempPrice));
         model.addAttribute("ship", format.formatPrice(ship));
         model.addAttribute("totalPrice", format.formatPrice(totalPrice));
+        model.addAttribute("format", format);
         model.addAttribute("listProductInCart", listProductInCart);
         CartDTO cartDTO = new CartDTO();
         model.addAttribute("listQuantity", cartDTO);
@@ -100,7 +100,9 @@ public class CartController {
         model.addAttribute("tempPrice", format.formatPrice(tempPrice));
         model.addAttribute("ship", format.formatPrice(ship));
         model.addAttribute("totalPrice", format.formatPrice(totalPrice));
+        model.addAttribute("format", format);
 
+        model.addAttribute("productInCart", listProductInCart);
         model.addAttribute("userInformation", user);
         model.addAttribute("paymentInformation", new PaymentInformation());
         return "payment";
@@ -116,8 +118,9 @@ public class CartController {
         Orders orders = orderService.saveNewOrder(paymentInformation);
         Set<OrderDetail> orderDetailList = new HashSet<>();
         for (CartItem cart: listProductInCart) {
-            OrderDetail orderDetail = orderDetailService.saveOrderDetail(productService.findById(cart.getProductId()),
-                    orders, cart.getTotalPrice(), cart.getQuantity());
+            OrderDetail orderDetail = orderDetailService.saveOrderDetail(
+                    productService.findById(cart.getProductId()), orders,
+                    cart.getTotalPrice(), cart.getQuantity());
             orderDetailList.add(orderDetail);
         }
         orderService.saveOrder(orders, totalPrice, orderDetailList);

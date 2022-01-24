@@ -9,7 +9,7 @@ import java.util.Locale;
 @Component
 public class FormatPrice {
     public String formatPrice(float num) {
-        String format = "###,###,###đ";
+        String format = "###,###,###";
         Locale locale = new Locale("en", "EN");
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance(locale);
         decimalFormat.applyPattern(format);

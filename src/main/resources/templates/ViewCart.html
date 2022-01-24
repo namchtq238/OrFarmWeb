@@ -44,8 +44,7 @@
                                                         <h3 th:text="${cartItem.productName}"></h3>
                                                     </a>
                                                     <p><strong>Kích thước:</strong> <span>1</span>kg</p>
-                                                    <div class="discount-price"><span th:text="${cartItem.salePrice}"></span> </div>
-
+                                                    <div class="discount-price"><span th:text="${format.formatPrice(cartItem.salePrice)}"></span><sup>đ</sup></div>
                                                 </div>
                                             </td>
                                             <td>
@@ -65,7 +64,7 @@
                                             </td>
                                             <td>
                                                 <div class="sumPro">
-                                                    <span th:text="${cartItem.totalPrice}"></span><sup>đ</sup>
+                                                    <span th:text="${format.formatPrice(cartItem.totalPrice)}"></span><sup>đ</sup>
                                                 </div>
                                             </td>
                                         </tr>

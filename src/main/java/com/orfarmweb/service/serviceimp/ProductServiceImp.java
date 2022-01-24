@@ -113,7 +113,7 @@ public class ProductServiceImp implements ProductService {
         Float tempPrice = 0f;
         for (CartItem cartItem: itemList
              ) {
-            tempPrice += cartItem.getSalePrice() * (1- cartItem.getDiscount()/100) * cartItem.getQuantity();
+            tempPrice += cartItem.getTotalPrice();
         }
         return tempPrice;
     }
