@@ -115,6 +115,7 @@ public class CartController {
         Float ship = 20000f;
         if(tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;
+        String note = paymentInformation.getOrder().getNote();
         Orders orders = orderService.saveNewOrder(paymentInformation);
         Set<OrderDetail> orderDetailList = new HashSet<>();
         for (CartItem cart: listProductInCart) {
@@ -123,7 +124,7 @@ public class CartController {
                     cart.getTotalPrice(), cart.getQuantity());
             orderDetailList.add(orderDetail);
         }
-        orderService.saveOrder(orders, totalPrice, orderDetailList);
+        orderService.saveOrder(orders, totalPrice, paymentInformation.getOrder().getNote(), orderDetailList);
         cartService.deleteAllItemInCart();
         return "redirect:/home";
     }

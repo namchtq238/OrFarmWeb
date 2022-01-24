@@ -112,8 +112,8 @@
                                    id="exampleInputAddress" placeholder="Địa chỉ" th:field="*{order.address}">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1" th:field="*{order.note}">Ghi chú:</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            <label for="exampleFormControlTextarea1" >Ghi chú:</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" th:field="*{order.note}"></textarea>
                         </div>
                         <div class="success-order row pb-5 ">
                             <button id="btn-order" type="submit" class="btn-buy btn btn-success mt-2 ml-3">Đặt hàng
