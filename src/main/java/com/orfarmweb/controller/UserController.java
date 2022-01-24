@@ -60,4 +60,9 @@ public class UserController {
         model.addAttribute("userInfo", user);
         return "personal-infor";
     }
+    @GetMapping("/edit-user")
+    public String handleEditUser(@ModelAttribute("userInfo") User user){
+        userService.editUser(user.getFirstName(),user.getFirstName(), user.getEmail());
+        return "redirect:/personal-information";
+    }
 }
