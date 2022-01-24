@@ -28,4 +28,5 @@ public class Orders {
     private String note;
     @OneToMany(targetEntity = OrderDetail.class, mappedBy = "orders")
     private Set<OrderDetail> orderDetails;
+    private Integer user_id;
 }
