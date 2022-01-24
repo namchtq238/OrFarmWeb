@@ -16,7 +16,7 @@
             </ol>
         </nav>
     </section>
-    <div class="container main-infor">
+    <div class="container main-infor" th:object="${userInfo}">
         <h1 class="text-center">THÔNG TIN CÁ NHÂN</h1>
         <div class="row profile">
             <div class="col-md-3 mt-50 mb-50">
@@ -28,14 +28,13 @@
                     </div>
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name"> UserName</div>
-                        <div class="profile-usertitle-job"> abc@gmail.com </div>
+                        <div class="profile-usertitle-job"><label th:field="*{email}" th:utext="*{email}"></label></div>
                     </div>
                     <div class="profile-userbuttons">
-                        <button type="button" class="btn btn-success btn-sm"> <a href="./index.html">Trang
+                        <button type="button" class="btn btn-success btn-sm"> <a th:href="@{/home}">Trang
                                 chủ</a></button>
                         <button type="button" class="btn btn-danger btn-sm" action="action"
-                        onclick="window.history.go(-1); return false;"
-                        type="submit">Thoát ra</button>
+                        onclick="window.history.go(-1); return false;">Thoát ra</button>
                     </div>
                 </div>
             </div>
@@ -48,7 +47,7 @@
                                     <td> <label for="formGroupExampleInput" class="name-infor">Họ Tên:</label> </td>
                                     <td class="display-userName">
                                         <input type="text" class="form-control" id="formGroupExampleInput"
-                                            placeholder="Họ tên">
+                                            placeholder="Họ tên"  th:utext="${userInfo.firstName+' '+userInfo.lastName}">
                                     </td>
                                     <td> <button type="submit" id="btn-edit" for="formGroupExampleInput"
                                             class="btn btn-warning ml-10">Chỉnh sửa</button></td>
@@ -86,7 +85,7 @@
                                     </td>
                                     <td>
                                         <input type="email" required class="form-control" id="inputpass"
-                                            placeholder="Mật khẩu">
+                                            placeholder="Mật khẩu" th:utext="*{email}">
                                     </td>
 
                                 </tr>
@@ -149,7 +148,7 @@
         <div class="amm-shopping-cart-canvas">
             <div class="amm-shopping_cart">
                 <div class="amm-shopping_cart-top-bar d-flex justify-content-between">
-                    <h8 col-sm-6>Giỏ hàng</h6>
+                    <h6 col-sm-6>Giỏ hàng</h6>
                         <button class="amm-shopping-cart-close">
                             <i class="fas fa-times"></i>
                         </button>

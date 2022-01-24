@@ -109,6 +109,7 @@ public class CartController {
     }
     @PostMapping("/paymentProcess")
     public String paymentProcess(@ModelAttribute PaymentInformation paymentInformation){
+        User user = userService.getCurrentUser();
         List<Cart> listCart = cartService.getAllCartByUser();
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
         Float tempPrice = productService.getTempPrice(listProductInCart);
@@ -117,6 +118,7 @@ public class CartController {
         Float totalPrice = tempPrice + ship;
         String note = paymentInformation.getOrder().getNote();
         Orders orders = orderService.saveNewOrder(paymentInformation);
+        orders.setUser_id(user.getId());
         Set<OrderDetail> orderDetailList = new HashSet<>();
         for (CartItem cart: listProductInCart) {
             OrderDetail orderDetail = orderDetailService.saveOrderDetail(
@@ -126,6 +128,10 @@ public class CartController {
         }
         orderService.saveOrder(orders, totalPrice, paymentInformation.getOrder().getNote(), orderDetailList);
         cartService.deleteAllItemInCart();
+        return "redirect:/ordersucess";
+    }
+    @GetMapping("/ordersucess")
+    public String getOrderSucessPage(){
         return "success-order";
     }
 }
