@@ -24,6 +24,11 @@ public class UserController {
     private CategoryService categoryService;
     @Autowired
     private CartService cartService;
+    @ModelAttribute
+    public void addCategoryToHeader(Model model){
+        List<Category> listCategory = categoryService.getListCategory();
+        model.addAttribute("listCategory",listCategory);
+    }
     @GetMapping("/login")
     public String getLoginPage(){
         return "login";
@@ -49,9 +54,10 @@ public class UserController {
         userService.registerUser(user);
         return "redirect:/login";
     }
-    @ModelAttribute
-    public void addCategoryToHeader(Model model){
-        List<Category> listCategory = categoryService.getListCategory();
-        model.addAttribute("listCategory",listCategory);
+    @GetMapping("/personal-information")
+    public String showUserInformation(Model model){
+        User user = userService.getCurrentUser();
+        model.addAttribute("userInfo", user);
+        return "personal-infor";
     }
 }
