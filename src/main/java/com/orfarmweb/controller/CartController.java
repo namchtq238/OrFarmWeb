@@ -126,6 +126,6 @@ public class CartController {
         }
         orderService.saveOrder(orders, totalPrice, paymentInformation.getOrder().getNote(), orderDetailList);
         cartService.deleteAllItemInCart();
-        return "redirect:/home";
+        return "success-order";
     }
 }
