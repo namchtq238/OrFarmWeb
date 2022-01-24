@@ -9751,3 +9751,18 @@ blockquote cite {
 .quality span, .sumPro span, .temporarySum span, .shipment span, .summary span{
   color: green;
 }
+.single-shop-box .thumb img{
+  height: 213px;
+}
+#fillStart{
+  width: 77%;
+  margin-left: 12%;
+}
+ #fillEnd{
+  width: 77%;
+  margin-left: 8%;
+}
+ .img-cate img{
+   height: 258px;
+   width: 228px;
+ }
