@@ -9,4 +9,5 @@ import java.util.Set;
 public interface OrderService {
     Orders saveNewOrder(PaymentInformation information);
     boolean saveOrder(Orders orders, Float totalPrice, Set<OrderDetail> orderDetailList);
+    boolean saveNoteToOrder(String note, int id);
 }
