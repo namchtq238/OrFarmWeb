@@ -28,17 +28,17 @@ public class AdminController {
     public void getTopOrder(Model model){
         model.addAttribute("topOder", adminService.getTopOrderDetail());
         model.addAttribute("format", formatPrice);
-    }
-    @RequestMapping("/admin")
-    public String Admin(Model model){
         model.addAttribute("countUser", adminService.countUserByRole());
         model.addAttribute("getRevenue", adminService.getRevenue());
+        model.addAttribute("countOrder", adminService.countOrders());
+    }
+    @RequestMapping("/admin")
+    public String Admin(){
         return "redirect:/admin/1";
     }
     @GetMapping("/admin/{page}")
     public String showViewAdminPage(@PathVariable("page") long currentPage, Model model){
         long totalPage = adminService.getTotalPageProduct();
-
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         List<Product> dsProduct = adminService.getProductByPage(currentPage);
