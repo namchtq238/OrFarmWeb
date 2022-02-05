@@ -46,11 +46,19 @@ public class AdminController {
         return "admin-page/admin";
     }
     @GetMapping("/admin/order")
-    public String orderAmin(){return "admin-page/order";}
+    public String orderAdmin(){return "admin-page/order";}
 
     @GetMapping("/admin/product")
-    public String productAdmin(){return "admin-page/product";}
-
+    public String productAdmin(){return "redirect:/admin/product/1";}
+    @GetMapping("/admin/product/{page}")
+    public String productAdminPage(@PathVariable("page") long currentPage, Model model){
+        long totalPage = adminService.getTotalPageProduct();
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
+        List<Product> dsProduct = adminService.getProductByPage(currentPage);
+        model.addAttribute("dsProduct", dsProduct);
+        return "admin-page/product";
+    }
     @GetMapping("/admin/addProduct")
     public String addProductAdmin(Model model) {
         model.addAttribute("categoryList", categoryService.getListCategory());
