@@ -46,7 +46,9 @@ public class AdminController {
         return "admin-page/admin";
     }
     @GetMapping("/admin/order")
-    public String orderAdmin(){return "admin-page/order";}
+    public String orderAmin(){
+        return "admin-page/order";
+    }
 
     @GetMapping("/admin/product")
     public String productAdmin(){return "redirect:/admin/product/1";}
@@ -68,15 +70,20 @@ public class AdminController {
     @PostMapping("/admin/addProduct")
     public String handleAddProduct(Model model, @ModelAttribute Product product){
         productService.addProduct(product);
-        System.out.println(product.toString());
         return "redirect:/admin/product";
     }
     @GetMapping("/admin/hub")
-    public String hubAdmin(){return "admin-page/hub";}
+    public String hubAdmin(){
+        return "admin-page/hub";
+    }
 
     @GetMapping("/admin/staffManager")
-    public String staff(){return "admin-page/staff";}
+    public String staff(){
+        return "admin-page/staff";
+    }
 
     @GetMapping("/admin/userManager")
-    public String userManagerAdmin(){return "/admin-page/user";}
+    public String userManagerAdmin(){
+        return "/admin-page/user";
+    }
 }
