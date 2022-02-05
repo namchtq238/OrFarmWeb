@@ -1,12 +1,16 @@
 package com.orfarmweb.service.serviceimp;
 
+import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.modelutil.OrderDetailDTO;
+import com.orfarmweb.repository.OrderDetailRepo;
 import com.orfarmweb.repository.OrdersRepo;
 import com.orfarmweb.repository.ProductRepo;
 import com.orfarmweb.repository.UserRepo;
 import com.orfarmweb.service.AdminService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,10 +19,12 @@ public class AdminServiceImp implements AdminService {
     private final OrdersRepo ordersRepo;
     private final UserRepo userRepo;
     private final ProductRepo productRepo;
-    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo) {
+    private final OrderDetailRepo orderDetailRepo;
+    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo, OrderDetailRepo orderDetailRepo) {
         this.ordersRepo = ordersRepo;
         this.userRepo = userRepo;
         this.productRepo = productRepo;
+        this.orderDetailRepo = orderDetailRepo;
     }
     private final long pageSize = 7;
     @Override
@@ -44,4 +50,14 @@ public class AdminServiceImp implements AdminService {
     public List<Product> getProductByPage(long currentPage) {
         return productRepo.findByPage((currentPage - 1) * pageSize, pageSize);
     }
+
+    @Override
+    public List<OrderDetailDTO> getTopOrderDetail() {
+        List<OrderDetail> listOrderDetail = orderDetailRepo.getTopOrder();
+        List<OrderDetailDTO> list = new ArrayList<>();
+        listOrderDetail.forEach(orderDetail -> list.add(new OrderDetailDTO(orderDetail)));
+        return list;
+    }
+
+
 }

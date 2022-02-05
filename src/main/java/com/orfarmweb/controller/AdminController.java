@@ -24,8 +24,9 @@ public class AdminController {
         this.formatPrice = formatPrice;
         this.productService = productService;
     }
-    @ModelAttribute("format")
-    public void addFormat(Model model){
+    @ModelAttribute
+    public void getTopOrder(Model model){
+        model.addAttribute("topOder", adminService.getTopOrderDetail());
         model.addAttribute("format", formatPrice);
     }
     @RequestMapping("/admin")

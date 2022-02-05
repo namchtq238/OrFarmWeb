@@ -808,7 +808,7 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody th:each="top, state : ${topOder}">
                                             <tr>
                                                 <td class="form-check-column text-center">
                                                     <label class="new-control new-checkbox checkbox-primary pb-2">
@@ -817,122 +817,12 @@
                                                             class="invisible">s</span>
                                                     </label>
                                                 </td>
-                                                <td>Camera</td>
-                                                <td>#0001</td>
-                                                <td>16/12</td>
-                                                <td class="align-center">15</td>
+                                                <td th:utext="${top.name}"></td>
+                                                <td th:utext="${top.order_id}"></td>
+                                                <td th:utext="${top.date}"></td>
+                                                <td class="align-center" th:utext="${top.quantity}">15</td>
                                                 <td class="text-center">
-                                                    <span class="badge badge-pills outline-badge-secondary">Đang tiến
-                                                        hành</span>
-                                                </td>
-                                                <td>
-                                                    <i class="flaticon-view-1 bs-tooltip" data-placement="top"
-                                                        data-original-title="View"></i>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="form-check-column text-center">
-                                                    <label class="new-control new-checkbox checkbox-primary pb-2">
-                                                        <input type="checkbox" class="new-control-input invoicechk">
-                                                        <span class="new-control-indicator mt-2"></span><span
-                                                            class="invisible">s</span>
-                                                    </label>
-                                                </td>
-                                                <td>Iphone</td>
-                                                <td>#0002</td>
-                                                <td>16/12</td>
-                                                <td class="align-center">65</td>
-                                                <td class="text-center">
-                                                    <span class="badge badge-pills outline-badge-success">Đã chấp
-                                                        nhận</span>
-                                                </td>
-                                                <td>
-                                                    <i class="flaticon-view-1 bs-tooltip" data-placement="top"
-                                                        data-original-title="View"></i>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="form-check-column text-center">
-                                                    <label class="new-control new-checkbox checkbox-primary pb-2">
-                                                        <input type="checkbox" class="new-control-input invoicechk">
-                                                        <span class="new-control-indicator mt-2"></span><span
-                                                            class="invisible">s</span>
-                                                    </label>
-                                                </td>
-                                                <td>Headphone</td>
-                                                <td>#0003</td>
-                                                <td>16/12</td>
-                                                <td class="align-center">25</td>
-                                                <td class="text-center">
-                                                    <span class="badge badge-pills outline-badge-warning">Đang xử
-                                                        lý</span>
-                                                </td>
-                                                <td>
-                                                    <i class="flaticon-view-1 bs-tooltip" data-placement="top"
-                                                        data-original-title="View"></i>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="form-check-column text-center">
-                                                    <label class="new-control new-checkbox checkbox-primary pb-2">
-                                                        <input type="checkbox" class="new-control-input invoicechk">
-                                                        <span class="new-control-indicator mt-2"></span><span
-                                                            class="invisible">s</span>
-                                                    </label>
-                                                </td>
-                                                <td>Speakers</td>
-                                                <td>#0004</td>
-                                                <td>16/12</td>
-                                                <td class="align-center">100</td>
-                                                <td class="text-center">
-                                                    <span class="badge badge-pills outline-badge-secondary">Đang tiến
-                                                        hành</span>
-                                                </td>
-                                                <td>
-                                                    <i class="flaticon-view-1 bs-tooltip" data-placement="top"
-                                                        data-original-title="View"></i>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="form-check-column text-center">
-                                                    <label class="new-control new-checkbox checkbox-primary pb-2">
-                                                        <input type="checkbox" class="new-control-input invoicechk">
-                                                        <span class="new-control-indicator mt-2"></span><span
-                                                            class="invisible">s</span>
-                                                    </label>
-                                                </td>
-                                                <td>Watch</td>
-                                                <td>#0005</td>
-                                                <td>16/12</td>
-                                                <td class="align-center">85</td>
-                                                <td class="text-center">
-                                                    <span class="badge badge-pills outline-badge-success">Đã chấp
-                                                        nhận</span>
-                                                </td>
-                                                <td>
-                                                    <i class="flaticon-view-1 bs-tooltip" data-placement="top"
-                                                        data-original-title="View"></i>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="form-check-column text-center">
-                                                    <label class="new-control new-checkbox checkbox-primary pb-2">
-                                                        <input type="checkbox" class="new-control-input invoicechk">
-                                                        <span class="new-control-indicator mt-2"></span><span
-                                                            class="invisible">s</span>
-                                                    </label>
-                                                </td>
-                                                <td>Sunglasses</td>
-                                                <td>#0006</td>
-                                                <td>16/12</td>
-                                                <td class="align-center">19</td>
-                                                <td class="text-center">
-                                                    <span class="badge badge-pills outline-badge-danger">Đã hủy</span>
+                                                    <span class="badge badge-pills outline-badge-secondary" th:utext="${top.status}"></span>
                                                 </td>
                                                 <td>
                                                     <i class="flaticon-view-1 bs-tooltip" data-placement="top"
