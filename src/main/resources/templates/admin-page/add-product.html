@@ -1,36 +1,38 @@
 <!doctype html>
 
-    <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace = "~{admin-page/admin :: html_header-admin }">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin-page/admin :: html_header-admin }">
 
 <body>
-    <div id="eq-loader">
-        <div class="eq-loader-div">
-            <div class="eq-loading dual-loader mx-auto mb-5"></div>
-        </div>
+<div id="eq-loader">
+    <div class="eq-loader-div">
+        <div class="eq-loading dual-loader mx-auto mb-5"></div>
     </div>
+</div>
 
 <!--  BEGIN NAVBAR  -->
-    <header th:replace="~{admin-page/admin  :: my-header-admin}"></header>
+<header th:replace="~{admin-page/admin  :: my-header-admin}"></header>
 <!--  END NAVBAR  -->
 <!--  BEGIN PROFILE SIDEBAR  -->
 
 
-    <div class="main-container" id="container">
+<div class="main-container" id="container">
     <div class="overlay"></div>
     <div class="ps-overlay"></div>
     <div class="search-overlay"></div>
 
     <!--  BEGIN MODERN  -->
     <div th:replace="~{admin-page/admin  :: modern-admin}"></div>
-        <!--  END MODERN  -->
+    <!--  END MODERN  -->
 
-        <!--  BEGIN CONTENT PART  -->
-        <div id="content" class="main-content ">
-            <div class="container " style="margin-top: 50px;">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                        <div class="statbox widget box box-shadow" >
+    <!--  BEGIN CONTENT PART  -->
+    <div id="content" class="main-content ">
+        <div class="container " style="margin-top: 50px;">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                    <div class="statbox widget box box-shadow">
+                        <form th:object="${product}" th:action="@{/admin/addProduct}" method="post">
+
                             <div class="widget-header">
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
@@ -45,20 +47,15 @@
                                             <div class="card-heading">
                                                 <h2 class="card-title"><span>Chung</span></h2>
                                             </div>
-                                            <div class="card-body" >
-                                                <div class="card-body" >
-                                                    <form class="form-horizontal" style="padding-top: 58px !important;">
+                                            <div class="card-body">
+                                                <div class="card-body">
+                                                    <div class="form-horizontal" style="padding-top: 58px !important;">
                                                         <div class="form-group mb-4">
-                                                            <div class="row pb-4">
-                                                                <label class="col-md-4">ID :</label>
-                                                                <div class="col-md-8">
-                                                                    <input class="form-control" name="name" type="text">
-                                                                </div>
-                                                            </div>
                                                             <div class="row">
                                                                 <label class="col-md-4">Tên :</label>
                                                                 <div class="col-md-8">
-                                                                    <input class="form-control" name="name" type="text">
+                                                                    <input class="form-control" name="name" type="text"
+                                                                           th:field="*{name}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -66,8 +63,10 @@
                                                             <div class="row">
                                                                 <label class="col-md-4">Mô tả ngắn:</label>
                                                                 <div class="col-md-8">
+                                                                    <input th:field="*{briefDesc}" type="text">
                                                                     <textarea rows="4" cols="5" name="description"
-                                                                        class="form-control"></textarea>
+                                                                              class="form-control">
+                                                                    </textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -75,8 +74,9 @@
                                                             <div class="row">
                                                                 <label class="col-md-4">Mô tả:</label>
                                                                 <div class="col-md-8">
+                                                                    <input th:field="*{description}" type="text">
                                                                     <textarea rows="4" cols="5" name="description"
-                                                                        class="form-control"></textarea>
+                                                                              class="form-control"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -85,20 +85,16 @@
                                                                 <label class="col-md-4">Danh mục :</label>
                                                                 <div class="col-md-8">
                                                                     <select class="form-control form-custom mb-4"
-                                                                        name="category">
-                                                                        <option value="">Chọn danh mục</option>
-                                                                        <option value="category1">Rau củ</option>
-                                                                        <option value="category2">Đồ khô</option>
-                                                                        <option value="category3">Hoa quả</option>
-                                                                        <option value="category4">Đặc sản vùng miền</option>
-                                                                        <option value="category4">Thực phẩm tươi sống</option>
-                                                                        <option value="category4">Sản phẩm khác</option>
+                                                                            name="category" th:field="*{category.id}">
+                                                                        <option disabled value="">Chọn danh mục</option>
+                                                                        <option th:each="cate : ${categoryList}"
+                                                                                th:value="${cate.id}"
+                                                                                th:text="${cate.name}"></option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                       
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,21 +106,23 @@
                                                 <h2 class="card-title"><span>GIÁ CẢ</span></h2>
                                             </div>
                                             <div class="card-body">
-                                                <form class="form-horizontal">
+                                                <div class="form-horizontal">
                                                     <div class="form-group mb-4">
                                                         <div class="row">
                                                             <label class="col-md-4">Giá bán :</label>
                                                             <div class="col-md-8">
-                                                                <input class="form-control" name="price" type="text">
+                                                                <input class="form-control" th:field="*{salePrice}"
+                                                                       type="number">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="form-group mb-4">
                                                         <div class="row">
                                                             <label class="col-md-4">Giảm giá :</label>
                                                             <div class="col-md-8">
-                                                                <input class="form-control" name="discount" type="text">
+                                                                <input class="form-control"
+                                                                       th:field="*{percentDiscount}" type="number">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -133,12 +131,13 @@
                                                         <div class="row">
                                                             <label class="col-md-4">Giá nhập :</label>
                                                             <div class="col-md-8">
-                                                                <input class="form-control" name="priceCost" type="text">
+                                                                <input class="form-control" th:field="*{cost}"
+                                                                       type="number">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
-                                                
+
+
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <label class="col-md-12"><span>Hình ảnh</span></label>
@@ -151,27 +150,28 @@
                                                                 <div class="mb-3">
                                                                     <div class="custom-file">
                                                                         <input type="file" class="form-control-file"
-                                                                            id="file-input">
+                                                                               id="file-input" th:field="*{image}"
+                                                                               accept="image/png, image/jpeg, image/jpg">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                   
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <label class="col-md-12"><span>Từ khóa</span></label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <label class="col-md-4">Từ khóa :</label>
-                                                            <div class="col-md-8">
-                                                                <input class="form-control" name="keywords" type="text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
+
+                                                    <!--                                                    <div class="form-group">-->
+                                                    <!--                                                        <div class="row">-->
+                                                    <!--                                                            <label class="col-md-12"><span>Từ khóa</span></label>-->
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </div>-->
+                                                    <!--                                                    <div class="form-group">-->
+                                                    <!--                                                        <div class="row">-->
+                                                    <!--                                                            <label class="col-md-4">Từ khóa :</label>-->
+                                                    <!--                                                            <div class="col-md-8">-->
+                                                    <!--                                                                <input class="form-control" name="keywords" type="text">-->
+                                                    <!--                                                            </div>-->
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </div>-->
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="align-center">
@@ -180,21 +180,23 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!--  END CONTENT PART  -->
-    <!--  END MODERN  -->
-    <footer th:replace = "~{admin-page/admin  :: admin-footer}"> </footer>
-    <!--  END FOOTER  -->
+</div>
 
-    <!--  BEGIN PROFILE SIDEBAR  -->
-    <aside th:replace="~{admin-page/admin  :: admin-profile}"></aside>
-    </body>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <th:block th:insert="~{admin-page/admin  :: script}"></th:block>
+<!--  END CONTENT PART  -->
+<!--  END MODERN  -->
+<footer th:replace="~{admin-page/admin  :: admin-footer}"></footer>
+<!--  END FOOTER  -->
+
+<!--  BEGIN PROFILE SIDEBAR  -->
+<aside th:replace="~{admin-page/admin  :: admin-profile}"></aside>
+</body>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<th:block th:insert="~{admin-page/admin  :: script}"></th:block>
 </html>

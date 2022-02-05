@@ -122,4 +122,11 @@ public class ProductServiceImp implements ProductService {
         return tempPrice;
     }
 
+    @Override
+    public boolean addProduct(Product product) {
+        product.setQuantityProd(0);
+        productRepo.save(product);
+        return true;
+    }
+
 }

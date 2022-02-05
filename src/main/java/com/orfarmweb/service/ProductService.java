@@ -22,4 +22,5 @@ public interface ProductService {
     int getCategoryId(int id);
     List<CartItem> getProductFromCart(List<Cart> cartList);
     Float getTempPrice(List<CartItem> itemList);
+    boolean addProduct(Product product);
 }

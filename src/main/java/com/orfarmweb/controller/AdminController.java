@@ -3,25 +3,31 @@ package com.orfarmweb.controller;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.service.AdminService;
+import com.orfarmweb.service.CategoryService;
+import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 public class AdminController {
-
+    private final CategoryService categoryService;
     private final AdminService adminService;
-
-    public AdminController(AdminService adminService) {
+    private final FormatPrice formatPrice;
+    private final ProductService productService;
+    public AdminController(AdminService adminService, CategoryService categoryService, FormatPrice formatPrice, ProductService productService) {
         this.adminService = adminService;
+        this.categoryService = categoryService;
+        this.formatPrice = formatPrice;
+        this.productService = productService;
     }
-
+    @ModelAttribute("format")
+    public void addFormat(Model model){
+        model.addAttribute("format", formatPrice);
+    }
     @RequestMapping("/admin")
     public String Admin(Model model){
         model.addAttribute("countUser", adminService.countUserByRole());
@@ -38,21 +44,30 @@ public class AdminController {
         model.addAttribute("dsProduct", dsProduct);
         return "admin-page/admin";
     }
-    @RequestMapping("/orderAdmin")
+    @GetMapping("/admin/order")
     public String orderAmin(){return "admin-page/order";}
 
-    @RequestMapping("/productAdmin")
+    @GetMapping("/admin/product")
     public String productAdmin(){return "admin-page/product";}
 
-    @RequestMapping("/addProductAdmin")
-    public String addProductAdmin(){return "admin-page/add-product";}
-
-    @RequestMapping("/hubAdmin")
+    @GetMapping("/admin/addProduct")
+    public String addProductAdmin(Model model) {
+        model.addAttribute("categoryList", categoryService.getListCategory());
+        model.addAttribute("product", new Product());
+        return "admin-page/add-product";
+    }
+    @PostMapping("/admin/addProduct")
+    public String handleAddProduct(Model model, @ModelAttribute Product product){
+        productService.addProduct(product);
+        System.out.println(product.toString());
+        return "redirect:/admin/product";
+    }
+    @GetMapping("/admin/hub")
     public String hubAdmin(){return "admin-page/hub";}
 
-    @RequestMapping("/staffAdmin")
+    @GetMapping("/admin/staffManager")
     public String staff(){return "admin-page/staff";}
 
-    @RequestMapping("/userManagerAdmin")
+    @GetMapping("/admin/userManager")
     public String userManagerAdmin(){return "/admin-page/user";}
 }

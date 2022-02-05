@@ -228,7 +228,7 @@
                         </li>
 
                         <li class="menu">
-                            <a th:href="@{/orderAdmin}" class="dropdown-toggle collapsed">
+                            <a th:href="@{/admin/order}" class="dropdown-toggle collapsed">
                                 <div class="">
                                     <i class="flaticon-cart-1"></i>
                                     <span>Đơn hàng</span>
@@ -237,7 +237,7 @@
 
                         </li>
                         <li class="menu">
-                            <a th:href="@{/productAdmin}" class="dropdown-toggle collapsed">
+                            <a th:href="@{/admin/product}" class="dropdown-toggle collapsed">
                                 <div class="">
                                     <i class="flaticon-home-line"></i>
                                     <span>Sản phẩm</span>
@@ -246,7 +246,7 @@
                         </li>
 
                         <li class="menu">
-                            <a th:href="@{/hubAdmin}" class="dropdown-toggle collapsed">
+                            <a th:href="@{/admin/hub}" class="dropdown-toggle collapsed">
                                 <div class="">
                                     <i class="flaticon-home-line"></i>
                                     <span>Kho Hàng</span>
@@ -1131,7 +1131,7 @@
                         <a href="#"><i class="flaticon-location-1"></i> Địa chỉ: Hà Nội</a>
                     </li>
                     <li>
-                        <a href="#"><i class="flaticon-power-off"></i> Logout</a>
+                        <a th:href="@{/logout}"><i class="flaticon-power-off"></i> Logout</a>
                     </li>
                 </ul>
             </div>

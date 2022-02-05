@@ -1,12 +1,15 @@
 package com.orfarmweb.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +22,7 @@ public class Product {
     private Integer quantityProd;
     private boolean isHot = false;
     private String image;
-    @ManyToOne(targetEntity = Category.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Category.class, cascade = CascadeType.DETACH)
     @JoinColumn(name = "cate_id", referencedColumnName = "id")
     private Category category;
     @OneToMany(targetEntity = OrderDetail.class, mappedBy = "product")
