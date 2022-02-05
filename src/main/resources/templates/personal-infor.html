@@ -33,8 +33,7 @@
                     <div class="profile-userbuttons">
                         <button type="button" class="btn btn-success btn-sm"> <a th:href="@{/home}">Trang
                                 chủ</a></button>
-                        <button type="button" class="btn btn-danger btn-sm" action="action"
-                        onclick="window.history.go(-1); return false;">Thoát ra</button>
+                        <button type="button" class="btn btn-danger btn-sm"><a th:href="@{/logout}">Thoát ra</a></button>
                     </div>
                 </div>
             </div>
@@ -294,6 +293,8 @@
                     </ul>
 
                 </div>
+            </div>
+        </div>
     </footer>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AdminController {
-    @Autowired
-    private AdminService adminService;
+    private final AdminService adminService;
+
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
     @RequestMapping("/admin")
     public String Admin(Model model){
         model.addAttribute("countUser", adminService.countUserByRole());

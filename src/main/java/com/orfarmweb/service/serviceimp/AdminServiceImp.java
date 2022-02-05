@@ -8,10 +8,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImp implements AdminService {
-    @Autowired
-    private OrdersRepo ordersRepo;
-    @Autowired
-    private UserRepo userRepo;
+    private final OrdersRepo ordersRepo;
+    private final UserRepo userRepo;
+
+    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo) {
+        this.ordersRepo = ordersRepo;
+        this.userRepo = userRepo;
+    }
+
     @Override
     public Integer countOrders() {
         return ordersRepo.countOrders();

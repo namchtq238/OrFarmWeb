@@ -14,11 +14,15 @@ import java.util.List;
 
 @Service
 public class ProductServiceImp implements ProductService {
-    @Autowired
-    private ProductRepo productRepo;
-    @Autowired
-    private FormatPrice formatPrice;
+    private final ProductRepo productRepo;
+    private final FormatPrice formatPrice;
     final long pageSize = 6;
+
+    public ProductServiceImp(ProductRepo productRepo, FormatPrice formatPrice) {
+        this.productRepo = productRepo;
+        this.formatPrice = formatPrice;
+    }
+
     @Override
     public List<Product> listAllByCategoryId(int id) {
         return productRepo.findProductByCategoryId(id);

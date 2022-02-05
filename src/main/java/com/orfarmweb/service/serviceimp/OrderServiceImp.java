@@ -14,8 +14,11 @@ import java.util.Set;
 
 @Service
 public class OrderServiceImp implements OrderService {
-    @Autowired
-    private OrdersRepo ordersRepo;
+    private final OrdersRepo ordersRepo;
+
+    public OrderServiceImp(OrdersRepo ordersRepo) {
+        this.ordersRepo = ordersRepo;
+    }
 
     @Override
     public Orders saveNewOrder(PaymentInformation information) {

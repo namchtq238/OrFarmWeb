@@ -19,10 +19,14 @@ import javax.validation.Valid;
 
 @Service
 public class UserServiceImp implements UserService {
-    @Autowired
-    private UserRepo userRepo;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImp(UserRepo userRepo, PasswordEncoder passwordEncoder) {
+        this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @SneakyThrows
     @Override
     public boolean registerUser(@Valid User user) {

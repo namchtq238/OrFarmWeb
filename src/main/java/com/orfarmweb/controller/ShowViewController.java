@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 @Controller
 public class ShowViewController {
-    @Autowired
-    private CategoryService categoryService;
-    @Autowired
-    private CartService cartService;
+    private final CategoryService categoryService;
+    private final CartService cartService;
+
+    public ShowViewController(CategoryService categoryService, CartService cartService) {
+        this.categoryService = categoryService;
+        this.cartService = cartService;
+    }
+
     @ModelAttribute
     public void addCategoryToHeader(Model model) {
         List<Category> listCategory = categoryService.getListCategory();

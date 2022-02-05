@@ -11,8 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderDetailServiceImp implements OrderDetailService {
 
-    @Autowired
-    private OrderDetailRepo orderDetailRepo;
+    private final OrderDetailRepo orderDetailRepo;
+
+    public OrderDetailServiceImp(OrderDetailRepo orderDetailRepo) {
+        this.orderDetailRepo = orderDetailRepo;
+    }
+
     @Override
     public OrderDetail saveOrderDetail(
             Product product, Orders orders, Float price, Integer quantity) {

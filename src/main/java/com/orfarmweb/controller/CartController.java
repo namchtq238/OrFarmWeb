@@ -21,20 +21,24 @@ import java.util.Set;
 
 @Controller
 public class CartController {
-    @Autowired
-    private CategoryService categoryService;
-    @Autowired
-    private CartService cartService;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private OrderService orderService;
-    @Autowired
-    private OrderDetailService orderDetailService;
-    @Autowired
-    private FormatPrice format;
+    private final CategoryService categoryService;
+    private final CartService cartService;
+    private final ProductService productService;
+    private final UserService userService;
+    private final OrderService orderService;
+    private final OrderDetailService orderDetailService;
+    private final FormatPrice format;
+
+    public CartController(CategoryService categoryService, CartService cartService, ProductService productService, UserService userService, OrderService orderService, OrderDetailService orderDetailService, FormatPrice format) {
+        this.categoryService = categoryService;
+        this.cartService = cartService;
+        this.productService = productService;
+        this.userService = userService;
+        this.orderService = orderService;
+        this.orderDetailService = orderDetailService;
+        this.format = format;
+    }
+
     @ModelAttribute
     public void addCategoryToHeader(Model model) {
         List<Category> listCategory = categoryService.getListCategory();

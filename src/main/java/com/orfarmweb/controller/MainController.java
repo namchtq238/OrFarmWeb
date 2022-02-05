@@ -17,12 +17,16 @@ import java.util.List;
 
 @Controller
 public class MainController {
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private CategoryService categoryService;
-    @Autowired
-    private CartService cartService;
+    private final ProductService productService;
+    private final CategoryService categoryService;
+    private final CartService cartService;
+
+    public MainController(ProductService productService, CategoryService categoryService, CartService cartService) {
+        this.productService = productService;
+        this.categoryService = categoryService;
+        this.cartService = cartService;
+    }
+
     @ModelAttribute
     public void addCategoryToHeader(Model model){
         List<Category> listCategory = categoryService.getListCategory();

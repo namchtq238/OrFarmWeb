@@ -17,10 +17,13 @@ import java.util.Optional;
 
 @Service
 public class CartServiceImp implements CartService  {
-    @Autowired
-    private CartRepo cartRepo;
-    @Autowired
-    private UserService userService;
+    private final CartRepo cartRepo;
+    private final UserService userService;
+
+    public CartServiceImp(CartRepo cartRepo, UserService userService) {
+        this.cartRepo = cartRepo;
+        this.userService = userService;
+    }
 
     @Override
     public boolean saveItemToCart(Product product, Integer quantity) {
