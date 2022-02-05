@@ -35,4 +35,10 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Product> findByPage(@RequestParam("start") long start, @RequestParam("limit") long limit, int id);
     @Query(value = "select cate_id from product where id = ?", nativeQuery = true)
     int findCateGoryIdByProdId(int id);
+
+    @Query(value = "SELECT COUNT(*) FROM product", nativeQuery = true)
+    List<Long> countProduct();
+
+    @Query(value = "SELECT * FROM product LIMIT :start, :to ", nativeQuery = true)
+    List<Product> findByPage(@RequestParam("start") long start, @RequestParam("to") long to);
 }

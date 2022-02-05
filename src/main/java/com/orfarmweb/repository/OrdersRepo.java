@@ -11,4 +11,6 @@ public interface OrdersRepo extends JpaRepository<Orders, Integer> {
     boolean saveNoteToOrder(String note, int id);
     @Query(value = "select count(*) from Orders", nativeQuery = true)
     Integer countOrders();
+    @Query(value = "select sum(total_price) from Orders where status = 3", nativeQuery = true)
+    Float getReveune();
 }
