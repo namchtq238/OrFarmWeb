@@ -3,7 +3,6 @@ package com.orfarmweb.controller;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +16,16 @@ import java.util.List;
 public class AdminController {
 
     private final AdminService adminService;
-
-    public AdminController(AdminService adminService) {
+    private final FormatPrice formatPrice;
+    public AdminController(AdminService adminService, FormatPrice formatPrice) {
         this.adminService = adminService;
+        this.formatPrice = formatPrice;
     }
-
+    @ModelAttribute
+    public void getTopOrder(Model model){
+        model.addAttribute("topOder", adminService.getTopOrderDetail());
+        model.addAttribute("format", formatPrice);
+    }
     @RequestMapping("/admin")
     public String Admin(Model model){
         model.addAttribute("countUser", adminService.countUserByRole());
