@@ -15,17 +15,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty(message = "Không được để trống tên")
+//    @NotEmpty(message = "Không được để trống tên")
     private String firstName;
-    @NotEmpty(message = "Không được để trống tên")
+//    @NotEmpty(message = "Không được để trống tên")
     private String lastName;
     @Column(unique = true)
     @NotNull
-    @NotEmpty(message = "Không được để trống email")
-    @Email(message = "Email không hợp lệ")
+//    @NotEmpty(message = "Không được để trống email")
+//    @Email(message = "Email không hợp lệ")
     private String email;
     @NotNull
-    @NotEmpty(message = "Thiếu password")
+//    @NotEmpty(message = "Thiếu password")
     private String password;
     private Role role;
     @OneToMany(targetEntity = Cart.class, mappedBy = "user", cascade = CascadeType.MERGE)

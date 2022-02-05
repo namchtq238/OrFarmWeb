@@ -106,7 +106,7 @@ public class ProductController {
         model.addAttribute("sum", sum);
         model.addAttribute("listProduct", productService.listFillByPage(start,end,currentPage, id));
         model.addAttribute("category", categoryService.findById(id).get());
-        return "dokho";
+        return "raucusach";
     }
 
     @GetMapping("/product/{id}")

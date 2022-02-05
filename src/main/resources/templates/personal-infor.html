@@ -54,7 +54,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <form th:action="@{/edit-user}" method="get" th:object="${userInfo}">
+                        <form th:action="@{'/edit-user/'}" method="get" th:object="${userInfo}">
                         <div class="hidden-edit pt-3">
                             <div class="form-group ">
                                 <label for="inputName" class="col-sm-6 col-form-label">Tên</label>
@@ -73,8 +73,9 @@
 
                                 </div>
                             </div>
+                            <label for="inputName" class="col-sm-6 col-form-label" th:field="*{email}" th:value="*{email}">Tên</label>
                             <button type="submit" class="btn btn-secondary updated-infor ml-10 mt-25">Cập nhật</button>
-                            <button type="cancel" class="btn btn-secondary exit ml-10 mt-25" onclick="javascript:window.location='localhost:8080/personal-information';">Hủy</button>
+                            <button type="cancel" class="btn btn-secondary exit ml-10 mt-25">Hủy</button>
                         </div>
                         </form>
                     </div>
