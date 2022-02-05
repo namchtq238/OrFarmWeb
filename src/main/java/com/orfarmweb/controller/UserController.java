@@ -24,12 +24,16 @@ import java.util.List;
 
 @Controller
 public class UserController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private CategoryService categoryService;
-    @Autowired
-    private CartService cartService;
+    private final UserService userService;
+    private final CategoryService categoryService;
+    private final CartService cartService;
+
+    public UserController(UserService userService, CategoryService categoryService, CartService cartService) {
+        this.userService = userService;
+        this.categoryService = categoryService;
+        this.cartService = cartService;
+    }
+
     @ModelAttribute
     public void addCategoryToHeader(Model model){
         List<Category> listCategory = categoryService.getListCategory();

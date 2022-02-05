@@ -15,17 +15,15 @@ import java.util.List;
 
 @Controller
 public class AdminController {
-    @Autowired
-    private AdminService adminService;
-    @Autowired
-    private FormatPrice formatPrice;
-    @ModelAttribute
-    public void getFormatPrice(Model model){
-        model.addAttribute("format", formatPrice);
+
+    private final AdminService adminService;
+
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
     }
-    @GetMapping("/admin")
-    public String showViewAdmin(Model model){
-        model.addAttribute("countOrder", adminService.countOrders());
+
+    @RequestMapping("/admin")
+    public String Admin(Model model){
         model.addAttribute("countUser", adminService.countUserByRole());
         model.addAttribute("getRevenue", adminService.getRevenue());
         return "redirect:/admin/1";

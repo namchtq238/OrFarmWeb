@@ -5,19 +5,21 @@ import com.orfarmweb.repository.OrdersRepo;
 import com.orfarmweb.repository.ProductRepo;
 import com.orfarmweb.repository.UserRepo;
 import com.orfarmweb.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class AdminServiceImp implements AdminService {
-    @Autowired
-    private OrdersRepo ordersRepo;
-    @Autowired
-    private UserRepo userRepo;
-    @Autowired
-    private ProductRepo productRepo;
+
+    private final OrdersRepo ordersRepo;
+    private final UserRepo userRepo;
+    private final ProductRepo productRepo;
+    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo) {
+        this.ordersRepo = ordersRepo;
+        this.userRepo = userRepo;
+        this.productRepo = productRepo;
+    }
     private final long pageSize = 7;
     @Override
     public Integer countOrders() {
