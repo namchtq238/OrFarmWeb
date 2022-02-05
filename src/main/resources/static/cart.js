@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function saveCart() {
     sessionStorage.setItem('cart', JSON.stringify(cart));
   }
-  
+
     // Load cart
   function loadCart() {
     cart = JSON.parse(sessionStorage.getItem('cart'));
@@ -111,13 +111,13 @@ function addItem() {
                             <input type="hidden" value="` + prod.productId + `" id="productId">
                             <h6><a href="#">` + prod.productName + `</a></h6>
                             <input id="productQuantity" type="number" onChange="changePriceProduct(this)" min="1" style="width: 25px;
-                            height: 19px; 
+                            height: 19px;
                             font-size: 11px;" value="` + prod.quantity + `" ><br>
                             <span class="price-discount">` + prod.productPrice + `</span><sup>đ</sup>
                             <span class="price-close">` + prod.priceRegular + `</span><sup>đ</sup>
                             <span class="remove" id="` + prod.productId + `"><i class="fas fa-times"></i></span>
                         </div>
-                    </div> 
+                    </div>
             </li>`
     ).join()
     countProduct();
@@ -172,7 +172,7 @@ function changePriceProduct(productItem) {
     if (products.length > 0) {
         let product = products[0];
         // console.log(product);
-        product.quantity = quantity; // cập nhật quantity vào carts 
+        product.quantity = quantity; // cập nhật quantity vào carts
     }
     //lấy tất cả các sản phẩm có trong carts và tính toán tổng giá trị đơn hàng
     cart.forEach(product => {
@@ -186,7 +186,7 @@ function changePriceProduct(productItem) {
    saveCart();
 }
 
-//show sp vào giỏ hàng 
+//show sp vào giỏ hàng
 function showProduct() {
     let payment='';
     loadCart();
@@ -209,7 +209,7 @@ function showProduct() {
                             <div class="change-pro">
                                 <div class="buttons_added" >
                                 <input class="inputQuantity" onChange="updateQuantity(this)"  id='` + cart[i].productId + `' " min='1' name='quantity' type='number' value='` + cart[i].quantity + `' />
-                                
+
                                 <div class="icon-delete" id="` + cart[i].productId + `">
                                     <i class="icon-delete1 fas fa-trash-alt"></i>
                                 </div>
@@ -309,7 +309,7 @@ function updateQuantity(productPayment) {
     let products = cartMain.filter(x => x.productId === productId1);
     if (products.length > 0) {
         let product = products[0];
-        product.quantity = quantity; // cập nhật quantity vào carts 
+        product.quantity = quantity; // cập nhật quantity vào carts
     }
 
     //lấy tất cả các sản phẩm có trong carts và tính toán tổng giá trị đơn hàng
@@ -369,7 +369,7 @@ function deleteAllProductViewCart() {
         });
     }
 }
-// shopping cart main 
+// shopping cart main
 
 btnAddtoCart.forEach(function (value, i) {
     value.addEventListener("click", function (event) {
@@ -453,7 +453,7 @@ function changePriceProductMain(productItem) {
 //             <div class="change-pro">
 //                 <div class="buttons_added" >
 //                 <input class="inputQuantity" onChange="updateQuantity(this)"  id='` + prod.productIdMain + `' " min='1' name='quantity' type='number' value='` + prod.quantityMain + `' />
-                
+
 //                 <div class="icon-delete" id="` + prod.productIdMain + `">
 //                     <i class="icon-delete1 fas fa-trash-alt"></i>
 //                 </div>
@@ -487,7 +487,7 @@ function showProductToPayment() {
             </div>
             <div class="infor-product col-4 ">
                 <p href="./productdetail.html" >
-                    <h5 style="font-size: 14px;">`+ cart[i].productName + `</h5>1kg 
+                    <h5 style="font-size: 14px;">`+ cart[i].productName + `</h5>1kg
                 </p>
             </div>
             <div class="price-product-pay pl-3 col-4 pt-25">

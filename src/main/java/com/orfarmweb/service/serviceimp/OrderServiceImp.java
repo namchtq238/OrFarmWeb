@@ -30,7 +30,7 @@ public class OrderServiceImp implements OrderService {
         orders.setNote(note);
         orders.setTotalPrice(totalPrice);
         orders.setOrderDetails(orderDetailList);
-        orders.setStatus(Status.ACCEPTED);
+        orders.setStatus(Status.APPROVED);
         orders.setCreateAt(new java.util.Date());
         ordersRepo.save(orders);
         return true;
