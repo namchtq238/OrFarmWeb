@@ -60,20 +60,20 @@ public class UserController {
         userService.registerUser(user);
         return "redirect:/login";
     }
-    @GetMapping("/personal-information/")
+    @GetMapping("/personal-information")
     public String showUserInformation(Model model){
         User user = userService.getCurrentUser();
         model.addAttribute("oldPassword", user.getPassword());
         model.addAttribute("userInfo", user);
         return "personal-infor";
     }
-    @GetMapping("/edit-user/")
+    @GetMapping("/edit-user")
     public String handleEditUser(@ModelAttribute User user, Model model){
         userService.updateUser(userService.getCurrentUser().getId(), user);
         model.addAttribute("userInfo", userService.getCurrentUser());
         return "personal-infor";
     }
-    @PostMapping("/edit-password/")
+    @PostMapping("/edit-password")
     public String handleEditPassWord(Model model){
         return "index";
     }

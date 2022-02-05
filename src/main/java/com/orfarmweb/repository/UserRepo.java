@@ -17,4 +17,6 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     List<String> getEmail();
     @Query(value = "update user set first_name = :firstName , last_name =:lastName where user.id = :id",nativeQuery = true)
     boolean saveUserByEmail(String firstName, String lastName, int id);
+    @Query(value = "select count(*) from User where role = 1", nativeQuery = true)
+    Integer countUserByRole();
 }

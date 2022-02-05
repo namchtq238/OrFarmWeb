@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface OrdersRepo extends JpaRepository<Orders, Integer> {
     @Query(value = "update orders set note = ?1 where id = ?2",nativeQuery = true)
     boolean saveNoteToOrder(String note, int id);
+    @Query(value = "select count(*) from Orders", nativeQuery = true)
+    Integer countOrders();
 }

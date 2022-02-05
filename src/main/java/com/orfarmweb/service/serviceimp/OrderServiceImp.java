@@ -1,5 +1,6 @@
 package com.orfarmweb.service.serviceimp;
 
+import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.modelutil.PaymentInformation;
@@ -26,7 +27,7 @@ public class OrderServiceImp implements OrderService {
         orders.setNote(note);
         orders.setTotalPrice(totalPrice);
         orders.setOrderDetails(orderDetailList);
-        orders.setStatus("0");
+        orders.setStatus(Status.ACCEPTED);
         orders.setCreateAt(new java.util.Date());
         ordersRepo.save(orders);
         return true;

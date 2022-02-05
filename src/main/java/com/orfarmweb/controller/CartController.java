@@ -118,7 +118,7 @@ public class CartController {
         Float totalPrice = tempPrice + ship;
         String note = paymentInformation.getOrder().getNote();
         Orders orders = orderService.saveNewOrder(paymentInformation);
-        orders.setUser_id(user.getId());
+        orders.setUser(user);
         Set<OrderDetail> orderDetailList = new HashSet<>();
         for (CartItem cart: listProductInCart) {
             OrderDetail orderDetail = orderDetailService.saveOrderDetail(
@@ -133,5 +133,9 @@ public class CartController {
     @GetMapping("/ordersucess")
     public String getOrderSucessPage(){
         return "success-order";
+    }
+    @GetMapping("/order-history")
+    public String getOrderHistoryPage(){
+        return "order-history";
     }
 }
