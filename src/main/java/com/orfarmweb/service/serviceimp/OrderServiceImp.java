@@ -39,14 +39,6 @@ public class OrderServiceImp implements OrderService {
         return true;
     }
 
-
-
-    @Override
-    public boolean saveNoteToOrder(String note, int id) {
-        ordersRepo.saveNoteToOrder(note,id);
-        return false;
-    }
-
     @Override
     public List<Orders> getOrderByCurrentUser() {
         return ordersRepo.getAllByUser(userService.getCurrentUser());

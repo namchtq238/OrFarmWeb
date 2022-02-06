@@ -1,5 +1,6 @@
 package com.orfarmweb.controller;
 
+import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.FilterProduct;
@@ -20,17 +21,20 @@ public class ProductController {
     private final ProductService productService;
     private final CategoryService categoryService;
     private final CartService cartService;
+    private final FormatPrice formatPrice;
 
-    public ProductController(ProductService productService, CategoryService categoryService, CartService cartService) {
+    public ProductController(ProductService productService, CategoryService categoryService, CartService cartService, FormatPrice formatPrice) {
         this.productService = productService;
         this.categoryService = categoryService;
         this.cartService = cartService;
+        this.formatPrice = formatPrice;
     }
 
     @ModelAttribute
     public void addCategoryToHeader(Model model) {
         List<Category> listCategory = categoryService.getListCategory();
         model.addAttribute("listCategory", listCategory);
+        model.addAttribute("format", formatPrice);
     }
     @ModelAttribute("countCartItem")
     public Integer addNumberOfCartItemToHeader(){
@@ -51,14 +55,6 @@ public class ProductController {
         long totalPage = productService.getTotalPage(id);
         Integer sum = productService.getTotal(id);
         if (sum.equals(null)) sum = 0;
-        HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
-        for (Product p : productService.getByPage(currentPage, id)) {
-            hashMap.put(p.getId(), productService.getSalePriceById(p.getId()));
-        }
-        HashMap<Integer, String> hashMap1 = new HashMap<Integer, String>();
-        for (Product p : productService.getByPage(currentPage, id)) {
-            hashMap1.put(p.getId(), productService.getDiscountPriceById(p.getId()));
-        }
         List<Product> productList = productService.getListProductByHot();
         Collections.shuffle(productList);
         if(productList.size()<4) model.addAttribute("bestSeller", productList);
@@ -67,8 +63,6 @@ public class ProductController {
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("categoryId", id);
-        model.addAttribute("salePrice", hashMap);
-        model.addAttribute("discountPrice", hashMap1);
         model.addAttribute("sum", sum);
         model.addAttribute("listProduct", productService.getByPage(currentPage, id));
         model.addAttribute("category", categoryService.findById(id).get());
@@ -88,14 +82,6 @@ public class ProductController {
         }
         Integer sum = productService.getTotalByFill(start,end,id);
         long totalPage = productService.getTotalPageByFill(start, end, id);
-        HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
-        for (Product p : productService.listFillByPage(start,end,currentPage, id)) {
-            hashMap.put(p.getId(), productService.getSalePriceById(p.getId()));
-        }
-        HashMap<Integer, String> hashMap1 = new HashMap<Integer, String>();
-        for (Product p : productService.listFillByPage(start,end,currentPage, id)) {
-            hashMap1.put(p.getId(), productService.getDiscountPriceById(p.getId()));
-        }
         List<Product> productList = productService.getListProductByHot();
         Collections.shuffle(productList);
         if(productList.size()<4) model.addAttribute("bestSeller", productList);
@@ -104,8 +90,6 @@ public class ProductController {
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("categoryId", id);
-        model.addAttribute("salePrice", hashMap);
-        model.addAttribute("discountPrice", hashMap1);
         model.addAttribute("sum", sum);
         model.addAttribute("listProduct", productService.listFillByPage(start,end,currentPage, id));
         model.addAttribute("category", categoryService.findById(id).get());
@@ -122,26 +106,8 @@ public class ProductController {
             list = list.subList(0, 7);
             model.addAttribute("listSimilar", list);
         }
-        HashMap<Integer, String> listPrice = new HashMap<Integer,String>();
-        HashMap<Integer, String> listDiscount = new HashMap<Integer,String>();
-        for (Product p : list){
-            listPrice.put(p.getId(), productService.getSalePriceById(p.getId()));
-            listDiscount.put(p.getId(), productService.getDiscountPriceById(p.getId()));
-        }
-        model.addAttribute("listSimilarPrice",listPrice);
-        model.addAttribute("listSimilarDiscount",listDiscount);
-        model.addAttribute("salePriceDetail", productService.getSalePriceById(id));
-        model.addAttribute("discountPriceDetail", productService.getDiscountPriceById(id));
         model.addAttribute("productDetail", productService.findById(id));
         return "productdetail";
     }
 
-    @GetMapping("/testapi")
-    public @ResponseBody
-    Product getApi() {
-        Product p = new Product();
-        p.setId(productService.listAllByCategoryId(1).get(0).getId());
-        p.setName(productService.listAllByCategoryId(1).get(0).getName());
-        return p;
-    }
 }

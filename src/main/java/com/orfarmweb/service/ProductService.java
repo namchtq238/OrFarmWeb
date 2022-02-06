@@ -14,13 +14,12 @@ public interface ProductService {
     int getTotal(int id);
     List<Product> getListProductByHot();
     List<Product> getListSaleProduct();
-    String getSalePriceById(int id);
-    String getDiscountPriceById(int id);
-
+    Product getProductById(int id);
     long getTotalPage(int id);
     List<Product> getByPage(long currentPage, int id);
     int getCategoryId(int id);
     List<CartItem> getProductFromCart(List<Cart> cartList);
     Float getTempPrice(List<CartItem> itemList);
     boolean addProduct(Product product);
+    boolean deleteProduct(int id);
 }

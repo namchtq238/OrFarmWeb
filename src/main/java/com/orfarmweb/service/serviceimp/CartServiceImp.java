@@ -29,7 +29,6 @@ public class CartServiceImp implements CartService  {
     public boolean saveItemToCart(Product product, Integer quantity) {
         User user = userService.getCurrentUser();
         Optional<Cart> cart = Optional.ofNullable(cartRepo.getCartByUserAndProductAndIsDelete(user, product, false));
-        System.err.println(user.getEmail());
         if(!cart.isPresent()){
             Cart newCart = new Cart();
             newCart.setUser(user);
