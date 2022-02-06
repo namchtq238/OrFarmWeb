@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" type="text/css" th:href="@{/plugins/table/datatable/datatables.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/ecommerce/order.css}" />
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link th:href="@{/plugins/maps/vector/jvector/jquery-jvectormap-2.0.3.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/plugins/charts/chartist/chartist.css}" rel="stylesheet" type="text/css">
@@ -70,127 +70,6 @@
                     aria-haspopup="true" aria-expanded="false">
                     <span class="">VN</span>
                 </a>
-            </li>
-
-
-            <li class="nav-item dropdown message-dropdown ml-lg-4 mr-lg-4 d-sm-block d-none align-self-center">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="message-dropdown"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="icon flaticon-mail-25"></span><span class="badge badge-primary">13</span>
-                </a>
-                <div class="dropdown-menu  position-absolute p-0 eq-animated eq-fadeInUp"
-                    aria-labelledby="message-dropdown">
-                    <div class="">
-                        <a class="dropdown-item">
-                            <div class="">
-                                <div class="media notification-new">
-                                    <div class="usr-img align-self-center mr-3">
-                                        <img class="usr-img rounded-circle" src="assets/img/90x90.jpg" alt="profile">
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="meta-user-name mr-3 mb-0">Lê Văn Bình</p>
-                                            <p class="meta-time align-self-center mb-0">04.11.21</p>
-                                        </div>
-                                        <p class="message-text mb-0 ">Chất lượng sản phẩm tốt</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item">
-                            <div class="">
-                                <div class="media notification-new">
-                                    <div class="notification-icon align-self-center mr-3">
-                                        <i class="flaticon-mailbox"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="meta-title mr-3 mb-0">1 email mới</p>
-                                            <p class="meta-time align-self-center mb-0">04.10.19</p>
-                                        </div>
-                                        <p class="message-text mb-0 ">Anderson.Daisy@mail.com</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item">
-                            <div class="">
-                                <div class="media">
-                                    <div class="usr-img align-self-center mr-3">
-                                        <img class="usr-img rounded-circle" src="assets/img/90x90.jpg" alt="profile">
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="meta-user-name mr-3 mb-0">Bình An</p>
-                                            <p class="meta-time align-self-center mb-0">04.02.21</p>
-                                        </div>
-                                        <p class="message-text mb-0 ">Chất lượng sản phẩm tốt </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item dropdown notification-dropdown ml-3 mr-lg-4 align-self-center">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notification-dropdown"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="icon flaticon-bell-4"></span><span class="badge badge-success">15</span>
-                </a>
-                <div class="dropdown-menu position-absolute eq-animated eq-fadeInUp"
-                    aria-labelledby="notification-dropdown">
-                    <div class="notification-scroll">
-                        <div class="dropdown-item">
-                            <a href="">
-                                <div class="media">
-                                    <div class="user-profile">
-                                        <img src="assets/img/90x90.jpg" alt="admin-profile" class="img-fluid">
-                                    </div>
-                                    <div class="media-body">
-                                        <span>Nguyễn Văn A</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="">
-                                <div class="media">
-                                    <div class="user-profile">
-                                        <img src="assets/img/90x90.jpg" alt="admin-profile" class="img-fluid">
-                                    </div>
-                                    <div class="media-body">
-                                        <span>Nguyễn Văn B</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="">
-                                <div class="media">
-                                    <div class="user-profile">
-                                        <img src="assets/img/90x90.jpg" alt="admin-profile" class="img-fluid">
-                                    </div>
-                                    <div class="media-body">
-                                        <span>Đỗ Thị Nga</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="">
-                                <div class="media">
-                                    <div class="user-profile">
-                                        <img src="assets/img/90x90.jpg" alt="admin-profile" class="img-fluid">
-                                    </div>
-                                    <div class="media-body">
-                                        <span>Lê Ngọc Hà</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </li>
 
             <li class="nav-item dropdown user-profile-dropdown pl-4 pr-lg-0 pr-2 ml-lg-2 mr-lg-4  align-self-center">
@@ -378,134 +257,43 @@
 
                 <div class="row">
 
-                    <div class="col-xl-8 col-lg-12 col-md-12 col-12 layout-spacing">
-                        <div class="widget-content-area monthly-chart  br-4">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-2 col-12  align-self-center">
-                                    <h3>Thống kê</h3>
-                                </div>
-                                <div class="col-lg-8 col-md-6 col-sm-10 col-12 mt-sm-0 mt-3">
-                                    <ul class="nav justify-content-sm-end justify-content-center monthly-chart-tab nav-pills"
-                                        id="monthly-chart" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="monthly-chart-weekly-tab" data-toggle="pill"
-                                                href="#monthly-chart-weekly" role="tab"
-                                                aria-controls="monthly-chart-weekly" aria-selected="true">Theo tuần</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="monthly-chart-monthly-tab" data-toggle="pill"
-                                                href="#monthly-chart-monthly" role="tab"
-                                                aria-controls="monthly-chart-monthly" aria-selected="true">Theo
-                                                tháng</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="monthly-chart-yearly-tab" data-toggle="pill"
-                                                href="#monthly-chart-yearly" role="tab"
-                                                aria-controls="monthly-chart-yearly" aria-selected="false">Theo năm</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-12 mt-3">
-                                    <div class="tab-content" id="monthly-chartContent">
-                                        <div class="tab-pane fade show active" id="monthly-chart-weekly" role="tabpanel"
-                                            aria-labelledby="monthly-chart-weekly-tab">
-                                            <div class="v-pv-weekly"
-                                                style="height: 300px; width: 100%; margin-top: 30px;"></div>
+                    <div class="col-xl-5 col-lg-12 col-md-12 col-12 layout-spacing" >
 
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="row mt-3">
-                                                    <div
-                                                        class="col-lg-5 col-md-5 col-sm-5 col-12 text-sm-right text-center mb-3 mr-sm-3 px-xl-0">
-                                                        <div
-                                                            class="d-flex justify-content-sm-end  justify-content-center">
-                                                            <div class="d-m-visitors data-marker align-self-center">
-                                                            </div>
-                                                            <span class="visitors">Khách ghé thăm : 9,823</span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="col-lg-5 col-md-5 col-sm-5 col-12 text-sm-left text-center mb-3 ml-sm-3 px-xl-0">
-                                                        <div
-                                                            class="d-flex justify-content-sm-start  justify-content-center">
-                                                            <div class="d-m-page-view data-marker align-self-center">
-                                                            </div>
-                                                            <span class="page-view">Lượt xem : 21,655</span>
-                                                        </div>
-                                                    </div>
+                        <div class="widget-content-area br-4 layout-spacing" style="height: 490px;display: flex; align-items: center;
+    justify-content: center;">
+                            <div class="widget  t-sales-widget w-100">
+                                <i class="flaticon-close-fill cancel-row"></i>
+                                <div class="row">
+                                    <div class="col-md-7 col-sm-7 col-12">
+                                        <div class="trading-time mt-4">
+
+                                            <div class="d-flex date-content justify-content-center">
+                                                <div class="text-center">
+                                                    <div id="week" class="d-inline"></div>
+                                                    <div id="day" class="d-inline"> </div>
+                                                    <div id="month" class="d-inline"></div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="tab-pane fade" id="monthly-chart-monthly" role="tabpanel"
-                                            aria-labelledby="monthly-chart-monthly-tab">
-                                            <div class="v-pv-monthly"
-                                                style="height: 300px; width: 100%; margin-top: 30px;"></div>
-
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="row mt-3">
-                                                    <div
-                                                        class="col-lg-5 col-md-5 col-sm-5 col-12 text-sm-right text-center mb-3 mr-sm-3 px-xl-0">
-                                                        <div
-                                                            class="d-flex justify-content-sm-end  justify-content-center">
-                                                            <div
-                                                                class="d-m-visitors data-marker data-marker-success align-self-center">
-                                                            </div>
-                                                            <span class="visitors">Khách ghé thăm : 19,823</span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="col-lg-5 col-md-5 col-sm-5 col-12 text-sm-left text-center mb-3 ml-sm-3 px-xl-0">
-                                                        <div
-                                                            class="d-flex justify-content-sm-start  justify-content-center">
-                                                            <div
-                                                                class="d-m-page-view data-marker data-marker-secondary align-self-center">
-                                                            </div>
-                                                            <span class="page-view">Lượt xem : 61,655</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="d-flex timer-content justify-content-center mt-2">
+                                                <div id="hour" class=""></div>
+                                                <div id="minut" class=""></div>
+                                                <div id="sec" class=""></div>
                                             </div>
-                                        </div>
 
-                                        <div class="tab-pane fade" id="monthly-chart-yearly" role="tabpanel"
-                                            aria-labelledby="monthly-chart-yearly-tab">
-                                            <div class="v-pv-yearly"
-                                                style="height: 300px; width: 100%; margin-top: 30px;"></div>
-
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="row mt-3">
-                                                    <div
-                                                        class="col-lg-5 col-md-5 col-sm-5 col-12 text-sm-right text-center mb-3 mr-sm-3 px-xl-0">
-                                                        <div
-                                                            class="d-flex justify-content-sm-end  justify-content-center">
-                                                            <div
-                                                                class="d-m-visitors data-marker data-marker-success align-self-center">
-                                                            </div>
-                                                            <span class="visitors">Khách ghé thăm : 80,823</span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="col-lg-5 col-md-5 col-sm-5 col-12 text-sm-left text-center mb-3 ml-sm-3 px-xl-0">
-                                                        <div
-                                                            class="d-flex justify-content-sm-start  justify-content-center">
-                                                            <div
-                                                                class="d-m-page-view data-marker data-marker-secondary align-self-center">
-                                                            </div>
-                                                            <span class="page-view">Lượt xem : 1,215,655</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-5 col-sm-5 col-12 text-center text-center">
+                                        <i class="flaticon-wall-clock icon1  mt-3" style="font-size: 94px;
+                                        vertical-align: middle;
+                                        color: #d3d3d3;"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-lg-12 col-sm-12 col-12 layout-spacing">
+                    <div class="col-xl-7 col-lg-12 col-sm-12 col-12 layout-spacing">
                         <div class="statbox widget box">
                             <div class="widget-header ">
                                 <div class="row">
@@ -520,7 +308,7 @@
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-12 mt-3">
                                                 <div class="s-r mx-auto"
-                                                    style="height: 300px; width: 100%; max-width: 275px;"></div>
+                                                     style="height: 300px; width: 100%; max-width: 275px;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -548,81 +336,7 @@
 
                 </div>
 
-                <div class="row">
-                    <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12">
-                        <div class="row">
 
-                            <div class="col-xl-12 col-lg-6">
-                                <div class="widget-content-area br-4 mb-4 layout-spacing">
-                                    <div class="widget  t-order-widget">
-                                        <div class="row">
-                                            <div
-                                                class="col-md-5 col-sm-5 col-12 text-md-left text-center pr-0 mt-sm-0 mt-4  order-1 order-sm-0">
-                                                <p class="t-o-txt mb-3 mb-sm-5 mt-3">Tổng đơn hàng</p>
-                                                <p class="t-o-value">1596 <i class="flaticon-arrow-up"></i></p>
-                                                <div class="t-o-icon">
-                                                    <i class="flaticon-cart-2"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7 col-sm-7 col-12">
-                                                <div class="cogs  mt-sm-5 mt-3  ml-md-auto mx-auto"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-12 col-lg-6">
-                                <div class="widget-content-area br-4 layout-spacing">
-                                    <div class="widget  t-sales-widget">
-                                        <i class="flaticon-close-fill cancel-row"></i>
-                                        <div class="row">
-                                            <div class="col-md-7 col-sm-7 col-12">
-                                                <div class="trading-time mt-4">
-
-                                                    <div class="d-flex date-content justify-content-center">
-                                                        <div class="text-center">
-                                                            <div id="week" class="d-inline"></div>
-                                                            <div id="day" class="d-inline"> </div>
-                                                            <div id="month" class="d-inline"></div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="d-flex timer-content justify-content-center mt-2">
-                                                        <div id="hour" class=""></div>
-                                                        <div id="minut" class=""></div>
-                                                        <div id="sec" class=""></div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5 col-sm-5 col-12 text-center text-center">
-                                                <i class="flaticon-wall-clock icon1  mt-3"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-xl-8 col-lg-12 col-md-6 col-sm-12">
-                        <div class="statbox widget box box-shadow layout-spacing br-4">
-                            <div class="widget-header">
-                                <div class="row">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>Doanh thu bán hàng</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="widget-content widget-content-area p-0 sale-statistics">
-                                <div id="sale-statistics" class="mb-4"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
                         <div class="statbox widget box">
@@ -838,127 +552,127 @@
 
                 </div>
 
-                <div class="row" style="display: none;">
-                    <div class="col-xl-5 col-lg-12 col-md-12 col-12 layout-spacing">
-                        <div class="widget-content-area page-views p-0  br-4">
-                            <ul class="nav nav-pills py-3" id="pills-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
-                                        role="tab" aria-controls="pills-home" aria-selected="true">Daily</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                                        role="tab" aria-controls="pills-profile" aria-selected="false">Weekly</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
-                                        role="tab" aria-controls="pills-contact" aria-selected="false">Monthly</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                    aria-labelledby="pills-home-tab">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 text-center">
-                                            <div class="daily">
-                                                <p class="d-count mb-0">5,067</p>
-                                                <p>Total Page Views</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <div id="daily"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                                    aria-labelledby="pills-profile-tab">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 text-center">
-                                            <div class="weekly">
-                                                <p class="w-count mb-0">25,067</p>
-                                                <p>Total Page Views</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <div id="weekly"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                                    aria-labelledby="pills-contact-tab">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 text-center">
-                                            <div class="month">
-                                                <p class="m-count mb-0">276,097</p>
-                                                <p>Total Page Views</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <div id="month"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!--                <div class="row" style="display: none;">-->
+<!--                    <div class="col-xl-5 col-lg-12 col-md-12 col-12 layout-spacing">-->
+<!--                        <div class="widget-content-area page-views p-0  br-4">-->
+<!--                            <ul class="nav nav-pills py-3" id="pills-tab" role="tablist">-->
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"-->
+<!--                                        role="tab" aria-controls="pills-home" aria-selected="true">Daily</a>-->
+<!--                                </li>-->
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"-->
+<!--                                        role="tab" aria-controls="pills-profile" aria-selected="false">Weekly</a>-->
+<!--                                </li>-->
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"-->
+<!--                                        role="tab" aria-controls="pills-contact" aria-selected="false">Monthly</a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                            <div class="tab-content" id="pills-tabContent">-->
+<!--                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"-->
+<!--                                    aria-labelledby="pills-home-tab">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-6 col-sm-6 text-center">-->
+<!--                                            <div class="daily">-->
+<!--                                                <p class="d-count mb-0">5,067</p>-->
+<!--                                                <p>Total Page Views</p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-6 col-sm-6">-->
+<!--                                            <div id="daily"></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"-->
+<!--                                    aria-labelledby="pills-profile-tab">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-6 col-sm-6 text-center">-->
+<!--                                            <div class="weekly">-->
+<!--                                                <p class="w-count mb-0">25,067</p>-->
+<!--                                                <p>Total Page Views</p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-6 col-sm-6">-->
+<!--                                            <div id="weekly"></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="tab-pane fade" id="pills-contact" role="tabpanel"-->
+<!--                                    aria-labelledby="pills-contact-tab">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-6 col-sm-6 text-center">-->
+<!--                                            <div class="month">-->
+<!--                                                <p class="m-count mb-0">276,097</p>-->
+<!--                                                <p>Total Page Views</p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-6 col-sm-6">-->
+<!--                                            <div id="month-1"></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="col-xl-7 col-lg-12 col-md-12 col-12 layout-spacing">
-                        <div class="row">
+<!--                    <div class="col-xl-7 col-lg-12 col-md-12 col-12 layout-spacing">-->
+<!--                        <div class="row">-->
 
-                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">
-                                <div class="widget-content-area social-likes text-center p-0  br-4">
-                                    <div class="card facebook">
-                                        <div class="icon mb-4">
-                                            <i class="flaticon-facebook-logo"></i>
-                                        </div>
-                                        <div class="card-content">
-                                            <h5>Facebook</h5>
-                                            <p>13K Followers</p>
-                                        </div>
-                                        <div class="card-btn-section">
-                                            <p>View Profile</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">-->
+<!--                                <div class="widget-content-area social-likes text-center p-0  br-4">-->
+<!--                                    <div class="card facebook">-->
+<!--                                        <div class="icon mb-4">-->
+<!--                                            <i class="flaticon-facebook-logo"></i>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-content">-->
+<!--                                            <h5>Facebook</h5>-->
+<!--                                            <p>13K Followers</p>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-btn-section">-->
+<!--                                            <p>View Profile</p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
-                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">
-                                <div class="widget-content-area social-likes text-center p-0  br-4">
-                                    <div class="card dribbble">
-                                        <div class="icon mb-4">
-                                            <i class="flaticon-dribbble-bold"></i>
-                                        </div>
-                                        <div class="card-content">
-                                            <h5>Dribbble</h5>
-                                            <p>4K Followers</p>
-                                        </div>
-                                        <div class="card-btn-section">
-                                            <p>Check Work</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">-->
+<!--                                <div class="widget-content-area social-likes text-center p-0  br-4">-->
+<!--                                    <div class="card dribbble">-->
+<!--                                        <div class="icon mb-4">-->
+<!--                                            <i class="flaticon-dribbble-bold"></i>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-content">-->
+<!--                                            <h5>Dribbble</h5>-->
+<!--                                            <p>4K Followers</p>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-btn-section">-->
+<!--                                            <p>Check Work</p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
-                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">
-                                <div class="widget-content-area social-likes text-center p-0  br-4">
-                                    <div class="card twitter">
-                                        <div class="icon mb-4">
-                                            <i class="flaticon-twitter-logo"></i>
-                                        </div>
-                                        <div class="card-content">
-                                            <h5>Twitter</h5>
-                                            <p>7.2K Followers</p>
-                                        </div>
-                                        <div class="card-btn-section">
-                                            <p>Read Tweets</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">-->
+<!--                                <div class="widget-content-area social-likes text-center p-0  br-4">-->
+<!--                                    <div class="card twitter">-->
+<!--                                        <div class="icon mb-4">-->
+<!--                                            <i class="flaticon-twitter-logo"></i>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-content">-->
+<!--                                            <h5>Twitter</h5>-->
+<!--                                            <p>7.2K Followers</p>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-btn-section">-->
+<!--                                            <p>Read Tweets</p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
-                        </div>
-                    </div>
-                </div>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
             </div>
         </div>
@@ -1021,7 +735,7 @@
                         <a href="#"><i class="flaticon-location-1"></i> Địa chỉ: Hà Nội</a>
                     </li>
                     <li>
-                        <a th:href="@{/logout}"><i class="flaticon-power-off"></i> Logout</a>
+                        <a href="#"><i class="flaticon-power-off"></i> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -1066,16 +780,39 @@
     <script th:src="@{/plugins/table/datatable/datatables.js}"></script>
     <script th:src="@{/assets/js/ecommerce-dashboard/ecommerce-custom.js}"></script>
     <script th:src="@{/assets/js/ecommerce/order.js}"></script>
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-<!--    <script>-->
-<!--        $('#ecommerce-product-list').DataTable({-->
-<!--            "lengthMenu": [5, 10, 20, 50, 100],-->
-<!--            "language": {-->
-<!--                "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },-->
-<!--                "info": " Hiện thị _PAGE_ trong _PAGES_"-->
-<!--            },-->
-<!--            drawCallback: function (settings) { $('[data-toggle="tooltip"]').tooltip(); }-->
-<!--        });-->
-<!--    </script>-->
+
+    <script !src="">
+        var d = new Date();
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        $("#month").html(monthNames[d.getMonth()] + '' );
+        $("#day").html(d.getDate() + '&nbsp;');
+        var weekNames = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        $("#week").html(weekNames[d.getDay()] + ',');
+        function timer() {
+            var d = new Date();
+            var h = d.getHours(),
+                mm = d.getMinutes(),
+                ss = d.getSeconds(),
+                hh = h;
+            if (hh >= 12) {
+                hh = h - 12;
+                dd= 'PM';
+            }
+            if (hh === 0) {
+                hh = 12;
+            }
+            hh = hh<10?'0'+hh:hh;
+            mm = mm<10?'0'+mm:mm;
+            ss = ss<10?'0'+ss:ss;
+
+            $("#hour").html(hh + ':');
+            $("#minut").html(mm + ':');
+            $("#sec").html(ss);
+
+        }
+        setInterval(function(){ timer();}, 1000);
+    </script>
 
 </html>

@@ -75,69 +75,69 @@ bar.text.style.fontSize = '1rem';
 
 bar.animate(0.56);  // Number from 0.0 to 1.0
 
-var bar = new ProgressBar.Circle("#weekly", {
-  color: '#1d1d1d',
-  // This has to be the same size as the maximum width to
-  // prevent clipping
-  strokeWidth: 5,
-  trailWidth: 3,
-  trailColor: '#f2f2f2',
-  easing: 'easeInOut',
-  duration: 1400,
-  text: {
-    autoStyleContainer: false
-  },
-  from: { color: '#1a73e9', width: 5 },
-  to: { color: '#1a73e9', width: 5 },
-  // Set default step function for all animate calls
-  step: function(state, circle) {
-    circle.path.setAttribute('stroke', state.color);
-    circle.path.setAttribute('stroke-width', state.width);
+// var bar = new ProgressBar.Circle("#weekly", {
+//   color: '#1d1d1d',
+//   // This has to be the same size as the maximum width to
+//   // prevent clipping
+//   strokeWidth: 5,
+//   trailWidth: 3,
+//   trailColor: '#f2f2f2',
+//   easing: 'easeInOut',
+//   duration: 1400,
+//   text: {
+//     autoStyleContainer: false
+//   },
+//   from: { color: '#1a73e9', width: 5 },
+//   to: { color: '#1a73e9', width: 5 },
+//   // Set default step function for all animate calls
+//   step: function(state, circle) {
+//     circle.path.setAttribute('stroke', state.color);
+//     circle.path.setAttribute('stroke-width', state.width);
+//
+//     var value = Math.round(circle.value() * 100);
+//     if (value === 0) {
+//       circle.setText('');
+//     } else {
+//       circle.setText(value + '%');
+//     }
+//
+//   }
+// });
+// bar.text.style.fontSize = '1rem';
+//
+// bar.animate(0.6);  // Number from 0.0 to 1.0
 
-    var value = Math.round(circle.value() * 100);
-    if (value === 0) {
-      circle.setText('');
-    } else {
-      circle.setText(value + '%');
-    }
-
-  }
-});
-bar.text.style.fontSize = '1rem';
-
-bar.animate(0.6);  // Number from 0.0 to 1.0
-
-var bar = new ProgressBar.Circle("#month", {
-  color: '#1d1d1d',
-  // This has to be the same size as the maximum width to
-  // prevent clipping
-  strokeWidth: 5,
-  trailWidth: 3,
-  trailColor: '#f2f2f2',
-  easing: 'easeInOut',
-  duration: 1400,
-  text: {
-    autoStyleContainer: false
-  },
-  from: { color: '#00b1f4', width: 5 },
-  to: { color: '#00b1f4', width: 5 },
-  // Set default step function for all animate calls
-  step: function(state, circle) {
-    circle.path.setAttribute('stroke', state.color);
-    circle.path.setAttribute('stroke-width', state.width);
-
-    var value = Math.round(circle.value() * 100);
-    if (value === 0) {
-      circle.setText('');
-    } else {
-      circle.setText(value + '%');
-    }
-
-  }
-});
-bar.text.style.fontSize = '1rem';
-
-bar.animate(0.77);  // Number from 0.0 to 1.0
+// var bar = new ProgressBar.Circle("#month", {
+//   color: '#1d1d1d',
+//   // This has to be the same size as the maximum width to
+//   // prevent clipping
+//   strokeWidth: 5,
+//   trailWidth: 3,
+//   trailColor: '#f2f2f2',
+//   easing: 'easeInOut',
+//   duration: 1400,
+//   text: {
+//     autoStyleContainer: false
+//   },
+//   from: { color: '#00b1f4', width: 5 },
+//   to: { color: '#00b1f4', width: 5 },
+//   // Set default step function for all animate calls
+//   step: function(state, circle) {
+//     circle.path.setAttribute('stroke', state.color);
+//     circle.path.setAttribute('stroke-width', state.width);
+//
+//     var value = Math.round(circle.value() * 100);
+//     if (value === 0) {
+//       circle.setText('');
+//     } else {
+//       circle.setText(value + '%');
+//     }
+//
+//   }
+// });
+// bar.text.style.fontSize = '1rem';
+//
+// bar.animate(0.77);  // Number from 0.0 to 1.0
 
 
 // New Product table
