@@ -8,8 +8,10 @@ import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -62,15 +64,26 @@ public class AdminController {
         model.addAttribute("dsProduct", dsProduct);
         return "admin-page/product";
     }
-    @GetMapping("/admin/addProduct")
+    @GetMapping("/admin/product/add")
     public String addProductAdmin(Model model) {
         model.addAttribute("categoryList", categoryService.getListCategory());
         model.addAttribute("product", new Product());
         return "admin-page/add-product";
     }
-    @PostMapping("/admin/addProduct")
-    public String handleAddProduct(Model model, @ModelAttribute Product product){
+    @PostMapping("/admin/product/add")
+    public String handleAddProduct(Model model, @ModelAttribute @Valid Product product, BindingResult result){
+        if (result.hasErrors()) return "redirect:/admin/product/add";
         productService.addProduct(product);
+        return "redirect:/admin/product";
+    }
+    @GetMapping("/admin/product/edit/{id}")
+    public String editProductAdmin(@PathVariable("id") int productId, Model model){
+        model.addAttribute("product", productService.getProductById(productId));
+        return "admin-page/add-product";
+    }
+    @GetMapping("/admin/product/delete/{id}")
+    public String deleteProductAdmin(@PathVariable("id") int productId, Model model){
+        productService.deleteProduct(productId);
         return "redirect:/admin/product";
     }
     @GetMapping("/admin/hub")
