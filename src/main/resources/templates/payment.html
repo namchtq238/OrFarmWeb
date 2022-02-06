@@ -13,7 +13,7 @@
                     <h4> OrFarm Store</h4>
                 </div>
                 <div>
-                    <form th:action="@{/paymentProcess}" th:object="${paymentInformation}" method="post">
+                    <form th:action="@{/payment/process}" th:object="${paymentInformation}" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail">Thông tin liên hệ</label>
                             <label required type="email" class="form-control" id="exampleInputEmail"

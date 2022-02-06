@@ -111,7 +111,7 @@ public class CartController {
         model.addAttribute("paymentInformation", new PaymentInformation());
         return "payment";
     }
-    @PostMapping("/paymentProcess")
+    @PostMapping("/payment/process")
     public String paymentProcess(@ModelAttribute PaymentInformation paymentInformation){
         User user = userService.getCurrentUser();
         List<Cart> listCart = cartService.getAllCartByUser();
@@ -132,14 +132,11 @@ public class CartController {
         }
         orderService.saveOrder(orders, totalPrice, paymentInformation.getOrder().getNote(), orderDetailList);
         cartService.deleteAllItemInCart();
-        return "redirect:/ordersucess";
+        return "redirect:/payment/ordersucess";
     }
-    @GetMapping("/ordersucess")
+    @GetMapping("/payment/ordersucess")
     public String getOrderSucessPage(){
         return "success-order";
     }
-    @GetMapping("/order-history")
-    public String getOrderHistoryPage(){
-        return "order-history";
-    }
+
 }
