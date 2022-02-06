@@ -1,7 +1,9 @@
 package com.orfarmweb.service.serviceimp;
 
 import com.orfarmweb.entity.OrderDetail;
+import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.OrderDetailDTO;
 import com.orfarmweb.repository.OrderDetailRepo;
 import com.orfarmweb.repository.OrdersRepo;
@@ -56,6 +58,14 @@ public class AdminServiceImp implements AdminService {
         List<OrderDetail> listOrderDetail = orderDetailRepo.getTopOrder();
         List<OrderDetailDTO> list = new ArrayList<>();
         listOrderDetail.forEach(orderDetail -> list.add(new OrderDetailDTO(orderDetail)));
+        return list;
+    }
+
+    @Override
+    public List<OrderAdmin> getOrderAdmin() {
+        List<Orders> listOrder = ordersRepo.getOrderUser();
+        List<OrderAdmin> list = new ArrayList<>();
+        listOrder.forEach(orders -> list.add(new OrderAdmin(orders)));
         return list;
     }
 

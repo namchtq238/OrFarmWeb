@@ -17,4 +17,6 @@ public interface OrdersRepo extends JpaRepository<Orders, Integer> {
     @Query(value = "select sum(total_price) from Orders where status = 3", nativeQuery = true)
     Float getReveune();
     List<Orders> getAllByUser(User user);
+    @Query(value = "select * from orders left join user on orders.user_id = user.id", nativeQuery = true)
+    List<Orders> getOrderUser();
 }
