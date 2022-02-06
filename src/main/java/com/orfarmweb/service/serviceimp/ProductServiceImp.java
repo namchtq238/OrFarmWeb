@@ -115,8 +115,7 @@ public class ProductServiceImp implements ProductService {
     @Override
     public Float getTempPrice(List<CartItem> itemList) {
         Float tempPrice = 0f;
-        for (CartItem cartItem: itemList
-             ) {
+        for (CartItem cartItem: itemList) {
             tempPrice += cartItem.getTotalPrice();
         }
         return tempPrice;

@@ -57,23 +57,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
-                                        <div class="o-cards">
-                                            <a href="">
-                                            <h5 class="txt-o-preparing">Chờ cọc</h5></a>
-                                            <div class="row">
-                                                <div class="col-md-4 col-sm-4 col-4 mt-4">
-                                                    <div class="">
-                                                        <i class="flaticon-cart-1"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                    <h4>1344</h4>
-                                                    <h6>Đang tiến hành</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">-->
+<!--                                        <div class="o-cards">-->
+<!--                                            <a href="">-->
+<!--                                            <h5 class="txt-o-preparing">Chờ cọc</h5></a>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-4 col-sm-4 col-4 mt-4">-->
+<!--                                                    <div class="">-->
+<!--                                                        <i class="flaticon-cart-1"></i>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-8 col-sm-8 col-8 mt-4">-->
+<!--                                                    <h4>1344</h4>-->
+<!--                                                    <h6>Đang tiến hành</h6>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
                                         <div class="o-cards">
                                             <a href="">
@@ -128,23 +128,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
-                                        <div class="o-cards">
-                                            <a href="">
-                                            <h5 class="txt-o-arrival">Đơn hoàn về kho </h5></a>
-                                            <div class="row">
-                                                <div class="col-md-4 col-sm-4 col-4 mt-4">
-                                                    <div class="">
-                                                        <i class="flaticon-cart-1"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                    <h4>768</h4>
-                                                    <h6>Giao thành công</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">-->
+<!--                                        <div class="o-cards">-->
+<!--                                            <a href="">-->
+<!--                                            <h5 class="txt-o-arrival">Đơn hoàn về kho </h5></a>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-4 col-sm-4 col-4 mt-4">-->
+<!--                                                    <div class="">-->
+<!--                                                        <i class="flaticon-cart-1"></i>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-8 col-sm-8 col-8 mt-4">-->
+<!--                                                    <h4>768</h4>-->
+<!--                                                    <h6>Giao thành công</h6>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
                                         <div class="o-cards">
                                             <a href="">
@@ -259,37 +259,37 @@
                                                 <th class="checkbox-column">Record No.</th>
                                                 <th>Mã đơn</th>
                                                 <th>Khách hàng</th>
-                                                <th>Loại đơn</th>
-                                                <th>Kho TQ</th>
+<!--                                                <th>Loại đơn</th>-->
+<!--                                                <th>Kho TQ</th>-->
                                                 <th>Tổng tiền</th>
-                                                <th>Tiền hàng</th>
-                                                <th>Giá vốn</th>
-                                                <th>Đã trả</th>
-                                                <th>Còn thiếu</th>
-                                                <th>Số kiện</th>
+<!--                                                <th>Tiền hàng</th>-->
+<!--                                                <th>Giá vốn</th>-->
+<!--                                                <th>Đã trả</th>-->
+<!--                                                <th>Còn thiếu</th>-->
+<!--                                                <th>Số kiện</th>-->
                                                 <th>Địa chỉ</th>
                                                 <th>Giá sale</th>
                                                 <th class="align-center">Trạng thái</th>
                                                 <th class="align-center">Cập nhật</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody th:each="od, state : ${orderAdmin}">
                                             <tr>
                                                 <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
+                                                <td th:utext="${od.order_id}">1</td>
+                                                <td th:utext="${od.name}">Nguyenvana</td>
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+                                                <td th:utext="${od.totalPrice}">$234.40</td>
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+                                                <td th:utext="${od.address}">Số 2 ngách 28</td>
+                                                <td th:utext="${od.totalPrice}">100000đ</td>
                                                 <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
+                                                    <span class="badge badge-success" th:utext="${od.status}">Approved</span>
                                                 </td>
                                                 <td class="align-center">
                                                     <button type="button" class="btn btn-default btn-sm">
@@ -297,236 +297,236 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column">1</td>
-                                                <td>1</td>
-                                                <td>Nguyenvana</td>
-                                                <td>Đơn thường</td>
-                                                <td>CBR</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>$234.40</td>
-                                                <td>$200.40</td>
-                                                <td>200000đ</td>
-                                                <td>22</td>
-                                                <td>Số 2 ngách 28</td>
-                                                <td>100000đ</td>
-                                                <td class="align-center">
-                                                    <span class="badge badge-success">Approved</span>
-                                                </td>
-                                                <td class="align-center">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="icon-search"></i> View
-                                                    </button>
-                                                </td>
-                                            </tr>
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="checkbox-column">1</td>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>Nguyenvana</td>-->
+<!--                                                <td>Đơn thường</td>-->
+<!--                                                <td>CBR</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>$234.40</td>-->
+<!--                                                <td>$200.40</td>-->
+<!--                                                <td>200000đ</td>-->
+<!--                                                <td>22</td>-->
+<!--                                                <td>Số 2 ngách 28</td>-->
+<!--                                                <td>100000đ</td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <span class="badge badge-success">Approved</span>-->
+<!--                                                </td>-->
+<!--                                                <td class="align-center">-->
+<!--                                                    <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                        <i class="icon-search"></i> View-->
+<!--                                                    </button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
                                         </tbody>
                                     </table>
                                 </div>

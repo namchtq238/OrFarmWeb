@@ -46,7 +46,8 @@ public class AdminController {
         return "admin-page/admin";
     }
     @GetMapping("/admin/order")
-    public String orderAmin(){
+    public String orderAmin(Model model){
+        model.addAttribute("orderAdmin", adminService.getOrderAdmin());
         return "admin-page/order";
     }
 
