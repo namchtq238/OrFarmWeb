@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:fragment="html_header-admin">
     <meta charset="utf-8">
@@ -44,7 +44,7 @@
                 data-placement="bottom">
                 <i class="flaticon-menu-line-3"></i>
             </a>
-            <a href="index.html" class=""> <img width="190px" src="../image/coollogo_com-7162464-removebg-preview.png"
+            <a th:href="@{/admin}" class=""> <img width="190px" th:src="@{/image/coollogo_com-7162464-removebg-preview.png}"
                     class="img-fluid" alt="logo"></a>
         </div>
         <ul class="navbar-nav flex-row mr-auto">
@@ -336,7 +336,81 @@
 
                 </div>
 
+                <div class="row">
+                    <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12">
+                        <div class="row">
 
+                            <div class="col-xl-12 col-lg-6">
+                                <div class="widget-content-area br-4 mb-4 layout-spacing">
+                                    <div class="widget  t-order-widget">
+                                        <div class="row">
+                                            <div
+                                                class="col-md-5 col-sm-5 col-12 text-md-left text-center pr-0 mt-sm-0 mt-4  order-1 order-sm-0">
+                                                <p class="t-o-txt mb-3 mb-sm-5 mt-3">Tổng đơn hàng</p>
+                                                <p class="t-o-value">1596 <i class="flaticon-arrow-up"></i></p>
+                                                <div class="t-o-icon">
+                                                    <i class="flaticon-cart-2"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 col-sm-7 col-12">
+                                                <div class="cogs  mt-sm-5 mt-3  ml-md-auto mx-auto"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-12 col-lg-6">
+                                <div class="widget-content-area br-4 layout-spacing">
+                                    <div class="widget  t-sales-widget">
+                                        <i class="flaticon-close-fill cancel-row"></i>
+                                        <div class="row">
+                                            <div class="col-md-7 col-sm-7 col-12">
+                                                <div class="trading-time mt-4">
+
+                                                    <div class="d-flex date-content justify-content-center">
+                                                        <div class="text-center">
+                                                            <div id="week" class="d-inline"></div>
+                                                            <div id="day" class="d-inline"> </div>
+                                                            <div id="month" class="d-inline"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex timer-content justify-content-center mt-2">
+                                                        <div id="hour" class=""></div>
+                                                        <div id="minut" class=""></div>
+                                                        <div id="sec" class=""></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-sm-5 col-12 text-center text-center">
+                                                <i class="flaticon-wall-clock icon1  mt-3"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-8 col-lg-12 col-md-6 col-sm-12">
+                        <div class="statbox widget box box-shadow layout-spacing br-4">
+                            <div class="widget-header">
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                        <h4>Doanh thu bán hàng</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content widget-content-area p-0 sale-statistics">
+                                <div id="sale-statistics" class="mb-4"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
                         <div class="statbox widget box">
@@ -552,127 +626,127 @@
 
                 </div>
 
-<!--                <div class="row" style="display: none;">-->
-<!--                    <div class="col-xl-5 col-lg-12 col-md-12 col-12 layout-spacing">-->
-<!--                        <div class="widget-content-area page-views p-0  br-4">-->
-<!--                            <ul class="nav nav-pills py-3" id="pills-tab" role="tablist">-->
-<!--                                <li class="nav-item">-->
-<!--                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"-->
-<!--                                        role="tab" aria-controls="pills-home" aria-selected="true">Daily</a>-->
-<!--                                </li>-->
-<!--                                <li class="nav-item">-->
-<!--                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"-->
-<!--                                        role="tab" aria-controls="pills-profile" aria-selected="false">Weekly</a>-->
-<!--                                </li>-->
-<!--                                <li class="nav-item">-->
-<!--                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"-->
-<!--                                        role="tab" aria-controls="pills-contact" aria-selected="false">Monthly</a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                            <div class="tab-content" id="pills-tabContent">-->
-<!--                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"-->
-<!--                                    aria-labelledby="pills-home-tab">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col-md-6 col-sm-6 text-center">-->
-<!--                                            <div class="daily">-->
-<!--                                                <p class="d-count mb-0">5,067</p>-->
-<!--                                                <p>Total Page Views</p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-md-6 col-sm-6">-->
-<!--                                            <div id="daily"></div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"-->
-<!--                                    aria-labelledby="pills-profile-tab">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col-md-6 col-sm-6 text-center">-->
-<!--                                            <div class="weekly">-->
-<!--                                                <p class="w-count mb-0">25,067</p>-->
-<!--                                                <p>Total Page Views</p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-md-6 col-sm-6">-->
-<!--                                            <div id="weekly"></div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="tab-pane fade" id="pills-contact" role="tabpanel"-->
-<!--                                    aria-labelledby="pills-contact-tab">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col-md-6 col-sm-6 text-center">-->
-<!--                                            <div class="month">-->
-<!--                                                <p class="m-count mb-0">276,097</p>-->
-<!--                                                <p>Total Page Views</p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-md-6 col-sm-6">-->
-<!--                                            <div id="month-1"></div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                <div class="row" style="display: none;">
+                    <div class="col-xl-5 col-lg-12 col-md-12 col-12 layout-spacing">
+                        <div class="widget-content-area page-views p-0  br-4">
+                            <ul class="nav nav-pills py-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                                        role="tab" aria-controls="pills-home" aria-selected="true">Daily</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                                        role="tab" aria-controls="pills-profile" aria-selected="false">Weekly</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
+                                        role="tab" aria-controls="pills-contact" aria-selected="false">Monthly</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 text-center">
+                                            <div class="daily">
+                                                <p class="d-count mb-0">5,067</p>
+                                                <p>Total Page Views</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div id="daily"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 text-center">
+                                            <div class="weekly">
+                                                <p class="w-count mb-0">25,067</p>
+                                                <p>Total Page Views</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div id="weekly"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                                    aria-labelledby="pills-contact-tab">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 text-center">
+                                            <div class="month">
+                                                <p class="m-count mb-0">276,097</p>
+                                                <p>Total Page Views</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div id="month"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-<!--                    <div class="col-xl-7 col-lg-12 col-md-12 col-12 layout-spacing">-->
-<!--                        <div class="row">-->
+                    <div class="col-xl-7 col-lg-12 col-md-12 col-12 layout-spacing">
+                        <div class="row">
 
-<!--                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">-->
-<!--                                <div class="widget-content-area social-likes text-center p-0  br-4">-->
-<!--                                    <div class="card facebook">-->
-<!--                                        <div class="icon mb-4">-->
-<!--                                            <i class="flaticon-facebook-logo"></i>-->
-<!--                                        </div>-->
-<!--                                        <div class="card-content">-->
-<!--                                            <h5>Facebook</h5>-->
-<!--                                            <p>13K Followers</p>-->
-<!--                                        </div>-->
-<!--                                        <div class="card-btn-section">-->
-<!--                                            <p>View Profile</p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">
+                                <div class="widget-content-area social-likes text-center p-0  br-4">
+                                    <div class="card facebook">
+                                        <div class="icon mb-4">
+                                            <i class="flaticon-facebook-logo"></i>
+                                        </div>
+                                        <div class="card-content">
+                                            <h5>Facebook</h5>
+                                            <p>13K Followers</p>
+                                        </div>
+                                        <div class="card-btn-section">
+                                            <p>View Profile</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<!--                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">-->
-<!--                                <div class="widget-content-area social-likes text-center p-0  br-4">-->
-<!--                                    <div class="card dribbble">-->
-<!--                                        <div class="icon mb-4">-->
-<!--                                            <i class="flaticon-dribbble-bold"></i>-->
-<!--                                        </div>-->
-<!--                                        <div class="card-content">-->
-<!--                                            <h5>Dribbble</h5>-->
-<!--                                            <p>4K Followers</p>-->
-<!--                                        </div>-->
-<!--                                        <div class="card-btn-section">-->
-<!--                                            <p>Check Work</p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">
+                                <div class="widget-content-area social-likes text-center p-0  br-4">
+                                    <div class="card dribbble">
+                                        <div class="icon mb-4">
+                                            <i class="flaticon-dribbble-bold"></i>
+                                        </div>
+                                        <div class="card-content">
+                                            <h5>Dribbble</h5>
+                                            <p>4K Followers</p>
+                                        </div>
+                                        <div class="card-btn-section">
+                                            <p>Check Work</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<!--                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">-->
-<!--                                <div class="widget-content-area social-likes text-center p-0  br-4">-->
-<!--                                    <div class="card twitter">-->
-<!--                                        <div class="icon mb-4">-->
-<!--                                            <i class="flaticon-twitter-logo"></i>-->
-<!--                                        </div>-->
-<!--                                        <div class="card-content">-->
-<!--                                            <h5>Twitter</h5>-->
-<!--                                            <p>7.2K Followers</p>-->
-<!--                                        </div>-->
-<!--                                        <div class="card-btn-section">-->
-<!--                                            <p>Read Tweets</p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <div class="col-sm-4 col-12 mb-sm-0 mb-4">
+                                <div class="widget-content-area social-likes text-center p-0  br-4">
+                                    <div class="card twitter">
+                                        <div class="icon mb-4">
+                                            <i class="flaticon-twitter-logo"></i>
+                                        </div>
+                                        <div class="card-content">
+                                            <h5>Twitter</h5>
+                                            <p>7.2K Followers</p>
+                                        </div>
+                                        <div class="card-btn-section">
+                                            <p>Read Tweets</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -693,7 +767,7 @@
                 <div id="toggle-grid" class="col-xl-7 col-md-6 col-sm-6 col-12 text-sm-left text-center">
                     <ul class="list-inline links ml-sm-5">
                         <li class="list-inline-item">
-                            <a target="_blank" href="#">OrFarm Store</a>
+                            <a th:href="@{/index}">OrFarm Store</a>
                         </li>
                     </ul>
                 </div>
@@ -701,7 +775,7 @@
                     <ul
                         class="list-inline mb-0 d-flex justify-content-sm-end justify-content-center mr-sm-3 ml-sm-0 mx-3">
                         <li class="list-inline-item  mr-3">
-                            <p class="bottom-footer">&#xA9; 2022 <a target="_blank" href="#">OrFarm Store</a></p>
+                            <p class="bottom-footer">&#xA9; 2022 <a th:href="@{/index}">OrFarm Store</a></p>
                         </li>
                         <li class="list-inline-item align-self-center">
                             <div class="scrollTop"><i class="flaticon-up-arrow-fill-1"></i></div>
@@ -717,16 +791,16 @@
     <aside class="profile-sidebar text-center" th:fragment="admin-profile">
         <div class="profile-content profile-content-scroll">
             <div class="usr-profile">
-                <img src="../assets/img/90x90.jpg" alt="admin-profile" class="img-fluid" />
+                <img th:src="@{/assets/img/90x90.jpg}" alt="admin-profile" class="img-fluid" />
             </div>
-            <p class="user-name mt-4 mb-4">Hoàng Thị Xoan</p>
-            <p>LV-1</p>
-            <progress id="file" value="32" max="100"> 32% </progress>
+            <p class="user-name mt-4 mb-4"><span th:text="${#authentication.getPrincipal().getFullname()}"></span></p>
+
 
             <div class="user-links text-left">
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#"><i class="flaticon-mail-22"></i> Email: abc@gmail.com</a>
+                        <a href="#"><i class="flaticon-mail-22"></i> Email: <span th:text="${#authentication.getPrincipal().getUsername()}"></span></a>
+
                     </li>
                     <li>
                         <a href="#"><i class="flaticon-telephone"></i> Điện thoại: 0123458759</a>
@@ -735,7 +809,7 @@
                         <a href="#"><i class="flaticon-location-1"></i> Địa chỉ: Hà Nội</a>
                     </li>
                     <li>
-                        <a href="#"><i class="flaticon-power-off"></i> Logout</a>
+                        <a th:href="@{/logout}"><i class="flaticon-power-off"></i> Logout</a>
                     </li>
                 </ul>
             </div>

@@ -66,11 +66,6 @@
                             <li class="fruit" th:each="item, state : ${listCategory}">
                                 <a th:href="@{'/category/' + ${item.id}}" th:text="${item.name}"></a>
                             </li>
-                            <!--                                <li><a href="./hoaqua.html">Hoa quả</a></li>-->
-                            <!--                                <li><a href="./dokho.html">Đồ khô</a></li>-->
-                            <!--                                <li><a href="./vungmien.html">Đặc sản vùng miền</a></li>-->
-                            <!--                                <li><a href="./tuoisong.html">Thực phẩm tươi sống</a></li>-->
-                            <!--                                <li><a href="./thucphamkhac.html">Sản phẩm khác</a></li>-->
                         </ul>
                     </div>
                     <div class="shop-best-product-widget">
@@ -81,7 +76,7 @@
                             </div>
                             <div class="content">
                                 <a th:href="@{'/product/' + ${best.id}}" th:text="${best.name}"></a>
-                                <span th:text="${salePrice.get(best.id)}"></span>
+                                <span th:text="${format.formatPrice(best.salePrice)}"></span><sup>đ</sup>
                             </div>
                         </div>
                     </div>
@@ -147,12 +142,21 @@
                                 <input type="hidden" id="productId" value="1">
                                 <a th:href="@{'/product/' + ${pro.id}}" th:text="${pro.name}"></a>
                                 <div class="pricing">
-                                    <div class="discount-price" th:if="${discountPrice.get(pro.id)!=null}"><span
-                                            th:text="${discountPrice.get(pro.id)}"></span></div>
-                                    <div class="regular-price" th:if="${discountPrice.get(pro.id)!=null}"><span
-                                            th:text="${salePrice.get(pro.id)}"></span></div>
-                                    <div class="discount-price" th:if="${discountPrice.get(pro.id) == null}"><span
-                                            th:text="${salePrice.get(pro.id)}"></span></div>
+                                    <th:block th:if="${pro.percentDiscount!=0}">
+                                        <div class="discount-price">
+                                            <th:block th:with="discountPrice=${(pro.salePrice * (100 - pro.percentDiscount))/100}">
+                                                <span th:text="${format.formatPrice(discountPrice)}"></span><sup>đ</sup>
+                                            </th:block>
+                                        </div>
+                                        <div class="regular-price">
+                                            <span th:text="${format.formatPrice(pro.salePrice)}+'đ'"></span>
+                                        </div>
+                                    </th:block>
+                                    <th:block th:unless="${pro.percentDiscount!=0}">
+                                        <div class="discount-price">
+                                            <span th:text="${format.formatPrice(pro.salePrice)}"></span><sup>đ</sup>
+                                        </div>
+                                    </th:block>
                                 </div>
                             </div>
                         </div>

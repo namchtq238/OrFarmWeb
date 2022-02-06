@@ -214,12 +214,21 @@
                                         <a th:href="@{'/product/' + *{saleProduct.getId()}}" th:text="*{saleProduct.getName()}"></a>
                                     </h3>
                                     <div class="box-pro-prices">
-                                        <p class="pro-price highlight">
-                                            <span th:text="${getListDiscount.get(saleProduct.getId())}"></span>
-                                            <span class="pro-price-del">
-                                                    <del class="compare-price" th:text="${getListSale.get(saleProduct.getId())}"></del>
+                                        <th:block th:if="${saleProduct.percentDiscount!=0}">
+                                            <p class="pro-price highlight">
+                                                <th:block th:with="discountPrice=${(saleProduct.salePrice * (100 - saleProduct.percentDiscount))/100}">
+                                                    <span th:text="${format.formatPrice(discountPrice)}"></span><sup>đ</sup>
+                                                </th:block>
+                                                <span class="pro-price-del">
+                                                    <del class="compare-price" th:text="${format.formatPrice(saleProduct.salePrice)}+'đ'"></del>
                                                 </span>
-                                        </p>
+                                            </p>
+                                        </th:block>
+                                        <th:block th:unless="${saleProduct.percentDiscount!=0}">
+                                            <p class="pro-price highlight">
+                                                <span th:text="${format.formatPrice(saleProduct.salePrice)}"></span><sup>đ</sup>
+                                            </p>
+                                        </th:block>
                                     </div>
                                 </div>
                             </div>

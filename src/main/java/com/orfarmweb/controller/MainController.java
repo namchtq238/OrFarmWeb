@@ -1,5 +1,6 @@
 package com.orfarmweb.controller;
 
+import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.service.CartService;
@@ -20,17 +21,20 @@ public class MainController {
     private final ProductService productService;
     private final CategoryService categoryService;
     private final CartService cartService;
+    private final FormatPrice formatPrice;
 
-    public MainController(ProductService productService, CategoryService categoryService, CartService cartService) {
+    public MainController(ProductService productService, CategoryService categoryService, CartService cartService, FormatPrice formatPrice) {
         this.productService = productService;
         this.categoryService = categoryService;
         this.cartService = cartService;
+        this.formatPrice = formatPrice;
     }
 
     @ModelAttribute
     public void addCategoryToHeader(Model model){
         List<Category> listCategory = categoryService.getListCategory();
         model.addAttribute("listCategory",listCategory);
+        model.addAttribute("format", formatPrice);
     }
     @ModelAttribute("countCartItem")
     public Integer addNumberOfCartItemToHeader(){
@@ -45,25 +49,11 @@ public class MainController {
         else model.addAttribute("listHotProduct", hotproductList.subList(0, numberOfHotProduct));
         List<Product> productList = productService.getListSaleProduct();
         int numberOfSaleProduct = 8;
-        HashMap<Integer,String> getListSale = new HashMap<>();
-        HashMap<Integer,String> getListDiscount = new HashMap<>();
         Collections.shuffle(productList);
         if(productList.size()<9) model.addAttribute("listSaleProduct",productList);
-        else{
-        for (Product p : productList.subList(0, numberOfSaleProduct)) {
-            getListSale.put(p.getId(), productService.getSalePriceById(p.getId()));
-            getListDiscount.put(p.getId(),productService.getDiscountPriceById(p.getId()));
-        }
-        model.addAttribute("listSaleProduct", productList.subList(0, numberOfSaleProduct));
-        model.addAttribute("getListSale",getListSale);
-        model.addAttribute("getListDiscount",getListDiscount);
-        }
+        else model.addAttribute("listSaleProduct", productList.subList(0, numberOfSaleProduct));
     }
-    @GetMapping("/")
-    public String getIndex(){
-        return "redirect:/home";
-    }
-    @GetMapping("/home")
+    @GetMapping(value = {"/", "/index", "/home"})
     public String getHomePage(){
         return "index";
     }

@@ -27,8 +27,6 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Product> getProductByHot();
     @Query(value = "select * from product where percent_discount <> 0", nativeQuery = true)
     List<Product> getSaleProduct();
-    @Query(value = "select sale_price from product where product.id = ?", nativeQuery = true)
-    Float getSalePrice(int id);
     @Query(value = "select COUNT(*) from product left join category on product.cate_id = category.id where product.cate_id = ?", nativeQuery = true)
     List<Long> countByCategoryId(int id);
     @Query(value = "select * from product left join category on product.cate_id = category.id where product.cate_id =:id LIMIT :start, :limit ", nativeQuery = true)

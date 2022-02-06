@@ -55,15 +55,8 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public String getSalePriceById(int id) {
-        Float s = productRepo.getSalePrice(id);
-        return formatPrice.formatPrice(s);
-    }
-
-    @Override
-    public String getDiscountPriceById(int id) {
-        Product p = productRepo.getAllById(id);
-        return p.getPercentDiscount()!=0?formatPrice.formatPrice(p.getSalePrice()*(1-p.getPercentDiscount()/100)):null;
+    public Product getProductById(int id) {
+        return productRepo.getById(id);
     }
 
     @Override
@@ -125,6 +118,12 @@ public class ProductServiceImp implements ProductService {
     public boolean addProduct(Product product) {
         product.setQuantityProd(0);
         productRepo.save(product);
+        return true;
+    }
+
+    @Override
+    public boolean deleteProduct(int id) {
+        productRepo.delete(productRepo.getById(id));
         return true;
     }
 
