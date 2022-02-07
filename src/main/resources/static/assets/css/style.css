@@ -92,3 +92,53 @@
     }
 }
 
+/*view order*/
+.view-order{
+    margin: 50px;
+    display: grid;
+    grid-template-columns: 6fr 1fr 1fr;
+    color: black;
+}
+.btn-order{
+    margin: 40px 0 0 50px;
+}
+
+.summary-order table{
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 100%;
+    background: white
+}
+
+.summary-order table tr th{
+    padding: 10px
+}
+
+.button-status{
+    margin-left: 20px           ;
+}
+.button-status div{
+    display: block;
+
+}
+
+.view-order-detail{
+    margin: 30px 50px 0 50px;
+}
+.h3-order {
+    margin-left: 50px ;
+}
+
+.button-status .status{
+    border: 1px solid #888;
+    text-align: center;
+    width: 200px;
+}
+#processing{
+    background-color: green;
+}
+
+#approved, #delivered, #canceled{
+    background-color: grey;
+}
+

@@ -100,4 +100,7 @@ public class AdminController {
     public String userManagerAdmin(){
         return "/admin-page/user";
     }
+
+    @GetMapping("/admin/view-order")
+    public String viewOrderAdmin(){return "/admin-page/view-order";}
 }
