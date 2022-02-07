@@ -103,4 +103,7 @@ public class AdminController {
 
     @GetMapping("/admin/view-order")
     public String viewOrderAdmin(){return "/admin-page/view-order";}
+
+    @GetMapping("/admin/addStaff")
+    public String addStaffAdmin(){return "/admin-page/add-staff";}
 }
