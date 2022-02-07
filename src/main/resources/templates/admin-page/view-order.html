@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin-page/admin :: html_header-admin }">
+
+<body>
+<div id="eq-loader">
+    <div class="eq-loader-div">
+        <div class="eq-loading dual-loader mx-auto mb-5"></div>
+    </div>
+</div>
+
+<!--  BEGIN NAVBAR  -->
+<header th:replace="~{admin-page/admin  :: my-header-admin}"></header>
+<!--  END NAVBAR  -->
+
+<!--  BEGIN MAIN CONTAINER  -->
+
+<div class="main-container" id="container">
+    <div class="overlay"></div>
+    <div class="ps-overlay"></div>
+    <div class="search-overlay"></div>
+
+
+    <!--  BEGIN MODERN  -->
+
+    <div th:replace="~{admin-page/admin  :: modern-admin}"></div>
+    <!--  END MODERN  -->
+
+    <!--  BEGIN CONTENT PART  -->
+    <div id="content" class="main-content">
+        <a href="" class="btn btn-primary btn-order"> Go back to Order list</a>
+        <div class="view-order">
+            <div class="summary-order">
+                <table>
+                    <tr>
+                        <th>Id Order</th>
+                        <td>02</td>
+                    </tr>
+                    <tr>
+                        <th>Tên Khách Hàng:</th>
+                        <td>Hoàng Xoan</td>
+                    </tr>
+                    <tr>
+                        <th>Số Điện Thoại:</th>
+                        <td>0123456789</td>
+                    </tr>
+                    <tr>
+                        <th>Địa Chỉ:</th>
+                        <td>Nam Sách Hải Dương</td>
+                    </tr>
+                    <tr>
+                        <th>Tổng Tiền Hóa Đơn:</th>
+                        <td>127,000đ</td>
+                    </tr>
+                    <tr>
+                        <th>Ghi Chú:</th>
+                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="button-status ">
+                <h5>Trạng thái đơn hàng</h5>
+                <button class=" btn btn-success status mb-2 mt-2 " id="processing"> PROCESSING</button>
+                <button class=" btn btn-info status mb-2" id="approved"> APPROVED</button>
+                <button class=" btn btn-secondary status mb-2" id="delivered"> DELIVERED</button>
+                <button class=" btn btn-danger status mb-2" id="canceled"> CANCELED</button>
+
+            </div>
+        </div>
+
+        <h3 class="h3-order">Chi tiết sản phẩm đơn hàng</h3>
+        <div class="widget-content widget-content-area view-order-detail">
+            <div class="table-responsive mb-4">
+                <table id="ecommerce-product-list" class="table  table-bordered">
+                    <thead>
+                    <tr class="text-center">
+                        <th>ID</th>
+                        <th>Ảnh</th>
+                        <th>Tên</th>
+                        <th>Danh mục</th>
+                        <th>Giá bán</th>
+                        <th>Số lượng</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td>15</td>
+                        <td class="text-center"><img class="product-list-img" src="assets/img/90x90.jpg"></td>
+                        <td>Tao Xanh</td>
+                        <td>Hoa Qua Sach</td>
+                        <td>45000đ</td>
+                        <td>2</td>
+
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr class="text-center">
+                        <td>15</td>
+                        <td class="text-center"><img class="product-list-img" src="assets/img/90x90.jpg"></td>
+                        <td>Tao Xanh</td>
+                        <td>Hoa Qua Sach</td>
+                        <td>45000đ</td>
+                        <td>2</td>
+
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr class="text-center">
+                        <td>15</td>
+                        <td class="text-center"><img class="product-list-img" src="assets/img/90x90.jpg"></td>
+                        <td>Tao Xanh</td>
+                        <td>Hoa Qua Sach</td>
+                        <td>45000đ</td>
+                        <td>2</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  END CONTENT PART  -->
+<!--  END MODERN  -->
+<footer th:replace="~{admin-page/admin  :: admin-footer}"></footer>
+<!--  END FOOTER  -->
+
+<!--  BEGIN PROFILE SIDEBAR  -->
+<aside th:replace="~{admin-page/admin  :: admin-profile}"></aside>
+
+<!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+
+<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+</body>
+<th:block th:insert="~{admin-page/admin  :: script}"></th:block>
+<script>
+    document.getElementById("processing").onclick = function () {
+        document.querySelector("#processing").style.backgroundColor = 'green';
+        document.querySelector("#canceled").style.backgroundColor = 'grey';
+        document.querySelector("#approved").style.backgroundColor = 'grey';
+        document.querySelector("#delivered").style.backgroundColor = 'grey';
+    }
+    document.getElementById("canceled").onclick = function () {
+        document.querySelector("#canceled").style.backgroundColor = 'green';
+        document.querySelector("#processing").style.backgroundColor = 'grey';
+        document.querySelector("#approved").style.backgroundColor = 'grey';
+        document.querySelector("#delivered").style.backgroundColor = 'grey';
+    }
+    document.getElementById("approved").onclick = function () {
+        document.querySelector("#approved").style.backgroundColor = 'green';
+        document.querySelector("#canceled").style.backgroundColor = 'grey';
+        document.querySelector("#processing").style.backgroundColor = 'grey';
+        document.querySelector("#delivered").style.backgroundColor = 'grey';
+    }
+    document.getElementById("delivered").onclick = function () {
+        document.querySelector("#delivered").style.backgroundColor = 'green';
+        document.querySelector("#canceled").style.backgroundColor = 'grey';
+        document.querySelector("#approved").style.backgroundColor = 'grey';
+        document.querySelector("#processing").style.backgroundColor = 'grey';
+    }
+
+</script>
+</html>
