@@ -105,4 +105,10 @@ public class AdminController {
 
     @GetMapping("/admin/addStaff")
     public String addStaffAdmin(){return "/admin-page/add-staff";}
+
+    @GetMapping("/admin/category")
+    public String categoryAdminPage(){return "/admin-page/category";}
+
+    @GetMapping("/admin/category/add")
+    public String handleAddCategory(){return "/admin-page/add-category";}
 }
