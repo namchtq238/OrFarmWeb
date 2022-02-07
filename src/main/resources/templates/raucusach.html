@@ -107,6 +107,11 @@
                     </div>
                 </div>
                 <div class="shop-grid-topbar d-flex justify-content-between align-items-center">
+                    <div class="ml-12 mt-24">
+                        <input id="input-search" onchange="handleSearch()" type="text"
+                               class="form__field-input--text" value=""
+                               placeholder="Nhập thông tin tìm kiếm ..." />
+                    </div>
                     <span>Tổng số <span th:text="${sum}"></span> sản phẩm.</span>
                     <select id="product">
                         <option value="volvo">Mới nhất</option>
@@ -115,7 +120,7 @@
                     </select>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6" th:each="pro, state : ${listProduct}">
+                    <div class="col-lg-4 col-md-6" th:each="pro, state : ${listProduct}" id = "list-product">
                         <div class="single-shop-box">
                             <div class="thumb text-center">
                                 <img th:src="@{'/image/ImageOrFarm/'+${pro.image}}" alt="">
