@@ -15,4 +15,6 @@ public interface OrderDetailRepo extends JpaRepository<OrderDetail, Integer> {
             "on od.order_id = o.id left join product as p " +
             "on od.product_id = p.id order by create_at desc",nativeQuery = true)
     List<OrderDetail> getTopOrder();
+    @Query(value = "select sum(quantity) from order_detail where order_id = ?", nativeQuery = true)
+    Integer getTotalProduct(int id);
 }

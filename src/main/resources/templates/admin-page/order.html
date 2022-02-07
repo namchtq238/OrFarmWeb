@@ -203,7 +203,6 @@
                                     <table id="ecommerce-order-list" class="table table-hover table-bordered">
                                         <thead>
                                         <tr class="text-center">
-
                                             <th>ID</th>
                                             <th>Khách hàng</th>
                                             <th>Số điện thoại</th>
@@ -217,21 +216,19 @@
                                         </tr>
                                         <!-- ID, tên người nhận, địa chỉ, số điện thoại, ngày tạo, tên sản phẩm, số lượng sản phẩm, tổng hóa đơn. -->
                                         </thead>
-                                        <tbody class="text-center">
+                                        <tbody class="text-center" th:each="od, state:${orderAdmin}">
                                         <tr>
+                                            <td th:utext="${od.order_id}">1</td>
+                                            <td th:utext="${od.name}">Nguyenvana</td>
+                                            <td th:utext="${od.phoneNumber}">0125847658</td>
+                                            <td th:utext="${od.address}">Hà Nội</td>
 
-                                            <td>1</td>
+                                            <td th:utext="${od.totalProduct}">3</td>
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
-
-                                            <td>3</td>
-
-                                            <td>200000đ</td>
+                                            <td th:utext="${format.formatPrice(od.totalPrice)}">200000đ</td>
 
                                             <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
+                                                <span class="badge badge-success" th:utext="${od.status}">Thành công</span>
                                             </td>
                                             <td class="align-center">
                                                 <button type="button" class="btn btn-default btn-sm">
@@ -239,214 +236,214 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                        <tr>
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
+<!--                                            <td>3</td>-->
 
-                                            <td>200000đ</td>
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
+<!--                                            <td>3</td>-->
 
-                                            <td>200000đ</td>
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
+<!--                                            <td>3</td>-->
 
-                                            <td>200000đ</td>
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
+<!--                                            <td>3</td>-->
 
-                                            <td>200000đ</td>
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
+<!--                                            <td>3</td>-->
 
-                                            <td>200000đ</td>
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
+<!--                                            <td>3</td>-->
 
-                                            <td>200000đ</td>
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
+<!--                                            <td>3</td>-->
 
-                                            <td>200000đ</td>
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
-                                            <td>200000đ</td>
+<!--                                            <td>3</td>-->
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
+<!--                                            <td>3</td>-->
 
-                                            <td>200000đ</td>
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
 
-                                            <td>1</td>
+<!--                                            <td>1</td>-->
 
-                                            <td>Nguyenvana</td>
-                                            <td>0125847658</td>
-                                            <td>Hà Nội</td>
+<!--                                            <td>Nguyenvana</td>-->
+<!--                                            <td>0125847658</td>-->
+<!--                                            <td>Hà Nội</td>-->
 
-                                            <td>3</td>
-                                            <td>200000đ</td>
+<!--                                            <td>3</td>-->
+<!--                                            <td>200000đ</td>-->
 
-                                            <td class="align-center">
-                                                <span class="badge badge-success">Thành công</span>
-                                            </td>
-                                            <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="icon-search"></i> View
-                                                </button>
-                                            </td>
-                                        </tr>
+<!--                                            <td class="align-center">-->
+<!--                                                <span class="badge badge-success">Thành công</span>-->
+<!--                                            </td>-->
+<!--                                            <td class="align-center">-->
+<!--                                                <button type="button" class="btn btn-default btn-sm">-->
+<!--                                                    <i class="icon-search"></i> View-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
                                         </tbody>
                                     </table>
                                 </div>

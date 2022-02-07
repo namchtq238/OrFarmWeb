@@ -52,7 +52,6 @@ public class AdminController {
         model.addAttribute("orderAdmin", adminService.getOrderAdmin());
         return "admin-page/order";
     }
-
     @GetMapping("/admin/product")
     public String productAdmin(){return "redirect:/admin/product/1";}
     @GetMapping("/admin/product/{page}")

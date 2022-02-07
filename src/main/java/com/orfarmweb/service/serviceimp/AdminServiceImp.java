@@ -65,7 +65,7 @@ public class AdminServiceImp implements AdminService {
     public List<OrderAdmin> getOrderAdmin() {
         List<Orders> listOrder = ordersRepo.getOrderUser();
         List<OrderAdmin> list = new ArrayList<>();
-        listOrder.forEach(orders -> list.add(new OrderAdmin(orders)));
+        listOrder.forEach(orders -> list.add(new OrderAdmin(orders, orderDetailRepo.getTotalProduct(orders.getId()))));
         return list;
     }
 

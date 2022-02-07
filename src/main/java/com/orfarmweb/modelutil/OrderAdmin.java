@@ -10,17 +10,19 @@ public class OrderAdmin {
     private String name;
     private Float totalPrice;
     private Status status;
-//    private Integer totalProduct;
+    private Integer totalProduct;
     private String address;
+    private String phoneNumber;
     private Float salePrice;
 
-    public OrderAdmin(Orders orders) {
+    public OrderAdmin(Orders orders, Integer totalProduct) {
         this.order_id=orders.getId();
         this.name = orders.getUser().getFirstName() + " " + orders.getUser().getLastName();
         this.totalPrice = orders.getTotalPrice();
         this.status = orders.getStatus();
-//        this.totalProduct = orders.getOrderDetails().size();
+        this.phoneNumber = orders.getPhoneNumber();
         this.address = orders.getAddress();
         this.salePrice = orders.getTotalPrice();
+        this.totalProduct = totalProduct;
     }
 }
