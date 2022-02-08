@@ -5,6 +5,7 @@ import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.OrderDetailDTO;
+import com.orfarmweb.modelutil.ProductAdminDTO;
 import com.orfarmweb.repository.OrderDetailRepo;
 import com.orfarmweb.repository.OrdersRepo;
 import com.orfarmweb.repository.ProductRepo;
@@ -69,5 +70,25 @@ public class AdminServiceImp implements AdminService {
         return list;
     }
 
+    @Override
+    public List<ProductAdminDTO> getHubByPage(long currentPage) {
+        List<Product> list = productRepo.findByPage((currentPage - 1) * pageSize, pageSize);
+        List<ProductAdminDTO> productAdminDTOS = new ArrayList<>();
+        list.forEach(product -> productAdminDTOS.add(new ProductAdminDTO(product)));
+        return productAdminDTOS;
+    }
 
+    @Override
+    public List<ProductAdminDTO> searchHubByNameAndPage(String keyWord, long currentPage) {
+        List<Product> list = productRepo.searchByNameAndPage(keyWord,(currentPage - 1) * pageSize, pageSize);
+        List<ProductAdminDTO> productAdminDTOS = new ArrayList<>();
+        list.forEach(product -> productAdminDTOS.add(new ProductAdminDTO(product)));
+        return productAdminDTOS;
+    }
+
+    @Override
+    public long getTotalPageHubByKeyWord(String keyWord) {
+        return (productRepo.countByKeyWord(keyWord).get(0) % pageSize == 0) ? productRepo.countByKeyWord(keyWord).get(0) / pageSize
+                : (productRepo.countByKeyWord(keyWord).get(0) / pageSize) + 1;
+    }
 }

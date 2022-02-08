@@ -3,6 +3,7 @@ package com.orfarmweb.controller;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.ProductAdminDTO;
+import com.orfarmweb.modelutil.SearchDTO;
 import com.orfarmweb.service.AdminService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
@@ -87,7 +88,17 @@ public class AdminController {
         return "redirect:/admin/product";
     }
     @GetMapping("/admin/hub")
-    public String getHub(){
+    public String showViewHub(){
+        return "redirect:/admin/hub/1";
+    }
+    @GetMapping("/admin/hub/{page}")
+        public String showViewHubPage(@PathVariable("page") long currentPage, Model model){
+        long totalPage = adminService.getTotalPageProduct();
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
+        List<ProductAdminDTO> dsProduct = adminService.getHubByPage(currentPage);
+        model.addAttribute("input", new SearchDTO());
+        model.addAttribute("dsProduct", dsProduct);
         return "admin-page/hub";
     }
     @PostMapping("/test")
@@ -95,7 +106,21 @@ public class AdminController {
     public List<ProductAdminDTO> hubAdmin(){
         return productService.findAll();
     }
-
+    @GetMapping("/admin/hub/fillByName")
+    public String showViewSearchByName(){
+        return "redirect:/admin/hub/fillByName/1";
+    }
+    @GetMapping("/admin/hub/fillByName/{page}")
+    public String handleViewSearchByName(@PathVariable("page") long currentPage, Model model, @ModelAttribute SearchDTO searchDTO){
+        long totalPage = adminService.getTotalPageHubByKeyWord(searchDTO.getName());
+        model.addAttribute("input", new SearchDTO());
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
+        List<ProductAdminDTO> dsProduct = adminService.searchHubByNameAndPage(searchDTO.getName(),currentPage);
+        model.addAttribute("dsProduct",dsProduct);
+        model.addAttribute("currentFilter", searchDTO);
+        return "admin-page/hub-name";
+    }
     @GetMapping("/admin/staffManager")
     public String staff(){
         return "admin-page/staff";

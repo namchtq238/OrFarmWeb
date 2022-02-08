@@ -37,4 +37,8 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Long> countProduct();
     @Query(value = "SELECT * FROM product LIMIT :start, :to ", nativeQuery = true)
     List<Product> findByPage(@RequestParam("start") long start, @RequestParam("to") long to);
+    @Query(value = "SELECT * FROM product where product.name like %:keyWord% LIMIT :start, :to", nativeQuery = true)
+    List<Product> searchByNameAndPage(String keyWord, @RequestParam("start") long start, @RequestParam("to") long to);
+    @Query(value = "SELECT COUNT(*) FROM product where product.name like %:keyWord%", nativeQuery = true)
+    List<Long> countByKeyWord(String keyWord);
 }

@@ -34,20 +34,20 @@
 <!--                                    <span class="caret"></span></button>-->
                                 <select class="dropdown-toggle" th:field="${filter.fillStart}">
                                     <option th:value=0 th:text="0đ"
-                                            th:selected="${filter.fillStart == 0.0}"
+                                            th:selected="${filter.fillStart}"
                                     ></option>
                                     <option th:value=20000 th:text="20000đ"
-                                            th:selected="${filter.fillStart == 20000.0}"></option>
+                                            th:selected="${filter.fillStart}"></option>
                                     <option th:value=30000 th:text="30000đ"
-                                            th:selected="${filter.fillStart == 30000 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillStart}"></option>
                                     <option th:value=40000 th:text="40000đ"
-                                            th:selected="${filter.fillStart == 40000 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillStart}"></option>
                                     <option th:value=50000 th:text="50000đ"
-                                            th:selected="${filter.fillStart == 50000 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillStart}"></option>
                                     <option th:value=100000 th:text="100000đ"
-                                            th:selected="${filter.fillStart == 100000 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillStart}"></option>
                                     <option th:value=200000 th:text="200000đ"
-                                            th:selected="${filter.fillStart == 200000 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillStart}"></option>
                                 </select>
                             </div>
                             <div class="dropdown">
@@ -56,20 +56,20 @@
                                 <!--                                    <span class="caret"></span></button>-->
                                 <select class="dropdown-toggle" th:field="${filter.fillEnd}">
                                     <option th:value=0 th:text="0đ"
-                                            th:selected="${filter.fillEnd == 0.0 ? 'selected':'none'}"
+                                            th:selected="${filter.fillEnd}"
                                     ></option>
-                                    <option th:value=20000 th:text="20000đ" th:selected="${filter.fillEnd == 20000.0 ? 'selected':'none'}"
+                                    <option th:value=20000 th:text="20000đ" th:selected="${filter.fillEnd}"
                                     ></option>
                                     <option th:value=30000 th:text="30000đ"
-                                            th:selected="${filter.fillEnd == 30000.0 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillEnd}"></option>
                                     <option th:value=40000 th:text="40000đ"
-                                            th:selected="${filter.fillEnd == 40000.0 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillEnd}"></option>
                                     <option th:value=50000 th:text="50000đ"
-                                            th:selected="${filter.fillEnd == 50000.0 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillEnd}"></option>
                                     <option th:value=100000 th:text="100000đ"
-                                            th:selected="${filter.fillEnd == 100000.0 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillEnd}"></option>
                                     <option th:value=200000 th:text="200000đ"
-                                            th:selected="${filter.fillEnd == 200000.0 ? 'selected':'none'}"></option>
+                                            th:selected="${filter.fillEnd}"></option>
                                 </select>
                             </div>
                         </div>
