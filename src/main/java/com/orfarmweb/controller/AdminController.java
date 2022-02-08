@@ -111,4 +111,7 @@ public class AdminController {
 
     @GetMapping("/admin/category/add")
     public String handleAddCategory(){return "/admin-page/add-category";}
+
+    @GetMapping("/admin/personal-infor")
+    public String personalInfoAdmin(){return "/admin-page/personal-infor-admin";}
 }
