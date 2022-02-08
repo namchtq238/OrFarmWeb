@@ -202,11 +202,11 @@
                                         <i class="flaticon-line-chart"></i>
                                     </div>
                                     <div class="media-body text-right">
-                                        <p class="widget-text mb-0">Doanh số</p>
-                                        <p class="widget-numeric-value">98,225</p>
+                                        <p class="widget-text mb-0">Vốn</p>
+                                        <p class="widget-numeric-value" th:utext="${format.formatPrice(getCostOfProduct)}"></p>
                                     </div>
                                 </div>
-                                <p class="widget-total-stats mt-2">94% Doanh số mới</p>
+                                <p class="widget-total-stats mt-2"></p>
                             </div>
                         </div>
                     </div>
@@ -223,7 +223,7 @@
                                         <p class="widget-numeric-value" th:utext="${countOrder}"></p>
                                     </div>
                                 </div>
-                                <p class="widget-total-stats mt-2">552 Đơn hàng mới</p>
+                                <p class="widget-total-stats mt-2"></p>
                             </div>
                         </div>
                     </div>
@@ -240,7 +240,7 @@
                                         <p class="widget-numeric-value" th:utext="${countUser}"></p>
                                     </div>
                                 </div>
-                                <p class="widget-total-stats mt-2">390 Khách hàng mới</p>
+                                <p class="widget-total-stats mt-2"></p>
                             </div>
                         </div>
                     </div>

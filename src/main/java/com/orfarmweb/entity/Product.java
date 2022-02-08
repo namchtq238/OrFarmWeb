@@ -20,6 +20,7 @@ public class Product {
     private Float salePrice;
     private Float percentDiscount;
     private Integer quantityProd;
+    private Integer quantityImport;
     private boolean isHot = false;
     private String image;
     @ManyToOne(targetEntity = Category.class, cascade = CascadeType.DETACH)

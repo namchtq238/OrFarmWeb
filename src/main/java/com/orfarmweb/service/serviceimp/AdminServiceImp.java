@@ -91,4 +91,9 @@ public class AdminServiceImp implements AdminService {
         return (productRepo.countByKeyWord(keyWord).get(0) % pageSize == 0) ? productRepo.countByKeyWord(keyWord).get(0) / pageSize
                 : (productRepo.countByKeyWord(keyWord).get(0) / pageSize) + 1;
     }
+
+    @Override
+    public Float getCostOfProduct() {
+        return productRepo.getTotalCostOfProduct();
+    }
 }

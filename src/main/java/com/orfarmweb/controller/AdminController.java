@@ -37,6 +37,7 @@ public class AdminController {
         model.addAttribute("countUser", adminService.countUserByRole());
         model.addAttribute("getRevenue", adminService.getRevenue());
         model.addAttribute("countOrder", adminService.countOrders());
+        model.addAttribute("getCostOfProduct",adminService.getCostOfProduct());
     }
     @RequestMapping("/admin")
     public String Admin(){

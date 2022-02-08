@@ -19,4 +19,5 @@ public interface AdminService {
     List<ProductAdminDTO> getHubByPage(long currentPage);
     List<ProductAdminDTO> searchHubByNameAndPage(String keyWord, long currentPage);
     long getTotalPageHubByKeyWord(String keyWord);
+    Float getCostOfProduct();
 }
