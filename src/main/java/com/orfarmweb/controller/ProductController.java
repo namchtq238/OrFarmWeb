@@ -109,5 +109,4 @@ public class ProductController {
         model.addAttribute("productDetail", productService.findById(id));
         return "productdetail";
     }
-
 }

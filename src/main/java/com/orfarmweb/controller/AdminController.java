@@ -2,6 +2,7 @@ package com.orfarmweb.controller;
 
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.modelutil.ProductAdminDTO;
 import com.orfarmweb.service.AdminService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
@@ -86,8 +87,13 @@ public class AdminController {
         return "redirect:/admin/product";
     }
     @GetMapping("/admin/hub")
-    public String hubAdmin(){
+    public String getHub(){
         return "admin-page/hub";
+    }
+    @PostMapping("/admin/hub")
+    @ResponseBody
+    public List<ProductAdminDTO> hubAdmin(){
+        return productService.findAll();
     }
 
     @GetMapping("/admin/staffManager")

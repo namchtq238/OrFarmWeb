@@ -3,6 +3,7 @@ package com.orfarmweb.service;
 import com.orfarmweb.entity.Cart;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.CartItem;
+import com.orfarmweb.modelutil.ProductAdminDTO;
 
 import java.util.List;
 public interface ProductService {
@@ -22,4 +23,5 @@ public interface ProductService {
     Float getTempPrice(List<CartItem> itemList);
     boolean addProduct(Product product);
     boolean deleteProduct(int id);
+    List<ProductAdminDTO> findAll();
 }

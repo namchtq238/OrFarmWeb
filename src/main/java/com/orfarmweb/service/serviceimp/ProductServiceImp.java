@@ -4,6 +4,7 @@ import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Cart;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.CartItem;
+import com.orfarmweb.modelutil.ProductAdminDTO;
 import com.orfarmweb.repository.ProductRepo;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,6 +126,14 @@ public class ProductServiceImp implements ProductService {
     public boolean deleteProduct(int id) {
         productRepo.delete(productRepo.getById(id));
         return true;
+    }
+
+    @Override
+    public List<ProductAdminDTO> findAll() {
+        List<Product> list = productRepo.findAll();
+        List<ProductAdminDTO> productAdminDTOS = new ArrayList<>();
+        list.forEach(product -> productAdminDTOS.add(new ProductAdminDTO(product)));
+        return productAdminDTOS;
     }
 
 }
