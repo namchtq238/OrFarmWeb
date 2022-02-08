@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProductServiceImp implements ProductService {
@@ -126,6 +127,21 @@ public class ProductServiceImp implements ProductService {
     public boolean deleteProduct(int id) {
         productRepo.delete(productRepo.getById(id));
         return true;
+    }
+
+    @Override
+    public void updateProduct(int id, Product product) {
+        Product baseProduct = productRepo.getById(id);
+        if(!product.getName().isEmpty()) baseProduct.setName(product.getName());
+        if(!product.getDescription().isEmpty()) baseProduct.setDescription(product.getDescription());
+        if(!product.getImage().isEmpty()) baseProduct.setImage(product.getImage());
+        if(product.getSalePrice()!=null) baseProduct.setSalePrice(product.getSalePrice());
+        if(!product.getBriefDesc().isEmpty()) baseProduct.setBriefDesc(product.getName());
+        if(product.getCategory()!=null) baseProduct.setCategory(product.getCategory());
+        if(product.getQuantityProd()!=null) baseProduct.setQuantityProd(product.getQuantityProd());
+        if(product.getPercentDiscount()!=null) baseProduct.setPercentDiscount(product.getPercentDiscount());
+        if(product.getCost()!=null) baseProduct.setCost(product.getCost());
+        productRepo.save(baseProduct);
     }
 
     @Override

@@ -26,4 +26,26 @@ public class CategoryServiceImp implements CategoryService {
     public Optional<Category> findById(int id) {
         return categoryRepo.findById(id);
     }
+
+    @Override
+    public boolean addCategory(Category category) {
+        categoryRepo.save(category);
+        return true;
+    }
+
+    @Override
+    public boolean deleteCategory(int id) {
+        categoryRepo.delete(categoryRepo.getById(id));
+        return true;
+    }
+
+    @Override
+    public void updateCategory(int id, Category category) {
+        Category category1 = categoryRepo.getById(id);
+        if(!category.getName().isEmpty()) category1.setName(category.getName());
+        if(!category.getDescription().isEmpty())category1.setDescription(category.getDescription());
+        if(!category.getImage().isEmpty()) category1.setImage(category.getImage());
+        categoryRepo.save(category1);
+    }
+
 }
