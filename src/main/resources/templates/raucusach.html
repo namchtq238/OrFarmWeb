@@ -25,7 +25,7 @@
             <div class="col-lg-3 order-2 order-lg-1">
                 <div class="orfarm-shop-sidebar">
                     <div class="shop-price-filter">
-                        <form th:action="@{'/category/'+${categoryId}+'/fill-result/1'}" method="post" th:object="${filter}">
+                        <form th:action="@{'/category/'+${categoryId}+'/fill-result/'+${currentPage}}" method="get" th:object="${filter}">
                         <h4 class="title">Lọc theo giá</h4>
                         <div class="price-range">
                             <div class="dropdown">
@@ -33,27 +33,43 @@
 <!--                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">-->
 <!--                                    <span class="caret"></span></button>-->
                                 <select class="dropdown-toggle" th:field="${filter.fillStart}">
-                                    <option th:value=0 th:text="0đ"></option>
-                                    <option th:value=20000 th:text="20000đ"></option>
-                                    <option th:value=30000 th:text="30000đ"></option>
-                                    <option th:value=40000 th:text="40000đ"></option>
-                                    <option th:value=50000 th:text="50000đ"></option>
-                                    <option th:value=100000 th:text="100000đ"></option>
-                                    <option th:value=200000 th:text="200000đ"></option>
+                                    <option th:value=0 th:text="0đ"
+                                            th:selected="${filter.fillStart == 0.0}"
+                                    ></option>
+                                    <option th:value=20000 th:text="20000đ"
+                                            th:selected="${filter.fillStart == 20000.0}"></option>
+                                    <option th:value=30000 th:text="30000đ"
+                                            th:selected="${filter.fillStart == 30000 ? 'selected':'none'}"></option>
+                                    <option th:value=40000 th:text="40000đ"
+                                            th:selected="${filter.fillStart == 40000 ? 'selected':'none'}"></option>
+                                    <option th:value=50000 th:text="50000đ"
+                                            th:selected="${filter.fillStart == 50000 ? 'selected':'none'}"></option>
+                                    <option th:value=100000 th:text="100000đ"
+                                            th:selected="${filter.fillStart == 100000 ? 'selected':'none'}"></option>
+                                    <option th:value=200000 th:text="200000đ"
+                                            th:selected="${filter.fillStart == 200000 ? 'selected':'none'}"></option>
                                 </select>
                             </div>
                             <div class="dropdown">
                                 <label>Đến:</label>
-<!--                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">-->
-<!--                                    <span class="caret"></span></button>-->
-                                <select class="dropdown" th:field="${filter.fillEnd}">
-                                    <option th:value=10001 th:text="10001đ"></option>
-                                    <option th:value=20001 th:text="20001đ"></option>
-                                    <option th:value=30001 th:text="30001đ"></option>
-                                    <option th:value=50001 th:text="50001đ"></option>
-                                    <option th:value=100001 th:text="100001đ"></option>
-                                    <option th:value=200001 th:text="200001đ"></option>
-                                    <option th:value=1000000 th:text="1000000đ"></option>
+                                <!--                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">-->
+                                <!--                                    <span class="caret"></span></button>-->
+                                <select class="dropdown-toggle" th:field="${filter.fillEnd}">
+                                    <option th:value=0 th:text="0đ"
+                                            th:selected="${filter.fillEnd == 0.0 ? 'selected':'none'}"
+                                    ></option>
+                                    <option th:value=20000 th:text="20000đ" th:selected="${filter.fillEnd == 20000.0 ? 'selected':'none'}"
+                                    ></option>
+                                    <option th:value=30000 th:text="30000đ"
+                                            th:selected="${filter.fillEnd == 30000.0 ? 'selected':'none'}"></option>
+                                    <option th:value=40000 th:text="40000đ"
+                                            th:selected="${filter.fillEnd == 40000.0 ? 'selected':'none'}"></option>
+                                    <option th:value=50000 th:text="50000đ"
+                                            th:selected="${filter.fillEnd == 50000.0 ? 'selected':'none'}"></option>
+                                    <option th:value=100000 th:text="100000đ"
+                                            th:selected="${filter.fillEnd == 100000.0 ? 'selected':'none'}"></option>
+                                    <option th:value=200000 th:text="200000đ"
+                                            th:selected="${filter.fillEnd == 200000.0 ? 'selected':'none'}"></option>
                                 </select>
                             </div>
                         </div>

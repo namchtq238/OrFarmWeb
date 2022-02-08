@@ -90,7 +90,7 @@ public class AdminController {
     public String getHub(){
         return "admin-page/hub";
     }
-    @PostMapping("/admin/hub")
+    @PostMapping("/test")
     @ResponseBody
     public List<ProductAdminDTO> hubAdmin(){
         return productService.findAll();

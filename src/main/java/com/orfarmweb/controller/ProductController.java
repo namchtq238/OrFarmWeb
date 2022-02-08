@@ -68,7 +68,7 @@ public class ProductController {
         model.addAttribute("category", categoryService.findById(id).get());
         return "raucusach";
     }
-    @PostMapping("/category/{id}/fill-result/{page}")
+    @GetMapping("/category/{id}/fill-result/{page}")
     public String showViewProductFill(@PathVariable("id") int id,
                                       @ModelAttribute FilterProduct filter,
                                       @PathVariable("page") long currentPage,
@@ -86,6 +86,7 @@ public class ProductController {
         Collections.shuffle(productList);
         if(productList.size()<4) model.addAttribute("bestSeller", productList);
         else model.addAttribute("bestSeller", productList.subList(0, 3));
+        model.addAttribute("currentFilter", filter);
         model.addAttribute("filter", new FilterProduct());
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
@@ -93,7 +94,7 @@ public class ProductController {
         model.addAttribute("sum", sum);
         model.addAttribute("listProduct", productService.listFillByPage(start,end,currentPage, id));
         model.addAttribute("category", categoryService.findById(id).get());
-        return "raucusach";
+        return "dokho";
     }
 
     @GetMapping("/product/{id}")
