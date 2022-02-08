@@ -39,7 +39,7 @@
                                     <div class="page-title col-xl-12 col-md-12 col-sm-12 col-12 mb-5">
                                         <h3>Danh sách nhân viên</h3>
                                         
-                                        <a href="./add-staff.html" class="btn btn-warning">Thêm Nhân viên</a>
+                                        <a th:href="@{/admin/addStaff}" class="btn btn-warning">Thêm Nhân viên</a>
                                     </div>
                                 </div>
                                
@@ -52,8 +52,7 @@
                                                     <input type="text" name="id" placeholder="ID" value="" class="form-control">
                                                     <input type="text" name="address" placeholder="Tên" value=""
                                                         class="form-control">
-                                                    <input type="text" name="address" placeholder="Số điện thoại" value=""
-                                                        class="form-control">
+
                                                         <input type="email" name="address" placeholder="Email" value=""
                                                         class="form-control">
                                                     
@@ -82,11 +81,7 @@
                                                 <th>ID</th>
                                                 <th>Ảnh</th>
                                                 <th>Họ Tên</th>
-                                                <th>Ngày sinh</th>
-                                                <th>SĐT</th>
                                                 <th>Email</th>
-                                                <th>Địa chỉ</th>
-                                                <th>Ngày vào làm</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
@@ -96,11 +91,7 @@
                                                 <td class="text-center">
                                                 <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
                                                 <td>Trần Thị Lan</td>
-                                                <td>1/1/1990</td>
-                                                <td>0385647925</td>
                                                 <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>2/3/2021</td>
                                                 <td class="align-center">
                                                     <ul class="table-controls">
                                                         <li>
@@ -120,13 +111,9 @@
                                             <tr>
                                                 <td>001</td>
                                                 <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
+                                                    <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
                                                 <td>Trần Thị Lan</td>
-                                                <td>1/1/1990</td>
-                                                <td>0385647925</td>
                                                 <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>2/3/2021</td>
                                                 <td class="align-center">
                                                     <ul class="table-controls">
                                                         <li>
@@ -141,189 +128,7 @@
                                                         </li>
                                                     </ul>
                                                 </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Trần Thị Lan</td>
-                                                <td>1/1/1990</td>
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>2/3/2021</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Trần Thị Lan</td>
-                                                <td>1/1/1990</td>
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>2/3/2021</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Trần Thị Lan</td>
-                                                <td>1/1/1990</td>
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>2/3/2021</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Trần Thị Lan</td>
-                                                <td>1/1/1990</td>
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>2/3/2021</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Trần Thị Lan</td>
-                                                <td>1/1/1990</td>
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>2/3/2021</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Trần Thị Lan</td>
-                                                <td>1/1/1990</td>
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>2/3/2021</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Trần Thị Lan</td>
-                                                <td>1/1/1990</td>
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>2/3/2021</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
+
                                             </tr>
                                         </tbody>
                                     </table>
