@@ -23,5 +23,6 @@ public interface ProductService {
     Float getTempPrice(List<CartItem> itemList);
     boolean addProduct(Product product);
     boolean deleteProduct(int id);
+    void updateProduct(int id, Product product);
     List<ProductAdminDTO> findAll();
 }

@@ -59,90 +59,32 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <th:block th:each="category : ${categoryList}">
                                             <tr>
-                                                <td>0010</td>
+                                                <td th:text="${category.id}" class="align-center"></td>
                                                 <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Cam sành</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
+                                                    <a class="product-list-img" href="javascript: void(0);">
+                                                        <img th:src="@{'/image/ImageOrFarm/'+${category.image}}" alt="product">
+                                                    </a>
                                                 </td>
-                                               
-                                            </tr>
-                                            <tr>
-                                                <td>0010</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Hoa quả</td>
+                                                <td th:text="${category.name}" class="align-center"></td>
                                                 <td class="align-center">
                                                     <ul class="table-controls">
                                                         <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <a th:href="@{'/admin/category/edit/' + ${category.id}}" data-toggle="tooltip" data-placement="top" title="Edit">
                                                                 <i class="flaticon-edit"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                            <a th:href="@{'/admin/category/delete/' + ${category.id}}" data-toggle="tooltip" data-placement="top" title="Delete">
                                                                 <i class="flaticon-delete-5"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </td>
 
-                                               
                                             </tr>
-                                            <tr>
-                                                <td>0010</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Hoa quả</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                               
-                                            </tr>
-                                            <tr>
-                                                <td>0010</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Hoa quả</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
+                                        </th:block>
                                         </tbody>
                                     </table>
                                 </div>

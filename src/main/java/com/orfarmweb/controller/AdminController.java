@@ -1,6 +1,7 @@
 package com.orfarmweb.controller;
 
 import com.orfarmweb.constaint.FormatPrice;
+import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.ProductAdminDTO;
 import com.orfarmweb.modelutil.SearchDTO;
@@ -8,6 +9,7 @@ import com.orfarmweb.service.AdminService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -79,8 +81,15 @@ public class AdminController {
     }
     @GetMapping("/admin/product/edit/{id}")
     public String editProductAdmin(@PathVariable("id") int productId, Model model){
+        model.addAttribute("categoryList", categoryService.getListCategory());
         model.addAttribute("product", productService.getProductById(productId));
         return "admin-page/add-product";
+    }
+
+    @PostMapping("/admin/product/edit/{id}")
+    public String handleEditProductAdmin(@PathVariable("id") int productId, @ModelAttribute Product product, Model model){
+        productService.updateProduct(productId, product);
+        return "redirect:/admin/product";
     }
     @GetMapping("/admin/product/delete/{id}")
     public String deleteProductAdmin(@PathVariable("id") int productId, Model model){
@@ -127,22 +136,57 @@ public class AdminController {
     }
 
     @GetMapping("/admin/userManager")
-    public String userManagerAdmin(){
+    public String userManagerAdmin() {
         return "/admin-page/user";
     }
 
     @GetMapping("/admin/view-order")
-    public String viewOrderAdmin(){return "/admin-page/view-order";}
+    public String viewOrderAdmin() {
+        return "/admin-page/view-order";
+    }
 
     @GetMapping("/admin/addStaff")
-    public String addStaffAdmin(){return "/admin-page/add-staff";}
+    public String addStaffAdmin(){
+        return "/admin-page/add-staff";
+    }
 
     @GetMapping("/admin/category")
-    public String categoryAdminPage(){return "/admin-page/category";}
+    public String categoryAdminPage(Model model){
+        model.addAttribute("categoryList", categoryService.getListCategory());
+        return "/admin-page/category";
+    }
 
     @GetMapping("/admin/category/add")
-    public String handleAddCategory(){return "/admin-page/add-category";}
-
+    public String showAddCategory(Model model) {
+        model.addAttribute("category", new Category());
+        return "/admin-page/add-category";
+    }
+    @PostMapping("/admin/category/add")
+    public String handleAddCategory(Model model, @ModelAttribute @Valid Category category, BindingResult result) {
+        if(result.hasErrors()) return "redirect:/admin/category/add";
+        categoryService.addCategory(category);
+        return "redirect:/admin/category";
+    }
+    @GetMapping("/admin/category/delete/{id}")
+    public String handleDeleteCategory(@PathVariable("id") int id){
+        categoryService.deleteCategory(id);
+        return "redirect:/admin/category";
+    }
+    @GetMapping("/admin/category/edit/{id}")
+    public String showEditCategory(@PathVariable("id") int id, Model model){
+        if(categoryService.findById(id).isPresent()){
+            model.addAttribute("category", categoryService.findById(id).get());
+            return "/admin-page/add-category";
+        }
+        return "redirect:/admin/category";
+    }
+    @PostMapping("/admin/category/edit/{id}")
+    public String handleEditCategory(@PathVariable("id") int id, @ModelAttribute Category category, Model model){
+        categoryService.updateCategory(id, category);
+        return "redirect:/admin/category";
+    }
     @GetMapping("/admin/personal-infor")
-    public String personalInfoAdmin(){return "/admin-page/personal-infor-admin";}
+    public String personalInfoAdmin() {
+        return "/admin-page/personal-infor-admin";
+    }
 }
