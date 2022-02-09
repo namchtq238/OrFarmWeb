@@ -11,4 +11,5 @@ public interface CartService {
     Integer countNumberOfItemInCart();
     boolean deleteAllItemInCart();
     void saveNewQuantity(List<Cart> cartList, List<Integer> soluong);
+    boolean deleteAnItemInCart(int productId);
 }
