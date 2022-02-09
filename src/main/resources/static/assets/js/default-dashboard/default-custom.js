@@ -32,16 +32,31 @@ $(".top-search-scroll").mCustomScrollbar({
       Donut Chart
   ================
 */
+var url = 'http://localhost:8080/get-chart-information'
+const option = {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+};
+fetch(url, option)
+    .then(function (res) {
+        return res.json();
+    })
+    .then(function (chartDTO){
+        var cost = chartDTO.cost
+        var revenue = chartDTO.revenue
+        new Chartist.Pie('.s-r', {
+            series: [cost*100/(cost+revenue), revenue*100/(cost+revenue)]
+        }, {
+            donut: true,
+            donutWidth: 40,
+            donutSolid: true,
+            startAngle: 270,
+            showLabel: true
+        });
+    })
 
-new Chartist.Pie('.s-r', {
-  series: [25, 75]
-}, {
-  donut: true,
-  donutWidth: 40,
-  donutSolid: true,
-  startAngle: 270,
-  showLabel: true
-});
 
 var bar = new ProgressBar.Circle("#daily", {
   color: '#1d1d1d',

@@ -3,6 +3,7 @@ package com.orfarmweb.controller;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.modelutil.ChartDTO;
 import com.orfarmweb.modelutil.ProductAdminDTO;
 import com.orfarmweb.modelutil.SearchDTO;
 import com.orfarmweb.service.AdminService;
@@ -115,6 +116,11 @@ public class AdminController {
     @ResponseBody
     public List<ProductAdminDTO> hubAdmin(){
         return productService.findAll();
+    }
+    @PostMapping("/get-chart-information")
+    @ResponseBody
+    public ChartDTO getChartInfor(){
+        return adminService.getInformationForChart();
     }
     @GetMapping("/admin/hub/fillByName")
     public String showViewSearchByName(){

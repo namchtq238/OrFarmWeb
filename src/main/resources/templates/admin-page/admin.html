@@ -255,7 +255,7 @@
                                     </div>
                                     <div class="media-body text-right">
                                         <p class="widget-text mb-0">Doanh thu</p>
-                                        <p class="widget-numeric-value" th:utext="${getRevenue}"></p>
+                                        <p class="widget-numeric-value" th:utext="${format.formatPrice(getRevenue)}"></p>
                                     </div>
                                 </div>
                                 <p class="widget-total-stats mt-2">2.1 M Doanh thu tuần này</p>
@@ -334,7 +334,7 @@
                                             <div class="col-lg-6 col-md-6 col-6 px-xl-0 text-left">
                                                 <div class="d-flex justify-content-start">
                                                     <div class="d-m-profit data-marker align-self-center"></div>
-                                                    <span class="page-view">Lợi nhuận</span>
+                                                    <span class="page-view">Vốn</span>
                                                 </div>
                                             </div>
                                         </div>

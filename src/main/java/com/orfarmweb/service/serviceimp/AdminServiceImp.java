@@ -3,6 +3,7 @@ package com.orfarmweb.service.serviceimp;
 import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.modelutil.ChartDTO;
 import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.OrderDetailDTO;
 import com.orfarmweb.modelutil.ProductAdminDTO;
@@ -41,6 +42,7 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Float getRevenue() {
+        if(ordersRepo.getReveune() == null) return 0f;
         return ordersRepo.getReveune();
     }
 
@@ -95,5 +97,13 @@ public class AdminServiceImp implements AdminService {
     @Override
     public Float getCostOfProduct() {
         return productRepo.getTotalCostOfProduct();
+    }
+
+    @Override
+    public ChartDTO getInformationForChart() {
+        ChartDTO chartDTO = new ChartDTO();
+        chartDTO.setRevenue(getRevenue());
+        chartDTO.setCost(getCostOfProduct());
+        return chartDTO;
     }
 }

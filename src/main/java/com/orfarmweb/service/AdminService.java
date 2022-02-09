@@ -2,6 +2,7 @@ package com.orfarmweb.service;
 
 import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.modelutil.ChartDTO;
 import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.OrderDetailDTO;
 import com.orfarmweb.modelutil.ProductAdminDTO;
@@ -20,4 +21,5 @@ public interface AdminService {
     List<ProductAdminDTO> searchHubByNameAndPage(String keyWord, long currentPage);
     long getTotalPageHubByKeyWord(String keyWord);
     Float getCostOfProduct();
+    ChartDTO getInformationForChart();
 }
