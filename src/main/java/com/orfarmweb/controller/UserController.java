@@ -1,11 +1,9 @@
 package com.orfarmweb.controller;
 
+import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.User;
-import com.orfarmweb.service.CartService;
-import com.orfarmweb.service.CategoryService;
-import com.orfarmweb.service.OrderService;
-import com.orfarmweb.service.UserService;
+import com.orfarmweb.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,18 +20,20 @@ public class UserController {
     private final CategoryService categoryService;
     private final CartService cartService;
     private final OrderService orderService;
-
-    public UserController(UserService userService, CategoryService categoryService, CartService cartService, OrderService orderService) {
+    private final FormatPrice formatPrice;
+    public UserController(UserService userService, CategoryService categoryService, CartService cartService, OrderService orderService, FormatPrice formatPrice) {
         this.userService = userService;
         this.categoryService = categoryService;
         this.cartService = cartService;
         this.orderService = orderService;
+        this.formatPrice = formatPrice;
     }
 
     @ModelAttribute
     public void addCategoryToHeader(Model model){
         List<Category> listCategory = categoryService.getListCategory();
         model.addAttribute("listCategory",listCategory);
+        model.addAttribute("format", formatPrice);
     }
     @GetMapping("/login")
     public String getLoginPage(){

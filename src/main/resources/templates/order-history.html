@@ -27,33 +27,34 @@
             </div>
         </th:block>
         <th:block th:unless="${#lists.isEmpty(listOrder)}">
-            <div class="ordered-detail container">
-                <div class="row " style="padding-top: 25px;">
+            <div class="ordered-detail container" th:each="order, state : ${listOrder}">
+                <div class="row " style="padding-top: 25px;" th:each="orderdetail, state : ${order.orderDetails}">
                     <div class="col-md-4">
-                        <img src="./image/bơ1.jpg" alt="">
+                        <img th:src="@{'/image/ImageOrFarm/'+${orderdetail.product.image}}" alt="">
                     </div>
                     <div class="col-md-8 ">
                         <div class="product-name">
-                            <p>Tên sản phẩm: <span><a href="./productdetail.html">Bơ Đắk Lắk</a></span></p>
+                            <p>Tên sản phẩm: <span><a th:href="@{'/product/'+${orderdetail.product.id}}" th:utext="${orderdetail.product.name}"></a></span></p>
                         </div>
                         <div class="product-id">
-                            <p>Mã đơn: <span>#00311</span></p>
+                            <p>Mã đơn: <span th:utext="${order.id}"></span></p>
                         </div>
                         <div class="product-date">
-                            <p>Ngày đặt: <span>02/10/2021</span></p>
+                            <p>Ngày đặt: <span th:utext="${order.createAt}"></span></p>
                         </div>
                         <div class="product-quantity">
-                            <p>Số lượng: <span>5</span></p>
+                            <p>Số lượng: <span th:utext="${orderdetail.quantity}"></span></p>
                         </div>
                         <div class="product-price">
-                            <p>Giá tiền: <span>250.000 <sup>đ</sup></span></p>
+                            <p>Giá tiền: <span th:utext="${format.formatPrice(orderdetail.price)}"><sup>đ</sup></span></p>
                         </div>
                         <div class="product-status">
-                            <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
+                            <p>Trạng thái: <span class="badge badge-info badge-pill" th:utext="${order.status}">Giao thành công</span></p>
                         </div>
                     </div>
+                </div>
                     <div class="col-sm-12 order-again">
-                        <div><p>Tổng tiền: <span>250.000 <sup>đ</sup></span></p></div>
+                        <div><p>Tổng tiền: <span th:utext="${format.formatPrice(order.totalPrice)}"><sup>đ</sup></span></p></div>
                         <br>
                         <div>
                             <button type="button" class="btn btn-warning "><a href="#">Mua lại</a></button>
@@ -62,138 +63,6 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="ordered-detail container">
-                <div class="row " style="padding-top: 25px;">
-                    <div class="col-md-4">
-                        <img src="./image/cải bắp.jpg" alt="">
-                    </div>
-                    <div class="col-md-8 ">
-                        <div class="product-name">
-                            <p>Tên sản phẩm: <span><a href="./productdetail.html">Cải Bắp Đà Lạt</a></span></p>
-                        </div>
-                        <div class="product-id">
-                            <p>Mã đơn: <span>#00311</span></p>
-                        </div>
-                        <div class="product-date">
-                            <p>Ngày đặt: <span>02/10/2021</span></p>
-                        </div>
-                        <div class="product-quantity">
-                            <p>Số lượng: <span>5</span></p>
-                        </div>
-                        <div class="product-price">
-                            <p>Giá tiền: <span>250.000 <sup>đ</sup></span></p>
-                        </div>
-                        <div class="product-status">
-                            <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 order-again">
-                        <div><p>Tổng tiền: <span>250.000 <sup>đ</sup></span></p></div>
-                        <br>
-                        <div>
-                            <button type="button" class="btn btn-warning "><a href="#">Mua lại</a></button>
-                            <button type="button" class="btn btn-warning "><a href="#">Đánh giá</a></button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="ordered-detail container">
-                <div class="row ">
-                    <div class="col-md-4">
-                        <img src="./image/quả vải.jpg" alt="">
-
-                    </div>
-                    <div class="col-md-8 mt-20">
-                        <div class="product-name">
-                            <p>Tên sản phẩm: <span><a href="./productdetail.html">Vải thiều Bắc Giang</a></span></p>
-                        </div>
-                        <div class="product-id">
-                            <p>Mã đơn: <span>#00311</span></p>
-                        </div>
-                        <div class="product-date">
-                            <p>Ngày đặt: <span>02/10/2021</span></p>
-                        </div>
-                        <div class="product-price">
-                            <p>Tổng tiền: <span>250.000 <sup>đ</sup></span></p>
-                        </div>
-                        <div class="product-status">
-                            <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-                        <img src="./image/quả vải.jpg" alt="">
-
-                    </div>
-                    <div class="col-md-8 mt-20">
-                        <div class="product-name">
-                            <p>Tên sản phẩm: <span><a href="./productdetail.html">Vải thiều Bắc Giang</a></span></p>
-                        </div>
-                        <div class="product-id">
-                            <p>Mã đơn: <span>#00311</span></p>
-                        </div>
-                        <div class="product-date">
-                            <p>Ngày đặt: <span>02/10/2021</span></p>
-                        </div>
-                        <div class="product-price">
-                            <p>Giá tiền: <span>250.000 <sup>đ</sup></span></p>
-                        </div>
-                        <div class="product-status">
-                            <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
-                        </div>
-
-                    </div>
-                    <div class="col-sm-12 order-again">
-                        <div><p>Giá tiền: <span>250.000 <sup>đ</sup></span></p></div>
-                        <br>
-                        <div>
-                            <button type="button" class="btn btn-warning "><a href="#">Mua lại</a></button>
-                            <button type="button" class="btn btn-warning "><a href="#">Đánh giá</a></button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="ordered-detail container">
-                <div class="row " style="padding-top: 25px;">
-                    <div class="col-md-4">
-                        <img src="./image/quả dừa.jpg" alt="">
-                    </div>
-                    <div class="col-md-8 ">
-                        <div class="product-name">
-                            <p>Tên sản phẩm: <span><a href="./productdetail.html">Dừa Bến Tre</a></span></p>
-                        </div>
-                        <div class="product-id">
-                            <p>Mã đơn: <span>#00311</span></p>
-                        </div>
-                        <div class="product-date">
-                            <p>Ngày đặt: <span>02/10/2021</span></p>
-                        </div>
-                        <div class="product-quantity">
-                            <p>Số lượng: <span>5</span></p>
-                        </div>
-                        <div class="product-price">
-                            <p>Giá tiền: <span>250.000 <sup>đ</sup></span></p>
-                        </div>
-                        <div class="product-status">
-                            <p>Trạng thái: <span class="badge badge-info badge-pill">Giao thành công</span></p>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 order-again">
-                        <div><p>Tổng tiền: <span>250.000 <sup>đ</sup></span></p></div>
-                        <br>
-                        <div>
-                            <button type="button" class="btn btn-warning "><a href="#">Mua lại</a></button>
-                            <button type="button" class="btn btn-warning "><a href="#">Đánh giá</a></button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </th:block>
         
     </div>
@@ -204,7 +73,7 @@
         <div class="amm-shopping-cart-canvas">
             <div class="amm-shopping_cart">
                 <div class="amm-shopping_cart-top-bar d-flex justify-content-between">
-                    <h8 col-sm-6>Giỏ hàng</h6>
+                    <h6 col-sm-6>Giỏ hàng</h6>
                         <button class="amm-shopping-cart-close">
                             <i class="fas fa-times"></i>
                         </button>
@@ -347,6 +216,7 @@
                     </ul>
 
                 </div>
+
     </footer>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
