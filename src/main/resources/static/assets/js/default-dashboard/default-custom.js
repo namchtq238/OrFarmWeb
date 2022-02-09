@@ -47,7 +47,7 @@ fetch(url, option)
         var cost = chartDTO.cost
         var revenue = chartDTO.revenue
         new Chartist.Pie('.s-r', {
-            series: [cost*100/(cost+revenue), revenue*100/(cost+revenue)]
+            series: [(revenue-cost)<0?((cost-revenue)*100/(cost+revenue)):0, revenue*100/(cost+revenue)]
         }, {
             donut: true,
             donutWidth: 40,
