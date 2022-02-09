@@ -58,15 +58,19 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="icon-delete" id="1">
-                                                    <i class="icon-delete1 fas fa-trash-alt"></i>
-                                                </div>
+                                                <a th:href="@{'/cart/' + ${cartItem.productId}}" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <div class="icon-delete" id="1">
+                                                        <i class="icon-delete1 fas fa-trash-alt">
+                                                        </i>
+                                                    </div>
+                                                </a>
                                             </td>
                                             <td>
                                                 <div class="sumPro">
                                                     <span th:text="${format.formatPrice(cartItem.totalPrice)}"></span><sup>đ</sup>
                                                 </div>
                                             </td>
+
                                         </tr>
                                         </tbody>
                                     </table>

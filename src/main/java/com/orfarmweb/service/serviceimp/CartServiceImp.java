@@ -79,4 +79,17 @@ public class CartServiceImp implements CartService  {
             cartRepo.save(cartList.get(i));
         }
     }
+
+    @Override
+    public boolean deleteAnItemInCart(int productId) {
+        List<Cart> cartList = getAllCartByUser();
+        for (Cart cart: cartList
+        ) {
+            if(cart.getProduct().getId().equals(productId)){
+                cart.setDelete(true);
+                cartRepo.save(cart);
+            }
+        }
+        return true;
+    }
 }

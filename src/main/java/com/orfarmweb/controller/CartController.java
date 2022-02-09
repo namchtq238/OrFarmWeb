@@ -82,6 +82,11 @@ public class CartController {
         cartService.deleteAllItemInCart();
         return "redirect:/cart";
     }
+    @GetMapping("/cart/{id}")
+    public String deleteProduct(@PathVariable("id") int productId){
+        cartService.deleteAnItemInCart(productId);
+        return "redirect:/cart";
+    }
     @PostMapping("/cart/save")
     public String saveNewCart(Model model, @RequestParam("soluong") String[] list){
         List<Integer> soluong = new ArrayList<>();
