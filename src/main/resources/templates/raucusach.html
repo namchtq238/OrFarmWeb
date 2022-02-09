@@ -25,7 +25,7 @@
             <div class="col-lg-3 order-2 order-lg-1">
                 <div class="orfarm-shop-sidebar">
                     <div class="shop-price-filter">
-                        <form th:action="@{'/category/'+${categoryId}+'/fill-result/'+${currentPage}}" method="get" th:object="${filter}">
+                        <form th:action="@{'/category/'+${categoryId}+'/fill-result/1'}" method="get" th:object="${filter}">
                         <h4 class="title">Lọc theo giá</h4>
                         <div class="price-range">
                             <div class="dropdown">
@@ -48,6 +48,8 @@
                                             th:selected="${filter.fillStart}"></option>
                                     <option th:value=200000 th:text="200000đ"
                                             th:selected="${filter.fillStart}"></option>
+                                    <option th:value=500000 th:text="500000đ"
+                                            th:selected="${filter.fillStart}"></option>
                                 </select>
                             </div>
                             <div class="dropdown">
@@ -69,6 +71,8 @@
                                     <option th:value=100000 th:text="100000đ"
                                             th:selected="${filter.fillEnd}"></option>
                                     <option th:value=200000 th:text="200000đ"
+                                            th:selected="${filter.fillEnd}">
+                                    <option th:value=500000 th:text="500000đ"
                                             th:selected="${filter.fillEnd}"></option>
                                 </select>
                             </div>
@@ -202,7 +206,7 @@
 
                             </li>
 
-                            <th:block th:if="${totalPage <= 10}">
+                            <th:block th:if="${totalPage <= 10 && totalPage > 0}">
                                 <li th:each="i : ${#numbers.sequence(1, totalPage)}"
                                     th:class="${currentPage != i ? 'page-item' : 'page-item active' }"><a
                                         class="page-link" th:href="@{'/category/' + ${categoryId} + '/' + ${i}}"
