@@ -29,42 +29,43 @@
     <!--  BEGIN CONTENT PART  -->
     <div id="content" class="main-content">
         <a href="" class="btn btn-primary btn-order"> Go back to Order list</a>
-        <div class="view-order">
+        <div class="view-order" th:object="${order}">
             <div class="summary-order">
                 <table>
                     <tr>
                         <th>Id Order</th>
-                        <td>02</td>
+                        <td th:text="*{id}">02</td>
                     </tr>
                     <tr>
                         <th>Tên Khách Hàng:</th>
-                        <td>Hoàng Xoan</td>
+                        <td th:text="*{user.firstName+' '+user.lastName}">Hoàng Xoan</td>
                     </tr>
                     <tr>
                         <th>Số Điện Thoại:</th>
-                        <td>0123456789</td>
+                        <td th:text="*{phoneNumber}">0123456789</td>
                     </tr>
                     <tr>
                         <th>Địa Chỉ:</th>
-                        <td>Nam Sách Hải Dương</td>
+                        <td th:text="*{address}">Nam Sách Hải Dương</td>
                     </tr>
                     <tr>
                         <th>Tổng Tiền Hóa Đơn:</th>
-                        <td>127,000đ</td>
+                        <td th:text="${format.formatPrice(order.totalPrice)}">127,000đ</td>
                     </tr>
                     <tr>
-                        <th>Ghi Chú:</th>
-                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</td>
+                        <th >Ghi Chú:</th>
+                        <td th:text="*{note}">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</td>
                     </tr>
                 </table>
             </div>
             <div class="button-status ">
+                <form th:action="@{'/admin/view-order/edit/'+${order.id}}" method="post" th:object="${order}">
                 <h5>Trạng thái đơn hàng</h5>
-                <button class=" btn btn-success status mb-2 mt-2 " id="processing"> PROCESSING</button>
-                <button class=" btn btn-info status mb-2" id="approved"> APPROVED</button>
-                <button class=" btn btn-secondary status mb-2" id="delivered"> DELIVERED</button>
-                <button class=" btn btn-danger status mb-2" id="canceled"> CANCELED</button>
-
+                <button type="submit" class=" btn btn-success status mb-2 mt-2 " id="processing" th:value="*{status.PROCESSING}"> PROCESSING</button>
+                <button type="submit" class=" btn btn-info status mb-2" id="approved" th:value="*{status.APPROVED}"> APPROVED</button>
+                <button type="submit" class=" btn btn-secondary status mb-2" id="delivered" th:value="*{status.DELIVERED}"> DELIVERED</button>
+                <button type="submit" class=" btn btn-danger status mb-2" id="canceled" th:value="*{status.CANCELED}"> CANCELED</button>
+                </form>
             </div>
         </div>
 
@@ -83,39 +84,39 @@
 
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody th:each="od, state:${order.orderDetails}">
                     <tr class="text-center">
-                        <td>15</td>
-                        <td class="text-center"><img class="product-list-img" src="assets/img/90x90.jpg"></td>
-                        <td>Tao Xanh</td>
-                        <td>Hoa Qua Sach</td>
-                        <td>45000đ</td>
-                        <td>2</td>
+                        <td th:text="*{od.orders.id}">15</td>
+                        <td class="text-center"><img class="product-list-img" th:src="@{'/image/ImageOrFarm/'+ *{od.product.image}}"></td>
+                        <td th:text="*{od.product.name}">Tao Xanh</td>
+                        <td th:text="*{od.product.category.name}">Hoa Qua Sach</td>
+                        <td th:text="*{format.formatPrice(od.product.salePrice)}">45000đ</td>
+                        <td th:text="*{od.quantity}">2</td>
 
                     </tr>
                     </tbody>
-                    <tbody>
-                    <tr class="text-center">
-                        <td>15</td>
-                        <td class="text-center"><img class="product-list-img" src="assets/img/90x90.jpg"></td>
-                        <td>Tao Xanh</td>
-                        <td>Hoa Qua Sach</td>
-                        <td>45000đ</td>
-                        <td>2</td>
+<!--                    <tbody>-->
+<!--                    <tr class="text-center">-->
+<!--                        <td>15</td>-->
+<!--                        <td class="text-center"><img class="product-list-img" src="assets/img/90x90.jpg"></td>-->
+<!--                        <td>Tao Xanh</td>-->
+<!--                        <td>Hoa Qua Sach</td>-->
+<!--                        <td>45000đ</td>-->
+<!--                        <td>2</td>-->
 
-                    </tr>
-                    </tbody>
-                    <tbody>
-                    <tr class="text-center">
-                        <td>15</td>
-                        <td class="text-center"><img class="product-list-img" src="assets/img/90x90.jpg"></td>
-                        <td>Tao Xanh</td>
-                        <td>Hoa Qua Sach</td>
-                        <td>45000đ</td>
-                        <td>2</td>
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                    <tbody>-->
+<!--                    <tr class="text-center">-->
+<!--                        <td>15</td>-->
+<!--                        <td class="text-center"><img class="product-list-img" src="assets/img/90x90.jpg"></td>-->
+<!--                        <td>Tao Xanh</td>-->
+<!--                        <td>Hoa Qua Sach</td>-->
+<!--                        <td>45000đ</td>-->
+<!--                        <td>2</td>-->
 
-                    </tr>
-                    </tbody>
+<!--                    </tr>-->
+<!--                    </tbody>-->
                 </table>
             </div>
         </div>

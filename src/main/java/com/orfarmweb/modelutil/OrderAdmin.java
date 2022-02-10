@@ -1,6 +1,5 @@
 package com.orfarmweb.modelutil;
 import com.orfarmweb.constaint.Status;
-import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import lombok.Data;
 

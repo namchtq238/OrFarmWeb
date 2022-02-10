@@ -231,9 +231,11 @@
                                                 <span class="badge badge-success" th:utext="${od.status}">Thành công</span>
                                             </td>
                                             <td class="align-center">
-                                                <button type="button" class="btn btn-default btn-sm">
+                                                <form th:action="@{'/admin/view-order/' + ${od.order_id}}" method="post">
+                                                <button type="submit" class="btn btn-default btn-sm">
                                                     <i class="icon-search"></i> View
                                                 </button>
+                                                </form>
                                             </td>
                                         </tr>
 <!--                                        <tr>-->

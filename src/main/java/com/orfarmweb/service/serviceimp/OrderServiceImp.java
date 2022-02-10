@@ -11,6 +11,7 @@ import com.orfarmweb.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -42,5 +43,17 @@ public class OrderServiceImp implements OrderService {
     @Override
     public List<Orders> getOrderByCurrentUser() {
         return ordersRepo.getAllByUser(userService.getCurrentUser());
+    }
+
+    @Override
+    public Optional<Orders> findById(int id) {
+        return ordersRepo.findById(id);
+    }
+
+    @Override
+    public void updateStatus(int id,Orders orders) {
+        Optional<Orders> order = ordersRepo.findById(id);
+        order.get().setStatus(orders.getStatus());
+        ordersRepo.save(order.get());
     }
 }
