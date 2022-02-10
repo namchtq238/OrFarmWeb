@@ -56,6 +56,9 @@
                                                 <th>Tên</th>
                                                 <th>Danh mục</th>
                                                 <th>Giá bán</th>
+                                                <th>Giảm giá</th>
+                                                <th>Giá nhập</th>
+                                                <th>isHot</th>
                                                 <th>Số lượng</th>
                                                 <th>Mô Tả Ngắn</th>
                                                 <th>Mô Tả</th>
@@ -70,6 +73,9 @@
                                                 <td th:utext="${pro.name}">CK Glasses</td>
                                                 <td th:utext="${pro.category.name}"></td>
                                                 <td th:utext="${format.formatPrice(pro.salePrice)}"></td>
+                                                <td>10%</td>
+                                                <td>200000đ</td>
+                                                <td>True</td>
                                                 <td th:utext="${pro.quantityProd}"></td>
                                                 <td th:utext="${pro.briefDesc}"></td>
                                                 <td th:utext="${pro.description}"></td>
