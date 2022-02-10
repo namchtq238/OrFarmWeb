@@ -55,7 +55,7 @@
                                                                 <label class="col-md-4">Tên :</label>
                                                                 <div class="col-md-8">
                                                                     <input class="form-control" name="name" type="text"
-                                                                           th:field="*{name}">
+                                                                           th:field="*{name}" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -64,7 +64,7 @@
                                                                 <label class="col-md-4">Mô tả ngắn:</label>
                                                                 <div class="col-md-8">
                                                                     <textarea rows="4" cols="5" name="description"
-                                                                              class="form-control" th:field="*{briefDesc}">
+                                                                              class="form-control" th:field="*{briefDesc}" required>
                                                                     </textarea>
                                                                 </div>
                                                             </div>
@@ -74,7 +74,7 @@
                                                                 <label class="col-md-4">Mô tả:</label>
                                                                 <div class="col-md-8">
                                                                     <textarea rows="4" cols="5" name="description"
-                                                                              class="form-control" th:field="*{description}"></textarea>
+                                                                              class="form-control" th:field="*{description}" required></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -110,7 +110,7 @@
                                                             <label class="col-md-4">Giá bán :</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control" th:field="*{salePrice}"
-                                                                       type="number">
+                                                                       type="number" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -120,7 +120,7 @@
                                                             <label class="col-md-4">Giảm giá :</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control"
-                                                                       th:field="*{percentDiscount}" type="number">
+                                                                       th:field="*{percentDiscount}" type="number" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -130,7 +130,7 @@
                                                             <label class="col-md-4">Giá nhập :</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control" th:field="*{cost}"
-                                                                       type="number">
+                                                                       type="number" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -140,7 +140,7 @@
                                                             <label class="col-md-4">IsHot :</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control"
-                                                                       type="number">
+                                                                       type="number" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,7 +150,7 @@
                                                             <label class="col-md-4">Số lượng :</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control"
-                                                                       type="number">
+                                                                       type="number" required>
                                                             </div>
                                                         </div>
                                                     </div>
