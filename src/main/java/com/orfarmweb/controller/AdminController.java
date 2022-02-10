@@ -3,6 +3,7 @@ package com.orfarmweb.controller;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.Category;
+import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.ChartDTO;
@@ -80,12 +81,13 @@ public class AdminController {
     @GetMapping("/admin/view-order/{id}")
     public String viewOrderAdmin(@PathVariable int id, Model model) {
         Orders orders = orderService.findById(id);
+        OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("order",orders);
         return "admin-page/view-order";
     }
     @PostMapping("/admin/view-order/edit/{id}")
-    public String handleEditStatusOrderAdmin(@PathVariable int id, @ModelAttribute Orders orders, Model model){
-        System.err.println(orders.getStatus());
+    public String handleEditStatusOrderAdmin(@PathVariable int id, @ModelAttribute Orders orders, @RequestParam Status status, Model model){
+        orders.setStatus(status);
         orderService.updateStatus(id, orders);
         return "redirect:/admin/view-order/{id}";
     }
@@ -217,12 +219,12 @@ public class AdminController {
     }
     /*-------------------------------------Các View Quản Lý Nhân Sự------------------------------*/
     @GetMapping("/admin/staffManager")
-    public String staff(){
+    public String showViewStaff(){
         return "admin-page/staff";
     }
 
     @GetMapping("/admin/userManager")
-    public String userManagerAdmin() {
+    public String showViewCustomer() {
         return "/admin-page/user";
     }
 
