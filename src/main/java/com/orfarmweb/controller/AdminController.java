@@ -1,5 +1,6 @@
 package com.orfarmweb.controller;
 
+import com.orfarmweb.config.OrderDataExcelExport;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.Category;
@@ -7,6 +8,7 @@ import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.ChartDTO;
+import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.ProductAdminDTO;
 import com.orfarmweb.modelutil.SearchDTO;
 import com.orfarmweb.service.AdminService;
@@ -19,6 +21,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +29,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -92,6 +98,22 @@ public class AdminController {
         orders.setStatus(status);
         orderService.updateStatus(id, orders);
         return "redirect:/admin/view-order/{id}";
+    }
+    @GetMapping("/admin/export")
+    public String exportToExcel(HttpServletResponse response) throws IOException{
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd_HH");
+        String currentDateTime = dateFormat.format(new Date());
+        String headerKey = "Content-Disposition";
+        String fileName = "order_"+ currentDateTime +".xlsx";
+        String headerValue = "attachement; filename= "+fileName;
+        response.setHeader(headerKey,headerValue);
+
+        List<OrderAdmin> orderAdmins = adminService.getOrderAdmin();
+        OrderDataExcelExport orderDataExcelExport = new OrderDataExcelExport(orderAdmins);
+        System.err.println(orderAdmins.toString());
+        orderDataExcelExport.export(response);
+        return "admin-page/order";
     }
     /*-----------------------------Các View product---------------------------*/
     @GetMapping("/admin/product")
