@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashSet;
 import java.util.List;
@@ -46,9 +47,13 @@ public class OrderController {
     }
 
     @GetMapping("/payment")
-    public String payment(Model model){
+    public String payment(Model model, RedirectAttributes redirectAttributes){
         User user = userService.getCurrentUser();
         List<Cart> listCart = cartService.getAllCartByUser();
+        if(listCart.isEmpty()){
+            redirectAttributes.addFlashAttribute("msg", "Không có sản phẩm nào để thanh toán");
+            return "redirect:/cart";
+        }
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
         Float tempPrice = productService.getTempPrice(listProductInCart);
         Float ship = 20000f;
