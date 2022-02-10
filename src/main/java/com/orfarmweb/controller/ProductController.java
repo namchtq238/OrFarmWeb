@@ -8,9 +8,13 @@ import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -109,5 +113,19 @@ public class ProductController {
         }
         model.addAttribute("productDetail", productService.findById(id));
         return "productdetail";
+    }
+
+    @PostMapping("/product/{id}")
+    public String addProductToCart(@PathVariable("id") int id, RedirectAttributes redirectAttributes,
+                                   @RequestParam("quantity") Integer quantity) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication instanceof AnonymousAuthenticationToken) return "redirect:/login";
+        Product product = productService.findById(id);
+        boolean success = cartService.saveItemToCart(product, quantity);
+        String msg = null;
+        if(success) msg= "Thêm giỏ hàng thành công";
+        else msg= "Thêm giỏ hàng thất bại";
+        redirectAttributes.addFlashAttribute("msg", msg);
+        return "redirect:/product/{id}";
     }
 }

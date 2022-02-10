@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -68,15 +69,6 @@ public class CartController {
         return "ViewCart";
     }
 
-    @PostMapping("/product/{id}")
-    public String addProductToCart(@PathVariable("id") int id,
-                                   @RequestParam("quantity") Integer quantity) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication instanceof AnonymousAuthenticationToken) return "redirect:/login";
-        Product product = productService.findById(id);
-        cartService.saveItemToCart(product, quantity);
-        return "redirect:/product/{id}";
-    }
     @GetMapping("/cart/delete")
     public String deleteAllProduct(){
         cartService.deleteAllItemInCart();
