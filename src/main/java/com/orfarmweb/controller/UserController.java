@@ -4,6 +4,8 @@ import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.User;
 import com.orfarmweb.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +23,8 @@ public class UserController {
     private final CartService cartService;
     private final OrderService orderService;
     private final FormatPrice formatPrice;
+    @Autowired
+    PasswordEncoder passwordEncoder;
     public UserController(UserService userService, CategoryService categoryService, CartService cartService, OrderService orderService, FormatPrice formatPrice) {
         this.userService = userService;
         this.categoryService = categoryService;
@@ -30,7 +34,7 @@ public class UserController {
     }
 
     @ModelAttribute
-    public void addCategoryToHeader(Model model){
+    public void addToHeader(Model model){
         List<Category> listCategory = categoryService.getListCategory();
         model.addAttribute("listCategory",listCategory);
         model.addAttribute("format", formatPrice);
@@ -63,19 +67,20 @@ public class UserController {
     @GetMapping("/user/personal-information")
     public String showUserInformation(Model model){
         User user = userService.getCurrentUser();
-        model.addAttribute("oldPassword", user.getPassword());
-        model.addAttribute("userInfo", user);
+        User user1 = userService.findById(user.getId());
+        model.addAttribute("userInfo", user1);
         return "personal-infor";
     }
-    @GetMapping("/user/edit-user")
-    public String handleEditUser(@ModelAttribute User user, Model model){
+    @PostMapping("/user/edit-user")
+    public String handleEditUser(@ModelAttribute User user){
         userService.updateUser(userService.getCurrentUser().getId(), user);
-        model.addAttribute("userInfo", userService.getCurrentUser());
-        return "personal-infor";
+        return "redirect:/user/personal-information";
     }
     @PostMapping("/user/edit-password")
-    public String handleEditPassWord(Model model){
-        return "index";
+    public String handleEditPassWord(Model model, @ModelAttribute User user, String password){
+        User user1 = userService.findById(user.getId());
+        if(passwordEncoder.matches(user.getPassword(), passwordEncoder.encode(password))) userService.saveUser(user);
+        return "redirect:/user/personal-information";
     }
     @GetMapping("/user/order-history")
     public String getOrderHistoryPage(Model model){

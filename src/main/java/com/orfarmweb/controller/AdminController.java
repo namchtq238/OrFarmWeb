@@ -35,6 +35,8 @@ public class AdminController {
     private final FormatPrice formatPrice;
     private final ProductService productService;
     private final OrderService orderService;
+    private static final String currentDirectory = System.getProperty("user.dir");
+    private static final Path path = Paths.get(currentDirectory+Paths.get("/target/classes/static/image/ImageOrFarm"));
     public AdminController(AdminService adminService, CategoryService categoryService, FormatPrice formatPrice, ProductService productService, OrderService orderService) {
         this.adminService = adminService;
         this.categoryService = categoryService;
@@ -111,9 +113,7 @@ public class AdminController {
     }
     @PostMapping("/admin/product/add")
     public String handleAddProduct(Model model, @ModelAttribute @Valid Product product, @RequestParam MultipartFile photo, BindingResult result){
-        if(photo.isEmpty()) return "redirect:/admin/product/add";
-        String currentDirectory = System.getProperty("user.dir");
-        Path path = Paths.get(currentDirectory+Paths.get("/src/main/resources/static/image/ImageOrFarm"));
+        if(photo.isEmpty()||result.hasErrors()) return "redirect:/admin/product/add";
         try {
             InputStream inputStream = photo.getInputStream();
             Files.copy(inputStream, path.resolve(photo.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
@@ -124,7 +124,6 @@ public class AdminController {
             e.printStackTrace();
         }
         productService.addProduct(product);
-        if (result.hasErrors()) return "redirect:/admin/product/add";
         return "redirect:/admin/product";
     }
     @GetMapping("/admin/product/edit/{id}")
@@ -133,9 +132,18 @@ public class AdminController {
         model.addAttribute("product", productService.getProductById(productId));
         return "admin-page/add-product";
     }
-
     @PostMapping("/admin/product/edit/{id}")
-    public String handleEditProductAdmin(@PathVariable("id") int productId, @ModelAttribute Product product, Model model){
+    public String handleEditProductAdmin(@PathVariable("id") int productId, @ModelAttribute Product product, @RequestParam MultipartFile photo, Model model){
+        if(photo.isEmpty()) return "redirect:/admin/product/edit/{id}";
+        try {
+            InputStream inputStream = photo.getInputStream();
+            Files.copy(inputStream, path.resolve(photo.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+            System.out.println(photo.getOriginalFilename());
+            product.setImage(photo.getOriginalFilename());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         productService.updateProduct(productId, product);
         return "redirect:/admin/product";
     }
