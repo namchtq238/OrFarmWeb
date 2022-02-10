@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
-                        <form th:object="${product}" method="post">
+                        <form th:object="${product}" method="post" enctype="multipart/form-data">
 
                             <div class="widget-header">
                                 <div class="row">
@@ -148,7 +148,7 @@
                                                                 <div class="mb-3">
                                                                     <div class="custom-file">
                                                                         <input type="file" class="form-control-file"
-                                                                               id="file-input" th:field="*{image}"
+                                                                               id="file-input" name="photo"
                                                                                accept="image/png, image/jpeg, image/jpg">
                                                                     </div>
                                                                 </div>
