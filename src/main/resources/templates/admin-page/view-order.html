@@ -56,15 +56,27 @@
                         <th >Ghi Chú:</th>
                         <td th:text="*{note}">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</td>
                     </tr>
+                    <tr>
+                        <th>
+                            <h5>Trạng Thái Đơn Hàng</h5>
+                        </th>
+                        <td>
+                            <h5 th:text="*{status}" color="red"></h5>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="button-status ">
                 <form th:action="@{'/admin/view-order/edit/'+${order.id}}" method="post" th:object="${order}">
                 <h5>Trạng thái đơn hàng</h5>
-                <button type="submit" class=" btn btn-success status mb-2 mt-2 " id="processing" th:field="*{status}" th:value="${listStatus.PROCESSING}"> PROCESSING</button>
-                <button type="submit" class=" btn btn-info status mb-2" id="approved" th:field="*{status}" th:value="${listStatus.APPROVED}"> APPROVED</button>
-                <button type="submit" class=" btn btn-secondary status mb-2" id="delivered" th:field="*{status}" th:value="${listStatus.DELIVERED}"> DELIVERED</button>
-                <button type="submit" class=" btn btn-danger status mb-2" id="canceled" th:field="*{status}" th:value="${listStatus.CANCELED}"> CANCELED</button>
+                <button type="submit" class=" btn btn-success status mb-2 mt-2" name="status"
+                        id="processing" th:field="status" th:value="*{status.PROCESSING}"> PROCESSING</button>
+                <button type="submit" class=" btn btn-info status mb-2"
+                        id="approved" name="status" th:field="*{status}" th:value="*{status.APPROVED}"> APPROVED</button>
+                <button type="submit" class=" btn btn-secondary status mb-2"
+                        id="delivered" name="status" th:field="*{status}" th:value="*{status.DELIVERED}"> DELIVERED</button>
+                <button type="submit" class=" btn btn-danger status mb-2"
+                        id="canceled" name="status" th:field="*{status}" th:value="*{status.CANCELED}"> CANCELED</button>
                 </form>
             </div>
         </div>

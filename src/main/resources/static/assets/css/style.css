@@ -134,13 +134,13 @@
     text-align: center;
     width: 200px;
 }
-#processing{
+#processing, #approved, #delivered, #canceled{
     background-color: green;
 }
 
-#approved, #delivered, #canceled{
-    background-color: grey;
-}
+/*{*/
+/*    background-color: grey;*/
+/*}*/
 
 /* .personal-infor */
 .profile {
