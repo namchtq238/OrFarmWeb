@@ -22,6 +22,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else if (userDetails.hasRole("CUSTOMER")) {
             redirectURL = "home";
         }
+        else if(userDetails.hasRole("STAFF")){
+            redirectURL = "admin/order";
+        }
         response.sendRedirect(redirectURL);
 
     }

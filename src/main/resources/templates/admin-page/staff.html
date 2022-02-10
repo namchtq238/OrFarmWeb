@@ -39,7 +39,7 @@
                                     <div class="page-title col-xl-12 col-md-12 col-sm-12 col-12 mb-5">
                                         <h3>Danh sách nhân viên</h3>
                                         
-                                        <a th:href="@{/admin/addStaff}" class="btn btn-warning">Thêm Nhân viên</a>
+                                        <a th:href="@{/admin/staffManager/addStaff}" class="btn btn-warning">Thêm Nhân viên</a>
                                     </div>
                                 </div>
                                
@@ -82,53 +82,35 @@
                                                 <th>Ảnh</th>
                                                 <th>Họ Tên</th>
                                                 <th>Email</th>
+                                                <th>Số điện thoại</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-center">
-                                            <tr>
-                                                <td>001</td>
+                                            <tr th:each="staff : ${staffList}" >
+                                                <td th:text="${staff.id}">001</td>
                                                 <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Trần Thị Lan</td>
-                                                <td>cb@gmail.com</td>
+                                                <a class="product-list-img" href="javascript: void(0);">
+                                                    <img src="../assets/img/60x60.jpg" alt="product"></a></td>
+                                                <td th:text="${staff.getName()}"></td>
+                                                <td th:text="${staff.email}"></td>
+                                                <td th:text="${staff.phoneNumber}"></td>
+
                                                 <td class="align-center">
                                                     <ul class="table-controls">
                                                         <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <a th:href="@{'/admin/staffManager/editStaff/' + ${staff.id}}" data-toggle="tooltip" data-placement="top" title="Edit">
                                                                 <i class="flaticon-edit"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                            <a th:href="@{'/admin/staffManager/deleteStaff/' + ${staff.id}}" data-toggle="tooltip" data-placement="top" title="Delete">
                                                                 <i class="flaticon-delete-5"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </td>
                                                 
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td class="text-center">
-                                                    <a class="product-list-img" href="javascript: void(0);"><img src="../assets/img/60x60.jpg" alt="product"></a></td>
-                                                <td>Trần Thị Lan</td>
-                                                <td>cb@gmail.com</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
                                             </tr>
                                         </tbody>
                                     </table>

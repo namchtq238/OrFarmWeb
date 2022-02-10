@@ -35,4 +35,8 @@ public class User {
     private Set<Cart> cart;
     @OneToMany(targetEntity = Orders.class, mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Order> orders;
+
+    public String getName() {
+        return lastName +" "+ firstName;
+    }
 }

@@ -1,5 +1,6 @@
 package com.orfarmweb.repository;
 
+import com.orfarmweb.constaint.Role;
 import com.orfarmweb.entity.User;
 import com.orfarmweb.modelutil.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,4 +20,5 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     boolean saveUserByEmail(String firstName, String lastName, int id);
     @Query(value = "select count(*) from User where role = 1", nativeQuery = true)
     Integer countUserByRole();
+    List<User> getUserByRole(Role role);
 }

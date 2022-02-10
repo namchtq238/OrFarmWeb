@@ -43,17 +43,26 @@
                             <div class="widget-content widget-content-area add-manage-product-2">
                                 <div class="">
 
-                                    <form id="add_form" class="form-horizontal"
-                                        action="https://ordertrungquoc.mrdream.vn/admin/blog" method="POST">
+                                    <form id="add_form" class="form-horizontal" th:object="${staff}"
+                                         method="POST">
                                         <input type="hidden" name="_token"
                                             value="0DHJE7LtR38u80RKTMpabHBIjL7g4R8BSLXt15B5">
+                                        <div class="form-group row" th:if="${#strings.isEmpty(staff.email)}">
+                                            <label class="col-md-3 col-from-label">
+                                                Email
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email" required th:field="*{email}">
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 col-form-label">
                                                 First Name
                                                 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="exampleInputFirstName" aria-describedby="emailHelp" placeholder="FirstName" required>
+                                                <input type="text" class="form-control" id="exampleInputFirstName" aria-describedby="emailHelp" placeholder="FirstName" required th:field="*{firstName}">
                                             </div>
                                         </div>
                                         <div class="form-group row" id="category">
@@ -62,25 +71,28 @@
                                                 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="exampleInputLastName" placeholder="LastName" required>
+                                                <input type="text" class="form-control" id="exampleInputLastName" placeholder="LastName" required th:field="*{lastName}">
                                             </div>
                                         </div>
-                                        <div class="form-group row" >
-                                            <label class="col-md-3 col-from-label">
-                                               Email
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email" required>
-                                            </div>
-                                        </div>
+
                                         <div class="form-group row" >
                                             <label class="col-md-3 col-from-label">
                                                Password
                                                 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" minlength="6" maxlength="10" required>
+                                                <input type="password" class="form-control"
+                                                       placeholder="Password" minlength="6" maxlength="10" required th:field="*{password}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" >
+                                            <label class="col-md-3 col-from-label">
+                                                Phone number
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Phone number"  required th:field="*{phoneNumber}">
                                             </div>
                                         </div>
 
