@@ -8,9 +8,8 @@ import com.orfarmweb.modelutil.ProductAdminDTO;
 import com.orfarmweb.modelutil.SearchDTO;
 import com.orfarmweb.service.AdminService;
 import com.orfarmweb.service.CategoryService;
+import com.orfarmweb.service.OrderService;
 import com.orfarmweb.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,11 +24,13 @@ public class AdminController {
     private final AdminService adminService;
     private final FormatPrice formatPrice;
     private final ProductService productService;
-    public AdminController(AdminService adminService, CategoryService categoryService, FormatPrice formatPrice, ProductService productService) {
+    private final OrderService orderService;
+    public AdminController(AdminService adminService, CategoryService categoryService, FormatPrice formatPrice, ProductService productService, OrderService orderService) {
         this.adminService = adminService;
         this.categoryService = categoryService;
         this.formatPrice = formatPrice;
         this.productService = productService;
+        this.orderService = orderService;
     }
     @ModelAttribute
     public void getTopOrder(Model model){
@@ -147,8 +148,9 @@ public class AdminController {
         return "/admin-page/user";
     }
 
-    @GetMapping("/admin/view-order")
-    public String viewOrderAdmin() {
+    @GetMapping("/admin/view-order/{id}")
+    public String viewOrderAdmin(@PathVariable int id, Model model) {
+        model.addAttribute("order",orderService.findById(id).get());
         return "/admin-page/view-order";
     }
 
