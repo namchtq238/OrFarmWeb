@@ -85,21 +85,17 @@
 
                                                 <th>SĐT</th>
                                                 <th>Email</th>
-                                                <th>Địa chỉ</th>
 
-                                                <th>Mật khẩu</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-center">
-                                            <tr>
-                                                <td>001</td>
-                                                <td>Trần Thị Lan</td>
+                                            <tr th:each="customer : ${customerList}">
+                                                <td th:text="${customer.id}">001</td>
+                                                <td th:text="${customer.name}">Trần Thị Lan</td>
 
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>0nhafurd</td>
+                                                <td th:text="${customer.phoneNumber}">0385647925</td>
+                                                <td th:text="${customer.email}">cb@gmail.com</td>
                                                 <td class="align-center">
                                                     <ul class="table-controls">
                                                         <li>
@@ -118,214 +114,7 @@
                                                 </td>
 
                                             </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td>Trần Thị Lan</td>
 
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>0nhafurd</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td>Trần Thị Lan</td>
-
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>0nhafurd</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td>Trần Thị Lan</td>
-
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>0nhafurd</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td>Trần Thị Lan</td>
-
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>0nhafurd</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td>Trần Thị Lan</td>
-
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>0nhafurd</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td>Trần Thị Lan</td>
-
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>0nhafurd</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td>Trần Thị Lan</td>
-
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>0nhafurd</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>001</td>
-                                                <td>Trần Thị Lan</td>
-
-                                                <td>0385647925</td>
-                                                <td>cb@gmail.com</td>
-                                                <td>Hà Nội</td>
-                                                <td>0nhafurd</td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
