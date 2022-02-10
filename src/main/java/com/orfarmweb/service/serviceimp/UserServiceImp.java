@@ -72,5 +72,13 @@ public class UserServiceImp implements UserService {
         return userRepo.save(user);
     }
 
+    @Override
+    public boolean updatePassword(String password) {
+        User user = getCurrentUser();
+        user.setPassword(passwordEncoder.encode(password));
+        userRepo.save(user);
+        return true;
+    }
+
 
 }

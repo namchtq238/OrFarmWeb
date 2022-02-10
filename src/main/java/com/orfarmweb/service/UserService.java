@@ -10,4 +10,5 @@ public interface UserService {
     boolean saveUser(User user);
     boolean saveUserById(UserDTO userDTO, int id);
     User updateUser(int id, User userRequest);
+    boolean updatePassword(String password);
 }
