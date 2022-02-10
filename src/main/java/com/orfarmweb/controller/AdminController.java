@@ -88,7 +88,7 @@ public class AdminController {
     public String handleEditStatusOrderAdmin(@PathVariable int id, @ModelAttribute Orders orders, @RequestParam Status status, Model model){
         orders.setStatus(status);
         orderService.updateStatus(id, orders);
-        return "redirect:/admin/view-order/{id}";
+        return "redirect:/admin/order/{id}";
     }
     /*-----------------------------Các View product---------------------------*/
     @GetMapping("/admin/product")
