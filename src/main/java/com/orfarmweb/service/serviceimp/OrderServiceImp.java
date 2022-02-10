@@ -8,6 +8,7 @@ import com.orfarmweb.modelutil.PaymentInformation;
 import com.orfarmweb.repository.OrdersRepo;
 import com.orfarmweb.service.OrderService;
 import com.orfarmweb.service.UserService;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,14 +47,14 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
-    public Optional<Orders> findById(int id) {
-        return ordersRepo.findById(id);
+    public Orders findById(int id) {
+        return ordersRepo.getById(id);
     }
 
     @Override
-    public void updateStatus(int id,Orders orders) {
-        Optional<Orders> order = ordersRepo.findById(id);
-        order.get().setStatus(orders.getStatus());
-        ordersRepo.save(order.get());
+    public void updateStatus(int id, Orders orders) {
+        Orders defaultOrder = ordersRepo.getById(id);
+        defaultOrder.setStatus(orders.getStatus());
+        ordersRepo.save(defaultOrder);
     }
 }

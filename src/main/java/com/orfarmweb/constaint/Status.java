@@ -1,8 +1,10 @@
 package com.orfarmweb.constaint;
 
+import org.springframework.stereotype.Component;
+
 public enum Status {
 
-    PROCESSING("PROCESSING", 2), APPROVED("APPROVED", 1), CANCELED("CANCELED", 0), DELIVERED("DELIVERED", 3);
+    PROCESSING("PROCESSING", 0), APPROVED("APPROVED", 1), CANCELED("CANCELED", 2), DELIVERED("DELIVERED", 3);
     private final String type;
     private final Integer value;
     Status(String type, int value) {

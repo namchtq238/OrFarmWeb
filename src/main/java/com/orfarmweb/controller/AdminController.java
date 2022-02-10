@@ -1,7 +1,9 @@
 package com.orfarmweb.controller;
 
 import com.orfarmweb.constaint.FormatPrice;
+import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.Category;
+import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.ChartDTO;
 import com.orfarmweb.modelutil.ProductAdminDTO;
@@ -41,7 +43,8 @@ public class AdminController {
         model.addAttribute("countOrder", adminService.countOrders());
         model.addAttribute("getCostOfProduct",adminService.getCostOfProduct());
     }
-    @RequestMapping("/admin")
+    /*---------------------------Các View Admin----------------------------*/
+    @GetMapping("/admin")
     public String Admin(){
         return "redirect:/admin/1";
     }
@@ -54,11 +57,32 @@ public class AdminController {
         model.addAttribute("dsProduct", dsProduct);
         return "admin-page/admin";
     }
+    @PostMapping("/get-chart-information")
+    @ResponseBody
+    public ChartDTO getChartInfor(){
+        return adminService.getInformationForChart();
+    }
+
+    /*-----------------------------Các View Order---------------------------*/
     @GetMapping("/admin/order")
     public String orderAmin(Model model){
         model.addAttribute("orderAdmin", adminService.getOrderAdmin());
         return "admin-page/order";
     }
+
+    @GetMapping("/admin/view-order/{id}")
+    public String viewOrderAdmin(@PathVariable int id, Model model) {
+        Orders orders = orderService.findById(id);
+        model.addAttribute("order",orders);
+        return "admin-page/view-order";
+    }
+    @PostMapping("/admin/view-order/edit/{id}")
+    public String handleEditStatusOrderAdmin(@PathVariable int id, @ModelAttribute Orders orders, Model model){
+        System.err.println(orders.getStatus());
+        orderService.updateStatus(id, orders);
+        return "redirect:/admin/view-order/{id}";
+    }
+    /*-----------------------------Các View product---------------------------*/
     @GetMapping("/admin/product")
     public String productAdmin(){return "redirect:/admin/product/1";}
     @GetMapping("/admin/product/{page}")
@@ -99,66 +123,8 @@ public class AdminController {
         productService.deleteProduct(productId);
         return "redirect:/admin/product";
     }
-    @GetMapping("/admin/hub")
-    public String showViewHub(){
-        return "redirect:/admin/hub/1";
-    }
-    @GetMapping("/admin/hub/{page}")
-        public String showViewHubPage(@PathVariable("page") long currentPage, Model model){
-        long totalPage = adminService.getTotalPageProduct();
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("currentPage", currentPage);
-        List<ProductAdminDTO> dsProduct = adminService.getHubByPage(currentPage);
-        model.addAttribute("input", new SearchDTO());
-        model.addAttribute("dsProduct", dsProduct);
-        return "admin-page/hub";
-    }
-    @PostMapping("/test")
-    @ResponseBody
-    public List<ProductAdminDTO> hubAdmin(){
-        return productService.findAll();
-    }
-    @PostMapping("/get-chart-information")
-    @ResponseBody
-    public ChartDTO getChartInfor(){
-        return adminService.getInformationForChart();
-    }
-    @GetMapping("/admin/hub/fillByName")
-    public String showViewSearchByName(){
-        return "redirect:/admin/hub/fillByName/1";
-    }
-    @GetMapping("/admin/hub/fillByName/{page}")
-    public String handleViewSearchByName(@PathVariable("page") long currentPage, Model model, @ModelAttribute SearchDTO searchDTO){
-        long totalPage = adminService.getTotalPageHubByKeyWord(searchDTO.getName());
-        model.addAttribute("input", new SearchDTO());
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("currentPage", currentPage);
-        List<ProductAdminDTO> dsProduct = adminService.searchHubByNameAndPage(searchDTO.getName(),currentPage);
-        model.addAttribute("dsProduct",dsProduct);
-        model.addAttribute("currentFilter", searchDTO);
-        return "admin-page/hub-name";
-    }
-    @GetMapping("/admin/staffManager")
-    public String staff(){
-        return "admin-page/staff";
-    }
 
-    @GetMapping("/admin/userManager")
-    public String userManagerAdmin() {
-        return "/admin-page/user";
-    }
-
-    @GetMapping("/admin/view-order/{id}")
-    public String viewOrderAdmin(@PathVariable int id, Model model) {
-        model.addAttribute("order",orderService.findById(id).get());
-        return "/admin-page/view-order";
-    }
-
-    @GetMapping("/admin/addStaff")
-    public String addStaffAdmin(){
-        return "/admin-page/add-staff";
-    }
-
+    /*------------------------------Các View Category------------------------------*/
     @GetMapping("/admin/category")
     public String categoryAdminPage(Model model){
         model.addAttribute("categoryList", categoryService.getListCategory());
@@ -194,6 +160,58 @@ public class AdminController {
         categoryService.updateCategory(id, category);
         return "redirect:/admin/category";
     }
+
+    /*------------------------------Các view HUB-----------------------------------*/
+    @GetMapping("/admin/hub")
+    public String showViewHub(){
+        return "redirect:/admin/hub/1";
+    }
+    @GetMapping("/admin/hub/{page}")
+        public String showViewHubPage(@PathVariable("page") long currentPage, Model model){
+        long totalPage = adminService.getTotalPageProduct();
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
+        List<ProductAdminDTO> dsProduct = adminService.getHubByPage(currentPage);
+        model.addAttribute("input", new SearchDTO());
+        model.addAttribute("dsProduct", dsProduct);
+        return "admin-page/hub";
+    }
+//    @PostMapping("/test")
+//    @ResponseBody
+//    public List<ProductAdminDTO> hubAdmin(){
+//        return productService.findAll();
+//    }
+    @GetMapping("/admin/hub/fillByName")
+    public String showViewSearchByName(){
+        return "redirect:/admin/hub/fillByName/1";
+    }
+    @GetMapping("/admin/hub/fillByName/{page}")
+    public String handleViewSearchByName(@PathVariable("page") long currentPage, Model model, @ModelAttribute SearchDTO searchDTO){
+        long totalPage = adminService.getTotalPageHubByKeyWord(searchDTO.getName());
+        model.addAttribute("input", new SearchDTO());
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
+        List<ProductAdminDTO> dsProduct = adminService.searchHubByNameAndPage(searchDTO.getName(),currentPage);
+        model.addAttribute("dsProduct",dsProduct);
+        model.addAttribute("currentFilter", searchDTO);
+        return "admin-page/hub-name";
+    }
+    /*-------------------------------------Các View Quản Lý Nhân Sự------------------------------*/
+    @GetMapping("/admin/staffManager")
+    public String staff(){
+        return "admin-page/staff";
+    }
+
+    @GetMapping("/admin/userManager")
+    public String userManagerAdmin() {
+        return "/admin-page/user";
+    }
+
+    @GetMapping("/admin/addStaff")
+    public String addStaffAdmin(){
+        return "/admin-page/add-staff";
+    }
+
     @GetMapping("/admin/personal-infor")
     public String personalInfoAdmin() {
         return "/admin-page/personal-infor-admin";

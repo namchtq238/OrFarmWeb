@@ -18,4 +18,5 @@ public interface OrdersRepo extends JpaRepository<Orders, Integer> {
     List<Orders> getAllByUser(User user);
     @Query(value = "select * from orders left join user on orders.user_id = user.id", nativeQuery = true)
     List<Orders> getOrderUser();
+
 }

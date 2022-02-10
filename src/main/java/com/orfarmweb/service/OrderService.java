@@ -13,6 +13,6 @@ public interface OrderService {
     Orders saveNewOrder(PaymentInformation information);
     boolean saveOrder(Orders orders, Float totalPrice, String note,Set<OrderDetail> orderDetailList);
     List<Orders> getOrderByCurrentUser();
-    Optional<Orders> findById(int id);
+    Orders findById(int id);
     void updateStatus(int id, Orders orders);
 }

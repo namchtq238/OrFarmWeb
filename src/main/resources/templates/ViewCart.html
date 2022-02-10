@@ -104,7 +104,9 @@
                             Tổng tiền: <span class="prices" th:text="${totalPrice}"></span> <sup>đ</sup>
                         </div>
                         <div class="payment">
-                            <a th:if="${countCartItem>0}" th:href="@{/payment}" class="pt-50 pl-50">Tiến hành thanh toán</a>
+                            <form th:action="@{/payment}" method="get">
+                            <button th:if="${countCartItem>0}" type="submit" class="btn btn-warning pt-50 pl-50">Tiến hành thanh toán</button>
+                            </form>
                         </div>
                     </div>
                 </div>
