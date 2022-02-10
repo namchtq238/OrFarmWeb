@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 
 <head th:fragment="html_header-admin">
     <meta charset="utf-8">
@@ -94,93 +96,116 @@
 
         <!--  BEGIN MODERN  -->
         <div class="modernSidebar-nav header header navbar" th:fragment="modern-admin">
-            <div class="">
-                <nav id="modernSidebar">
-                    <ul class="menu-categories pl-0 m-0" id="topAccordion">
-                        <li class="menu">
-                            <a th:href="@{/admin}">
-                                <div class="">
-                                    <i class="flaticon-computer-6"></i>
-                                    <span>Thống kê</span>
+            <div sec:authorize="hasAuthority('ADMIN')">
+                <div class="">
+                    <nav id="modernSidebar">
+                        <ul class="menu-categories pl-0 m-0" id="topAccordion">
+                            <li class="menu">
+                                <a th:href="@{/admin}">
+                                    <div class="">
+                                        <i class="flaticon-computer-6"></i>
+                                        <span>Thống kê</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu">
+                                <a th:href="@{/admin/order}" class="dropdown-toggle collapsed">
+                                    <div class="">
+                                        <i class="flaticon-cart-1"></i>
+                                        <span>Đơn hàng</span>
+                                    </div>
+                                </a>
+
+                            </li>
+
+                            <li class="menu">
+                                <a th:href="@{/admin/category}" class="dropdown-toggle collapsed">
+                                    <div class="">
+                                        <i class="flaticon-home-line"></i>
+                                        <span>Danh mục</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu">
+                                <a th:href="@{/admin/product}" class="dropdown-toggle collapsed">
+                                    <div class="">
+                                        <i class="flaticon-home-line"></i>
+                                        <span>Sản phẩm</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu">
+                                <a th:href="@{/admin/hub}" class="dropdown-toggle collapsed">
+                                    <div class="">
+                                        <i class="flaticon-home-line"></i>
+                                        <span>Kho Hàng</span>
+                                    </div>
+                                </a>
+
+                            </li>
+
+
+                            <li class="menu">
+                                <a href="#uiAccount" data-toggle="collapse" aria-expanded="false"
+                                   class="dropdown-toggle collapsed">
+                                    <div class="">
+                                        <i class="flaticon-user-7"></i>
+                                        <span>Tài khoản</span>
+                                    </div>
+                                </a>
+
+                                <div class="submenu list-unstyled collapse eq-animated eq-fadeInUp" id="uiAccount"
+                                     data-parent="#topAccordion">
+                                    <div class="submenu-scroll">
+                                        <ul class="list-unstyled mt-4">
+                                            <li>
+                                                <ul class="list-unstyled sub-submenu collapse show eq-animated eq-fadeInUp"
+                                                    id="ui-features">
+                                                    <li>
+                                                        <a th:href="@{/admin/userManager}">Khách hàng</a>
+                                                    </li>
+                                                    <li>
+                                                        <a th:href="@{/admin/staffManager}">Nhân viên</a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </a>
-                        </li>
-
-                        <li class="menu">
-                            <a th:href="@{/admin/order}" class="dropdown-toggle collapsed">
-                                <div class="">
-                                    <i class="flaticon-cart-1"></i>
-                                    <span>Đơn hàng</span>
-                                </div>
-                            </a>
-
-                        </li>
-
-                        <li class="menu">
-                            <a th:href="@{/admin/category}" class="dropdown-toggle collapsed">
-                                <div class="">
-                                    <i class="flaticon-home-line"></i>
-                                    <span>Danh mục</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="menu">
-                            <a th:href="@{/admin/product}" class="dropdown-toggle collapsed">
-                                <div class="">
-                                    <i class="flaticon-home-line"></i>
-                                    <span>Sản phẩm</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="menu">
-                            <a th:href="@{/admin/hub}" class="dropdown-toggle collapsed">
-                                <div class="">
-                                    <i class="flaticon-home-line"></i>
-                                    <span>Kho Hàng</span>
-                                </div>
-                            </a>
-
-                        </li>
+                            </li>
 
 
-                        <li class="menu">
-                            <a href="#uiAccount" data-toggle="collapse" aria-expanded="false"
-                               class="dropdown-toggle collapsed">
-                                <div class="">
-                                    <i class="flaticon-user-7"></i>
-                                    <span>Tài khoản</span>
-                                </div>
-                            </a>
+                        </ul>
+                    </nav>
 
-                            <div class="submenu list-unstyled collapse eq-animated eq-fadeInUp" id="uiAccount"
-                                 data-parent="#topAccordion">
-                                <div class="submenu-scroll">
-                                    <ul class="list-unstyled mt-4">
-                                        <li>
-                                            <ul class="list-unstyled sub-submenu collapse show eq-animated eq-fadeInUp"
-                                                id="ui-features">
-                                                <li>
-                                                    <a th:href="@{/admin/userManager}">Khách hàng</a>
-                                                </li>
-                                                <li>
-                                                    <a th:href="@{/admin/staffManager}">Nhân viên</a>
-                                                </li>
+                </div>
+            </div>
+            <div sec:authorize="hasAuthority('STAFF')">
+                <div class="">
+                    <nav id="modernSidebar">
+                        <ul class="menu-categories pl-0 m-0" id="topAccordion">
 
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
+                            <li class="menu">
+                                <a th:href="@{/admin/order}" class="dropdown-toggle collapsed">
+                                    <div class="">
+                                        <i class="flaticon-cart-1"></i>
+                                        <span>Đơn hàng</span>
+                                    </div>
+                                </a>
 
+                            </li>
+                        </ul>
+                    </nav>
 
-                    </ul>
-                </nav>
+                </div>
 
             </div>
         </div>
+
         <!--  END MODERN  -->
 
         <!--  BEGIN CONTENT PART  -->

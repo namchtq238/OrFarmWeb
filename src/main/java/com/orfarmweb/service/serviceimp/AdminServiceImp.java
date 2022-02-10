@@ -1,8 +1,10 @@
 package com.orfarmweb.service.serviceimp;
 
+import com.orfarmweb.constaint.Role;
 import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.entity.User;
 import com.orfarmweb.modelutil.ChartDTO;
 import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.OrderDetailDTO;
@@ -12,6 +14,8 @@ import com.orfarmweb.repository.OrdersRepo;
 import com.orfarmweb.repository.ProductRepo;
 import com.orfarmweb.repository.UserRepo;
 import com.orfarmweb.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,11 +28,13 @@ public class AdminServiceImp implements AdminService {
     private final UserRepo userRepo;
     private final ProductRepo productRepo;
     private final OrderDetailRepo orderDetailRepo;
-    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo, OrderDetailRepo orderDetailRepo) {
+    private final PasswordEncoder passwordEncoder;
+    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo, OrderDetailRepo orderDetailRepo, PasswordEncoder passwordEncoder) {
         this.ordersRepo = ordersRepo;
         this.userRepo = userRepo;
         this.productRepo = productRepo;
         this.orderDetailRepo = orderDetailRepo;
+        this.passwordEncoder = passwordEncoder;
     }
     private final long pageSize = 7;
     @Override
@@ -106,4 +112,40 @@ public class AdminServiceImp implements AdminService {
         chartDTO.setCost(getCostOfProduct());
         return chartDTO;
     }
+
+    @Override
+    public List<User> getUserByRole(Role role) {
+        return userRepo.getUserByRole(role);
+    }
+
+    @Override
+    public boolean addStaff(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.STAFF);
+        userRepo.save(user);
+        return true;
+
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userRepo.getById(id);
+    }
+
+    @Override
+    public boolean updateStaff(int id, User user) {
+        User staff = userRepo.getById(id);
+        staff.setFirstName(user.getFirstName());
+        staff.setLastName(user.getLastName());
+        staff.setPhoneNumber(user.getPhoneNumber());
+        staff.setPassword(passwordEncoder.encode(user.getPassword()));
+        return false;
+    }
+
+    @Override
+    public boolean deleteStaff(int id) {
+        userRepo.delete(userRepo.getById(id));
+        return true;
+    }
+
 }

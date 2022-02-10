@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -55,13 +56,16 @@ public class UserController {
     }
 
     @PostMapping("/processRegister")
-    public String showCreateAccountInformation(@ModelAttribute @Valid User user, BindingResult bindingResult){
+    public String showCreateAccountInformation(@ModelAttribute @Valid User user,
+                                               BindingResult bindingResult,
+                                               RedirectAttributes redirectAttributes){
         if(userService.checkExist(user.getEmail()))
             bindingResult.rejectValue("email","invalid","Email đã tồn tại");
         if (bindingResult.hasErrors()) {
             return "/createAccount";
         }
         userService.registerUser(user);
+        redirectAttributes.addFlashAttribute("msg", "Tạo tài khoản thành công");
         return "redirect:/login";
     }
     @GetMapping("/user/personal-information")
@@ -77,9 +81,7 @@ public class UserController {
         return "redirect:/user/personal-information";
     }
     @PostMapping("/user/edit-password")
-    public String handleEditPassWord(Model model, @ModelAttribute User user, String password){
-        User user1 = userService.findById(user.getId());
-        if(passwordEncoder.matches(user.getPassword(), passwordEncoder.encode(password))) userService.saveUser(user);
+    public String handleEditPassWord(Model model){
         return "redirect:/user/personal-information";
     }
     @GetMapping("/user/order-history")

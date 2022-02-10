@@ -1,42 +1,31 @@
 package com.orfarmweb.controller;
 
 import com.orfarmweb.constaint.FormatPrice;
-import com.orfarmweb.entity.*;
+import com.orfarmweb.entity.Cart;
+import com.orfarmweb.entity.Category;
 import com.orfarmweb.modelutil.CartDTO;
 import com.orfarmweb.modelutil.CartItem;
-import com.orfarmweb.modelutil.PaymentInformation;
-import com.orfarmweb.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import com.orfarmweb.service.CartService;
+import com.orfarmweb.service.CategoryService;
+import com.orfarmweb.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class CartController {
     private final CategoryService categoryService;
     private final CartService cartService;
     private final ProductService productService;
-    private final UserService userService;
-    private final OrderService orderService;
-    private final OrderDetailService orderDetailService;
     private final FormatPrice format;
 
-    public CartController(CategoryService categoryService, CartService cartService, ProductService productService, UserService userService, OrderService orderService, OrderDetailService orderDetailService, FormatPrice format) {
+    public CartController(CategoryService categoryService, CartService cartService, ProductService productService, FormatPrice format) {
         this.categoryService = categoryService;
         this.cartService = cartService;
         this.productService = productService;
-        this.userService = userService;
-        this.orderService = orderService;
-        this.orderDetailService = orderDetailService;
         this.format = format;
     }
 

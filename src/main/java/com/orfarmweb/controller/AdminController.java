@@ -1,25 +1,21 @@
 package com.orfarmweb.controller;
 
-import com.orfarmweb.config.OrderDataExcelExport;
 import com.orfarmweb.constaint.FormatPrice;
+import com.orfarmweb.constaint.Role;
 import com.orfarmweb.constaint.Status;
-import com.orfarmweb.entity.Category;
-import com.orfarmweb.entity.OrderDetail;
-import com.orfarmweb.entity.Orders;
-import com.orfarmweb.entity.Product;
+import com.orfarmweb.entity.*;
 import com.orfarmweb.modelutil.ChartDTO;
 import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.ProductAdminDTO;
 import com.orfarmweb.modelutil.SearchDTO;
-import com.orfarmweb.service.AdminService;
-import com.orfarmweb.service.CategoryService;
-import com.orfarmweb.service.OrderService;
-import com.orfarmweb.service.ProductService;
+import com.orfarmweb.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -43,12 +39,14 @@ public class AdminController {
     private final OrderService orderService;
     private static final String currentDirectory = System.getProperty("user.dir");
     private static final Path path = Paths.get(currentDirectory+Paths.get("/target/classes/static/image/ImageOrFarm"));
-    public AdminController(AdminService adminService, CategoryService categoryService, FormatPrice formatPrice, ProductService productService, OrderService orderService) {
+    private final UserService userService;
+    public AdminController(AdminService adminService, CategoryService categoryService, FormatPrice formatPrice, ProductService productService, OrderService orderService, UserService userService) {
         this.adminService = adminService;
         this.categoryService = categoryService;
         this.formatPrice = formatPrice;
         this.productService = productService;
         this.orderService = orderService;
+        this.userService = userService;
     }
     @ModelAttribute
     public void getTopOrder(Model model){
@@ -81,23 +79,23 @@ public class AdminController {
 
     /*-----------------------------Các View Order---------------------------*/
     @GetMapping("/admin/order")
-    public String orderAmin(Model model){
+    public String orderAdmin(Model model){
         model.addAttribute("orderAdmin", adminService.getOrderAdmin());
         return "admin-page/order";
     }
 
-    @GetMapping("/admin/view-order/{id}")
+    @GetMapping("/admin/order/{id}")
     public String viewOrderAdmin(@PathVariable int id, Model model) {
         Orders orders = orderService.findById(id);
         OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("order",orders);
         return "admin-page/view-order";
     }
-    @PostMapping("/admin/view-order/edit/{id}")
+    @PostMapping("/admin/order/edit/{id}")
     public String handleEditStatusOrderAdmin(@PathVariable int id, @ModelAttribute Orders orders, @RequestParam Status status, Model model){
         orders.setStatus(status);
         orderService.updateStatus(id, orders);
-        return "redirect:/admin/view-order/{id}";
+        return "redirect:/admin/order/{id}";
     }
     @GetMapping("/admin/export")
     public String exportToExcel(HttpServletResponse response) throws IOException{
@@ -249,22 +247,49 @@ public class AdminController {
     }
     /*-------------------------------------Các View Quản Lý Nhân Sự------------------------------*/
     @GetMapping("/admin/staffManager")
-    public String showViewStaff(){
+    public String showViewStaff(Model model){
+        model.addAttribute("staffList", adminService.getUserByRole(Role.STAFF));
         return "admin-page/staff";
     }
 
+    @GetMapping("/admin/staffManager/addStaff")
+    public String addStaffAdmin(Model model){
+        model.addAttribute("staff", new User());
+        return "/admin-page/add-staff";
+    }
+    @PostMapping("/admin/staffManager/addStaff")
+    public String handleAddStaff(RedirectAttributes redirectAttributes, @ModelAttribute User user){
+        if(adminService.addStaff(user))
+        redirectAttributes.addFlashAttribute("msg", "Thêm nhân viên thành công");
+        return "redirect:/admin/staffManager";
+    }
+    @GetMapping("/admin/staffManager/editStaff/{id}")
+    public String showEditStaff(Model model, @PathVariable("id") int id){
+        model.addAttribute("staff", adminService.getUserById(id));
+        return "/admin-page/add-staff";
+    }
+    @PostMapping("/admin/staffManager/editStaff/{id}")
+    public String handleEditStaff(RedirectAttributes redirectAttributes,
+                                  @ModelAttribute User user, @PathVariable("id") int id){
+        if(adminService.updateStaff(id, user))
+            redirectAttributes.addFlashAttribute("msg", "Thêm nhân viên thành công");
+        return "redirect:/admin/staffManager";
+    }
+    @GetMapping("admin/staffManager/deleteStaff/{id}")
+    public String handleDeleteStaff(@PathVariable("id") int id){
+        adminService.deleteStaff(id);
+        return "redirect:/admin/staffManager";
+    }
+
     @GetMapping("/admin/userManager")
-    public String showViewCustomer() {
+    public String showViewCustomer(Model model) {
+         model.addAttribute("customerList", adminService.getUserByRole(Role.CUSTOMER));
         return "/admin-page/user";
     }
 
-    @GetMapping("/admin/addStaff")
-    public String addStaffAdmin(){
-        return "/admin-page/add-staff";
-    }
-
     @GetMapping("/admin/personal-infor")
-    public String personalInfoAdmin() {
+    public String personalInfoAdmin(Model model) {
+        model.addAttribute("user", userService.getCurrentUser());
         return "/admin-page/personal-infor-admin";
     }
 }

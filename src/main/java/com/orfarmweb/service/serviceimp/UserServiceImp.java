@@ -76,4 +76,13 @@ public class UserServiceImp implements UserService {
     public User findById(int id) {
         return userRepo.getById(id);
     }
+    @Override
+    public boolean updatePassword(String password) {
+        User user = getCurrentUser();
+        user.setPassword(passwordEncoder.encode(password));
+        userRepo.save(user);
+        return true;
+    }
+
+
 }
