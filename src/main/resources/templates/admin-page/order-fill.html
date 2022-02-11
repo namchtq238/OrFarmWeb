@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="check-ordered">
-                        <form th:action="@{/admin/resultFilter}" method="post" th:object="${dateFill}">
+                        <form action="">
                             <ul class=" list-unstyled cd-bread mt-20">
                                 <!--                                    <li>-->
                                 <!--                                        <select name="" id="" class="form-control">-->
@@ -163,7 +163,7 @@
 
                                 <!--                                        </select>-->
                                 <!--                                    </li>-->
-
+                                <form th:action="@{/admin/order/fillter}" method="get" th:object="${dateFill}">
                                     <li>
                                         <div class="check-time">
                                             <div style="display: flex">
@@ -187,6 +187,7 @@
                                                 style="margin-bottom: 10px" type="submit">Tìm Kiếm
                                         </button>
                                     </li>
+                                </form>
                             </ul>
                         </form>
                         <!--                            <form th:action= method="get">-->

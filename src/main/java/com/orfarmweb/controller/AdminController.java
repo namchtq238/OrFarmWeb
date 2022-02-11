@@ -5,10 +5,7 @@ import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.constaint.Role;
 import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.*;
-import com.orfarmweb.modelutil.ChartDTO;
-import com.orfarmweb.modelutil.OrderAdmin;
-import com.orfarmweb.modelutil.ProductAdminDTO;
-import com.orfarmweb.modelutil.SearchDTO;
+import com.orfarmweb.modelutil.*;
 import com.orfarmweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,6 +77,7 @@ public class AdminController {
     /*-----------------------------Các View Order---------------------------*/
     @GetMapping("/admin/order")
     public String orderAdmin(Model model){
+        model.addAttribute("dateFill", new DateFilterDTO());
         model.addAttribute("orderAdmin", adminService.getOrderAdmin());
         return "admin-page/order";
     }
@@ -111,6 +109,14 @@ public class AdminController {
         OrderDataExcelExport orderDataExcelExport = new OrderDataExcelExport(orderAdmins);
         System.err.println(orderAdmins.toString());
         orderDataExcelExport.export(response);
+        return "admin-page/order";
+    }
+    @PostMapping("/admin/resultFilter")
+    public String handleFillByDate(@ModelAttribute DateFilterDTO dateFilterDTO, Model model, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return "redirect:/admin-page/order";
+        model.addAttribute("dateFill", new DateFilterDTO());
+        adminService.getOrderAdminByFillter(dateFilterDTO.getStartFill(),dateFilterDTO.getEndFill()).forEach(orderAdmin -> System.err.println(orderAdmin.toString()));
+        model.addAttribute("orderAdmin", adminService.getOrderAdminByFillter(dateFilterDTO.getStartFill(),dateFilterDTO.getEndFill()));
         return "admin-page/order";
     }
     /*-----------------------------Các View product---------------------------*/

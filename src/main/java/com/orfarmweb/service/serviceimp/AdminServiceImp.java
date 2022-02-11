@@ -19,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -151,6 +152,14 @@ public class AdminServiceImp implements AdminService {
     public boolean deleteStaff(int id) {
         userRepo.delete(userRepo.getById(id));
         return true;
+    }
+
+    @Override
+    public List<OrderAdmin> getOrderAdminByFillter(Date s, Date e) {
+        List<Orders> ordersList = ordersRepo.getOrderUserFillter(s,e);
+        List<OrderAdmin> list = new ArrayList<>();
+        ordersList.forEach(orders -> list.add(new OrderAdmin(orders,orderDetailRepo.getTotalProductByFilterAndOrderId(orders.getId(),s,e))));
+        return list;
     }
 
 }

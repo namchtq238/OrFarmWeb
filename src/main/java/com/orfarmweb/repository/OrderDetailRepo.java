@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -19,4 +20,9 @@ public interface OrderDetailRepo extends JpaRepository<OrderDetail, Integer> {
     Integer getTotalProduct(int id);
     @Query(value = "select * from order_detail left join orders on order_detail.order_id=orders.id where orders.status = 3", nativeQuery = true)
     List<OrderDetail> getListRevenueOrder();
+    @Query(value = "select sum(quantity) " +
+            "from order_detail " +
+            "left join orders " +
+            "on order_detail.order_id = orders.id where order_id = :id and create_at between :start and :end", nativeQuery = true)
+    Integer getTotalProductByFilterAndOrderId(int id, Date start, Date end);
 }

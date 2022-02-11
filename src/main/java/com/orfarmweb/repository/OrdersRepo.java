@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -18,5 +19,6 @@ public interface OrdersRepo extends JpaRepository<Orders, Integer> {
     List<Orders> getAllByUser(User user);
     @Query(value = "select * from orders left join user on orders.user_id = user.id", nativeQuery = true)
     List<Orders> getOrderUser();
-
+    @Query(value = "select * from orders left join user on orders.user_id = user.id where orders.create_at between :start and :end", nativeQuery = true)
+    List<Orders> getOrderUserFillter(Date start, Date end);
 }

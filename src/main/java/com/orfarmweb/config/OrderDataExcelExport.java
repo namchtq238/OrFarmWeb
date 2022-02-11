@@ -39,8 +39,6 @@ public class OrderDataExcelExport{
         cell.setCellValue("Tổng tiền");
         cell = row.createCell(6);
         cell.setCellValue("Trạng thái");
-
-
     }
     private void writeDataRows(){
         int count = 1;

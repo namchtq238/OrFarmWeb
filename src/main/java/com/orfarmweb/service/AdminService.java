@@ -9,6 +9,7 @@ import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.OrderDetailDTO;
 import com.orfarmweb.modelutil.ProductAdminDTO;
 
+import java.util.Date;
 import java.util.List;
 
 public interface AdminService {
@@ -29,4 +30,5 @@ public interface AdminService {
     User getUserById(int id);
     boolean updateStaff(int id, User user);
     boolean deleteStaff(int id);
+    List<OrderAdmin> getOrderAdminByFillter(Date s, Date e);
 }
