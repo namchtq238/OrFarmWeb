@@ -32,7 +32,7 @@ $(".top-search-scroll").mCustomScrollbar({
       Donut Chart
   ================
 */
-var url = 'http://localhost:8080/get-chart-information'
+let url = 'http://localhost:8080/get-chart-information'
 const option = {
     method: "POST",
     headers: {
@@ -44,10 +44,9 @@ fetch(url, option)
         return res.json();
     })
     .then(function (chartDTO){
-        var cost = chartDTO.cost
-        var revenue = chartDTO.revenue
+        let percentProfit = 100*(chartDTO.revenue-chartDTO.cost)/chartDTO.revenue
         new Chartist.Pie('.s-r', {
-            series: [(revenue-cost)<0?((cost-revenue)*100/(cost+revenue)):0, revenue*100/(cost+revenue)]
+            series: [percentProfit.toFixed(2), (100-percentProfit).toFixed(2)]
         }, {
             donut: true,
             donutWidth: 40,

@@ -1,5 +1,6 @@
 package com.orfarmweb.controller;
 
+import com.orfarmweb.config.OrderDataExcelExport;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.constaint.Role;
 import com.orfarmweb.constaint.Status;
@@ -16,7 +17,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -289,7 +289,13 @@ public class AdminController {
 
     @GetMapping("/admin/personal-infor")
     public String personalInfoAdmin(Model model) {
-        model.addAttribute("user", userService.getCurrentUser());
+        User user = userService.findById(userService.getCurrentUser().getId());
+        model.addAttribute("user", user);
         return "/admin-page/personal-infor-admin";
+    }
+    @PostMapping("/admin/editUser")
+    public String handleEditCurrentUser(@ModelAttribute User user){
+        userService.updateUser(userService.getCurrentUser().getId(),user);
+        return "redirect:/admin/personal-infor";
     }
 }

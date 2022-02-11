@@ -7,7 +7,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.beans.Transient;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 public class OrderDataExcelExport{
