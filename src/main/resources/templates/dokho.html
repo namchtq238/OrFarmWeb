@@ -130,11 +130,14 @@
                     </div>
                 </div>
                 <div class="shop-grid-topbar d-flex justify-content-between align-items-center">
-                    <div class="ml-12 mt-24">
-                        <input id="input-search" onchange="handleSearch()" type="text"
-                               class="form__field-input--text" value=""
-                               placeholder="Nhập thông tin tìm kiếm ..." />
-                    </div>
+                    <form th:action="@{'/category/'+${category.id}+'/fillByName/1'}" method="get" th:object="${input}">
+                        <div class="ml-12 mt-24">
+                            <input id="input-search" type="text"
+                                   class="form__field-input--text" value=""
+                                   placeholder="Nhập thông tin tìm kiếm ..." th:field="*{name}"/>
+                        </div>
+                        <button type="submit" class="d-none"></button>
+                    </form>
                     <span>Tổng số <span th:text="${sum}"></span> sản phẩm.</span>
                     <select id="product">
                         <option value="volvo">Mới nhất</option>

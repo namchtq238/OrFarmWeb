@@ -1,4 +1,4 @@
-package com.orfarmweb.controller.AdminController1;
+package com.orfarmweb.controller.admincontroller;
 
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.modelutil.ProductAdminDTO;
@@ -30,19 +30,19 @@ public class HubAdminController {
         model.addAttribute("dsProduct", dsProduct);
         return "admin-page/hub";
     }
-    @GetMapping("/admin/hub/fillByName")
-    public String showViewSearchByName(){
-        return "redirect:/admin/hub/fillByName/1";
-    }
-    @GetMapping("/admin/hub/fillByName/{page}")
-    public String handleViewSearchByName(@PathVariable("page") long currentPage, Model model, @ModelAttribute SearchDTO searchDTO){
-        long totalPage = adminService.getTotalPageHubByKeyWord(searchDTO.getName());
-        model.addAttribute("input", new SearchDTO());
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("currentPage", currentPage);
-        List<ProductAdminDTO> dsProduct = adminService.searchHubByNameAndPage(searchDTO.getName(),currentPage);
-        model.addAttribute("dsProduct",dsProduct);
-        model.addAttribute("currentFilter", searchDTO);
-        return "admin-page/hub-name";
-    }
+//    @GetMapping("/admin/hub/fillByName")
+//    public String showViewSearchByName(){
+//        return "redirect:/admin/hub/fillByName/1";
+//    }
+//    @GetMapping("/admin/hub/fillByName/{page}")
+//    public String handleViewSearchByName(@PathVariable("page") long currentPage, Model model, @ModelAttribute SearchDTO searchDTO){
+//        long totalPage = adminService.getTotalPageHubByKeyWord(searchDTO.getName());
+//        model.addAttribute("input", new SearchDTO());
+//        model.addAttribute("totalPage", totalPage);
+//        model.addAttribute("currentPage", currentPage);
+//        List<ProductAdminDTO> dsProduct = adminService.searchHubByNameAndPage(searchDTO.getName(),currentPage);
+//        model.addAttribute("dsProduct",dsProduct);
+//        model.addAttribute("currentFilter", searchDTO);
+//        return "admin-page/hub-name";
+//    }
 }

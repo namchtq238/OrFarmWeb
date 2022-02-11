@@ -33,11 +33,12 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Product> findByPage(@RequestParam("start") long start, @RequestParam("limit") long limit, int id);
     @Query(value = "select cate_id from product where id = ?", nativeQuery = true)
     int findCateGoryIdByProdId(int id);
-
-    @Query(value = "SELECT * FROM product where product.name like %:keyWord% LIMIT :start, :to", nativeQuery = true)
-    List<Product> searchByNameAndPage(String keyWord, @RequestParam("start") long start, @RequestParam("to") long to);
-    @Query(value = "SELECT COUNT(*) FROM product where product.name like %:keyWord%", nativeQuery = true)
-    List<Long> countByKeyWord(String keyWord);
+    @Query(value = "SELECT * FROM product left join category on product.cate_id = category.id " +
+            "where product.cate_id = :id and product.name like %:keyWord% LIMIT :start, :to", nativeQuery = true)
+    List<Product> searchByNameAndPage(int id, String keyWord, @RequestParam("start") long start, @RequestParam("to") long to);
+    @Query(value = "SELECT COUNT(*) FROM product left join category on product.cate_id = category.id " +
+            "where product.cate_id = :id and product.name like %:keyWord%", nativeQuery = true)
+    List<Long> countByKeyWord(int id, String keyWord);
     @Query(value = "select SUM(product.quantity_import*product.cost) FROM product", nativeQuery = true)
     Float getTotalCostOfProduct();
 }

@@ -154,12 +154,14 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<Product> findProductByName(int id, String keyWord, long currentPage) {
-        return null;
+        return productRepo.searchByNameAndPage(id,keyWord,(currentPage-1)*pageSize,pageSize);
     }
 
     @Override
     public long getTotalPageByName(int id, String keyWord) {
-        return 0;
+        return (productRepo.countByKeyWord(id,keyWord).get(0) % pageSize == 0) ?
+                productRepo.countByKeyWord(id, keyWord).get(0) / pageSize
+                : (productRepo.countByKeyWord(id, keyWord).get(0) / pageSize) + 1;
     }
 
 }

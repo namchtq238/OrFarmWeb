@@ -1,4 +1,4 @@
-package com.orfarmweb.controller.AdminController1;
+package com.orfarmweb.controller.admincontroller;
 
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;

@@ -66,6 +66,7 @@ public class ProductController {
         if(productList.size()<4) model.addAttribute("bestSeller", productList);
         else model.addAttribute("bestSeller", productList.subList(0, 3));
         model.addAttribute("filter", new FilterProduct());
+        model.addAttribute("input", new SearchDTO());
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("categoryId", id);
@@ -94,6 +95,7 @@ public class ProductController {
         else model.addAttribute("bestSeller", productList.subList(0, 3));
         model.addAttribute("currentFilter", filter);
         model.addAttribute("filter", new FilterProduct());
+        model.addAttribute("input", new SearchDTO());
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("categoryId", id);
@@ -136,13 +138,25 @@ public class ProductController {
     }
     @GetMapping("/category/{id}/fillByName/{page}")
     public String handleViewSearchByName(@PathVariable("page") long currentPage, @PathVariable("id") int id, Model model, @ModelAttribute SearchDTO searchDTO){
-        long totalPage = adminService.getTotalPageHubByKeyWord(searchDTO.getName());
+        long totalPage = productService.getTotalPageByName(id, searchDTO.getName());
+        List<Product> productList = productService.getListProductByHot();
+        Collections.shuffle(productList);
+        if(productList.size()<4) model.addAttribute("bestSeller", productList);
+        else model.addAttribute("bestSeller", productList.subList(0, 3));
         model.addAttribute("input", new SearchDTO());
+        model.addAttribute("category", categoryService.findById(id).get());
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
-        List<ProductAdminDTO> dsProduct = adminService.searchHubByNameAndPage(searchDTO.getName(),currentPage);
-        model.addAttribute("dsProduct",dsProduct);
+        List<Product> dsProduct = productService.findProductByName(id,searchDTO.getName(),currentPage);
+        int count = 0;
+        for (Product product: dsProduct) {
+            count++;
+        }
+        model.addAttribute("filter", new FilterProduct());
+        model.addAttribute("categoryId", id);
+        model.addAttribute("sum", count);
+        model.addAttribute("listProduct",dsProduct);
         model.addAttribute("currentFilter", searchDTO);
-        return "admin-page/hub-name";
+        return "thucphamkhac";
     }
 }
