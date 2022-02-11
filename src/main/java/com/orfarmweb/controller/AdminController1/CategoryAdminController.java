@@ -19,23 +19,10 @@ import java.nio.file.StandardCopyOption;
 @Controller
 public class CategoryAdminController {
     private final CategoryService categoryService;
-    private final AdminService adminService;
-    private final FormatPrice formatPrice;
     private static final String currentDirectory = System.getProperty("user.dir");
     private static final Path path = Paths.get(currentDirectory+Paths.get("/target/classes/static/image/ImageOrFarm"));
-    public CategoryAdminController(AdminService adminService, CategoryService categoryService, FormatPrice formatPrice) {
-        this.adminService = adminService;
+    public CategoryAdminController(CategoryService categoryService) {
         this.categoryService = categoryService;
-        this.formatPrice = formatPrice;
-    }
-    @ModelAttribute
-    public void getTopOrder(Model model){
-        model.addAttribute("topOder", adminService.getTopOrderDetail());
-        model.addAttribute("format", formatPrice);
-        model.addAttribute("countUser", adminService.countUserByRole());
-        model.addAttribute("getRevenue", adminService.getRevenue());
-        model.addAttribute("countOrder", adminService.countOrders());
-        model.addAttribute("getCostOfProduct",adminService.getCostOfProduct());
     }
     @GetMapping("/admin/category")
     public String categoryAdminPage(Model model){
@@ -54,7 +41,6 @@ public class CategoryAdminController {
         try {
             InputStream inputStream = photo.getInputStream();
             Files.copy(inputStream, path.resolve(photo.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
-            System.out.println(photo.getOriginalFilename());
             category.setImage(photo.getOriginalFilename());
         }
         catch (IOException e) {

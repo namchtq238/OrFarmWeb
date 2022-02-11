@@ -31,12 +31,7 @@ public class OrderAdminController {
     }
     @ModelAttribute
     public void getTopOrder(Model model){
-        model.addAttribute("topOder", adminService.getTopOrderDetail());
         model.addAttribute("format", formatPrice);
-        model.addAttribute("countUser", adminService.countUserByRole());
-        model.addAttribute("getRevenue", adminService.getRevenue());
-        model.addAttribute("countOrder", adminService.countOrders());
-        model.addAttribute("getCostOfProduct",adminService.getCostOfProduct());
     }
     @GetMapping("/admin/order")
     public String orderAdmin(Model model){

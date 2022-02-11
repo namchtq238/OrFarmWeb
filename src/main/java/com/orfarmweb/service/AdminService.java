@@ -18,11 +18,10 @@ public interface AdminService {
     Integer countOrders();
     Integer countUserByRole();
     Float getRevenue();
-    long getTotalPageProduct();
-    List<Product> getProductByPage(long currentPage);
+    List<Product> getProduct();
     List<OrderDetailDTO> getTopOrderDetail();
     List<OrderAdmin> getOrderAdmin();
-    List<ProductAdminDTO> getHubByPage(long currentPage);
+    List<ProductAdminDTO> getHub();
     List<ProductAdminDTO> searchHubByNameAndPage(String keyWord, long currentPage);
     long getTotalPageHubByKeyWord(String keyWord);
     Float getCostOfProduct();

@@ -31,9 +31,9 @@ public class User {
     private String address;
     private String phoneNumber;
     private Role role;
-    @OneToMany(targetEntity = Cart.class, mappedBy = "user", cascade = CascadeType.MERGE)
+    @OneToMany(targetEntity = Cart.class, mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Cart> cart;
-    @OneToMany(targetEntity = Orders.class, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Orders.class, mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Order> orders;
 
     public String getName() {

@@ -1,7 +1,7 @@
 <!doctype html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace = "~{admin-page/admin :: html_header-admin }">
+<head th:replace="~{admin-page/admin :: html_header-admin }">
 
 <body>
 <div id="eq-loader">
@@ -16,7 +16,7 @@
 <!--  BEGIN PROFILE SIDEBAR  -->
 
 
-    <div class="main-container" id="container">
+<div class="main-container" id="container">
     <div class="overlay"></div>
     <div class="ps-overlay"></div>
     <div class="search-overlay"></div>
@@ -25,173 +25,108 @@
     <div th:replace="~{admin-page/admin  :: modern-admin}"></div>
     <!--  END MODERN  -->
 
-        <!--  BEGIN CONTENT PART  -->
-        <div id="content" class="main-content">
-            <div class="container">
-                <div class="page-header">
-                    <div class="page-title">
-                        <h3>Tất cả sản phẩm</h3>
-                        
-                        <a th:href="@{/admin/product/add}" class="btn btn-info form-control">Thêm sản phẩm</a>
-                    </div>
+    <!--  BEGIN CONTENT PART  -->
+    <div id="content" class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <div class="page-title">
+                    <h3>Tất cả sản phẩm</h3>
+
+                    <a th:href="@{/admin/product/add}" class="btn btn-info form-control">Thêm sản phẩm</a>
                 </div>
-                
-                <div class="row margin-bottom-120">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-header">
-                                <div class="row">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>Danh sách sản phẩm</h4>
-                                    </div>
+            </div>
+
+            <div class="row margin-bottom-120">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="statbox widget box box-shadow">
+                        <div class="widget-header">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Danh sách sản phẩm</h4>
                                 </div>
                             </div>
-                            <div class="widget-content widget-content-area">
-                                <div class="table-responsive mb-4">
-                                    <table id="ecommerce-product-list" class="table  table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Ảnh</th>
-                                                <th>Tên</th>
-                                                <th>Danh mục</th>
-                                                <th>Giá bán</th>
-                                                <th>Giảm giá</th>
-                                                <th>Giá nhập</th>
-                                                <th>Nổi bật</th>
-                                                <th>Số lượng</th>
-                                                <th>Mô Tả Ngắn</th>
-                                                <th>Mô Tả</th>
-                                                <th>Trạng Thái</th>
-                                                <th class="align-center">Hành động</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody th:each="pro, state : ${dsProduct}">
-                                            <tr>
-                                                <td th:utext="${pro.id}"></td>
-                                                <td class="text-center"><img class="product-list-img" th:src="@{'/image/ImageOrFarm/'+${pro.image}}"></td>
-                                                <td th:utext="${pro.name}">CK Glasses</td>
-                                                <td th:utext="${pro.category.name}"></td>
-                                                <td th:utext="${format.formatPrice(pro.salePrice)}"></td>
-                                                <td th:utext="${pro.percentDiscount} + '%'">10%</td>
-                                                <td th:utext="${format.formatPrice(pro.cost)}">200000đ</td>
-                                                <th:block th:if="${pro.isHot()}">
-                                                    <td >Nổi bật</td>
-                                                </th:block>
-                                                <th:block th:unless="${pro.isHot()}">
-                                                    <td >Không</td>
-                                                </th:block>
-                                                <td th:utext="${pro.quantityProd}"></td>
-                                                <td th:utext="${pro.briefDesc}"></td>
-                                                <td th:utext="${pro.description}"></td>
-                                                <td class="text-center">
-                                                    <th:block th:if="${pro.quantityProd != 0}"><i class="flaticon-cart-bag-1"></i></th:block>
-                                                    <th:block th:unless="${pro.quantityProd != 0}"><i class="flaticon-cart-bag"></i></th:block>
-                                                </td>
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li>
-                                                            <a th:href="@{'/admin/product/edit/' + ${pro.id}}" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a th:href="@{'/admin/product/delete/' + ${pro.id}}"  data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="flaticon-delete-5"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="pagination-section">
-                                    <ul
-                                            class="pagination pagination-style-1 pagination-rounded justify-content-end mt-3 mb-3">
-                                        <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled' }">
-                                            <a class="page-link" th:href="@{'/admin/product/1'}"
-                                               tabindex="-1">First</a>
-                                        </li>
-                                        <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled' }">
-                                            <a class="page-link"
-                                               th:href="@{'/admin/product/'+${currentPage - 1}}"
-                                               aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <th:block th:if="${totalPage <= 10}">
-                                            <li th:each="i : ${#numbers.sequence(1, totalPage)}"
-                                                th:class="${currentPage != i ? 'page-item' : 'page-item active' }">
-                                                <a class="page-link" th:href="@{'/admin/product/' + ${i}}"
-                                                   th:text="${i}"></a>
-                                            </li>
+                        </div>
+                        <div class="widget-content widget-content-area">
+                            <div class="table-responsive mb-4">
+                                <table id="ecommerce-product-list" class="table  table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ảnh</th>
+                                        <th>Tên</th>
+                                        <th>Danh mục</th>
+                                        <th>Giá bán</th>
+                                        <th>Giảm giá</th>
+                                        <th>Giá nhập</th>
+                                        <th>Nổi bật</th>
+                                        <th>Số lượng</th>
+                                        <th>Mô Tả Ngắn</th>
+                                        <th>Mô Tả</th>
+                                        <th>Trạng Thái</th>
+                                        <th class="align-center">Hành động</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="pro, state : ${dsProduct}">
+                                        <td th:utext="${pro.id}"></td>
+                                        <td class="text-center"><img class="product-list-img"
+                                                                     th:src="@{'/image/ImageOrFarm/'+${pro.image}}">
+                                        </td>
+                                        <td th:utext="${pro.name}">CK Glasses</td>
+                                        <td th:utext="${pro.category.name}"></td>
+                                        <td th:utext="${format.formatPrice(pro.salePrice)}"></td>
+                                        <td th:utext="${pro.percentDiscount} + '%'">10%</td>
+                                        <td th:utext="${format.formatPrice(pro.cost)}">200000đ</td>
+                                        <th:block th:if="${pro.isHot()}">
+                                            <td>Nổi bật</td>
                                         </th:block>
-                                        <th:block th:if="${totalPage > 10}">
-                                            <th:block
-                                                    th:if="${currentPage <= 5 || currentPage >= totalPage - 4}">
-                                                <li th:each="i : ${#numbers.sequence(1, 5)}"
-                                                    th:class="${currentPage != i ? 'page-item' : 'page-item active' }"><a
-                                                        class="page-link" th:href="@{'/admin/product/' + ${i}}"
-                                                        th:text="${i}"></a></li>
-                                                <li class="page-item"><a class="page-link"
-                                                                         th:href="@{'/admin/product/' + '/6'}">...</a>
-                                                </li>
-                                                <li th:each="i : ${#numbers.sequence(totalPage - 4, totalPage)}"
-                                                    th:class="${currentPage != i ? 'page-item' : 'page-item active' }"><a
-                                                        class="page-link" th:href="@{'/admin/product/' + ${i}}"
-                                                        th:text="${i}"></a></li>
-                                            </th:block>
-
-                                            <th:block
-                                                    th:if="${currentPage > 5 && currentPage < totalPage - 4}">
-                                                <li class="page-item"><a class="page-link"
-                                                                         th:href="@{'/admin/product/' + ${currentPage - 5}}">...</a>
-                                                </li>
-                                                <li
-                                                        th:each="i : ${#numbers.sequence(currentPage - 4, currentPage + 4)}"
-                                                        th:class="${currentPage != i ? 'page-item' : 'page-item active' }">
-                                                    <a
-                                                            class="page-link" th:href="@{'/admin/product/' + ${i}}"
-                                                            th:text="${i}"></a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link"
-                                                       th:href="@{'/admin/product/' + ${currentPage  + 5}}">...</a>
-                                                </li>
-                                            </th:block>
-
+                                        <th:block th:unless="${pro.isHot()}">
+                                            <td>Không</td>
                                         </th:block>
-
-
-                                        <li
-                                                th:class="${currentPage < totalPage ? 'page-item' : 'page-item disabled' }"><a
-                                                class="page-link"
-                                                th:href="@{'/admin/product/' + ${currentPage + 1}}"
-                                                aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-                                                class="sr-only">Next</span>
-                                        </a></li>
-                                        <li
-                                                th:class="${currentPage < totalPage ? 'page-item' : 'page-item disabled' }"><a
-                                                class="page-link"
-                                                th:href="@{'/admin/product/'+ ${totalPage}}" tabindex="-1">Last</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                        <td th:utext="${pro.quantityProd}"></td>
+                                        <td th:utext="${pro.briefDesc}"></td>
+                                        <td th:utext="${pro.description}"></td>
+                                        <td class="text-center">
+                                            <th:block th:if="${pro.quantityProd != 0}"><i
+                                                    class="flaticon-cart-bag-1"></i></th:block>
+                                            <th:block th:unless="${pro.quantityProd != 0}"><i
+                                                    class="flaticon-cart-bag"></i></th:block>
+                                        </td>
+                                        <td class="align-center">
+                                            <ul class="table-controls">
+                                                <li>
+                                                    <a th:href="@{'/admin/product/edit/' + ${pro.id}}"
+                                                       data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <i class="flaticon-edit"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a th:href="@{'/admin/product/delete/' + ${pro.id}}"
+                                                       data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <i class="flaticon-delete-5"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--  END CONTENT PART  -->
     </div>
-    <!-- END MAIN CONTAINER -->
+</div>
+<!--  END CONTENT PART  -->
+</div>
+<!-- END MAIN CONTAINER -->
 
-     <!--  END CONTENT PART  -->
-    <!--  END MODERN  -->
+<!--  END CONTENT PART  -->
+<!--  END MODERN  -->
 <!--  BEGIN FOOTER  -->
-<footer th:replace = "~{admin-page/admin  :: admin-footer}"> </footer>
+<footer th:replace="~{admin-page/admin  :: admin-footer}"></footer>
 <!--  END FOOTER  -->
 
 <!--  BEGIN PROFILE SIDEBAR  -->
@@ -199,6 +134,22 @@
 </body>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <th:block th:insert="~{admin-page/admin  :: script}"></th:block>
+<script>
+    $('#ecommerce-product-list').DataTable({
+        "lengthMenu": [5, 10, 20, 50, 100],
+        "language": {
+            "paginate": {
+                "previous": "<i class='flaticon-arrow-left-1'></i>",
+                "next": "<i class='flaticon-arrow-right'></i>"
+            },
+            "info": "Hiện thị _PAGE_ trong _PAGES_"
+        },
+        drawCallback: function (settings) {
+            $('[data-toggle="tooltip"]').tooltip();
+        },
+        "bDestroy": true
+    });
+</script>
 
 <!--  END CUSTOM SCRIPT FILES  -->
 

@@ -29,24 +29,12 @@ public class HubAdminController {
         model.addAttribute("getCostOfProduct",adminService.getCostOfProduct());
     }
     @GetMapping("/admin/hub")
-    public String showViewHub(){
-        return "redirect:/admin/hub/1";
-    }
-    @GetMapping("/admin/hub/{page}")
-    public String showViewHubPage(@PathVariable("page") long currentPage, Model model){
-        long totalPage = adminService.getTotalPageProduct();
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("currentPage", currentPage);
-        List<ProductAdminDTO> dsProduct = adminService.getHubByPage(currentPage);
+    public String showViewHub(Model model){
+        List<ProductAdminDTO> dsProduct = adminService.getHub();
         model.addAttribute("input", new SearchDTO());
         model.addAttribute("dsProduct", dsProduct);
         return "admin-page/hub";
     }
-    //    @PostMapping("/test")
-//    @ResponseBody
-//    public List<ProductAdminDTO> hubAdmin(){
-//        return productService.findAll();
-//    }
     @GetMapping("/admin/hub/fillByName")
     public String showViewSearchByName(){
         return "redirect:/admin/hub/fillByName/1";

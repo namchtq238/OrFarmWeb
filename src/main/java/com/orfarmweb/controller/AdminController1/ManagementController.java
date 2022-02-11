@@ -19,23 +19,10 @@ import java.nio.file.Paths;
 @Controller
 public class ManagementController {
     private final AdminService adminService;
-    private final FormatPrice formatPrice;
-    private static final String currentDirectory = System.getProperty("user.dir");
-    private static final Path path = Paths.get(currentDirectory+Paths.get("/target/classes/static/image/ImageOrFarm"));
     private final UserService userService;
     public ManagementController(AdminService adminService, FormatPrice formatPrice, UserService userService) {
         this.adminService = adminService;
-        this.formatPrice = formatPrice;
         this.userService = userService;
-    }
-    @ModelAttribute
-    public void getTopOrder(Model model){
-        model.addAttribute("topOder", adminService.getTopOrderDetail());
-        model.addAttribute("format", formatPrice);
-        model.addAttribute("countUser", adminService.countUserByRole());
-        model.addAttribute("getRevenue", adminService.getRevenue());
-        model.addAttribute("countOrder", adminService.countOrders());
-        model.addAttribute("getCostOfProduct",adminService.getCostOfProduct());
     }
     @GetMapping("/admin/staffManager")
     public String showViewStaff(Model model){

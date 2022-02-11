@@ -16,8 +16,6 @@ import java.util.List;
 public class MainAdminController {
     private final AdminService adminService;
     private final FormatPrice formatPrice;
-    private static final String currentDirectory = System.getProperty("user.dir");
-    private static final Path path = Paths.get(currentDirectory+Paths.get("/target/classes/static/image/ImageOrFarm"));
 
     public MainAdminController(AdminService adminService, FormatPrice formatPrice) {
         this.adminService = adminService;
@@ -33,16 +31,8 @@ public class MainAdminController {
         model.addAttribute("getCostOfProduct",adminService.getCostOfProduct());
     }
     @GetMapping("/admin")
-    public String Admin(){
-        return "redirect:/admin/1";
-    }
-    @GetMapping("/admin/{page}")
-    public String showViewAdminPage(@PathVariable("page") long currentPage, Model model){
-        long totalPage = adminService.getTotalPageProduct();
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("currentPage", currentPage);
-        List<Product> dsProduct = adminService.getProductByPage(currentPage);
-        model.addAttribute("dsProduct", dsProduct);
+    public String getMainAdminPage(Model model){
+        model.addAttribute("dsProduct", adminService.getProduct());
         return "admin-page/admin";
     }
     @PostMapping("/get-chart-information")

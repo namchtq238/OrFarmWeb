@@ -51,15 +51,9 @@ public class AdminServiceImp implements AdminService {
         if(ordersRepo.getReveune() == null) return 0f;
         return ordersRepo.getReveune();
     }
-
     @Override
-    public long getTotalPageProduct() {
-        return (productRepo.countProduct().get(0) % pageSize == 0) ? productRepo.countProduct().get(0) / pageSize
-                : (productRepo.countProduct().get(0) / pageSize) + 1;
-    }
-    @Override
-    public List<Product> getProductByPage(long currentPage) {
-        return productRepo.findByPage((currentPage - 1) * pageSize, pageSize);
+    public List<Product> getProduct() {
+        return productRepo.findAll();
     }
 
     @Override
@@ -79,8 +73,8 @@ public class AdminServiceImp implements AdminService {
     }
 
     @Override
-    public List<ProductAdminDTO> getHubByPage(long currentPage) {
-        List<Product> list = productRepo.findByPage((currentPage - 1) * pageSize, pageSize);
+    public List<ProductAdminDTO> getHub() {
+        List<Product> list = productRepo.findAll();
         List<ProductAdminDTO> productAdminDTOS = new ArrayList<>();
         list.forEach(product -> productAdminDTOS.add(new ProductAdminDTO(product)));
         return productAdminDTOS;

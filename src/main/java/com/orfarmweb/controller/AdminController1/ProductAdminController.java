@@ -26,7 +26,8 @@ public class ProductAdminController {
     private final ProductService productService;
     private static final String currentDirectory = System.getProperty("user.dir");
     private static final Path path = Paths.get(currentDirectory+Paths.get("/target/classes/static/image/ImageOrFarm"));
-    public ProductAdminController(AdminService adminService, CategoryService categoryService, FormatPrice formatPrice, ProductService productService) {
+    public ProductAdminController(AdminService adminService, CategoryService categoryService,
+                                  FormatPrice formatPrice, ProductService productService) {
         this.adminService = adminService;
         this.categoryService = categoryService;
         this.formatPrice = formatPrice;
@@ -34,22 +35,11 @@ public class ProductAdminController {
     }
     @ModelAttribute
     public void getTopOrder(Model model){
-        model.addAttribute("topOder", adminService.getTopOrderDetail());
         model.addAttribute("format", formatPrice);
-        model.addAttribute("countUser", adminService.countUserByRole());
-        model.addAttribute("getRevenue", adminService.getRevenue());
-        model.addAttribute("countOrder", adminService.countOrders());
-        model.addAttribute("getCostOfProduct",adminService.getCostOfProduct());
     }
     @GetMapping("/admin/product")
-    public String productAdmin(){return "redirect:/admin/product/1";}
-    @GetMapping("/admin/product/{page}")
-    public String productAdminPage(@PathVariable("page") long currentPage, Model model){
-        long totalPage = adminService.getTotalPageProduct();
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("currentPage", currentPage);
-        List<Product> dsProduct = adminService.getProductByPage(currentPage);
-        model.addAttribute("dsProduct", dsProduct);
+    public String productAdmin(Model model){
+        model.addAttribute("dsProduct", adminService.getProduct());
         return "admin-page/product";
     }
     @GetMapping("/admin/product/add")

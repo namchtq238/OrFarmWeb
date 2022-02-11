@@ -25,8 +25,6 @@ public class UserController {
     private final CartService cartService;
     private final OrderService orderService;
     private final FormatPrice formatPrice;
-    @Autowired
-    PasswordEncoder passwordEncoder;
     public UserController(UserService userService, CategoryService categoryService, CartService cartService, OrderService orderService, FormatPrice formatPrice) {
         this.userService = userService;
         this.categoryService = categoryService;
