@@ -35,6 +35,7 @@ public class OrderAdminController {
     }
     @GetMapping("/admin/order")
     public String orderAdmin(Model model){
+        model.addAttribute("countOrder", adminService.countOrders());
         model.addAttribute("countCart", adminService.countCart());
         model.addAttribute("dateFill", new DateFilterDTO());
         model.addAttribute("orderAdmin", adminService.getOrderAdmin());
@@ -97,9 +98,9 @@ public class OrderAdminController {
         model.addAttribute("orderAdmin", adminService.getOrderAdminByFillter(dateFilterDTO.getStartFill(),dateFilterDTO.getEndFill()));
         return "admin-page/order-fill";
     }
-    @GetMapping("/admin/order/fill-by-status/{value}")
-    public String handleFillOrderByStatus(@PathVariable Status value, Model model){
-        model.addAttribute("orderAdmin", adminService.findOrdersByStatus(value.getValue()));
-        return "admin-page/order";
-    }
+//    @GetMapping("/admin/order/fill-by-status/{value}")
+//    public String handleFillOrderByStatus(@PathVariable Status value, Model model){
+//        model.addAttribute("orderAdmin", adminService.findOrdersByStatus(value.getValue()));
+//        return "admin-page/order";
+//    }
 }
