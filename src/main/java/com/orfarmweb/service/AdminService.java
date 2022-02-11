@@ -22,8 +22,8 @@ public interface AdminService {
     List<OrderDetailDTO> getTopOrderDetail();
     List<OrderAdmin> getOrderAdmin();
     List<ProductAdminDTO> getHub();
-    List<ProductAdminDTO> searchHubByNameAndPage(String keyWord, long currentPage);
-    long getTotalPageHubByKeyWord(String keyWord);
+//    List<ProductAdminDTO> searchHubByNameAndPage(String keyWord, long currentPage);
+//    long getTotalPageHubByKeyWord(String keyWord);
     Float getCostOfProduct();
     ChartDTO getInformationForChart();
     List<User> getUserByRole(Role role);

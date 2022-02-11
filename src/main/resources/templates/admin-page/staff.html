@@ -43,34 +43,33 @@
                                     </div>
                                 </div>
                                
-                                <div class="widget-header mb-5">
-                                    <div class="row">
-                                       
-                                        <div class="col-lg-12">
-                                            <form class="top-action" method="GET" action="">
-                                               <div id="filter">
-                                                    <input type="text" name="id" placeholder="ID" value="" class="form-control">
-                                                    <input type="text" name="address" placeholder="Tên" value=""
-                                                        class="form-control">
+<!--                                <div class="widget-header mb-5">-->
+<!--                                    <div class="row">-->
+<!--                                       -->
+<!--                                        <div class="col-lg-12">-->
 
-                                                        <input type="email" name="address" placeholder="Email" value=""
-                                                        class="form-control">
-                                                    
-                                                    <button class="btn btn-info"
-                                                        style="padding: 0 10px; background: none; border: none;"
-                                                        title="Tìm kiếm">
-                                                        <i class="flaticon-search" aria-hidden="true"
-                                                            style="color:#469408;font-size: 25px;line-height: 42px;"></i>
-                                                    </button>
-                                                    <input name="export" type="submit" value="Xuất Excel"
-                                                        class="btn btn-danger">
-                                                    
-                                                </div>
-                                            </form>
-                                        </div>
-                                        
-                                    </div>
-                                </div>  
+<!--                                               <div id="filter">-->
+<!--                                                    <input type="text" name="id" placeholder="ID" value="" class="form-control">-->
+<!--                                                    <input type="text" name="address" placeholder="Tên" value=""-->
+<!--                                                        class="form-control">-->
+
+<!--                                                        <input type="email" name="address" placeholder="Email" value=""-->
+<!--                                                        class="form-control">-->
+<!--                                                    -->
+<!--                                                    <button class="btn btn-info"-->
+<!--                                                        style="padding: 0 10px; background: none; border: none;"-->
+<!--                                                        title="Tìm kiếm">-->
+<!--                                                        <i class="flaticon-search" aria-hidden="true"-->
+<!--                                                            style="color:#469408;font-size: 25px;line-height: 42px;"></i>-->
+<!--                                                    </button>-->
+<!--                                                    <input name="export" type="submit" value="Xuất Excel"-->
+<!--                                                        class="btn btn-danger" id="export-to-excel">-->
+<!--                                                    -->
+<!--                                                </div>-->
+<!--                                        </div>-->
+<!--                                        -->
+<!--                                    </div>-->
+<!--                                </div>  -->
                             </div>
                             
                             <div class="widget-content widget-content-area">
@@ -132,7 +131,21 @@
 <aside th:replace="~{admin-page/admin  :: admin-profile}"></aside>
 </body>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 <th:block th:insert="~{admin-page/admin  :: script}"></th:block>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>-->
+<!--<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>-->
+<!--<script>-->
+<!--    $("#export-to-excel").click(function(){-->
+<!--        $("#ecommerce-product-list").table2excel({-->
+<!--            // exclude CSS class-->
+<!--            exclude: ".noExl",-->
+<!--            name: "DSNhanVien",-->
+<!--            filename: "SomeFile" //do not include extension-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
 <!--  END CUSTOM SCRIPT FILES  -->
 
 </html>

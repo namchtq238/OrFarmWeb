@@ -152,4 +152,14 @@ public class ProductServiceImp implements ProductService {
         return productAdminDTOS;
     }
 
+    @Override
+    public List<Product> findProductByName(int id, String keyWord, long currentPage) {
+        return null;
+    }
+
+    @Override
+    public long getTotalPageByName(int id, String keyWord) {
+        return 0;
+    }
+
 }

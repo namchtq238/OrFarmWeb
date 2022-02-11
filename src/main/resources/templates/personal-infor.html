@@ -74,7 +74,7 @@
                             </div>
                             <label for="inputName" class="col-sm-6 col-form-label" th:field="*{email}" th:value="*{email}">Tên</label>
                             <button type="submit" class="btn btn-secondary updated-infor ml-10 mt-25">Cập nhật</button>
-                            <button type="cancel" class="btn btn-secondary exit ml-10 mt-25">Hủy</button>
+                            <button type="reset" class="btn btn-secondary exit ml-10 mt-25">Hủy</button>
                         </div>
                         </form>
                     </div>
@@ -103,7 +103,7 @@
                                     <td><label for="inputpass" class="form-label pass-infor">Mật khẩu:</label></td>
                                     <td class="display-userName-3">
                                         <label type="password" required class="form-control" id="inputpass"
-                                               placeholder="Mật Khẩu"></label>
+                                               placeholder="Mật Khẩu" th:utext="'****************'"></label>
                                     </td>
                                     <td> <button type="submit" id="btn-edit-2" class="btn btn-warning ml-10">Chỉnh
                                             sửa</button></td>

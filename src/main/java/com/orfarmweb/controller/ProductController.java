@@ -4,6 +4,8 @@ import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.FilterProduct;
+import com.orfarmweb.modelutil.ProductAdminDTO;
+import com.orfarmweb.modelutil.SearchDTO;
 import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
 import com.orfarmweb.service.ProductService;
@@ -127,5 +129,20 @@ public class ProductController {
         else msg= "Thêm giỏ hàng thất bại";
         redirectAttributes.addFlashAttribute("msg", msg);
         return "redirect:/product/{id}";
+    }
+    @GetMapping("/category/{id}/fillByName")
+    public String showViewSearchByName(){
+        return "redirect:/category/{id}/fillByName/1";
+    }
+    @GetMapping("/category/{id}/fillByName/{page}")
+    public String handleViewSearchByName(@PathVariable("page") long currentPage, @PathVariable("id") int id, Model model, @ModelAttribute SearchDTO searchDTO){
+        long totalPage = adminService.getTotalPageHubByKeyWord(searchDTO.getName());
+        model.addAttribute("input", new SearchDTO());
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
+        List<ProductAdminDTO> dsProduct = adminService.searchHubByNameAndPage(searchDTO.getName(),currentPage);
+        model.addAttribute("dsProduct",dsProduct);
+        model.addAttribute("currentFilter", searchDTO);
+        return "admin-page/hub-name";
     }
 }

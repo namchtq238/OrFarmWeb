@@ -80,19 +80,19 @@ public class AdminServiceImp implements AdminService {
         return productAdminDTOS;
     }
 
-    @Override
-    public List<ProductAdminDTO> searchHubByNameAndPage(String keyWord, long currentPage) {
-        List<Product> list = productRepo.searchByNameAndPage(keyWord,(currentPage - 1) * pageSize, pageSize);
-        List<ProductAdminDTO> productAdminDTOS = new ArrayList<>();
-        list.forEach(product -> productAdminDTOS.add(new ProductAdminDTO(product)));
-        return productAdminDTOS;
-    }
+//    @Override
+//    public List<ProductAdminDTO> searchHubByNameAndPage(String keyWord, long currentPage) {
+//        List<Product> list = productRepo.searchByNameAndPage(keyWord,(currentPage - 1) * pageSize, pageSize);
+//        List<ProductAdminDTO> productAdminDTOS = new ArrayList<>();
+//        list.forEach(product -> productAdminDTOS.add(new ProductAdminDTO(product)));
+//        return productAdminDTOS;
+//    }
 
-    @Override
-    public long getTotalPageHubByKeyWord(String keyWord) {
-        return (productRepo.countByKeyWord(keyWord).get(0) % pageSize == 0) ? productRepo.countByKeyWord(keyWord).get(0) / pageSize
-                : (productRepo.countByKeyWord(keyWord).get(0) / pageSize) + 1;
-    }
+//    @Override
+//    public long getTotalPageHubByKeyWord(String keyWord) {
+//        return (productRepo.countByKeyWord(keyWord).get(0) % pageSize == 0) ? productRepo.countByKeyWord(keyWord).get(0) / pageSize
+//                : (productRepo.countByKeyWord(keyWord).get(0) / pageSize) + 1;
+//    }
 
     @Override
     public Float getCostOfProduct() {

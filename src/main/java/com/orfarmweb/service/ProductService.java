@@ -25,4 +25,6 @@ public interface ProductService {
     boolean deleteProduct(int id);
     void updateProduct(int id, Product product);
     List<ProductAdminDTO> findAll();
+    List<Product> findProductByName(int id, String keyWord, long currentPage);
+    long getTotalPageByName(int id, String keyWord);
 }
