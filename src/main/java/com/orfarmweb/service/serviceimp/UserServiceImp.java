@@ -3,14 +3,11 @@ package com.orfarmweb.service.serviceimp;
 import com.orfarmweb.constaint.Role;
 import com.orfarmweb.entity.User;
 import com.orfarmweb.modelutil.PasswordDTO;
-import com.orfarmweb.modelutil.UserDTO;
 import com.orfarmweb.repository.UserRepo;
 import com.orfarmweb.security.CustomUserDetails;
 import com.orfarmweb.service.UserService;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -56,18 +53,6 @@ public class UserServiceImp implements UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         return userDetails.getUser();
-    }
-
-    @Override
-    public boolean saveUser(User user) {
-        userRepo.save(user);
-        return true;
-    }
-
-    @Override
-    public boolean saveUserById(UserDTO userDTO, int id) {
-        userRepo.saveUserByEmail(userDTO.getFirstName(), userDTO.getLastName(), id);
-        return true;
     }
 
     @Override

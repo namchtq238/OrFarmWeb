@@ -2,7 +2,6 @@ package com.orfarmweb.repository;
 
 import com.orfarmweb.constaint.Role;
 import com.orfarmweb.entity.User;
-import com.orfarmweb.modelutil.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
