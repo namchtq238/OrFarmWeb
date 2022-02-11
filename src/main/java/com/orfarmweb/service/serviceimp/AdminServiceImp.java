@@ -1,6 +1,7 @@
 package com.orfarmweb.service.serviceimp;
 
 import com.orfarmweb.constaint.Role;
+import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
@@ -9,12 +10,8 @@ import com.orfarmweb.modelutil.ChartDTO;
 import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.OrderDetailDTO;
 import com.orfarmweb.modelutil.ProductAdminDTO;
-import com.orfarmweb.repository.OrderDetailRepo;
-import com.orfarmweb.repository.OrdersRepo;
-import com.orfarmweb.repository.ProductRepo;
-import com.orfarmweb.repository.UserRepo;
+import com.orfarmweb.repository.*;
 import com.orfarmweb.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +27,14 @@ public class AdminServiceImp implements AdminService {
     private final ProductRepo productRepo;
     private final OrderDetailRepo orderDetailRepo;
     private final PasswordEncoder passwordEncoder;
-    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo, OrderDetailRepo orderDetailRepo, PasswordEncoder passwordEncoder) {
+    private final CartRepo cartRepo;
+    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo, OrderDetailRepo orderDetailRepo, PasswordEncoder passwordEncoder, CartRepo cartRepo) {
         this.ordersRepo = ordersRepo;
         this.userRepo = userRepo;
         this.productRepo = productRepo;
         this.orderDetailRepo = orderDetailRepo;
         this.passwordEncoder = passwordEncoder;
+        this.cartRepo = cartRepo;
     }
     private final long pageSize = 7;
     @Override
@@ -160,6 +159,26 @@ public class AdminServiceImp implements AdminService {
         List<OrderAdmin> list = new ArrayList<>();
         ordersList.forEach(orders -> list.add(new OrderAdmin(orders,orderDetailRepo.getTotalProductByFilterAndOrderId(orders.getId(),s,e))));
         return list;
+    }
+
+    @Override
+    public Integer countCart() {
+        return cartRepo.countCart();
+    }
+
+    @Override
+    public Integer countByStatus(int status) {
+        return ordersRepo.countByStatus(status);
+    }
+
+    @Override
+    public List<OrderAdmin> findOrdersByStatus(int status) {
+        List<Orders> ordersList = ordersRepo.findOrdersByStatus(status);
+        List<OrderAdmin> orderAdmins = new ArrayList<>();
+        for (Orders orderAdmin:ordersList) {
+            orderAdmins.add(new OrderAdmin(orderAdmin, orderDetailRepo.getTotalProductByOrdersIdAndStatus(orderAdmin.getId(),status)));
+        }
+        return orderAdmins;
     }
 
 }

@@ -43,7 +43,7 @@
                                 <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
                                     <div class="o-cards">
 
-                                        <a href=""><h5 class="txt-o-placed">Tất cả đơn hàng</h5></a>
+                                        <a th:href="@{/admin/order}"><h5 class="txt-o-placed">Tất cả đơn hàng</h5></a>
                                         <div class="row">
                                             <div class="col-md-4 col-sm-4 col-4 mt-4">
                                                 <div class="">
@@ -51,8 +51,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>2215</h4>
-                                                <h6>Đơn hàng hôm nay</h6>
+                                                <h4 th:utext="${countOrder}"></h4>
+                                                <h6>Đơn hàng</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -60,8 +60,7 @@
 
                                 <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
                                     <div class="o-cards">
-                                        <a href="">
-                                            <h5 class="txt-o-shipped">Đang mua hàng</h5></a>
+                                        <h5 class="txt-o-shipped">Đang mua hàng</h5></a>
                                         <div class="row">
                                             <div class="col-md-4 col-sm-4 col-4 mt-4">
                                                 <div class="">
@@ -69,8 +68,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>924</h4>
-                                                <h6>Đơn chuẩn bị giao</h6>
+                                                <h4 th:utext="${countCart}"></h4>
+                                                <h6>User đang mua hàng</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +86,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>768</h4>
+                                                <h4 th:utext="${countApproved}">768</h4>
                                                 <h6>Đơn chờ xác nhận</h6>
                                             </div>
                                         </div>
@@ -106,7 +105,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>768</h4>
+                                                <h4 th:utext="${countProcessing}">768</h4>
                                                 <h6>Đang giao</h6>
                                             </div>
                                         </div>
@@ -124,7 +123,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>768</h4>
+                                                <h4 th:utext="${countDelivered}">768</h4>
                                                 <h6>Giao thành công</h6>
                                             </div>
                                         </div>
@@ -141,18 +140,17 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>768</h4>
-                                                <h6>Giao thành công</h6>
+                                                <h4 th:utext="${countCancel}">768</h4>
+                                                <h6>Đã Hủy</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="check-ordered">
-                        <form action="">
+                        <form th:action="@{/admin/resultFilter}" method="post" th:object="${dateFill}">
                             <ul class=" list-unstyled cd-bread mt-20">
                                 <!--                                    <li>-->
                                 <!--                                        <select name="" id="" class="form-control">-->
@@ -163,38 +161,40 @@
 
                                 <!--                                        </select>-->
                                 <!--                                    </li>-->
-                                <form th:action="@{/admin/order/fillter}" method="get" th:object="${dateFill}">
-                                    <li>
-                                        <div class="check-time">
-                                            <div style="display: flex">
-                                                <span style="margin-top: 10px;">Từ ngày</span><input name="from_date"
-                                                                                                     class="form-control"
-                                                                                                     placeholder="Từ ngày"
-                                                                                                     type="date"
-                                                                                                     value="" th:field="*{startFill}">
-                                            </div>
-                                            <div style="display: flex;">
-                                                <span style="margin-top: 10px;">Đến ngày</span><input name="to_date"
-                                                                                                      class="form-control to_date_ed"
-                                                                                                      placeholder="Đế ngày"
-                                                                                                      type="date"
-                                                                                                      value="" th:field="*{endFill}">
-                                            </div>
+
+                                <li>
+                                    <div class="check-time">
+                                        <div style="display: flex">
+                                            <span style="margin-top: 10px;">Từ ngày</span><input name="from_date"
+                                                                                                 class="form-control"
+                                                                                                 placeholder="Từ ngày"
+                                                                                                 type="date"
+                                                                                                 value="" th:field="*{startFill}">
                                         </div>
-                                    </li>
-                                    <li>
-                                        <button class="btn btn-info form-control"
-                                                style="margin-bottom: 10px" type="submit">Tìm Kiếm
-                                        </button>
-                                    </li>
-                                </form>
+                                        <div style="display: flex;">
+                                            <span style="margin-top: 10px;">Đến ngày</span><input name="to_date"
+                                                                                                  class="form-control to_date_ed"
+                                                                                                  placeholder="Đế ngày"
+                                                                                                  type="date"
+                                                                                                  value="" th:field="*{endFill}">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button class="btn btn-info form-control"
+                                            style="margin-bottom: 10px" type="submit">Tìm Kiếm
+                                    </button>
+                                </li>
                             </ul>
+
                         </form>
                         <!--                            <form th:action= method="get">-->
                         <!--                                <button class="btn btn-danger form-control" style="margin-bottom: 10px">Xuất-->
                         <!--                                    excel</button>-->
                         <!--                            </form>-->
-                        <a th:href="@{/admin/export}"> Xuất excel</a>
+                        <form th:action="@{/admin/exportFill}" method="get" th:object="${dateParam}">
+                            <button type="submit"> Xuất excel</button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">

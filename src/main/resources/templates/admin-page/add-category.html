@@ -48,7 +48,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="card-body">
-                                                    <form class="form-horizontal" style="padding-top: 58px !important;" th:object="${category}" method="post">
+                                                    <form class="form-horizontal" style="padding-top: 58px !important;" th:object="${category}" method="post" enctype="multipart/form-data">
                                                         <div class="form-group mb-4">
                                                             <div class="row pb-4">
                                                                 <label class="col-md-4">Tên :</label>
@@ -67,7 +67,7 @@
                                                                 <div class="col-md-8">
                                                                     <div class="mb-3">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="form-control-file" th:field="*{image}"
+                                                                            <input type="file" class="form-control-file" name="photo"
                                                                                 id="file-input" accept="image/png, image/jpeg, image/jpg">
                                                                         </div>
                                                                     </div>

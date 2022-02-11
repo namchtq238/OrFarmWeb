@@ -44,6 +44,7 @@ public class OrderDataExcelExport{
         int count = 1;
         for (OrderAdmin orderAdmin:list) {
             Row row = sheet.createRow(count);
+            count++;
             Cell cell = row.createCell(0);
             cell.setCellValue(orderAdmin.getOrder_id());
 
@@ -66,10 +67,9 @@ public class OrderDataExcelExport{
             cell.setCellValue(orderAdmin.getStatus().toString());
         }
     }
-    public void export(HttpServletResponse response) throws IOException {
+    public void export(HttpServletResponse response) throws IOException, IllegalStateException{
         writeHeaderRow();
         writeDataRows();
-
         ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);
         workbook.close();

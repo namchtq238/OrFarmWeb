@@ -43,7 +43,7 @@
                                 <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
                                     <div class="o-cards">
 
-                                        <a href=""><h5 class="txt-o-placed">Tất cả đơn hàng</h5></a>
+                                        <a th:href="@{/admin/order}"><h5 class="txt-o-placed">Tất cả đơn hàng</h5></a>
                                         <div class="row">
                                             <div class="col-md-4 col-sm-4 col-4 mt-4">
                                                 <div class="">
@@ -51,8 +51,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>2215</h4>
-                                                <h6>Đơn hàng hôm nay</h6>
+                                                <h4 th:utext="${countOrder}"></h4>
+                                                <h6>Đơn hàng</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -60,7 +60,6 @@
 
                                 <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
                                     <div class="o-cards">
-                                        <a href="">
                                             <h5 class="txt-o-shipped">Đang mua hàng</h5></a>
                                         <div class="row">
                                             <div class="col-md-4 col-sm-4 col-4 mt-4">
@@ -69,8 +68,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>924</h4>
-                                                <h6>Đơn chuẩn bị giao</h6>
+                                                <h4 th:utext="${countCart}"></h4>
+                                                <h6>User đang mua hàng</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +77,7 @@
 
                                 <div class="col-xl col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
                                     <div class="o-cards">
-                                        <a href="">
+                                        <a th:href="@{'/admin/order/fill-by-status/'+APPROVED}">
                                             <h5 class="txt-o-arrival">Đang xử lý</h5></a>
                                         <div class="row">
                                             <div class="col-md-4 col-sm-4 col-4 mt-4">
@@ -87,7 +86,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>768</h4>
+                                                <h4 th:utext="${countApproved}">768</h4>
                                                 <h6>Đơn chờ xác nhận</h6>
                                             </div>
                                         </div>
@@ -106,7 +105,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>768</h4>
+                                                <h4 th:utext="${countProcessing}">768</h4>
                                                 <h6>Đang giao</h6>
                                             </div>
                                         </div>
@@ -124,7 +123,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>768</h4>
+                                                <h4 th:utext="${countDelivered}">768</h4>
                                                 <h6>Giao thành công</h6>
                                             </div>
                                         </div>
@@ -141,14 +140,13 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8 col-8 mt-4">
-                                                <h4>768</h4>
-                                                <h6>Giao thành công</h6>
+                                                <h4 th:utext="${countCancel}">768</h4>
+                                                <h6>Đã Hủy</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="check-ordered">

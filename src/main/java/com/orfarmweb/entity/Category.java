@@ -14,6 +14,6 @@ public class Category {
     private String name;
     private String description;
     private String image;
-    @OneToMany(targetEntity = Product.class, mappedBy = "category")
+    @OneToMany(targetEntity = Product.class, mappedBy = "category",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Product> product;
 }

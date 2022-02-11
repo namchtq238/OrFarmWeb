@@ -25,4 +25,6 @@ public interface OrderDetailRepo extends JpaRepository<OrderDetail, Integer> {
             "left join orders " +
             "on order_detail.order_id = orders.id where order_id = :id and create_at between :start and :end", nativeQuery = true)
     Integer getTotalProductByFilterAndOrderId(int id, Date start, Date end);
+    @Query(value = "select sum(quantity) from order_detail left join orders on order_detail.order_id =orders.id order where order_id = ?1 and status.?2", nativeQuery = true)
+    Integer getTotalProductByOrdersIdAndStatus(int id, int status);
 }
