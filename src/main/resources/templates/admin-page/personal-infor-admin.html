@@ -43,11 +43,11 @@
 
                             </div>
                             <div class="profile-usertitle">
-                                <div class="profile-usertitle-name"> UserName</div>
-                                <div class="profile-usertitle-job"> abc@gmail.com </div>
+                                <div class="profile-usertitle-name"><span th:text="${user.getName()}"></span></div>
+                                <div class="profile-usertitle-job"><span th:text="${user.email}"></span></div>
                             </div>
                             <div class="profile-userbuttons">
-                                <button type="button" class="btn btn-success btn-sm"> <a href="./index.html">Trang
+                                <button type="button" class="btn btn-success btn-sm"> <a th:href="@{/admin}">Trang
                                         chủ</a></button>
                                 <button type="button" class="btn btn-danger btn-sm"><a th:href="@{/logout}">Thoát ra</a></button>
                             </div>
@@ -63,36 +63,39 @@
                                             <td> <label for="formGroupExampleInput" class="name-infor">Họ Tên:</label>
                                             </td>
                                             <td class="display-userName">
-                                                <input type="text" class="form-control" id="formGroupExampleInput"
-                                                    placeholder="Họ tên">
+                                                <label type="text" class="form-control" id="formGroupExampleInput"
+                                                       placeholder="Họ tên" th:utext="${user.getName()}"></label>
                                             </td>
                                             <td> <button type="submit" id="btn-edit" for="formGroupExampleInput"
                                                     class="btn btn-warning ml-10">Chỉnh sửa</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="hidden-edit pt-3">
-                                    <div class="form-group ">
-                                        <label for="inputName" class="col-sm-6 col-form-label">Tên</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control appear-input mb-3 " id="inputName"
-                                                placeholder="FirstName" aria-label="First name">
+                                <form th:object="${user}" th:action="@{/admin/edit-user}" method="post">
 
+                                    <div class="hidden-edit pt-3">
+                                        <div class="form-group ">
+                                            <label for="inputName" class="col-sm-6 col-form-label">Tên</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control appear-input mb-3 " id="inputName"
+                                                       placeholder="FirstName" aria-label="First name" th:field="*{firstName}">
+
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group ">
-                                        <label for="inputName" class="col-sm-6 col-form-label">Họ</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control appear-input mb-3 " id="inputName"
-                                                placeholder="LastName" aria-label="First name">
+                                        <div class="form-group ">
+                                            <label for="inputName" class="col-sm-6 col-form-label">Họ</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control appear-input mb-3 " id="inputName"
+                                                       placeholder="LastName" aria-label="First name" th:field="*{lastName}">
 
+                                            </div>
                                         </div>
+                                        <button type="submit" class="btn btn-secondary updated-infor ml-10 mt-25">Cập
+                                            nhật</button>
+                                        <button type="button" class="btn btn-secondary exit ml-10 mt-25">Hủy</button>
                                     </div>
-                                    <button type="submit" class="btn btn-secondary updated-infor ml-10 mt-25">Cập
-                                        nhật</button>
-                                    <button type="submit" class="btn btn-secondary exit ml-10 mt-25">Hủy</button>
-                                </div>
+                                </form>
                             </div>
 
                             <div class="col-md-8 col-sm-6 pt-4">
@@ -103,8 +106,8 @@
                                                     class="form-label">Email:</label>
                                             </td>
                                             <td>
-                                                <input type="email" required class="form-control" id="inputpass"
-                                                    placeholder="Mật khẩu">
+                                                <label type="email" required class="form-control" id="inputpass"
+                                                       placeholder="Mật khẩu" th:text="${user.email}"></label>
                                             </td>
 
                                         </tr>
@@ -120,8 +123,8 @@
                                             <td><label for="inputpass" class="form-label pass-infor">Mật khẩu:</label>
                                             </td>
                                             <td class="display-userName-3">
-                                                <input type="password" required class="form-control" id="inputpass"
-                                                    placeholder="Mật khẩu">
+                                                <label type="password" required class="form-control" id="inputpass"
+                                                       placeholder="Mật khẩu"></label>
                                             </td>
                                             <td> <button type="submit" id="btn-edit-2"
                                                     class="btn btn-warning ml-10">Chỉnh
@@ -129,37 +132,40 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class=" hidden-pass pt-3">
-                                    <div class="form-group ">
-                                        <label for="inputName" class="col-sm-6 col-form-label">Nhập mật khẩu cũ:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" required class="form-control appear-input mb-3 "
-                                                id="inputName" placeholder="Old Password">
+                                <form th:object="${checkpassword}" th:action="@{/admin/edit-password}" method="post">
+                                    <div class=" hidden-pass pt-3">
+                                        <div class="form-group ">
+                                            <label for="inputName" class="col-sm-6 col-form-label">Nhập mật khẩu cũ:</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" required class="form-control appear-input mb-3 "
+                                                       id="inputName" placeholder="Old Password" th:field="${checkpassword.oldPassword}">
 
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group ">
-                                        <label for="inputName" class="col-sm-6 col-form-label">Nhập mật khẩu mới</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" required class="form-control appear-input mb-3 "
-                                                id="password" placeholder="New Password" aria-label="First name">
+                                        <div class="form-group ">
+                                            <label for="inputName" class="col-sm-6 col-form-label">Nhập mật khẩu mới</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" required class="form-control appear-input mb-3 "
+                                                       id="password" placeholder="New Password" aria-label="First name" th:field="${checkpassword.newPassword}">
 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="inputpass" class="col-sm-6 col-form-label">Xác nhận lại mật
-                                            khẩu</label>
+                                        <div class="form-group ">
+                                            <label for="inputpass" class="col-sm-6 col-form-label">Xác nhận lại mật
+                                                khẩu</label>
 
 
-                                        <input type="password" class="form-control appear-input mb-3 "
-                                            id="password_confirm" oninput="check(this)" placeholder="Confirm Password"
-                                            aria-label="First name">
+                                            <input type="password" class="form-control appear-input mb-3 "
+                                                   id="password_confirm" oninput="check(this)" placeholder="Confirm Password"
+                                                   aria-label="First name" th:field="${checkpassword.confirmPassword}">
+                                        </div>
+                                        <button type="submit" class="btn btn-secondary updated-infor ml-10 mt-25">Cập
+                                            nhật</button>
+                                        <button type="submit" class="btn btn-secondary exit-pass ml-10 mt-25">Hủy</button>
                                     </div>
-                                    <button type="submit" class="btn btn-secondary updated-infor ml-10 mt-25">Cập
-                                        nhật</button>
-                                    <button type="submit" class="btn btn-secondary exit-pass ml-10 mt-25">Hủy</button>
-                                </div>
+
+                                </form>
                             </div>
                         </div>
                     </div>

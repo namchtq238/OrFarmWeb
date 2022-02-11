@@ -1,13 +1,11 @@
 package com.orfarmweb.controller;
 
+import com.orfarmweb.config.OrderDataExcelExport;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.constaint.Role;
 import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.*;
-import com.orfarmweb.modelutil.ChartDTO;
-import com.orfarmweb.modelutil.OrderAdmin;
-import com.orfarmweb.modelutil.ProductAdminDTO;
-import com.orfarmweb.modelutil.SearchDTO;
+import com.orfarmweb.modelutil.*;
 import com.orfarmweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -290,6 +288,22 @@ public class AdminController {
     @GetMapping("/admin/personal-infor")
     public String personalInfoAdmin(Model model) {
         model.addAttribute("user", userService.getCurrentUser());
+        model.addAttribute("checkpassword", new PasswordDTO());
         return "/admin-page/personal-infor-admin";
+    }
+    @PostMapping("/admin/edit-user")
+    public String handleEditUser(@ModelAttribute User user){
+        userService.updateUser(userService.getCurrentUser().getId(), user);
+        return "redirect:/admin/personal-information";
+    }
+
+    @PostMapping("/admin/edit-password")
+    public String handleEditPassword(RedirectAttributes redirectAttributes, @ModelAttribute PasswordDTO passwordDTO) {
+        String msg = null;
+        if (userService.updatePassword(passwordDTO))
+            msg = "Thay đổi mật khẩu thành công";
+        else msg = "Thay đổi mật khẩu thất bại";
+        redirectAttributes.addAttribute("msg", msg);
+        return "redirect:/admin/personal-infor";
     }
 }

@@ -3,6 +3,7 @@ package com.orfarmweb.controller;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.User;
+import com.orfarmweb.modelutil.PasswordDTO;
 import com.orfarmweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -71,17 +72,23 @@ public class UserController {
     @GetMapping("/user/personal-information")
     public String showUserInformation(Model model){
         User user = userService.getCurrentUser();
-        User user1 = userService.findById(user.getId());
-        model.addAttribute("userInfo", user1);
+        model.addAttribute("userInfo", user);
+        model.addAttribute("checkpassword", new PasswordDTO());
         return "personal-infor";
     }
     @PostMapping("/user/edit-user")
     public String handleEditUser(@ModelAttribute User user){
+
         userService.updateUser(userService.getCurrentUser().getId(), user);
         return "redirect:/user/personal-information";
     }
     @PostMapping("/user/edit-password")
-    public String handleEditPassWord(Model model){
+    public String handleEditPassWord(RedirectAttributes redirectAttributes, @ModelAttribute PasswordDTO passwordDTO){
+        String msg = null;
+        if (userService.updatePassword(passwordDTO))
+            msg = "Thay đổi mật khẩu thành công";
+        else msg = "Thay đổi mật khẩu thất bại";
+        redirectAttributes.addAttribute("msg", msg);
         return "redirect:/user/personal-information";
     }
     @GetMapping("/user/order-history")

@@ -1,6 +1,7 @@
 package com.orfarmweb.service;
 
 import com.orfarmweb.entity.User;
+import com.orfarmweb.modelutil.PasswordDTO;
 import com.orfarmweb.modelutil.UserDTO;
 
 public interface UserService {
@@ -11,5 +12,5 @@ public interface UserService {
     boolean saveUserById(UserDTO userDTO, int id);
     User updateUser(int id, User userRequest);
     User findById(int id);
-    boolean updatePassword(String password);
+    boolean updatePassword(PasswordDTO passwordDTO);
 }
