@@ -51,4 +51,9 @@ public class ShowViewController {
     public String showViewCondition(){
         return "condition";
     }
+    @GetMapping("/contact")
+    public String showViewContact(){
+        return "contact";
+    }
+
 }
