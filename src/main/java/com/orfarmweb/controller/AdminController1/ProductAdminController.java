@@ -34,7 +34,7 @@ public class ProductAdminController {
         this.productService = productService;
     }
     @ModelAttribute
-    public void getTopOrder(Model model){
+    public void addFormatService(Model model){
         model.addAttribute("format", formatPrice);
     }
     @GetMapping("/admin/product")
@@ -54,7 +54,6 @@ public class ProductAdminController {
         try {
             InputStream inputStream = photo.getInputStream();
             Files.copy(inputStream, path.resolve(photo.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
-            System.out.println(photo.getOriginalFilename());
             product.setImage(photo.getOriginalFilename());
         }
         catch (IOException e) {
@@ -75,7 +74,6 @@ public class ProductAdminController {
         try {
             InputStream inputStream = photo.getInputStream();
             Files.copy(inputStream, path.resolve(photo.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
-            System.out.println(photo.getOriginalFilename());
             product.setImage(photo.getOriginalFilename());
         }
         catch (IOException e) {

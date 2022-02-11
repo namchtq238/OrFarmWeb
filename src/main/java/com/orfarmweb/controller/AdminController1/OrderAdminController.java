@@ -30,7 +30,7 @@ public class OrderAdminController {
         this.orderService = orderService;
     }
     @ModelAttribute
-    public void getTopOrder(Model model){
+    public void addFormatService(Model model){
         model.addAttribute("format", formatPrice);
     }
     @GetMapping("/admin/order")
