@@ -2,6 +2,7 @@ package com.orfarmweb.service.serviceimp;
 
 import com.orfarmweb.constaint.Role;
 import com.orfarmweb.entity.User;
+import com.orfarmweb.modelutil.PasswordDTO;
 import com.orfarmweb.modelutil.UserDTO;
 import com.orfarmweb.repository.UserRepo;
 import com.orfarmweb.security.CustomUserDetails;
@@ -10,12 +11,17 @@ import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -66,9 +72,17 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User updateUser(int id, User userRequest) {
+        //set trong db
         User user = userRepo.findById(id).get();
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
+        //set security
+        CustomUserDetails userDetails = new CustomUserDetails(user);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<GrantedAuthority> updatedAuthorities = new ArrayList<>(auth.getAuthorities());
+        updatedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getType()));
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(userDetails, auth.getCredentials(), updatedAuthorities);
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
         return userRepo.save(user);
     }
 
@@ -77,11 +91,16 @@ public class UserServiceImp implements UserService {
         return userRepo.getById(id);
     }
     @Override
-    public boolean updatePassword(String password) {
+    public boolean updatePassword(PasswordDTO passwordDTO) {
         User user = getCurrentUser();
-        user.setPassword(passwordEncoder.encode(password));
-        userRepo.save(user);
-        return true;
+        if(passwordDTO.getNewPassword().equals(passwordDTO.getConfirmPassword())){
+            if(passwordEncoder.matches(passwordDTO.getOldPassword(), user.getPassword())){
+                user.setPassword(passwordEncoder.encode(passwordDTO.getNewPassword()));
+                userRepo.save(user);
+                return true;
+            }
+        }
+        return false;
     }
 
 

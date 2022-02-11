@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -295,13 +296,23 @@ public class AdminController {
 
     @GetMapping("/admin/personal-infor")
     public String personalInfoAdmin(Model model) {
-        User user = userService.findById(userService.getCurrentUser().getId());
-        model.addAttribute("user", user);
+        model.addAttribute("user", userService.getCurrentUser());
+        model.addAttribute("checkpassword", new PasswordDTO());
         return "/admin-page/personal-infor-admin";
     }
-    @PostMapping("/admin/editUser")
-    public String handleEditCurrentUser(@ModelAttribute User user){
-        userService.updateUser(userService.getCurrentUser().getId(),user);
+    @PostMapping("/admin/edit-user")
+    public String handleEditUser(@ModelAttribute User user){
+        userService.updateUser(userService.getCurrentUser().getId(), user);
+        return "redirect:/admin/personal-information";
+    }
+
+    @PostMapping("/admin/edit-password")
+    public String handleEditPassword(RedirectAttributes redirectAttributes, @ModelAttribute PasswordDTO passwordDTO) {
+        String msg = null;
+        if (userService.updatePassword(passwordDTO))
+            msg = "Thay đổi mật khẩu thành công";
+        else msg = "Thay đổi mật khẩu thất bại";
+        redirectAttributes.addAttribute("msg", msg);
         return "redirect:/admin/personal-infor";
     }
 }
