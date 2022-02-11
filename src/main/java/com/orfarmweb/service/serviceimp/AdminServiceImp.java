@@ -107,9 +107,14 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public ChartDTO getInformationForChart() {
+        List<OrderDetail> orderDetails = orderDetailRepo.getListRevenueOrder();
+        float sum = 0f;
+        for (OrderDetail orderDetail:orderDetails) {
+            sum = sum + orderDetail.getProduct().getCost();
+        }
         ChartDTO chartDTO = new ChartDTO();
         chartDTO.setRevenue(getRevenue());
-        chartDTO.setCost(getCostOfProduct());
+        chartDTO.setCost(sum);
         return chartDTO;
     }
 
