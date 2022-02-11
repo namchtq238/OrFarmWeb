@@ -24,7 +24,7 @@ public class OrderDetailServiceImp implements OrderDetailService {
         orderDetail.setOrders(orders);
         orderDetail.setProduct(product);
         orderDetail.setPrice(price);
-        if(product.getQuantityProd() < quantity) orderDetail.setQuantity(product.getQuantityProd());
+        if(product.getQuantityProd() <= quantity) orderDetail.setQuantity(product.getQuantityProd());
         else orderDetail.setQuantity(quantity);
         return orderDetailRepo.saveAndFlush(orderDetail);
     }
