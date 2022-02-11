@@ -98,14 +98,9 @@
                                                 <td th:text="${customer.email}">cb@gmail.com</td>
                                                 <td class="align-center">
                                                     <ul class="table-controls">
+
                                                         <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit">
-                                                                <i class="flaticon-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);" data-toggle="tooltip"
+                                                            <a th:href="@{'/admin/userManager/delete/' + ${customer.id}}" data-toggle="tooltip"
                                                                 data-placement="top" title="Delete">
                                                                 <i class="flaticon-delete-5"></i>
                                                             </a>

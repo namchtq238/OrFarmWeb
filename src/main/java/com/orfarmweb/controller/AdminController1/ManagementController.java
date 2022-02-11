@@ -64,6 +64,12 @@ public class ManagementController {
         model.addAttribute("customerList", adminService.getUserByRole(Role.CUSTOMER));
         return "/admin-page/user";
     }
+    @GetMapping("/admin/userManager/delete/{id}")
+    public String handleDeleteUser(@PathVariable int id){
+        adminService.deleteStaff(id);
+        return "redirect:/admin/userManager";
+    }
+
 
     @GetMapping("/admin/personal-infor")
     public String personalInfoAdmin(Model model) {
