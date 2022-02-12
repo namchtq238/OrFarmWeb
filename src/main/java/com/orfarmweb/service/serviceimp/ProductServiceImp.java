@@ -134,7 +134,6 @@ public class ProductServiceImp implements ProductService {
         Product baseProduct = productRepo.getById(id);
         if(!product.getName().isEmpty()) baseProduct.setName(product.getName());
         if(!product.getDescription().isEmpty()) baseProduct.setDescription(product.getDescription());
-        if(!product.getImage().isEmpty()) baseProduct.setImage(product.getImage());
         if(product.getSalePrice()!=null) baseProduct.setSalePrice(product.getSalePrice());
         if(!product.getBriefDesc().isEmpty()) baseProduct.setBriefDesc(product.getName());
         if(product.getCategory()!=null) baseProduct.setCategory(product.getCategory());

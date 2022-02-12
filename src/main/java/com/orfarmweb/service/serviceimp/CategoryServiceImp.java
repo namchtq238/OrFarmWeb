@@ -44,7 +44,6 @@ public class CategoryServiceImp implements CategoryService {
         Category category1 = categoryRepo.getById(id);
         if(!category.getName().isEmpty()) category1.setName(category.getName());
         if(!category.getDescription().isEmpty())category1.setDescription(category.getDescription());
-        if(!category.getImage().isEmpty()) category1.setImage(category.getImage());
         categoryRepo.save(category1);
     }
 
