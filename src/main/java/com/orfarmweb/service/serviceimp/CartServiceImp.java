@@ -1,8 +1,6 @@
 package com.orfarmweb.service.serviceimp;
 
-import com.orfarmweb.entity.Cart;
-import com.orfarmweb.entity.Product;
-import com.orfarmweb.entity.User;
+import com.orfarmweb.entity.*;
 import com.orfarmweb.repository.CartRepo;
 import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.UserService;
@@ -12,8 +10,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CartServiceImp implements CartService  {
@@ -92,5 +92,16 @@ public class CartServiceImp implements CartService  {
             }
         }
         return true;
+    }
+
+    @Override
+    public void saveItemToCartByOrder(Orders orders) {
+        Set<OrderDetail> orderDetails = orders.getOrderDetails();
+        List<Cart> cartList = new ArrayList<>();
+        for (OrderDetail orderDetail: orderDetails
+             ) {
+            cartList.add(new Cart(orderDetail));
+        }
+        cartRepo.saveAll(cartList);
     }
 }

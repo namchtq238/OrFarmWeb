@@ -2,6 +2,7 @@ package com.orfarmweb.service.serviceimp;
 
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Cart;
+import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.CartItem;
 import com.orfarmweb.modelutil.ProductAdminDTO;
@@ -93,15 +94,7 @@ public class ProductServiceImp implements ProductService {
         List<CartItem> list = new ArrayList<>();
         for (Cart cart: cartList
              ) {
-            Product product = findById(cart.getProduct().getId());
-            CartItem cartItem = new CartItem();
-            cartItem.setProductId(product.getId());
-            cartItem.setProductName(product.getName());
-            cartItem.setDiscount(product.getPercentDiscount());
-            cartItem.setQuantity(cart.getQuantity());
-            cartItem.setImage(product.getImage());
-            cartItem.setSalePrice(product.getSalePrice() * (1- cartItem.getDiscount()/100));
-            cartItem.setTotalPrice(cartItem.getSalePrice() * cartItem.getQuantity());
+            CartItem cartItem = new CartItem(cart.getProduct(), cart.getQuantity());
             list.add(cartItem);
         }
         return list;
@@ -134,7 +127,6 @@ public class ProductServiceImp implements ProductService {
         Product baseProduct = productRepo.getById(id);
         if(!product.getName().isEmpty()) baseProduct.setName(product.getName());
         if(!product.getDescription().isEmpty()) baseProduct.setDescription(product.getDescription());
-        if(!product.getImage().isEmpty()) baseProduct.setImage(product.getImage());
         if(product.getSalePrice()!=null) baseProduct.setSalePrice(product.getSalePrice());
         if(!product.getBriefDesc().isEmpty()) baseProduct.setBriefDesc(product.getName());
         if(product.getCategory()!=null) baseProduct.setCategory(product.getCategory());
@@ -163,5 +155,12 @@ public class ProductServiceImp implements ProductService {
                 productRepo.countByKeyWord(id, keyWord).get(0) / pageSize
                 : (productRepo.countByKeyWord(id, keyWord).get(0) / pageSize) + 1;
     }
+
+    @Override
+    public void saveAfterOrder(Product product, OrderDetail orderDetail) {
+        product.setQuantityProd(product.getQuantityProd() - orderDetail.getQuantity());
+        productRepo.save(product);
+    }
+
 
 }

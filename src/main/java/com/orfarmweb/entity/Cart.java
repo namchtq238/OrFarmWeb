@@ -22,4 +22,9 @@ public class Cart {
     private boolean isDelete=false;
     @ManyToOne(targetEntity = User.class, cascade = CascadeType.MERGE)
     private User user;
+    public Cart(OrderDetail orderDetail){
+        this.product = orderDetail.getProduct();
+        this.quantity = orderDetail.getQuantity();;
+        this.user = orderDetail.getOrders().getUser();
+    }
 }

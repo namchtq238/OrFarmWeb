@@ -3,11 +3,15 @@ package com.orfarmweb.controller;
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Cart;
 import com.orfarmweb.entity.Category;
+import com.orfarmweb.entity.OrderDetail;
+import com.orfarmweb.entity.Orders;
 import com.orfarmweb.modelutil.CartDTO;
 import com.orfarmweb.modelutil.CartItem;
 import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
+import com.orfarmweb.service.OrderService;
 import com.orfarmweb.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +25,14 @@ public class CartController {
     private final CartService cartService;
     private final ProductService productService;
     private final FormatPrice format;
+    private final OrderService orderService;
 
-    public CartController(CategoryService categoryService, CartService cartService, ProductService productService, FormatPrice format) {
+    public CartController(CategoryService categoryService, CartService cartService, ProductService productService, FormatPrice format, OrderService orderService) {
         this.categoryService = categoryService;
         this.cartService = cartService;
         this.productService = productService;
         this.format = format;
+        this.orderService = orderService;
     }
 
     @ModelAttribute
@@ -78,4 +84,10 @@ public class CartController {
         cartService.saveNewQuantity(listCart, soluong);
         return "redirect:/cart";
     }
+    @GetMapping("/user/repurchase/{id}")
+    public String getViewRepurchase(Model model, @PathVariable int id){
+        cartService.saveItemToCartByOrder(orderService.findById(id));
+        return "redirect:/cart";
+    }
+
 }

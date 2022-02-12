@@ -63,7 +63,16 @@ public class CategoryAdminController {
         return "redirect:/admin/category";
     }
     @PostMapping("/admin/category/edit/{id}")
-    public String handleEditCategory(@PathVariable("id") int id, @ModelAttribute Category category, Model model){
+    public String handleEditCategory(@PathVariable("id") int id, @ModelAttribute Category category, @RequestParam MultipartFile photo){
+        if(!photo.isEmpty()) {
+            try {
+                InputStream inputStream = photo.getInputStream();
+                Files.copy(inputStream, path.resolve(photo.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+                category.setImage(photo.getOriginalFilename());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         categoryService.updateCategory(id, category);
         return "redirect:/admin/category";
     }

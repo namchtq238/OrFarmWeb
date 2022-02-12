@@ -83,9 +83,11 @@ public class OrderController {
         orders.setUser(user);
         Set<OrderDetail> orderDetailList = new HashSet<>();
         for (CartItem cart: listProductInCart) {
+            Product product = productService.getProductById(cart.getProductId());
             OrderDetail orderDetail = orderDetailService.saveOrderDetail(
-                    productService.findById(cart.getProductId()), orders,
+                    product, orders,
                     cart.getTotalPrice(), cart.getQuantity());
+            productService.saveAfterOrder(product, orderDetail);
             orderDetailList.add(orderDetail);
         }
         orderService.saveOrder(orders, totalPrice, paymentInformation.getOrder().getNote(), orderDetailList);

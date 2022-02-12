@@ -70,14 +70,15 @@ public class ProductAdminController {
     }
     @PostMapping("/admin/product/edit/{id}")
     public String handleEditProductAdmin(@PathVariable("id") int productId, @ModelAttribute Product product, @RequestParam MultipartFile photo, Model model){
-        if(photo.isEmpty()) return "redirect:/admin/product/edit/{id}";
-        try {
-            InputStream inputStream = photo.getInputStream();
-            Files.copy(inputStream, path.resolve(photo.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
-            product.setImage(photo.getOriginalFilename());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+        if(!photo.isEmpty()) {
+            //return "redirect:/admin/product/edit/{id}";
+            try {
+                InputStream inputStream = photo.getInputStream();
+                Files.copy(inputStream, path.resolve(photo.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+                product.setImage(photo.getOriginalFilename());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         productService.updateProduct(productId, product);
         return "redirect:/admin/product";
