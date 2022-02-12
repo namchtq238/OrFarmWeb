@@ -2,6 +2,7 @@ package com.orfarmweb.service.serviceimp;
 
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Cart;
+import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.CartItem;
 import com.orfarmweb.modelutil.ProductAdminDTO;
@@ -162,5 +163,12 @@ public class ProductServiceImp implements ProductService {
                 productRepo.countByKeyWord(id, keyWord).get(0) / pageSize
                 : (productRepo.countByKeyWord(id, keyWord).get(0) / pageSize) + 1;
     }
+
+    @Override
+    public void saveAfterOrder(Product product, OrderDetail orderDetail) {
+        product.setQuantityProd(product.getQuantityProd() - orderDetail.getQuantity());
+        productRepo.save(product);
+    }
+
 
 }

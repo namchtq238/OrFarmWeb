@@ -1,6 +1,7 @@
 package com.orfarmweb.service;
 
 import com.orfarmweb.entity.Cart;
+import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.modelutil.CartItem;
 import com.orfarmweb.modelutil.ProductAdminDTO;
@@ -27,4 +28,5 @@ public interface ProductService {
     List<ProductAdminDTO> findAll();
     List<Product> findProductByName(int id, String keyWord, long currentPage);
     long getTotalPageByName(int id, String keyWord);
+    void saveAfterOrder(Product product, OrderDetail orderDetail);
 }
