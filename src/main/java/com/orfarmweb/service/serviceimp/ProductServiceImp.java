@@ -94,15 +94,7 @@ public class ProductServiceImp implements ProductService {
         List<CartItem> list = new ArrayList<>();
         for (Cart cart: cartList
              ) {
-            Product product = findById(cart.getProduct().getId());
-            CartItem cartItem = new CartItem();
-            cartItem.setProductId(product.getId());
-            cartItem.setProductName(product.getName());
-            cartItem.setDiscount(product.getPercentDiscount());
-            cartItem.setQuantity(cart.getQuantity());
-            cartItem.setImage(product.getImage());
-            cartItem.setSalePrice(product.getSalePrice() * (1- cartItem.getDiscount()/100));
-            cartItem.setTotalPrice(cartItem.getSalePrice() * cartItem.getQuantity());
+            CartItem cartItem = new CartItem(cart.getProduct(), cart.getQuantity());
             list.add(cartItem);
         }
         return list;

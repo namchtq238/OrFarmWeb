@@ -4,9 +4,10 @@ import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.entity.User;
 import com.orfarmweb.modelutil.PasswordDTO;
-import com.orfarmweb.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.orfarmweb.service.CartService;
+import com.orfarmweb.service.CategoryService;
+import com.orfarmweb.service.OrderService;
+import com.orfarmweb.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ public class UserController {
     private final CartService cartService;
     private final OrderService orderService;
     private final FormatPrice formatPrice;
+
     public UserController(UserService userService, CategoryService categoryService, CartService cartService, OrderService orderService, FormatPrice formatPrice) {
         this.userService = userService;
         this.categoryService = categoryService;
@@ -94,4 +96,5 @@ public class UserController {
         model.addAttribute("listOrder", orderService.getOrderByCurrentUser());
         return "order-history";
     }
+
 }
