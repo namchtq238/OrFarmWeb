@@ -35,6 +35,11 @@ public class MainAdminController {
         model.addAttribute("dsProduct", adminService.getProduct());
         return "admin-page/admin";
     }
+    @GetMapping("/admin-2")
+    public String getStatisticAdminPage(Model model){
+        model.addAttribute("dsProduct", adminService.getProduct());
+        return "admin-page/admin2";
+    }
     @PostMapping("/get-chart-information")
     @ResponseBody
     public ChartDTO getChartInfor(){
