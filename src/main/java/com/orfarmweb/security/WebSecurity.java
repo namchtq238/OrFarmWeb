@@ -47,8 +47,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/admin/order/**").hasAnyAuthority(Role.ADMIN.getType(), Role.STAFF.getType())
-                .antMatchers("/admin/**").hasAuthority(Role.ADMIN.getType())
+                .antMatchers("/admin/category/**").hasAuthority(Role.ADMIN.getType())
+                .antMatchers("/admin/staffManager/**").hasAuthority(Role.ADMIN.getType())
+                .antMatchers("/admin/userManager/**").hasAuthority(Role.ADMIN.getType())
+
+                .antMatchers("/admin/**").hasAnyAuthority(Role.ADMIN.getType(), Role.STAFF.getType())
                 .antMatchers("/cart/**").authenticated()
                 .antMatchers("/payment/**").authenticated()
                 .antMatchers("/user/**").authenticated()

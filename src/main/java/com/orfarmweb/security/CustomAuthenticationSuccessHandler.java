@@ -17,13 +17,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
         String redirectURL = request.getContextPath();
-        if (userDetails.hasRole("ADMIN")) {
-            redirectURL = "admin";
-        } else if (userDetails.hasRole("CUSTOMER")) {
+        if (userDetails.hasRole("CUSTOMER")) {
             redirectURL = "home";
-        }
-        else if(userDetails.hasRole("STAFF")){
-            redirectURL = "admin/order";
+        } else  {
+            redirectURL = "admin";
         }
         response.sendRedirect(redirectURL);
 
