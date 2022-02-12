@@ -39,6 +39,4 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT COUNT(*) FROM product left join category on product.cate_id = category.id " +
             "where product.cate_id = :id and product.name like %:keyWord%", nativeQuery = true)
     List<Long> countByKeyWord(int id, String keyWord);
-    @Query(value = "select SUM(product.quantity_import*product.cost) FROM product", nativeQuery = true)
-    Float getTotalCostOfProduct();
 }
