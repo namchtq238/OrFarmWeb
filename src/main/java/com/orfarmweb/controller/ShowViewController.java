@@ -41,7 +41,7 @@ public class ShowViewController {
     }
     @GetMapping("/license")
     public String showViewLicense(){
-        return "licence";
+        return "license";
     }
     @GetMapping("/policy")
     public String showViewPolicy(){
