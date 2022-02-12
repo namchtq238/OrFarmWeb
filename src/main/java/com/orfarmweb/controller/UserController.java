@@ -77,9 +77,11 @@ public class UserController {
         return "personal-infor";
     }
     @PostMapping("/user/edit-user")
-    public String handleEditUser(@ModelAttribute User user){
+    public String handleEditUser(@ModelAttribute User user, RedirectAttributes redirectAttributes){
 
         userService.updateUser(userService.getCurrentUser().getId(), user);
+        redirectAttributes.addFlashAttribute("msg", "Cập nhật thông tin thành công");
+
         return "redirect:/user/personal-information";
     }
     @PostMapping("/user/edit-password")
@@ -88,7 +90,7 @@ public class UserController {
         if (userService.updatePassword(passwordDTO))
             msg = "Thay đổi mật khẩu thành công";
         else msg = "Thay đổi mật khẩu thất bại";
-        redirectAttributes.addAttribute("msg", msg);
+        redirectAttributes.addFlashAttribute("msg", msg);
         return "redirect:/user/personal-information";
     }
     @GetMapping("/user/order-history")
