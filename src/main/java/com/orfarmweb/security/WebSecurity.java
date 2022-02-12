@@ -50,7 +50,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/category/**").hasAuthority(Role.ADMIN.getType())
                 .antMatchers("/admin/staffManager/**").hasAuthority(Role.ADMIN.getType())
                 .antMatchers("/admin/userManager/**").hasAuthority(Role.ADMIN.getType())
-
+                .antMatchers("/admin/product/**").hasAuthority(Role.ADMIN.getType())
                 .antMatchers("/admin/**").hasAnyAuthority(Role.ADMIN.getType(), Role.STAFF.getType())
                 .antMatchers("/cart/**").authenticated()
                 .antMatchers("/payment/**").authenticated()

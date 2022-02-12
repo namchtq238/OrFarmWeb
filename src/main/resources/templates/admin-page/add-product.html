@@ -140,7 +140,7 @@
                                                             <label class="col-md-4">IsHot :</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control"
-                                                                       type="number" required>
+                                                                       type="checkbox" required th:checked="${product.isHot()}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,7 +150,7 @@
                                                             <label class="col-md-4">Số lượng :</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control"
-                                                                       type="number" required>
+                                                                       type="number" required th:field="*{quantityProd}">
                                                             </div>
                                                         </div>
                                                     </div>
