@@ -156,7 +156,7 @@ public class ProductController {
         model.addAttribute("categoryId", id);
         model.addAttribute("sum", count);
         model.addAttribute("listProduct",dsProduct);
-        model.addAttribute("currentFilter", searchDTO);
+        model.addAttribute("currentFilter", searchDTO.getName());
         return "thucphamkhac";
     }
 }
