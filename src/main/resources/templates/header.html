@@ -60,8 +60,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <!-- Left -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active" style="padding-left: 40px;">
+                    <ul class="navbar-nav mr-auto"  style="margin-right: 40px;">
+                        <li class="nav-item active" >
                             <a class="nav-link waves-effect  text-header" th:href="@{/}">Trang chủ
 
                                 <span class="sr-only">(current)</span>
@@ -76,7 +76,7 @@
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
                                     <a class="dropdown-item" th:href="@{/information}">Về chúng tôi</a>
                                     <a class="dropdown-item" th:href="@{/license}">Giấy chứng nhận</a>
-                                    <a class="dropdown-item" href="#">Tuyển dụng</a>
+
                                     <a class="dropdown-item" th:href="@{/policy}">Chính sách bảo mật</a>
                                     <a class="dropdown-item" th:href="@{/condition}">Điều khoản dịch vụ</a>
                                 </div>
@@ -109,12 +109,14 @@
 
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
+
                         <li class="nav-item ">
                             <a th:href="@{/cart}" class="nav-link cart-btn amm-shopping-cart-open pr-3">
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-shopping-cart"></i><span class="cart-text">Giỏ hàng</span>
                                 <div sec:authorize="isAnonymous()">
                                     <span class="quantity-amm-shopping-cart-open">0</span>
                                 </div>
+
                                 <div sec:authorize="isAuthenticated()">
                                     <span class="quantity-amm-shopping-cart-open"
                                           th:text="${countCartItem}"></span>
@@ -184,7 +186,7 @@
 <script th:src="@{/assets/js/vendor/jquery-1.12.4.min.js}"></script>
 
 <!--====== Bootstrap js ======-->
-<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<!--<script th:src="@{/assets/js/bootstrap.min.js}"></script>-->
 <script th:src="@{/assets/js/popper.min.js}"></script>
 
 <!--====== wow js ======-->

@@ -181,8 +181,8 @@
             </div>
 
         </div>
-        <button type="button" class="btn btn-warning" style="margin: 0 46%;
-              height: 50px;"><a th:href="@{'/category/1'}" style="text-decoration: none; color: #232323;">MUA NGAY</a></button>
+        <button type="button" class="btn btn-warning" style="margin: 0 auto; display: flex;
+          "><a th:href="@{'/category/1'}" style="text-decoration: none; color: #232323;">MUA NGAY</a></button>
     </section>
     <div class="gallery">
         <div class="container">
@@ -204,7 +204,7 @@
                                 </div>
                                 <a th:href="@{'/product/' + *{saleProduct.getId()}}">
                                     <div class="fader">
-                                        <img class="w-100 card-img-top" th:src="@{'/image/ImageOrFarm/' + ${saleProduct.getImage()}}" alt="">
+                                        <img class=" card-img-top" th:src="@{'/image/ImageOrFarm/' + ${saleProduct.getImage()}}" alt="">
                                         <img class="w-100 card-img-top" th:src="@{'/image/ImageOrFarm/' + ${saleProduct.getImage()}}" alt="" style="display: none;">
                                     </div>
                                 </a>
