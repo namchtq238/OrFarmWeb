@@ -96,7 +96,13 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Float getCostOfProduct() {
-        return productRepo.getTotalCostOfProduct();
+        if(ordersRepo.getReveune() == null) return 0f;
+        List<OrderDetail> orderDetails = orderDetailRepo.getListRevenueOrder();
+        float sum = 0f;
+        for (OrderDetail orderDetail:orderDetails) {
+            sum = sum + orderDetail.getProduct().getCost();
+        }
+        return sum;
     }
 
     @Override
