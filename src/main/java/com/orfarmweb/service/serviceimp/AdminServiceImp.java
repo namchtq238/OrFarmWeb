@@ -143,8 +143,9 @@ public class AdminServiceImp implements AdminService {
         staff.setFirstName(user.getFirstName());
         staff.setLastName(user.getLastName());
         staff.setPhoneNumber(user.getPhoneNumber());
-        staff.setPassword(passwordEncoder.encode(user.getPassword()));
-        return false;
+        staff.setAddress(user.getAddress());
+        userRepo.save(staff);
+        return true;
     }
 
     @Override
