@@ -80,7 +80,7 @@ public class ManagementController {
     @PostMapping("/admin/edit-user")
     public String handleEditUser(@ModelAttribute User user){
         userService.updateUser(userService.getCurrentUser().getId(), user);
-        return "redirect:/admin/personal-information";
+        return "redirect:/admin/personal-infor";
     }
 
     @PostMapping("/admin/edit-password")

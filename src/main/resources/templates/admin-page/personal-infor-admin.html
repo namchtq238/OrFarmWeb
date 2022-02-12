@@ -74,8 +74,8 @@
                                     <tr>
                                         <td> <label for="formGroupExampleInput" class="phone-infor" style="padding-left: 0 !important;">Số điện thoại:</label> </td>
                                         <td class="display-userPhone">
-                                            <input type="number" max="10" class="form-control" id="formGroupExampleInput"
-                                                   placeholder="Số điện thoại">
+                                            <label type="number" max="10" class="form-control" id="formGroupExampleInput"
+                                                   placeholder="Số điện thoại" th:text="${user.phoneNumber}"></label>
                                         </td>
 
 
@@ -88,8 +88,8 @@
                                     <tr >
                                         <td> <label for="formGroupExampleInput" class="address-infor">Địa chỉ:</label> </td>
                                         <td class="display-userPhone">
-                                            <input type="text" max="10" class="form-control" id="formGroupExampleInput"
-                                                   placeholder="Địa chỉ">
+                                            <label type="text" class="form-control" id="formGroupExampleInput"
+                                                   placeholder="Địa chỉ" th:text="${user.address}"></label>
                                         </td>
 
                                     </tr>
@@ -120,7 +120,7 @@
                                             <label for="inputName" class="col-sm-6 col-form-label">Số điện thoại</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control appear-input mb-3 " id="inputName"
-                                                       placeholder="LastName" aria-label="First name" th:field="*{lastName}">
+                                                       placeholder="LastName" aria-label="First name" th:field="*{phoneNumber}">
 
                                             </div>
                                         </div>
@@ -128,7 +128,7 @@
                                             <label for="inputName" class="col-sm-6 col-form-label">Địa chỉ</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control appear-input mb-3 " id="inputName"
-                                                       placeholder="LastName" aria-label="First name" th:field="*{lastName}">
+                                                       placeholder="LastName" aria-label="First name" th:field="*{address}">
 
                                             </div>
                                         </div>

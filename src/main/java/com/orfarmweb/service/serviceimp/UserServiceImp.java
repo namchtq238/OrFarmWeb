@@ -61,6 +61,8 @@ public class UserServiceImp implements UserService {
         User user = userRepo.findById(id).get();
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
+        user.setPhoneNumber(userRequest.getPhoneNumber());
+        user.setAddress(userRequest.getAddress());
         //set security
         CustomUserDetails userDetails = new CustomUserDetails(user);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
