@@ -9495,6 +9495,9 @@ blockquote cite {
 /* .main-infor{
   margin-bottom: 200px;
 } */
+.phone-infor, .address-infor, #display-userName-2 label{
+  padding-left: 15%;
+}
 .profile {
   background-color: #eee;
   margin: 20px 0;}
@@ -9517,7 +9520,7 @@ blockquote cite {
 
 .hidden-edit{
   background-color: #eee;
-  height: 300px;
+  height: 525px;
   width: 500px;
   display: none;
   margin-left: 42px;
@@ -9551,9 +9554,9 @@ blockquote cite {
   width: 80px;
 
 }
-#display-userName-2 label{
-  padding-left: 36%;
-}
+/*#display-userName-2 label{*/
+/*  padding-left: 36%;*/
+/*}*/
 .profile-userpic img {
   float: none;
   margin: 0 auto;
@@ -9595,9 +9598,9 @@ blockquote cite {
   padding-left: 10%;
   padding-top: 7px;
 }
-.personal-infor table tbody tr td:first-child label{
-  padding-left: 25%;
-}
+/*.personal-infor table tbody tr td:first-child label{*/
+/*  padding-left: 25%;*/
+/*}*/
 
 .profile-usertitle-job {
   color: #5b9bd1;
