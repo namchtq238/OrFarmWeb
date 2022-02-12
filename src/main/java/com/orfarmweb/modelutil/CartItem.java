@@ -21,7 +21,7 @@ public class CartItem {
         this.productName=product.getName();
         this.discount=product.getPercentDiscount();
         this.salePrice= (product.getSalePrice() * (100 - product.getPercentDiscount())/100);
-        this.totalPrice = (product.getSalePrice() * (100 - product.getPercentDiscount())/100) * product.getPercentDiscount();
+        this.totalPrice = (product.getSalePrice() * (100 - product.getPercentDiscount())/100) * quantity;
         this.quantity = quantity;
     }
 
