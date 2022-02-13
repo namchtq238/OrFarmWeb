@@ -16,9 +16,9 @@ import java.util.List;
 
 public interface AdminService {
     Integer countOrders();
-    Integer countUserByRole();
+    Integer countCustomer();
     Float getRevenue();
-    List<Product> getProduct();
+    List<Product> getListProduct();
     List<OrderDetailDTO> getTopOrderDetail();
     List<OrderAdmin> getOrderAdmin();
     List<ProductAdminDTO> getHub();
@@ -26,12 +26,12 @@ public interface AdminService {
 //    long getTotalPageHubByKeyWord(String keyWord);
     Float getCostOfProduct();
     ChartDTO getInformationForChart();
-    List<User> getUserByRole(Role role);
+    List<User> getListUserByRole(Role role);
     boolean addStaff(User user);
     User getUserById(int id);
     boolean updateStaff(int id, User user);
     boolean deleteStaff(int id);
-    List<OrderAdmin> getOrderAdminByFillter(Date s, Date e);
+    List<OrderAdmin> getListOrderAdminByFillter(Date s, Date e);
     Integer countCart();
     Integer countByStatus(int status);
     List<OrderAdmin> findOrdersByStatus(int status);

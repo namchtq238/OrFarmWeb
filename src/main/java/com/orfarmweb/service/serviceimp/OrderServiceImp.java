@@ -42,12 +42,12 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
-    public List<Orders> getOrderByCurrentUser() {
+    public List<Orders> getListOrderByCurrentUser() {
         return ordersRepo.getAllByUser(userService.getCurrentUser());
     }
 
     @Override
-    public Orders findById(int id) {
+    public Orders getOrderById(int id) {
         return ordersRepo.getById(id);
     }
 

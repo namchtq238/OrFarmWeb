@@ -4,7 +4,6 @@ import com.orfarmweb.entity.*;
 import com.orfarmweb.repository.CartRepo;
 import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class CartServiceImp implements CartService  {
+public class CartServiceImp implements CartService {
     private final CartRepo cartRepo;
     private final UserService userService;
 
@@ -27,18 +26,17 @@ public class CartServiceImp implements CartService  {
 
     @Override
     public boolean saveItemToCart(Product product, Integer quantity) {
-        if(quantity==0) return false;
+        if (quantity == 0) return false;
         User user = userService.getCurrentUser();
         Optional<Cart> cart = Optional.ofNullable(cartRepo.getCartByUserAndProductAndIsDelete(user, product, false));
-        if(!cart.isPresent()){
+        if (!cart.isPresent()) {
             Cart newCart = new Cart();
             newCart.setUser(user);
             newCart.setProduct(product);
             newCart.setQuantity(quantity);
             cartRepo.save(newCart);
             return true;
-        }
-        else {
+        } else {
             Cart currentCart = cart.get();
             int newQuantity = currentCart.getQuantity() + quantity;
             currentCart.setQuantity(newQuantity);
@@ -56,7 +54,7 @@ public class CartServiceImp implements CartService  {
     public Integer countNumberOfItemInCart() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) return 0;
-        if(authentication.isAuthenticated()){
+        if (authentication.isAuthenticated()) {
             return cartRepo.countCartByUserAndIsDelete(userService.getCurrentUser(), false);
         }
         return 0;
@@ -65,8 +63,8 @@ public class CartServiceImp implements CartService  {
     @Override
     public boolean deleteAllItemInCart() {
         List<Cart> cartList = getAllCartByUser();
-        for (Cart cart: cartList
-             ) {
+        for (Cart cart : cartList
+        ) {
             cart.setDelete(true);
             cartRepo.save(cart);
         }
@@ -84,9 +82,9 @@ public class CartServiceImp implements CartService  {
     @Override
     public boolean deleteAnItemInCart(int productId) {
         List<Cart> cartList = getAllCartByUser();
-        for (Cart cart: cartList
+        for (Cart cart : cartList
         ) {
-            if(cart.getProduct().getId().equals(productId)){
+            if (cart.getProduct().getId().equals(productId)) {
                 cart.setDelete(true);
                 cartRepo.save(cart);
             }
@@ -98,8 +96,8 @@ public class CartServiceImp implements CartService  {
     public void saveItemToCartByOrder(Orders orders) {
         Set<OrderDetail> orderDetails = orders.getOrderDetails();
         List<Cart> cartList = new ArrayList<>();
-        for (OrderDetail orderDetail: orderDetails
-             ) {
+        for (OrderDetail orderDetail : orderDetails
+        ) {
             cartList.add(new Cart(orderDetail));
         }
         cartRepo.saveAll(cartList);

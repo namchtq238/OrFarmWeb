@@ -8,10 +8,9 @@ import com.orfarmweb.modelutil.ProductAdminDTO;
 
 import java.util.List;
 public interface ProductService {
-    List<Product> listAllByCategoryId(int id);
+    List<Product> getListProductByCategoryId(int id);
     long getTotalPageByFill(float start, float end, int id);
-    List<Product> listFillByPage(float start, float end, long currentPage, int id);
-    Product findById(int id);
+    List<Product> getListProductFillByPage(float start, float end, long currentPage, int id);
     int getTotalByFill(float start, float end, int id);
     int getTotal(int id);
     List<Product> getListProductByHot();
@@ -21,7 +20,7 @@ public interface ProductService {
     List<Product> getByPage(long currentPage, int id);
     int getCategoryId(int id);
     List<CartItem> getProductFromCart(List<Cart> cartList);
-    Float getTempPrice(List<CartItem> itemList);
+    Float getTempPriceOfCart(List<CartItem> itemList);
     boolean addProduct(Product product);
     boolean deleteProduct(int id);
     void updateProduct(int id, Product product);

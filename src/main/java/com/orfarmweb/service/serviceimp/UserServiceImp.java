@@ -56,10 +56,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User updateUser(int id, User userRequest) {
+    public void updateUser(int id, User userRequest) {
         //set trong db
         User user = userRepo.findById(id).get();
-
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
         user.setPhoneNumber(userRequest.getPhoneNumber());
@@ -71,13 +70,9 @@ public class UserServiceImp implements UserService {
         updatedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getType()));
         Authentication newAuth = new UsernamePasswordAuthenticationToken(userDetails, auth.getCredentials(), updatedAuthorities);
         SecurityContextHolder.getContext().setAuthentication(newAuth);
-        return userRepo.save(user);
+        userRepo.save(user);
     }
 
-    @Override
-    public User findById(int id) {
-        return userRepo.getById(id);
-    }
     @Override
     public boolean updatePassword(PasswordDTO passwordDTO) {
         User user = getCurrentUser();

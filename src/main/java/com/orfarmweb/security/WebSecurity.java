@@ -17,17 +17,20 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Bean
-    public AuthenticationSuccessHandler handler(){
+    public AuthenticationSuccessHandler handler() {
         return new CustomAuthenticationSuccessHandler();
     }
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImp();
     }
+
     @Bean
-    BCryptPasswordEncoder passwordEncoder(){
+    BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();

@@ -40,9 +40,8 @@ public class CartController {
     }
     @GetMapping("/cart")
     public String getViewCart(Model model) {
-        List<Cart> listCart = cartService.getAllCartByUser();
-        List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
-        Float tempPrice = productService.getTempPrice(listProductInCart);
+        List<CartItem> listProductInCart = productService.getProductFromCart(cartService.getAllCartByUser());
+        Float tempPrice = productService.getTempPriceOfCart(listProductInCart);
         Float ship = 20000f;
         if(tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;
@@ -77,7 +76,7 @@ public class CartController {
     }
     @GetMapping("/user/repurchase/{id}")
     public String getViewRepurchase(@PathVariable int id){
-        cartService.saveItemToCartByOrder(orderService.findById(id));
+        cartService.saveItemToCartByOrder(orderService.getOrderById(id));
         return "redirect:/cart";
     }
 

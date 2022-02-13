@@ -1,6 +1,5 @@
 package com.orfarmweb.controller.admincontroller;
 
-import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.constaint.Role;
 import com.orfarmweb.entity.User;
 import com.orfarmweb.modelutil.PasswordDTO;
@@ -26,7 +25,7 @@ public class ManagementController {
 
     @GetMapping("/admin/staffManager")
     public String getViewStaff(Model model) {
-        model.addAttribute("staffList", adminService.getUserByRole(Role.STAFF));
+        model.addAttribute("staffList", adminService.getListUserByRole(Role.STAFF));
         return "admin-page/staff";
     }
 
@@ -65,7 +64,7 @@ public class ManagementController {
 
     @GetMapping("/admin/userManager")
     public String getViewCustomer(Model model) {
-        model.addAttribute("customerList", adminService.getUserByRole(Role.CUSTOMER));
+        model.addAttribute("customerList", adminService.getListUserByRole(Role.CUSTOMER));
         return "/admin-page/user";
     }
 

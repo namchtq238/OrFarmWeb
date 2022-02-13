@@ -7,8 +7,6 @@ public interface UserService {
     boolean registerUser(User user);
     boolean checkExist(String email);
     User getCurrentUser();
-
-    User updateUser(int id, User userRequest);
-    User findById(int id);
+    void updateUser(int id, User userRequest);
     boolean updatePassword(PasswordDTO passwordDTO);
 }

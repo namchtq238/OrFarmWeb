@@ -3,7 +3,6 @@ package com.orfarmweb.service.serviceimp;
 import com.orfarmweb.entity.Category;
 import com.orfarmweb.repository.CategoryRepo;
 import com.orfarmweb.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class CategoryServiceImp implements CategoryService {
     }
 
     @Override
-    public Optional<Category> findById(int id) {
+    public Optional<Category> getCategoryById(int id) {
         return categoryRepo.findById(id);
     }
 
@@ -41,10 +40,10 @@ public class CategoryServiceImp implements CategoryService {
 
     @Override
     public void updateCategory(int id, Category category) {
-        Category category1 = categoryRepo.getById(id);
-        if(!category.getName().isEmpty()) category1.setName(category.getName());
-        if(!category.getDescription().isEmpty())category1.setDescription(category.getDescription());
-        categoryRepo.save(category1);
+        Category categoryDB = categoryRepo.getById(id);
+        if (!category.getName().isEmpty()) categoryDB.setName(category.getName());
+        if (!category.getDescription().isEmpty()) categoryDB.setDescription(category.getDescription());
+        categoryRepo.save(categoryDB);
     }
 
 }

@@ -60,8 +60,8 @@ public class CategoryAdminController {
 
     @GetMapping("/admin/category/edit/{id}")
     public String getViewEditCategory(@PathVariable("id") int id, Model model) {
-        if (categoryService.findById(id).isPresent()) {
-            model.addAttribute("category", categoryService.findById(id).get());
+        if (categoryService.getCategoryById(id).isPresent()) {
+            model.addAttribute("category", categoryService.getCategoryById(id).get());
             return "/admin-page/add-category";
         }
         return "redirect:/admin/category";

@@ -68,7 +68,7 @@ public class ProductController {
         model.addAttribute("categoryId", id);
         model.addAttribute("sum", sum);
         model.addAttribute("listProduct", productService.getByPage(currentPage, id));
-        model.addAttribute("category", categoryService.findById(id).get());
+        model.addAttribute("category", categoryService.getCategoryById(id).get());
         return "raucusach";
     }
 
@@ -97,15 +97,15 @@ public class ProductController {
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("categoryId", id);
         model.addAttribute("sum", sum);
-        model.addAttribute("listProduct", productService.listFillByPage(start, end, currentPage, id));
-        model.addAttribute("category", categoryService.findById(id).get());
+        model.addAttribute("listProduct", productService.getListProductFillByPage(start, end, currentPage, id));
+        model.addAttribute("category", categoryService.getCategoryById(id).get());
         return "dokho";
     }
 
     @GetMapping("/product/{id}")
     public String getViewProductDetail(@PathVariable int id, Model model) {
         Integer idCategory = productService.getCategoryId(id);
-        List<Product> list = productService.listAllByCategoryId(idCategory);
+        List<Product> list = productService.getListProductByCategoryId(idCategory);
         Collections.shuffle(list);
         if (list.size() < 9) model.addAttribute("listSimilar", list);
         else {
@@ -146,7 +146,7 @@ public class ProductController {
         if (productList.size() < 4) model.addAttribute("bestSeller", productList);
         else model.addAttribute("bestSeller", productList.subList(0, 3));
         model.addAttribute("input", new SearchDTO());
-        model.addAttribute("category", categoryService.findById(id).get());
+        model.addAttribute("category", categoryService.getCategoryById(id).get());
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         List<Product> dsProduct = productService.findProductByName(id, searchDTO.getName(), currentPage);

@@ -51,7 +51,7 @@ public class OrderController {
             return "redirect:/cart";
         }
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
-        Float tempPrice = productService.getTempPrice(listProductInCart);
+        Float tempPrice = productService.getTempPriceOfCart(listProductInCart);
         Float ship = 20000f;
         if (tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;
@@ -69,7 +69,7 @@ public class OrderController {
         User user = userService.getCurrentUser();
         List<Cart> listCart = cartService.getAllCartByUser();
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
-        Float tempPrice = productService.getTempPrice(listProductInCart);
+        Float tempPrice = productService.getTempPriceOfCart(listProductInCart);
         Float ship = 20000f;
         if (tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;

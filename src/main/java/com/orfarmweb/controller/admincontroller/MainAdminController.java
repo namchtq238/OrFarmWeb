@@ -24,7 +24,7 @@ public class MainAdminController {
     public void getTopOrder(Model model) {
         model.addAttribute("topOder", adminService.getTopOrderDetail());
         model.addAttribute("format", formatPrice);
-        model.addAttribute("countUser", adminService.countUserByRole());
+        model.addAttribute("countUser", adminService.countCustomer());
         model.addAttribute("getRevenue", adminService.getRevenue());
         model.addAttribute("countOrder", adminService.countOrders());
         model.addAttribute("getCostOfProduct", adminService.getCostOfProduct());
@@ -32,13 +32,13 @@ public class MainAdminController {
 
     @GetMapping("/admin")
     public String getViewMainAdmin(Model model) {
-        model.addAttribute("dsProduct", adminService.getProduct());
+        model.addAttribute("dsProduct", adminService.getListProduct());
         return "admin-page/admin";
     }
 
     @GetMapping("/admin-2")
     public String getViewStatisticAdmin(Model model) {
-        model.addAttribute("dsProduct", adminService.getProduct());
+        model.addAttribute("dsProduct", adminService.getListProduct());
         return "admin-page/admin2";
     }
 

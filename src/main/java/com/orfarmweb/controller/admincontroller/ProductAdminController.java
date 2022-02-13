@@ -43,7 +43,7 @@ public class ProductAdminController {
 
     @GetMapping("/admin/product")
     public String getViewProductAdmin(Model model) {
-        model.addAttribute("dsProduct", adminService.getProduct());
+        model.addAttribute("dsProduct", adminService.getListProduct());
         return "admin-page/product";
     }
 

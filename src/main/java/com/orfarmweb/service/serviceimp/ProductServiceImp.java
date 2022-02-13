@@ -18,23 +18,15 @@ import java.util.Objects;
 @Service
 public class ProductServiceImp implements ProductService {
     private final ProductRepo productRepo;
-    private final FormatPrice formatPrice;
     final long pageSize = 6;
 
-    public ProductServiceImp(ProductRepo productRepo, FormatPrice formatPrice) {
+    public ProductServiceImp(ProductRepo productRepo) {
         this.productRepo = productRepo;
-        this.formatPrice = formatPrice;
     }
 
     @Override
-    public List<Product> listAllByCategoryId(int id) {
+    public List<Product> getListProductByCategoryId(int id) {
         return productRepo.findProductByCategoryId(id);
-    }
-
-
-    @Override
-    public Product findById(int id) {
-        return productRepo.getAllById(id);
     }
 
     @Override
@@ -81,7 +73,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<Product> listFillByPage(float start, float end, long currentPage, int id) {
+    public List<Product> getListProductFillByPage(float start, float end, long currentPage, int id) {
         return productRepo.listFill(start,end,id,(currentPage-1)*pageSize,pageSize);
     }
     @Override
@@ -101,7 +93,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public Float getTempPrice(List<CartItem> itemList) {
+    public Float getTempPriceOfCart(List<CartItem> itemList) {
         Float tempPrice = 0f;
         for (CartItem cartItem: itemList) {
             tempPrice += cartItem.getTotalPrice();

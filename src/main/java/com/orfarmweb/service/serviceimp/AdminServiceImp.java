@@ -1,7 +1,6 @@
 package com.orfarmweb.service.serviceimp;
 
 import com.orfarmweb.constaint.Role;
-import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
@@ -28,6 +27,8 @@ public class AdminServiceImp implements AdminService {
     private final OrderDetailRepo orderDetailRepo;
     private final PasswordEncoder passwordEncoder;
     private final CartRepo cartRepo;
+    private final long pageSize = 7;
+
     public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo, OrderDetailRepo orderDetailRepo, PasswordEncoder passwordEncoder, CartRepo cartRepo) {
         this.ordersRepo = ordersRepo;
         this.userRepo = userRepo;
@@ -36,23 +37,25 @@ public class AdminServiceImp implements AdminService {
         this.passwordEncoder = passwordEncoder;
         this.cartRepo = cartRepo;
     }
-    private final long pageSize = 7;
+
     @Override
     public Integer countOrders() {
         return ordersRepo.countOrders();
     }
+
     @Override
-    public Integer countUserByRole() {
-        return userRepo.countUserByRole();
+    public Integer countCustomer() {
+        return userRepo.countCustomer();
     }
 
     @Override
     public Float getRevenue() {
-        if(ordersRepo.getReveune() == null) return 0f;
-        return ordersRepo.getReveune();
+        if (ordersRepo.getRevenue() == null) return 0f;
+        return ordersRepo.getRevenue();
     }
+
     @Override
-    public List<Product> getProduct() {
+    public List<Product> getListProduct() {
         return productRepo.findAll();
     }
 
@@ -96,10 +99,10 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Float getCostOfProduct() {
-        if(ordersRepo.getReveune() == null) return 0f;
+        if (ordersRepo.getRevenue() == null) return 0f;
         List<OrderDetail> orderDetails = orderDetailRepo.getListRevenueOrder();
         float sum = 0f;
-        for (OrderDetail orderDetail:orderDetails) {
+        for (OrderDetail orderDetail : orderDetails) {
             sum = sum + orderDetail.getProduct().getCost();
         }
         return sum;
@@ -109,7 +112,7 @@ public class AdminServiceImp implements AdminService {
     public ChartDTO getInformationForChart() {
         List<OrderDetail> orderDetails = orderDetailRepo.getListRevenueOrder();
         float sum = 0f;
-        for (OrderDetail orderDetail:orderDetails) {
+        for (OrderDetail orderDetail : orderDetails) {
             sum = sum + orderDetail.getProduct().getCost();
         }
         ChartDTO chartDTO = new ChartDTO();
@@ -119,7 +122,7 @@ public class AdminServiceImp implements AdminService {
     }
 
     @Override
-    public List<User> getUserByRole(Role role) {
+    public List<User> getListUserByRole(Role role) {
         return userRepo.getUserByRole(role);
     }
 
@@ -155,10 +158,10 @@ public class AdminServiceImp implements AdminService {
     }
 
     @Override
-    public List<OrderAdmin> getOrderAdminByFillter(Date s, Date e) {
-        List<Orders> ordersList = ordersRepo.getOrderUserFillter(s,e);
+    public List<OrderAdmin> getListOrderAdminByFillter(Date s, Date e) {
+        List<Orders> ordersList = ordersRepo.getOrderUserFilter(s, e);
         List<OrderAdmin> list = new ArrayList<>();
-        ordersList.forEach(orders -> list.add(new OrderAdmin(orders,orderDetailRepo.getTotalProductByFilterAndOrderId(orders.getId(),s,e))));
+        ordersList.forEach(orders -> list.add(new OrderAdmin(orders, orderDetailRepo.getTotalProductByFilterAndOrderId(orders.getId(), s, e))));
         return list;
     }
 
@@ -176,8 +179,8 @@ public class AdminServiceImp implements AdminService {
     public List<OrderAdmin> findOrdersByStatus(int status) {
         List<Orders> ordersList = ordersRepo.findOrdersByStatus(status);
         List<OrderAdmin> orderAdmins = new ArrayList<>();
-        for (Orders orderAdmin:ordersList) {
-            orderAdmins.add(new OrderAdmin(orderAdmin, orderDetailRepo.getTotalProductByOrdersIdAndStatus(orderAdmin.getId(),status)));
+        for (Orders orderAdmin : ordersList) {
+            orderAdmins.add(new OrderAdmin(orderAdmin, orderDetailRepo.getTotalProductByOrdersIdAndStatus(orderAdmin.getId(), status)));
         }
         return orderAdmins;
     }

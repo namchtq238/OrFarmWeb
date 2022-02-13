@@ -19,7 +19,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String redirectURL = request.getContextPath();
         if (userDetails.hasRole("CUSTOMER")) {
             redirectURL = "home";
-        } else  {
+        } else {
             redirectURL = "admin";
         }
         response.sendRedirect(redirectURL);

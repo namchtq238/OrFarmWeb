@@ -90,7 +90,7 @@ public class UserController {
 
     @GetMapping("/user/order-history")
     public String getViewOrderHistory(Model model) {
-        model.addAttribute("listOrder", orderService.getOrderByCurrentUser());
+        model.addAttribute("listOrder", orderService.getListOrderByCurrentUser());
         return "order-history";
     }
 
