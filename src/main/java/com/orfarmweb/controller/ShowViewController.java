@@ -22,37 +22,33 @@ public class ShowViewController {
     }
 
     @ModelAttribute
-    public void addCategoryToHeader(Model model) {
-        List<Category> listCategory = categoryService.getListCategory();
-        model.addAttribute("listCategory", listCategory);
-    }
-    @ModelAttribute("countCartItem")
-    public Integer addNumberOfCartItemToHeader(Model model) {
-        return cartService.countNumberOfItemInCart();
+    public void addAttributeToHeader(Model model){
+        model.addAttribute("listCategory", categoryService.getListCategory());
+        model.addAttribute("countCartItem", cartService.countNumberOfItemInCart());
     }
 
     @GetMapping("/blog")
-    public String showViewBlog(){
+    public String getViewBlog(){
         return "blog";
     }
     @GetMapping("/information")
-    public String showViewInfo(){
+    public String getViewInfo(){
         return "information";
     }
     @GetMapping("/license")
-    public String showViewLicense(){
+    public String getViewLicense(){
         return "license";
     }
     @GetMapping("/policy")
-    public String showViewPolicy(){
+    public String getViewPolicy(){
         return "policy";
     }
     @GetMapping("/condition")
-    public String showViewCondition(){
+    public String getViewCondition(){
         return "condition";
     }
     @GetMapping("/contact")
-    public String showViewContact(){
+    public String getViewContact(){
         return "contact";
     }
 

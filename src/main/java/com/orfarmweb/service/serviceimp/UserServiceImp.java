@@ -59,6 +59,7 @@ public class UserServiceImp implements UserService {
     public User updateUser(int id, User userRequest) {
         //set trong db
         User user = userRepo.findById(id).get();
+
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
         user.setPhoneNumber(userRequest.getPhoneNumber());

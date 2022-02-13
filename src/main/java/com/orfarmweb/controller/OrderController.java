@@ -24,17 +24,7 @@ public class OrderController {
     private final UserService userService;
     private final OrderService orderService;
     private final OrderDetailService orderDetailService;
-    private final FormatPrice format;
-    @ModelAttribute
-    public void addCategoryToHeader(Model model) {
-        List<Category> listCategory = categoryService.getListCategory();
-        model.addAttribute("listCategory", listCategory);
-    }
-
-    @ModelAttribute("countCartItem")
-    public Integer addNumberOfCartItemToHeader(Model model) {
-        return cartService.countNumberOfItemInCart();
-    }
+    private final FormatPrice formatPrice;
 
     public OrderController(CategoryService categoryService, CartService cartService, ProductService productService, UserService userService, OrderService orderService, OrderDetailService orderDetailService, FormatPrice format) {
         this.categoryService = categoryService;
@@ -43,46 +33,50 @@ public class OrderController {
         this.userService = userService;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
-        this.format = format;
+        this.formatPrice = format;
+    }
+
+    @ModelAttribute
+    public void addAttributeToHeader(Model model) {
+        model.addAttribute("listCategory", categoryService.getListCategory());
+        model.addAttribute("format", formatPrice);
+        model.addAttribute("countCartItem", cartService.countNumberOfItemInCart());
     }
 
     @GetMapping("/payment")
-    public String payment(Model model, RedirectAttributes redirectAttributes){
-        User user = userService.getCurrentUser();
+    public String getViewPayment(Model model, RedirectAttributes redirectAttributes) {
         List<Cart> listCart = cartService.getAllCartByUser();
-        if(listCart.isEmpty()){
+        if (listCart.isEmpty()) {
             redirectAttributes.addFlashAttribute("msg", "Không có sản phẩm nào để thanh toán");
             return "redirect:/cart";
         }
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
         Float tempPrice = productService.getTempPrice(listProductInCart);
         Float ship = 20000f;
-        if(tempPrice > 50000) ship = 0f;
+        if (tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;
-        model.addAttribute("tempPrice", format.formatPrice(tempPrice));
-        model.addAttribute("ship", format.formatPrice(ship));
-        model.addAttribute("totalPrice", format.formatPrice(totalPrice));
-        model.addAttribute("format", format);
-
+        model.addAttribute("tempPrice", formatPrice.formatPrice(tempPrice));
+        model.addAttribute("ship", formatPrice.formatPrice(ship));
+        model.addAttribute("totalPrice", formatPrice.formatPrice(totalPrice));
         model.addAttribute("productInCart", listProductInCart);
-        model.addAttribute("userInformation", user);
+        model.addAttribute("userInformation", userService.getCurrentUser());
         model.addAttribute("paymentInformation", new PaymentInformation());
         return "payment";
     }
+
     @PostMapping("/payment/process")
-    public String paymentProcess(@ModelAttribute PaymentInformation paymentInformation){
+    public String handlePaymentProcess(@ModelAttribute PaymentInformation paymentInformation) {
         User user = userService.getCurrentUser();
         List<Cart> listCart = cartService.getAllCartByUser();
         List<CartItem> listProductInCart = productService.getProductFromCart(listCart);
         Float tempPrice = productService.getTempPrice(listProductInCart);
         Float ship = 20000f;
-        if(tempPrice > 50000) ship = 0f;
+        if (tempPrice > 50000) ship = 0f;
         Float totalPrice = tempPrice + ship;
-        String note = paymentInformation.getOrder().getNote();
         Orders orders = orderService.saveNewOrder(paymentInformation);
         orders.setUser(user);
         Set<OrderDetail> orderDetailList = new HashSet<>();
-        for (CartItem cart: listProductInCart) {
+        for (CartItem cart : listProductInCart) {
             Product product = productService.getProductById(cart.getProductId());
             OrderDetail orderDetail = orderDetailService.saveOrderDetail(
                     product, orders,
@@ -94,8 +88,9 @@ public class OrderController {
         cartService.deleteAllItemInCart();
         return "redirect:/payment/ordersucess";
     }
+
     @GetMapping("/payment/ordersucess")
-    public String getOrderSucessPage(){
+    public String getViewOrderSucess() {
         return "success-order";
     }
 
