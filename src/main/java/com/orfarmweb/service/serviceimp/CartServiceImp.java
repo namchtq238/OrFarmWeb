@@ -82,13 +82,12 @@ public class CartServiceImp implements CartService {
     @Override
     public boolean deleteAnItemInCart(int productId) {
         List<Cart> cartList = getAllCartByUser();
-        for (Cart cart : cartList
-        ) {
+        cartList.forEach(cart -> {
             if (cart.getProduct().getId().equals(productId)) {
                 cart.setDelete(true);
                 cartRepo.save(cart);
             }
-        }
+        });
         return true;
     }
 
@@ -96,10 +95,7 @@ public class CartServiceImp implements CartService {
     public void saveItemToCartByOrder(Orders orders) {
         Set<OrderDetail> orderDetails = orders.getOrderDetails();
         List<Cart> cartList = new ArrayList<>();
-        for (OrderDetail orderDetail : orderDetails
-        ) {
-            cartList.add(new Cart(orderDetail));
-        }
+        orderDetails.forEach(orderDetail -> cartList.add(new Cart(orderDetail)));
         cartRepo.saveAll(cartList);
     }
 }

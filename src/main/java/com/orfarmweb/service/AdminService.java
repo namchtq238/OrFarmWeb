@@ -31,7 +31,7 @@ public interface AdminService {
     User getUserById(int id);
     boolean updateStaff(int id, User user);
     boolean deleteStaff(int id);
-    List<OrderAdmin> getListOrderAdminByFillter(Date s, Date e);
+    List<OrderAdmin> getListOrderAdminByFilter(Date s, Date e);
     Integer countCart();
     Integer countByStatus(int status);
     List<OrderAdmin> findOrdersByStatus(int status);

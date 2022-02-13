@@ -89,7 +89,7 @@ public class OrderAdminController {
         String fileName = "order_" + currentDateTime + "from_" + dateParam.getStartFill() + "_to_" + dateParam.getEndFill() + ".xlsx";
         String headerValue = "attachement; filename= " + fileName;
         response.setHeader(headerKey, headerValue);
-        List<OrderAdmin> orderAdmins = adminService.getListOrderAdminByFillter(dateParam.getStartFill(), dateParam.getEndFill());
+        List<OrderAdmin> orderAdmins = adminService.getListOrderAdminByFilter(dateParam.getStartFill(), dateParam.getEndFill());
         OrderDataExcelExport orderDataExcelExport = new OrderDataExcelExport(orderAdmins);
         orderDataExcelExport.export(response);
         return "admin-page/order-fill";
@@ -101,8 +101,8 @@ public class OrderAdminController {
         if (bindingResult.hasErrors()) return "redirect:/admin-page/order";
         model.addAttribute("dateFill", new DateFilterDTO());
         model.addAttribute("dateParam", dateFilterDTO);
-        adminService.getListOrderAdminByFillter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()).forEach(orderAdmin -> System.err.println(orderAdmin.toString()));
-        model.addAttribute("orderAdmin", adminService.getListOrderAdminByFillter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()));
+        adminService.getListOrderAdminByFilter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()).forEach(orderAdmin -> System.err.println(orderAdmin.toString()));
+        model.addAttribute("orderAdmin", adminService.getListOrderAdminByFilter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()));
         return "admin-page/order-fill";
     }
 //    @GetMapping("/admin/order/fill-by-status/{value}")

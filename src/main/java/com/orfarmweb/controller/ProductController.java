@@ -56,7 +56,6 @@ public class ProductController {
                                  Model model) {
         long totalPage = productService.getTotalPage(id);
         Integer sum = productService.getTotal(id);
-        if (sum.equals(null)) sum = 0;
         List<Product> productList = productService.getListProductByHot();
         Collections.shuffle(productList);
         if (productList.size() < 4) model.addAttribute("bestSeller", productList);
@@ -112,7 +111,7 @@ public class ProductController {
             list = list.subList(0, 7);
             model.addAttribute("listSimilar", list);
         }
-        model.addAttribute("productDetail", productService.findById(id));
+        model.addAttribute("productDetail", productService.getProductById(id));
         return "productdetail";
     }
 
@@ -122,7 +121,7 @@ public class ProductController {
                                          @RequestParam("quantity") Integer quantity) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) return "redirect:/login";
-        Product product = productService.findById(id);
+        Product product = productService.getProductById(id);
         boolean success = cartService.saveItemToCart(product, quantity);
         String msg;
         if (success) msg = "Thêm giỏ hàng thành công";

@@ -27,7 +27,7 @@ public interface OrdersRepo extends JpaRepository<Orders, Integer> {
     List<Orders> getOrderUserFilter(Date start, Date end);
 
     @Query(value = "select count(*) from orders where status = ?", nativeQuery = true)
-    Integer countByStatus(int status);
+    Integer countOrdersByStatus(int status);
 
     @Query(value = "select * from orders where status = ?", nativeQuery = true)
     List<Orders> findOrdersByStatus(int status);

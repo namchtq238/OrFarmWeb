@@ -158,7 +158,7 @@ public class AdminServiceImp implements AdminService {
     }
 
     @Override
-    public List<OrderAdmin> getListOrderAdminByFillter(Date s, Date e) {
+    public List<OrderAdmin> getListOrderAdminByFilter(Date s, Date e) {
         List<Orders> ordersList = ordersRepo.getOrderUserFilter(s, e);
         List<OrderAdmin> list = new ArrayList<>();
         ordersList.forEach(orders -> list.add(new OrderAdmin(orders, orderDetailRepo.getTotalProductByFilterAndOrderId(orders.getId(), s, e))));
@@ -172,7 +172,7 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Integer countByStatus(int status) {
-        return ordersRepo.countByStatus(status);
+        return ordersRepo.countOrdersByStatus(status);
     }
 
     @Override

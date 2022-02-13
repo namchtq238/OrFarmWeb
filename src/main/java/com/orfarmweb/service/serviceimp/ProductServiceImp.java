@@ -84,11 +84,7 @@ public class ProductServiceImp implements ProductService {
     @Override
     public List<CartItem> getProductFromCart(List<Cart> cartList) {
         List<CartItem> list = new ArrayList<>();
-        for (Cart cart: cartList
-             ) {
-            CartItem cartItem = new CartItem(cart.getProduct(), cart.getQuantity());
-            list.add(cartItem);
-        }
+        cartList.forEach(cart -> list.add(new CartItem(cart.getProduct(), cart.getQuantity())));
         return list;
     }
 
