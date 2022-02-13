@@ -26,7 +26,7 @@ public class CartServiceImp implements CartService {
 
     @Override
     public boolean saveItemToCart(Product product, Integer quantity) {
-        if (quantity == 0) return false;
+        if (quantity <= 0) return false;
         User user = userService.getCurrentUser();
         Optional<Cart> cart = Optional.ofNullable(cartRepo.getCartByUserAndProductAndIsDelete(user, product, false));
         if (!cart.isPresent()) {

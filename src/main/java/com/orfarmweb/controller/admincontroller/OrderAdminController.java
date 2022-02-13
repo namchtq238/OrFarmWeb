@@ -99,7 +99,7 @@ public class OrderAdminController {
     public String handleFillByDate(@ModelAttribute DateFilterDTO dateFilterDTO, Model model,
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return "redirect:/admin-page/order";
-        model.addAttribute("dateFill", new DateFilterDTO());
+        model.addAttribute("dateFill", dateFilterDTO);
         model.addAttribute("dateParam", dateFilterDTO);
         adminService.getListOrderAdminByFilter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()).forEach(orderAdmin -> System.err.println(orderAdmin.toString()));
         model.addAttribute("orderAdmin", adminService.getListOrderAdminByFilter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()));
