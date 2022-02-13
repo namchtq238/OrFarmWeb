@@ -81,7 +81,7 @@ public class UserController {
 
     @PostMapping("/user/edit-password")
     public String handleEditPassword(RedirectAttributes redirectAttributes, @ModelAttribute PasswordDTO passwordDTO) {
-        String msg = null;
+        String msg;
         if (userService.updatePassword(passwordDTO)) msg = "Thay đổi mật khẩu thành công";
         else msg = "Thay đổi mật khẩu thất bại";
         redirectAttributes.addFlashAttribute("msg", msg);

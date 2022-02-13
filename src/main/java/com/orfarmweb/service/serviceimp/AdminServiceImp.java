@@ -27,7 +27,6 @@ public class AdminServiceImp implements AdminService {
     private final OrderDetailRepo orderDetailRepo;
     private final PasswordEncoder passwordEncoder;
     private final CartRepo cartRepo;
-    private final long pageSize = 7;
 
     public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo, OrderDetailRepo orderDetailRepo, PasswordEncoder passwordEncoder, CartRepo cartRepo) {
         this.ordersRepo = ordersRepo;

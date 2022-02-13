@@ -78,7 +78,7 @@ public class ProductAdminController {
     }
 
     @PostMapping("/admin/product/edit/{id}")
-    public String handleEditProductAdmin(@PathVariable("id") int productId, @ModelAttribute Product product, @RequestParam MultipartFile photo, Model model) {
+    public String handleEditProductAdmin(@PathVariable("id") int productId, @ModelAttribute Product product, @RequestParam MultipartFile photo) {
         if (!photo.isEmpty()) {
             try {
                 InputStream inputStream = photo.getInputStream();

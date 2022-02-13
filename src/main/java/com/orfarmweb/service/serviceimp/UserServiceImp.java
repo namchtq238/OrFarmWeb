@@ -58,7 +58,7 @@ public class UserServiceImp implements UserService {
     @Override
     public void updateUser(int id, User userRequest) {
         //set trong db
-        User user = userRepo.findById(id).get();
+        User user = userRepo.getById(id);
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
         user.setPhoneNumber(userRequest.getPhoneNumber());

@@ -6,8 +6,6 @@ import lombok.Data;
 import org.hibernate.criterion.Order;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Data

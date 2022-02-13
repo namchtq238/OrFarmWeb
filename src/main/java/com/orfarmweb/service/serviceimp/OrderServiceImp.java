@@ -3,16 +3,13 @@ package com.orfarmweb.service.serviceimp;
 import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
-import com.orfarmweb.entity.User;
 import com.orfarmweb.modelutil.PaymentInformation;
 import com.orfarmweb.repository.OrdersRepo;
 import com.orfarmweb.service.OrderService;
 import com.orfarmweb.service.UserService;
-import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service

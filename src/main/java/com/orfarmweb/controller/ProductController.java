@@ -106,11 +106,8 @@ public class ProductController {
         Integer idCategory = productService.getCategoryId(id);
         List<Product> list = productService.getListProductByCategoryId(idCategory);
         Collections.shuffle(list);
-        if (list.size() < 9) model.addAttribute("listSimilar", list);
-        else {
-            list = list.subList(0, 7);
-            model.addAttribute("listSimilar", list);
-        }
+        if (list.size() > 8) list = list.subList(0, 7);
+        model.addAttribute("listSimilar", list);
         model.addAttribute("productDetail", productService.getProductById(id));
         return "productdetail";
     }
@@ -149,13 +146,9 @@ public class ProductController {
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         List<Product> dsProduct = productService.findProductByName(id, searchDTO.getName(), currentPage);
-        int count = 0;
-        for (Product product : dsProduct) {
-            count++;
-        }
         model.addAttribute("filter", new FilterProduct());
         model.addAttribute("categoryId", id);
-        model.addAttribute("sum", count);
+        model.addAttribute("sum", dsProduct.size());
         model.addAttribute("listProduct", dsProduct);
         model.addAttribute("currentFilter", searchDTO.getName());
         return "thucphamkhac";

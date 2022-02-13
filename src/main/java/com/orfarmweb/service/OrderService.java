@@ -1,12 +1,10 @@
 package com.orfarmweb.service;
 
-import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.modelutil.PaymentInformation;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 public interface OrderService {

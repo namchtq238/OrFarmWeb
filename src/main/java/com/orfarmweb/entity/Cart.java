@@ -24,7 +24,7 @@ public class Cart {
     private User user;
     public Cart(OrderDetail orderDetail){
         this.product = orderDetail.getProduct();
-        this.quantity = orderDetail.getQuantity();;
+        this.quantity = orderDetail.getQuantity();
         this.user = orderDetail.getOrders().getUser();
     }
 }

@@ -1,15 +1,12 @@
 package com.orfarmweb.service;
 
 import com.orfarmweb.constaint.Role;
-import com.orfarmweb.constaint.Status;
-import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.entity.User;
 import com.orfarmweb.modelutil.ChartDTO;
 import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.modelutil.OrderDetailDTO;
 import com.orfarmweb.modelutil.ProductAdminDTO;
-import org.hibernate.criterion.Order;
 
 import java.util.Date;
 import java.util.List;

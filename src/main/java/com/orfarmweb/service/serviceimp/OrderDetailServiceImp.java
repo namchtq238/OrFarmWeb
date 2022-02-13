@@ -5,7 +5,6 @@ import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.repository.OrderDetailRepo;
 import com.orfarmweb.service.OrderDetailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

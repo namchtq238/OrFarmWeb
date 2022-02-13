@@ -58,7 +58,7 @@ public class OrderAdminController {
 
     @PostMapping("/admin/order/edit/{id}")
     public String handleEditStatusOrderAdmin(@PathVariable int id, @ModelAttribute Orders orders,
-                                             @RequestParam Status status, Model model) {
+                                             @RequestParam Status status) {
         orders.setStatus(status);
         orderService.updateStatus(id, orders);
         return "redirect:/admin/order/{id}";

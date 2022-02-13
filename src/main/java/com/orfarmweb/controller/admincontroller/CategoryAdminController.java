@@ -39,7 +39,7 @@ public class CategoryAdminController {
     }
 
     @PostMapping("/admin/category/add")
-    public String handleAddCategory(Model model, @ModelAttribute @Valid Category category, @RequestParam MultipartFile photo, BindingResult result) {
+    public String handleAddCategory(@ModelAttribute @Valid Category category, @RequestParam MultipartFile photo, BindingResult result) {
         if (photo.isEmpty() || result.hasErrors()) return "redirect:/admin/category/add";
         try {
             InputStream inputStream = photo.getInputStream();

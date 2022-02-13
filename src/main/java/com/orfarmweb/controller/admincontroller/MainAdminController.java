@@ -44,7 +44,7 @@ public class MainAdminController {
 
     @PostMapping("/get-chart-information")
     @ResponseBody
-    public ChartDTO handleChartInfor() {
+    public ChartDTO handleChartInformation() {
         return adminService.getInformationForChart();
     }
 }
