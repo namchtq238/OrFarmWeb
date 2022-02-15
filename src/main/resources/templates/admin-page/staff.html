@@ -78,7 +78,6 @@
                                         <thead>
                                             <tr class="text-center">
                                                 <th>ID</th>
-                                                <th>Ảnh</th>
                                                 <th>Họ Tên</th>
                                                 <th>Email</th>
                                                 <th>Số điện thoại</th>
@@ -89,9 +88,9 @@
                                         <tbody class="text-center">
                                             <tr th:each="staff : ${staffList}" >
                                                 <td th:text="${staff.id}">001</td>
-                                                <td class="text-center">
-                                                <a class="product-list-img" href="javascript: void(0);">
-                                                    <img src="../assets/img/60x60.jpg" alt="product"></a></td>
+<!--                                                <td class="text-center">-->
+<!--                                                <a class="product-list-img" href="javascript: void(0);">-->
+<!--                                                    <img src="../assets/img/60x60.jpg" alt="product"></a></td>-->
                                                 <td th:text="${staff.getName()}"></td>
                                                 <td th:text="${staff.email}"></td>
                                                 <td th:text="${staff.phoneNumber}"></td>
