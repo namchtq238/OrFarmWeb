@@ -40,7 +40,8 @@ public class CartController {
     }
     @GetMapping("/cart")
     public String getViewCart(Model model) {
-        List<CartItem> listProductInCart = productService.getProductFromCart(cartService.getAllCartByUser());
+        List<Cart> carts = cartService.getAllCartByUser();
+        List<CartItem> listProductInCart = productService.getProductFromCart(carts);
         Float tempPrice = productService.getTempPriceOfCart(listProductInCart);
         Float ship = 20000f;
         if(tempPrice > 50000) ship = 0f;

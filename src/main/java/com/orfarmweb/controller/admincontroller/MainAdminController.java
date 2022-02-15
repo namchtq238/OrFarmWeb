@@ -2,9 +2,11 @@ package com.orfarmweb.controller.admincontroller;
 
 import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.modelutil.ChartDTO;
+import com.orfarmweb.modelutil.DateFilterDTO;
 import com.orfarmweb.service.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,16 +31,20 @@ public class MainAdminController {
         model.addAttribute("countOrder", adminService.countOrders());
         model.addAttribute("getCostOfProduct", adminService.getCostOfProduct());
     }
-
     @GetMapping("/admin")
     public String getViewMainAdmin(Model model) {
+        model.addAttribute("dateFill", new DateFilterDTO());
         model.addAttribute("dsProduct", adminService.getListProduct());
         return "admin-page/admin";
     }
+    @PostMapping("/admin/fill")
+    public String getViewStatisticAdmin(Model model, @ModelAttribute DateFilterDTO dateFilterDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) return "redirect:/admin";
+        model.addAttribute("dateFill", dateFilterDTO);
+        model.addAttribute("dateParam", dateFilterDTO);
+        adminService.findOrderDetailByDay(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()).forEach(orderAdmin -> System.err.println(orderAdmin.toString()));
+        model.addAttribute("dsProduct", adminService.findOrderDetailByDay(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()));
 
-    @GetMapping("/admin-2")
-    public String getViewStatisticAdmin(Model model) {
-        model.addAttribute("dsProduct", adminService.getListProduct());
         return "admin-page/admin2";
     }
 

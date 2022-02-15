@@ -6,13 +6,10 @@ import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.entity.User;
-import com.orfarmweb.modelutil.ChartDTO;
-import com.orfarmweb.modelutil.OrderAdmin;
-import com.orfarmweb.modelutil.OrderDetailDTO;
-import com.orfarmweb.modelutil.ProductAdminDTO;
+import com.orfarmweb.modelutil.*;
 import com.orfarmweb.repository.*;
 import com.orfarmweb.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.object.StoredProcedure;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -196,4 +193,20 @@ public class AdminServiceImp implements AdminService {
         return orderAdmins;
     }
 
+    @Override
+    public List<ProductFilterDTO> findOrderDetailByDay(Date s, Date e) {
+        if(s.compareTo(e)>0){
+            Date temp = s;
+            s = e;
+            e = temp;
+        }
+        e = dateFormat.addOneDay(e);
+        List<ProductFilterDTO> lists = new ArrayList<>();
+        List<OrderDetail> orderDetails = orderDetailRepo.findOrderDetailByDay(s,e);
+        for (OrderDetail orderDetail:orderDetails) {
+            int quantity = orderDetailRepo.getTotalProductByDay(s,e,orderDetail.getProduct().getId());
+                lists.add(new ProductFilterDTO(orderDetail, quantity));
+        }
+        return lists;
+    }
 }

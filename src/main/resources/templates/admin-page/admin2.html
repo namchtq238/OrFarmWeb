@@ -212,7 +212,6 @@
                                                     class="invisible">s</span>
                                             </label>
                                         </th>
-                                        <th>STT</th>
                                         <th>ID</th>
                                         <th>Hình ảnh</th>
                                         <th>Tên Sản phẩm</th>
@@ -231,17 +230,16 @@
                                                     class="invisible">s</span>
                                             </label>
                                         </td>
-                                        <td>1</td>
                                         <td th:utext="${pro.id}"></td>
                                         <td>
                                             <img th:src="@{'/image/ImageOrFarm/'+${pro.image}}" class="img-fluid" alt="img-1"
                                                  style="border-color: #3862f5;">
                                         </td>
                                         <td th:utext="${pro.name}"></td>
-                                        <td><span class="badge badge-info badge-pill" th:utext="${pro.category.name}"></span></td>
-                                        <td class="text-center">1</td>
+                                        <td><span class="badge badge-info badge-pill" th:utext="${pro.cateName}"></span></td>
+                                        <td class="text-center" th:utext="${pro.quantity}">1</td>
 
-                                        <td class="text-center" >100000</td>
+                                        <td class="text-center" th:utext="${format.formatPrice(pro.totalPrice)}">100000</td>
 
                                     </tr>
                                     </tbody>
