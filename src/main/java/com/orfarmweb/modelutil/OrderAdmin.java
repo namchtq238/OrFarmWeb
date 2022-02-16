@@ -3,6 +3,8 @@ import com.orfarmweb.constaint.Status;
 import com.orfarmweb.entity.Orders;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class OrderAdmin {
     private Integer order_id;
@@ -13,6 +15,7 @@ public class OrderAdmin {
     private String address;
     private String phoneNumber;
     private Float salePrice;
+    private Date createAt;
 
     public OrderAdmin(Orders orders, Integer totalProduct) {
         this.order_id=orders.getId();
@@ -23,5 +26,6 @@ public class OrderAdmin {
         this.address = orders.getAddress();
         this.salePrice = orders.getTotalPrice();
         this.totalProduct = totalProduct;
+        this.createAt = orders.getCreateAt();
     }
 }
