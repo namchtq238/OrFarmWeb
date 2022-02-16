@@ -8,11 +8,14 @@ import com.orfarmweb.modelutil.DateFilterDTO;
 import com.orfarmweb.modelutil.OrderAdmin;
 import com.orfarmweb.service.AdminService;
 import com.orfarmweb.service.OrderService;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -38,7 +41,7 @@ public class OrderAdminController {
     }
 
     @GetMapping("/admin/order")
-    public String getListOrderAdmin(Model model) {
+    public String getListOrderAdmin(Model model, HttpServletRequest request) {
         model.addAttribute("countOrder", adminService.countOrders());
         model.addAttribute("countCart", adminService.countCart());
         model.addAttribute("dateFill", new DateFilterDTO());
@@ -80,7 +83,7 @@ public class OrderAdminController {
     }
 
     @GetMapping("/admin/exportFill")
-    public String exportFillToExcel(HttpServletResponse response, @ModelAttribute DateFilterDTO dateParam)
+    public String exportFillToExcel(HttpServletResponse response, @ModelAttribute("dateFill") DateFilterDTO dateParam)
             throws IOException, IllegalStateException {
         response.setContentType("application/octet-stream");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH");
@@ -96,15 +99,29 @@ public class OrderAdminController {
     }
 
     @PostMapping("/admin/resultFilter")
-    public String handleFillByDate(@ModelAttribute DateFilterDTO dateFilterDTO, Model model,
+    public String handleFillByDate(@ModelAttribute DateFilterDTO dateFilterDTO, RedirectAttributes redirectAttributes,
                                    BindingResult bindingResult) {
         if (dateFilterDTO.getStartFill() == null || dateFilterDTO.getEndFill() == null||bindingResult.hasErrors()) return "redirect:/admin-page/order";
+        redirectAttributes.addFlashAttribute("dateFill", dateFilterDTO);
+        adminService.getListOrderAdminByFilter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()).forEach(orderAdmin -> System.err.println(orderAdmin.toString()));
+        redirectAttributes.addFlashAttribute("orderAdmin", adminService.getListOrderAdminByFilter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()));
+        return "redirect:/admin/orderFilter";
+    }
+    @GetMapping("/admin/orderFilter")
+    public String getListOrderFillAdmin(Model model, @ModelAttribute("dateFill") DateFilterDTO dateFilterDTO,
+                                        @ModelAttribute("orderAdmin") List<OrderAdmin> list) {
+        model.addAttribute("countOrder", adminService.countOrders());
+        model.addAttribute("countCart", adminService.countCart());
         model.addAttribute("dateFill", dateFilterDTO);
         model.addAttribute("dateParam", dateFilterDTO);
-        adminService.getListOrderAdminByFilter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()).forEach(orderAdmin -> System.err.println(orderAdmin.toString()));
-        model.addAttribute("orderAdmin", adminService.getListOrderAdminByFilter(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()));
+        model.addAttribute("orderAdmin", list);
+        model.addAttribute("countProcessing", adminService.countByStatus(Status.PROCESSING.getValue()));
+        model.addAttribute("countCancel", adminService.countByStatus(Status.CANCELED.getValue()));
+        model.addAttribute("countDelivered", adminService.countByStatus(Status.DELIVERED.getValue()));
+        model.addAttribute("countApproved", adminService.countByStatus(Status.APPROVED.getValue()));
         return "admin-page/order-fill";
     }
+
 //    @GetMapping("/admin/order/fill-by-status/{value}")
 //    public String handleFillOrderByStatus(@PathVariable Status value, Model model){
 //        model.addAttribute("orderAdmin", adminService.findOrdersByStatus(value.getValue()));
