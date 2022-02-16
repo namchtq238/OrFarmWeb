@@ -11,6 +11,7 @@ public class ProductFilterDTO {
     private String cateName;
     private int quantity;
     private float totalPrice;
+    private float importPrice;
     public ProductFilterDTO(OrderDetail orderDetail, int quantity){
         this.id = orderDetail.getProduct().getId();
         this.image = orderDetail.getProduct().getImage();
@@ -18,5 +19,6 @@ public class ProductFilterDTO {
         this.cateName = orderDetail.getProduct().getCategory().getName();
         this.quantity = quantity;
         this.totalPrice = orderDetail.getProduct().getSalePrice()*quantity;
+        this.importPrice = orderDetail.getProduct().getCost()*quantity;
     }
 }

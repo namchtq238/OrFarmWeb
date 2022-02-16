@@ -215,14 +215,19 @@ public class AdminServiceImp implements AdminService {
         List<ProductFilterDTO> lists = findOrderDetailByDay(s,e);
         float sum = 0f;
         for(ProductFilterDTO product:lists){
-            sum+= product.getTotalPrice();
+            sum+= product.getImportPrice();
         }
         return sum;
     }
 
     @Override
     public Float getTotalPriceByDate(Date s, Date e) {
-    return orderDetailRepo.getRevenueByDate(s,e);
+        List<ProductFilterDTO> lists = findOrderDetailByDay(s,e);
+        float sum = 0f;
+        for(ProductFilterDTO product:lists){
+            sum+= product.getTotalPrice();
+        }
+        return sum;
     }
 
     @Override
@@ -232,6 +237,6 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Integer getTotalUserId(Date s, Date e) {
-        return orderDetailRepo.getTotalUserId(s,e);
+        return userRepo.getTotalUserId(s,e);
     }
 }

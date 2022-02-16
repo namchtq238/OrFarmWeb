@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Đơn hàng</p>
-                                    <p class="widget-numeric-value" th:utext="${countOrdersFill}"></p>
+                                    <p class="widget-numeric-value" th:text="${countOrdersFill}"></p>
                                 </div>
                             </div>
                             <p class="widget-total-stats mt-2"></p>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Khách hàng</p>
-                                    <p class="widget-numeric-value" th:utext="${countUserFill}"></p>
+                                    <p class="widget-numeric-value" th:text="${countUserFill}"></p>
                                 </div>
                             </div>
                             <p class="widget-total-stats mt-2"></p>
@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Doanh thu</p>
-                                    <p class="widget-numeric-value" th:utext="${format.formatPrice(totalFill)}"></p>
+                                    <p class="widget-numeric-value" th:text="${format.formatPrice(totalFill)}"></p>
                                 </div>
                             </div>
                         </div>
