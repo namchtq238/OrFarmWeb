@@ -37,4 +37,17 @@ public interface OrderDetailRepo extends JpaRepository<OrderDetail, Integer> {
     List<OrderDetail> findOrderDetailByDay(Date start, Date end);
     @Query(value = "select sum(order_detail.quantity) from order_detail left join orders on order_detail.order_id = orders.id left join product on order_detail.product_id = product.id where not (orders.create_at >= :end or orders.create_at <= :start) and order_detail.product_id = :id", nativeQuery = true)
     Integer getTotalProductByDay(Date start, Date end, int id);
+    @Query(value = "select sum(orders.total_price) " +
+            "from order_detail " +
+            "left join orders on order_detail.order_id = orders.id " +
+            "left join product on order_detail.product_id = product.id " +
+            "where not (orders.create_at >= :end or orders.create_at <= :start) and orders.status = 3", nativeQuery = true)
+    Float getRevenueByDate(Date start, Date end);
+    @Query(value = "select count(orders.id) " +
+            "from orders " +
+            "where not (orders.create_at >= :end or orders.create_at <= :start)",nativeQuery = true)
+    Integer getTotalOrderByDate(Date start, Date end);
+    @Query(value = "select distinct count(orders.user_id) " +
+            "from orders where not (orders.create_at >= :end or orders.create_at <= :start)",nativeQuery = true)
+            Integer getTotalUserId(Date start, Date end);
 }

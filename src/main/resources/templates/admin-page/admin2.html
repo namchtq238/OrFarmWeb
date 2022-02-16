@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Vốn</p>
-                                    <p class="widget-numeric-value" th:utext="${format.formatPrice(getCostOfProduct)}"></p>
+                                    <p class="widget-numeric-value" th:utext="${format.formatPrice(importFill)}"></p>
                                 </div>
                             </div>
                             <p class="widget-total-stats mt-2"></p>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Đơn hàng</p>
-                                    <p class="widget-numeric-value" th:utext="${countOrder}"></p>
+                                    <p class="widget-numeric-value" th:utext="${countOrdersFill}"></p>
                                 </div>
                             </div>
                             <p class="widget-total-stats mt-2"></p>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Khách hàng</p>
-                                    <p class="widget-numeric-value" th:utext="${countUser}"></p>
+                                    <p class="widget-numeric-value" th:utext="${countUserFill}"></p>
                                 </div>
                             </div>
                             <p class="widget-total-stats mt-2"></p>
@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Doanh thu</p>
-                                    <p class="widget-numeric-value" th:utext="${format.formatPrice(getRevenue)}"></p>
+                                    <p class="widget-numeric-value" th:utext="${format.formatPrice(totalFill)}"></p>
                                 </div>
                             </div>
                         </div>

@@ -209,4 +209,29 @@ public class AdminServiceImp implements AdminService {
         }
         return lists;
     }
+
+    @Override
+    public Float getImportPriceByDate(Date s, Date e) {
+        List<ProductFilterDTO> lists = findOrderDetailByDay(s,e);
+        float sum = 0f;
+        for(ProductFilterDTO product:lists){
+            sum+= product.getTotalPrice();
+        }
+        return sum;
+    }
+
+    @Override
+    public Float getTotalPriceByDate(Date s, Date e) {
+    return orderDetailRepo.getRevenueByDate(s,e);
+    }
+
+    @Override
+    public Integer getTotalOrdersByDate(Date s, Date e) {
+        return orderDetailRepo.getTotalOrderByDate(s,e);
+    }
+
+    @Override
+    public Integer getTotalUserId(Date s, Date e) {
+        return orderDetailRepo.getTotalUserId(s,e);
+    }
 }

@@ -31,4 +31,8 @@ public interface AdminService {
     Integer countByStatus(int status);
     List<OrderAdmin> findOrdersByStatus(int status);
     List<ProductFilterDTO> findOrderDetailByDay(Date s, Date e);
+    Float getImportPriceByDate(Date s, Date e);
+    Float getTotalPriceByDate(Date s, Date e);
+    Integer getTotalOrdersByDate(Date s, Date e);
+    Integer getTotalUserId(Date s, Date e);
 }
