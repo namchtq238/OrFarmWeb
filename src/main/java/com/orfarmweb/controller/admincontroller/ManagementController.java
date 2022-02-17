@@ -7,6 +7,7 @@ import com.orfarmweb.service.AdminService;
 import com.orfarmweb.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,8 @@ public class ManagementController {
     }
 
     @PostMapping("/admin/staffManager/addStaff")
-    public String handleAddStaff(RedirectAttributes redirectAttributes, @ModelAttribute User user) {
+    public String handleAddStaff(RedirectAttributes redirectAttributes, @ModelAttribute User user, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) return "redirect:/admin/staffManager/addStaff";
         if (adminService.addStaff(user))
             redirectAttributes.addFlashAttribute("msg", "Thêm nhân viên thành công");
         return "redirect:/admin/staffManager";
