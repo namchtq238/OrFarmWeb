@@ -57,7 +57,7 @@ public class UserController {
                                       BindingResult bindingResult,
                                       RedirectAttributes redirectAttributes) {
         if (userService.checkExist(user.getEmail()))
-            bindingResult.rejectValue("email", "invalid", "Email đã tồn tại");
+            bindingResult.rejectValue("email", "invalid", "Tài khoản khách hàng đã có trong hệ thống");
         if (bindingResult.hasErrors()) return "/createAccount";
         userService.registerUser(user);
         redirectAttributes.addFlashAttribute("msg", "Tạo tài khoản thành công");

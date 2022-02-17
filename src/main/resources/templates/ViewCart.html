@@ -37,7 +37,7 @@
                                                 <img th:src="@{'/image/ImageOrFarm/'+${cartItem.image}}" alt="">
                                             </div>
                                             </td>
-                                            <td>
+                                            <td style="width: 200px">
                                                 <div class="infor-product pl-3">
                                                     <input type="hidden" value="1" id="` + cartMain[i].productId + `">
                                                     <a th:href="@{'/product/' + ${cartItem.productId}}">
