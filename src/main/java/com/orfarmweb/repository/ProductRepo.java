@@ -1,10 +1,15 @@
 package com.orfarmweb.repository;
 
 import com.orfarmweb.entity.Product;
+import com.orfarmweb.modelutil.ProductFilterDTO;
+import org.hibernate.hql.spi.id.global.GlobalTemporaryTableBulkIdStrategy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.object.StoredProcedure;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ProductRepo extends JpaRepository<Product, Integer> {
@@ -48,4 +53,7 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT COUNT(*) FROM product left join category on product.cate_id = category.id " +
             "where product.cate_id = :id and product.name like %:keyWord%", nativeQuery = true)
     List<Long> countByKeyWord(int id, String keyWord);
+//
+//    @Query(value = "CALL get_product_statistic(:s, :e)", nativeQuery = true)
+//    List<Product> findProductByOrderDetailAndCreateAt(Date s, Date e);
 }

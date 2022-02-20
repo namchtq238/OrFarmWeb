@@ -23,7 +23,7 @@ public interface OrdersRepo extends JpaRepository<Orders, Integer> {
     @Query(value = "select * from orders left join user on orders.user_id = user.id", nativeQuery = true)
     List<Orders> getOrderUser();
 
-    @Query(value = "select * from orders left join user on orders.user_id = user.id where orders.create_at between :start and :end", nativeQuery = true)
+    @Query(value = "select * from orders left join user on orders.user_id = user.id where not (orders.create_at >= :end or orders.create_at <= :start)", nativeQuery = true)
     List<Orders> getOrderUserFilter(Date start, Date end);
 
     @Query(value = "select count(*) from orders where status = ?", nativeQuery = true)

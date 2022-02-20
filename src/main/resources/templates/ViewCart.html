@@ -37,7 +37,7 @@
                                                 <img th:src="@{'/image/ImageOrFarm/'+${cartItem.image}}" alt="">
                                             </div>
                                             </td>
-                                            <td>
+                                            <td style="width: 200px">
                                                 <div class="infor-product pl-3">
                                                     <input type="hidden" value="1" id="` + cartMain[i].productId + `">
                                                     <a th:href="@{'/product/' + ${cartItem.productId}}">
@@ -77,10 +77,10 @@
                                 </li>
                             </div>
                         </ul>
-                        <div class="cart-link  pt-3 pb-3 " style="width: 835px;">
+                        <div class="cart-link  pt-3 pb-3 " style="width: 835px;" th:if="${countCartItem > 0}">
                             <a th:href="@{/category/1/1}">Tiếp tục mua hàng</a>
                             <a th:href="@{/cart/delete}" style="padding-left: 25%">Xoá tất cả</a>
-                            <button type="submit" class="btn btn-warning" style="margin-left: 31%">Lưu lại giỏ hàng</button>
+                            <button type="submit" class="btn btn-warning"  style="margin-left: 31%">Lưu lại giỏ hàng</button>
 
                         </div>
 

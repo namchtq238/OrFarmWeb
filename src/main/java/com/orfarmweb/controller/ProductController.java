@@ -115,7 +115,8 @@ public class ProductController {
     @PostMapping("/product/{id}")
     public String handleAddProductToCart(@PathVariable("id") int id,
                                          RedirectAttributes redirectAttributes,
-                                         @RequestParam("quantity") Integer quantity) {
+                                         @RequestParam("quantity") String quantitystring) {
+        int quantity = Float.valueOf(quantitystring).intValue();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) return "redirect:/login";
         Product product = productService.getProductById(id);

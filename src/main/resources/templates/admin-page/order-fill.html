@@ -193,6 +193,8 @@
                         <!--                                    excel</button>-->
                         <!--                            </form>-->
                         <form th:action="@{/admin/exportFill}" method="get" th:object="${dateParam}">
+                            <input type="hidden" class="d-none" th:field="*{startFill}" th:value="${dateFill.getStartFill()}">
+                            <input type="hidden" class="d-none" th:field="*{endFill}" th:value="${dateFill.getEndFill()}">
                             <button type="submit"> Xuất excel</button>
                         </form>
                     </div>
@@ -218,6 +220,7 @@
                                         <th>Số lượng</th>
 
                                         <th>Tổng tiền</th>
+                                        <th>Ngày mua hàng</th>
 
                                         <th class="align-center">Trạng thái</th>
                                         <th class="align-center">Chi tiết</th>
@@ -234,6 +237,7 @@
                                         <td th:utext="${od.totalProduct}">3</td>
 
                                         <td th:utext="${format.formatPrice(od.totalPrice)}">200000đ</td>
+                                        <td th:utext="${od.createAt}"></td>
 
                                         <td class="align-center">
                                             <span class="badge badge-success" th:utext="${od.status}">Thành công</span>

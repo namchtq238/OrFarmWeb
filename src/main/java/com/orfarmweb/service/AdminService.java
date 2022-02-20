@@ -1,12 +1,10 @@
 package com.orfarmweb.service;
 
 import com.orfarmweb.constaint.Role;
+import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.entity.User;
-import com.orfarmweb.modelutil.ChartDTO;
-import com.orfarmweb.modelutil.OrderAdmin;
-import com.orfarmweb.modelutil.OrderDetailDTO;
-import com.orfarmweb.modelutil.ProductAdminDTO;
+import com.orfarmweb.modelutil.*;
 
 import java.util.Date;
 import java.util.List;
@@ -32,4 +30,9 @@ public interface AdminService {
     Integer countCart();
     Integer countByStatus(int status);
     List<OrderAdmin> findOrdersByStatus(int status);
+    List<ProductFilterDTO> findOrderDetailByDay(Date s, Date e);
+    Float getImportPriceByDate(Date s, Date e);
+    Float getTotalPriceByDate(Date s, Date e);
+    Integer getTotalOrdersByDate(Date s, Date e);
+    Integer getTotalUserId(Date s, Date e);
 }

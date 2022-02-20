@@ -31,6 +31,33 @@
             <div class="page-header">
                 <div class="page-title">
                     <h3>Thống kê</h3>
+                    <form th:action="@{/admin/fill}" method="post" th:object="${dateFill}">
+                        <ul class=" list-unstyled cd-bread mt-20">
+                            <li>
+                                <div class="check-time">
+                                    <div style="display: flex">
+                                        <span style="margin-top: 10px;">Từ ngày</span><input name="from_date"
+                                                                                             class="form-control"
+                                                                                             placeholder="Từ ngày"
+                                                                                             type="date"
+                                                                                             value="" th:field="*{startFill}">
+                                    </div>
+                                    <div style="display: flex;">
+                                        <span style="margin-top: 10px;">Đến ngày</span><input name="to_date"
+                                                                                              class="form-control to_date_ed"
+                                                                                              placeholder="Đế ngày"
+                                                                                              type="date"
+                                                                                              value="" th:field="*{endFill}">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <button class="btn btn-info form-control"
+                                        style="margin-bottom: 10px" type="submit">Tìm Kiếm
+                                </button>
+                            </li>
+                        </ul>
+                    </form>
                 </div>
             </div>
 
@@ -45,7 +72,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Vốn</p>
-                                    <p class="widget-numeric-value" th:utext="${format.formatPrice(getCostOfProduct)}"></p>
+                                    <p class="widget-numeric-value" th:utext="${format.formatPrice(importFill)}"></p>
                                 </div>
                             </div>
                             <p class="widget-total-stats mt-2"></p>
@@ -62,7 +89,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Đơn hàng</p>
-                                    <p class="widget-numeric-value" th:utext="${countOrder}"></p>
+                                    <p class="widget-numeric-value" th:text="${countOrdersFill}"></p>
                                 </div>
                             </div>
                             <p class="widget-total-stats mt-2"></p>
@@ -79,7 +106,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Khách hàng</p>
-                                    <p class="widget-numeric-value" th:utext="${countUser}"></p>
+                                    <p class="widget-numeric-value" th:text="${countUserFill}"></p>
                                 </div>
                             </div>
                             <p class="widget-total-stats mt-2"></p>
@@ -97,7 +124,7 @@
                                 </div>
                                 <div class="media-body text-right">
                                     <p class="widget-text mb-0">Doanh thu</p>
-                                    <p class="widget-numeric-value" th:utext="${format.formatPrice(getRevenue)}"></p>
+                                    <p class="widget-numeric-value" th:text="${format.formatPrice(totalFill)}"></p>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +239,6 @@
                                                     class="invisible">s</span>
                                             </label>
                                         </th>
-                                        <th>STT</th>
                                         <th>ID</th>
                                         <th>Hình ảnh</th>
                                         <th>Tên Sản phẩm</th>
@@ -231,17 +257,16 @@
                                                     class="invisible">s</span>
                                             </label>
                                         </td>
-                                        <td>1</td>
                                         <td th:utext="${pro.id}"></td>
                                         <td>
                                             <img th:src="@{'/image/ImageOrFarm/'+${pro.image}}" class="img-fluid" alt="img-1"
                                                  style="border-color: #3862f5;">
                                         </td>
                                         <td th:utext="${pro.name}"></td>
-                                        <td><span class="badge badge-info badge-pill" th:utext="${pro.category.name}"></span></td>
-                                        <td class="text-center">1</td>
+                                        <td><span class="badge badge-info badge-pill" th:utext="${pro.cateName}"></span></td>
+                                        <td class="text-center" th:utext="${pro.quantity}">1</td>
 
-                                        <td class="text-center" >100000</td>
+                                        <td class="text-center" th:utext="${format.formatPrice(pro.totalPrice)}">100000</td>
 
                                     </tr>
                                     </tbody>

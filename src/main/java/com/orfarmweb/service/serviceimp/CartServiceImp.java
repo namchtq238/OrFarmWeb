@@ -9,10 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class CartServiceImp implements CartService {
@@ -26,7 +23,7 @@ public class CartServiceImp implements CartService {
 
     @Override
     public boolean saveItemToCart(Product product, Integer quantity) {
-        if (quantity == 0) return false;
+        if (quantity <= 0) return false;
         User user = userService.getCurrentUser();
         Optional<Cart> cart = Optional.ofNullable(cartRepo.getCartByUserAndProductAndIsDelete(user, product, false));
         if (!cart.isPresent()) {

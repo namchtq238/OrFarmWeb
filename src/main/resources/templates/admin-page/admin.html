@@ -235,7 +235,7 @@
                 <div class="page-header">
                     <div class="page-title">
                         <h3>Thống kê</h3>
-                        <form action="" method="post">
+                        <form th:action="@{/admin/fill}" method="post" th:object="${dateFill}">
                             <ul class=" list-unstyled cd-bread mt-20">
                                 <li>
                                     <div class="check-time">
@@ -244,14 +244,14 @@
                                                                                                  class="form-control"
                                                                                                  placeholder="Từ ngày"
                                                                                                  type="date"
-                                                                                                 value="">
+                                                                                                 value="" th:field="*{startFill}">
                                         </div>
                                         <div style="display: flex;">
                                             <span style="margin-top: 10px;">Đến ngày</span><input name="to_date"
                                                                                                   class="form-control to_date_ed"
                                                                                                   placeholder="Đế ngày"
                                                                                                   type="date"
-                                                                                                  value="">
+                                                                                                  value="" th:field="*{endFill}">
                                         </div>
                                     </div>
                                 </li>

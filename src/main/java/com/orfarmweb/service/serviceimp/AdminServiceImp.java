@@ -1,16 +1,15 @@
 package com.orfarmweb.service.serviceimp;
 
+import com.orfarmweb.constaint.DateFormat;
 import com.orfarmweb.constaint.Role;
 import com.orfarmweb.entity.OrderDetail;
 import com.orfarmweb.entity.Orders;
 import com.orfarmweb.entity.Product;
 import com.orfarmweb.entity.User;
-import com.orfarmweb.modelutil.ChartDTO;
-import com.orfarmweb.modelutil.OrderAdmin;
-import com.orfarmweb.modelutil.OrderDetailDTO;
-import com.orfarmweb.modelutil.ProductAdminDTO;
+import com.orfarmweb.modelutil.*;
 import com.orfarmweb.repository.*;
 import com.orfarmweb.service.AdminService;
+import org.springframework.jdbc.object.StoredProcedure;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,14 +26,16 @@ public class AdminServiceImp implements AdminService {
     private final OrderDetailRepo orderDetailRepo;
     private final PasswordEncoder passwordEncoder;
     private final CartRepo cartRepo;
+    private final DateFormat dateFormat;
 
-    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo, OrderDetailRepo orderDetailRepo, PasswordEncoder passwordEncoder, CartRepo cartRepo) {
+    public AdminServiceImp(OrdersRepo ordersRepo, UserRepo userRepo, ProductRepo productRepo, OrderDetailRepo orderDetailRepo, PasswordEncoder passwordEncoder, CartRepo cartRepo, DateFormat dateFormat) {
         this.ordersRepo = ordersRepo;
         this.userRepo = userRepo;
         this.productRepo = productRepo;
         this.orderDetailRepo = orderDetailRepo;
         this.passwordEncoder = passwordEncoder;
         this.cartRepo = cartRepo;
+        this.dateFormat = dateFormat;
     }
 
     @Override
@@ -158,9 +159,17 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public List<OrderAdmin> getListOrderAdminByFilter(Date s, Date e) {
+        if(s.compareTo(e)>0){
+            Date temp = s;
+            s = e;
+            e = temp;
+        }
+        e = dateFormat.addOneDay(e);
         List<Orders> ordersList = ordersRepo.getOrderUserFilter(s, e);
         List<OrderAdmin> list = new ArrayList<>();
-        ordersList.forEach(orders -> list.add(new OrderAdmin(orders, orderDetailRepo.getTotalProductByFilterAndOrderId(orders.getId(), s, e))));
+        Date finalE = e;
+        Date finalS = s;
+        ordersList.forEach(orders -> list.add(new OrderAdmin(orders, orderDetailRepo.getTotalProductByFilterAndOrderId(orders.getId(), finalS, finalE))));
         return list;
     }
 
@@ -184,4 +193,50 @@ public class AdminServiceImp implements AdminService {
         return orderAdmins;
     }
 
+    @Override
+    public List<ProductFilterDTO> findOrderDetailByDay(Date s, Date e) {
+        if(s.compareTo(e)>0){
+            Date temp = s;
+            s = e;
+            e = temp;
+        }
+        e = dateFormat.addOneDay(e);
+        List<ProductFilterDTO> lists = new ArrayList<>();
+        List<OrderDetail> orderDetails = orderDetailRepo.findOrderDetailByDay(s,e);
+        for (OrderDetail orderDetail:orderDetails) {
+            int quantity = orderDetailRepo.getTotalProductByDay(s,e,orderDetail.getProduct().getId());
+                lists.add(new ProductFilterDTO(orderDetail, quantity));
+        }
+        return lists;
+    }
+
+    @Override
+    public Float getImportPriceByDate(Date s, Date e) {
+        List<ProductFilterDTO> lists = findOrderDetailByDay(s,e);
+        float sum = 0f;
+        for(ProductFilterDTO product:lists){
+            sum+= product.getImportPrice();
+        }
+        return sum;
+    }
+
+    @Override
+    public Float getTotalPriceByDate(Date s, Date e) {
+        List<ProductFilterDTO> lists = findOrderDetailByDay(s,e);
+        float sum = 0f;
+        for(ProductFilterDTO product:lists){
+            sum+= product.getTotalPrice();
+        }
+        return sum;
+    }
+
+    @Override
+    public Integer getTotalOrdersByDate(Date s, Date e) {
+        return orderDetailRepo.getTotalOrderByDate(s,e);
+    }
+
+    @Override
+    public Integer getTotalUserId(Date s, Date e) {
+        return userRepo.getTotalUserId(s,e);
+    }
 }

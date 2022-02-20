@@ -851,7 +851,7 @@ p {
 }
 
 .sumPro{
-  padding-left: 200px;
+  padding-left: 180px;
   padding-top: 56px;
   margin-bottom: 21%;
 }
@@ -7807,15 +7807,27 @@ blockquote cite {
   background: #fff;
   color: #0e1133;
 }
-
+.modal-header{
+  align-items: center !important;
+  margin-right: 33% !important;
+  border-bottom: 0 !important;
+}
 .orfarm-download-content ul li a.item-2 {
   background: #fff;
   color: #0e1133;
 }
-
+.payment button{
+  margin: 40px 38px;
+}
 .orfarm-download-content ul li a.item-2:hover {
   background: #0e1133;
   color: #fff;
+}
+.modal-content{
+  width: 80% !important;
+}
+.modal-body{
+  text-align: center;
 }
 
 .orfarm-sponser-area {
