@@ -1,70 +1,83 @@
 package com.orfarmweb.controller;
 
+import com.orfarmweb.constaint.FormatPrice;
 import com.orfarmweb.entity.Cart;
-import com.orfarmweb.entity.Category;
-import com.orfarmweb.entity.Product;
-import com.orfarmweb.entity.User;
-import com.orfarmweb.repository.UserRepo;
-import com.orfarmweb.security.CustomUserDetails;
+import com.orfarmweb.modelutil.CartDTO;
+import com.orfarmweb.modelutil.CartItem;
 import com.orfarmweb.service.CartService;
 import com.orfarmweb.service.CategoryService;
+import com.orfarmweb.service.OrderService;
 import com.orfarmweb.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class CartController {
-    @Autowired
-    private CategoryService categoryService;
-    @Autowired
-    private CartService cartService;
-    @Autowired
-    private UserRepo userRepo;
-    @Autowired
-    private ProductService productService;
+    private final CategoryService categoryService;
+    private final CartService cartService;
+    private final ProductService productService;
+    private final FormatPrice formatPrice;
+    private final OrderService orderService;
+
+    public CartController(CategoryService categoryService, CartService cartService,
+                          ProductService productService, FormatPrice formatPrice, OrderService orderService) {
+        this.categoryService = categoryService;
+        this.cartService = cartService;
+        this.productService = productService;
+        this.formatPrice = formatPrice;
+        this.orderService = orderService;
+    }
 
     @ModelAttribute
-    public void addCategoryToHeader(Model model) {
-        List<Category> listCategory = categoryService.getListCategory();
-        model.addAttribute("listCategory", listCategory);
+    public void addAttributeToHeader(Model model) {
+        model.addAttribute("listCategory", categoryService.getListCategory());
+        model.addAttribute("format", formatPrice);
+        model.addAttribute("countCartItem", cartService.countNumberOfItemInCart());
     }
-
-    @ModelAttribute("countCartItem")
-    public Integer addNumberOfCartItemToHeader(Model model) {
-        return cartService.countNumberOfItemInCart();
-    }
-
     @GetMapping("/cart")
-    public String getCart(Model model, Authentication authentication) {
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        String email = userDetails.getUsername();
-        List<Cart> listCart = cartService.getAllCartByUser(email);
-        List<Product> listProductInCart = productService.getProductFromCart(listCart);
-
-        model.addAttribute("listCart", listCart);
+    public String getViewCart(Model model) {
+        List<CartItem> listProductInCart = productService.getProductFromCart(cartService.getAllCartByUser());
+        Float tempPrice = productService.getTempPriceOfCart(listProductInCart);
+        Float ship = 20000f;
+        if(tempPrice > 50000) ship = 0f;
+        Float totalPrice = tempPrice + ship;
+        model.addAttribute("tempPrice", formatPrice.formatPrice(tempPrice));
+        model.addAttribute("ship", formatPrice.formatPrice(ship));
+        model.addAttribute("totalPrice", formatPrice.formatPrice(totalPrice));
         model.addAttribute("listProductInCart", listProductInCart);
-
+        CartDTO cartDTO = new CartDTO();
+        model.addAttribute("listQuantity", cartDTO);
         return "ViewCart";
     }
 
-    @PostMapping("/product/{id}")
-    public String addProductToCart(@PathVariable("id") int id, Model model,
-                                   Authentication authentication, @RequestParam("quantity") Integer quantity) {
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        User user = userRepo.findUserByEmail(userDetails.getUsername());
-        Product product = productService.findById(id);
-        cartService.saveItemToCart(user, product, quantity);
-        return "redirect:/product/{id}";
+    @GetMapping("/cart/delete")
+    public String handleDeleteAllProduct(){
+        cartService.deleteAllItemInCart();
+        return "redirect:/cart";
     }
-    @GetMapping("/payment")
-    public String payment(){
-        return "payment";
+    @GetMapping("/cart/{id}")
+    public String handleDeleteProduct(@PathVariable("id") int productId){
+        cartService.deleteAnItemInCart(productId);
+        return "redirect:/cart";
     }
+    @PostMapping("/cart/save")
+    public String handleSaveNewCart(@RequestParam("soluong") String[] list){
+        List<Integer> soluong = new ArrayList<>();
+        for(int i=0; i<list.length; i++){
+            soluong.add(Integer.parseInt(list[i]));
+        }
+        List<Cart> listCart = cartService.getAllCartByUser();
+        cartService.saveNewQuantity(listCart, soluong);
+        return "redirect:/cart";
+    }
+    @GetMapping("/user/repurchase/{id}")
+    public String getViewRepurchase(@PathVariable int id){
+        cartService.saveItemToCartByOrder(orderService.getOrderById(id));
+        return "redirect:/cart";
+    }
+
 }

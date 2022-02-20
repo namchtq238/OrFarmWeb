@@ -17,17 +17,20 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Bean
-    public AuthenticationSuccessHandler handler(){
+    public AuthenticationSuccessHandler handler() {
         return new CustomAuthenticationSuccessHandler();
     }
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImp();
     }
+
     @Bean
-    BCryptPasswordEncoder passwordEncoder(){
+    BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -47,9 +50,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/admin/**").hasAuthority(Role.ADMIN.getType())
-                .antMatchers("/cart").authenticated()
-                .antMatchers("/payment").authenticated()
+                .antMatchers("/admin/category/**").hasAuthority(Role.ADMIN.getType())
+                .antMatchers("/admin/staffManager/**").hasAuthority(Role.ADMIN.getType())
+                .antMatchers("/admin/userManager/**").hasAuthority(Role.ADMIN.getType())
+                .antMatchers("/admin/product/**").hasAuthority(Role.ADMIN.getType())
+                .antMatchers("/admin/**").hasAnyAuthority(Role.ADMIN.getType(), Role.STAFF.getType())
+                .antMatchers("/cart/**").authenticated()
+                .antMatchers("/payment/**").authenticated()
+                .antMatchers("/user/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

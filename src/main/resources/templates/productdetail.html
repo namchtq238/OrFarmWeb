@@ -50,9 +50,21 @@
                             <h2 class="title" th:utext="*{name}"></h2>
                             <input type="hidden" id="productId" value="1">
                             <div class="pricing">
-                                <div class="discount-price mr-15"><span th:if="${discountPriceDetail!=null}" th:utext="${discountPriceDetail}"></span>
-                                </div>
-                                <div class="regular-price"><span th:utext="${salePriceDetail}"></span> </div>
+                                <th:block th:if="${productDetail.percentDiscount!=0}">
+                                    <div class="discount-price">
+                                        <th:block th:with="discountPrice=${(productDetail.salePrice * (100 - productDetail.percentDiscount))/100}">
+                                            <span th:text="${format.formatPrice(discountPrice)}"></span><sup>đ</sup>
+                                        </th:block>
+                                    </div>
+                                    <div class="regular-price">
+                                        <del th:text="${format.formatPrice(productDetail.salePrice)}+'đ'"></del>
+                                    </div>
+                                </th:block>
+                                <th:block th:unless="${productDetail.percentDiscount!=0}">
+                                    <div class="discount-price">
+                                        <span th:text="${format.formatPrice(productDetail.salePrice)}"></span><sup>đ</sup>
+                                    </div>
+                                </th:block>
                             </div>
                             <div class="review">
                                 <ul>
@@ -70,11 +82,8 @@
                                 <div class="shop-buttons d-block d-sm-flex align-items-center">
                                     <div class="product-quantity" id="quantity">
                                         <button type="button" id="sub" class="sub">-</button>
-                                        <input type="text" id="1" value="1" />
+                                        <input type="text" id="1" value="1" th:name="quantity"/>
                                         <button type="button" id="add" class="add">+</button>
-<!--                                        <button type="button" id="sub" class="sub">-</button>-->
-<!--                                        <input type="number" id="1" value="1" th:name="quantity"/>-->
-<!--                                        <button type="button" id="add" class="add">+</button>-->
                                     </div>
                                     <button class="main-btn ml-10" type="submit">Thêm vào giỏ</button>
                                 </div>
@@ -261,12 +270,21 @@
                                 </ul>
                                 <a th:href="@{'/product/'+${similar.id}}" th:text="${similar.name}"></a>
                                 <div class="pricing">
-                                    <div class="discount-price" th:if="${listSimilarDiscount.get(similar.id)!=null}"><span
-                                            th:text="${listSimilarDiscount.get(similar.id)}"></span></div>
-                                    <div class="regular-price" th:if="${listSimilarDiscount.get(similar.id)!=null}"><span
-                                            th:text="${listSimilarPrice.get(similar.id)}"></span></div>
-                                    <div class="discount-price" th:if="${listSimilarDiscount.get(similar.id) == null}"><span
-                                            th:text="${listSimilarPrice.get(similar.id)}"></span></div>
+                                    <th:block th:if="${similar.percentDiscount!=0}">
+                                        <div class="discount-price">
+                                            <th:block th:with="discountPrice=${(similar.salePrice * (100 - similar.percentDiscount))/100}">
+                                                <span th:text="${format.formatPrice(discountPrice)}"></span><sup>đ</sup>
+                                            </th:block>
+                                        </div>
+                                        <div class="regular-price">
+                                            <span th:text="${format.formatPrice(similar.salePrice)}+'đ'"></span>
+                                        </div>
+                                    </th:block>
+                                    <th:block th:unless="${similar.percentDiscount!=0}">
+                                        <div class="discount-price">
+                                            <span th:text="${format.formatPrice(similar.salePrice)}"></span><sup>đ</sup>
+                                        </div>
+                                    </th:block>
                                 </div>
                             </div>
                         </div>

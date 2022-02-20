@@ -1,13 +1,13 @@
 var ol = $('#ecommerce-order-list').DataTable({
     "lengthMenu": [ 5, 10, 20, 50, 100 ],
     headerCallback:function(e, a, t, n, s) {
-      e.getElementsByTagName("th")[0].innerHTML='<label class="new-control new-checkbox checkbox-primary m-auto">\n<input type="checkbox" class="new-control-input chk-parent select-customers-info" id="customer-all-info">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
+      // e.getElementsByTagName("th")[0].innerHTML='<label class="new-control new-checkbox checkbox-primary m-auto">\n<input type="checkbox" class="new-control-input chk-parent select-customers-info" id="customer-all-info">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
     },
-    columnDefs:[{
-        targets:0, width:"30px", className:"", orderable:!1, render:function(e, a, t, n) {
-            return'<label class="new-control new-checkbox checkbox-primary  m-auto">\n<input type="checkbox" class="new-control-input child-chk select-customers-info" id="customer-all-info">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
-        }
-    }],
+    // columnDefs:[{
+    //     targets:0, width:"30px", className:"", orderable:!1, render:function(e, a, t, n) {
+    //         return'<label class="new-control new-checkbox checkbox-primary  m-auto">\n<input type="checkbox" class="new-control-input child-chk select-customers-info" id="customer-all-info">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
+    //     }
+    // }],
     "language": {
         "paginate": {
           "previous": "<i class='flaticon-arrow-left-1'></i>",

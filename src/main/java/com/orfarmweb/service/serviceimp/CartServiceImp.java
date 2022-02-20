@@ -1,46 +1,42 @@
 package com.orfarmweb.service.serviceimp;
 
-import com.orfarmweb.entity.Cart;
-import com.orfarmweb.entity.Product;
-import com.orfarmweb.entity.User;
-import com.orfarmweb.modelutil.CartDTO;
+import com.orfarmweb.entity.*;
 import com.orfarmweb.repository.CartRepo;
-import com.orfarmweb.repository.UserRepo;
-import com.orfarmweb.security.CustomUserDetails;
 import com.orfarmweb.service.CartService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.orfarmweb.service.UserService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
-public class CartServiceImp implements CartService  {
-    @Autowired
-    private CartRepo cartRepo;
-    @Autowired
-    private UserRepo userRepo;
+public class CartServiceImp implements CartService {
+    private final CartRepo cartRepo;
+    private final UserService userService;
 
-    @Override
-    public List<CartDTO> getCartByUser(String email) {
-        return cartRepo.getCartByUser(email);
+    public CartServiceImp(CartRepo cartRepo, UserService userService) {
+        this.cartRepo = cartRepo;
+        this.userService = userService;
     }
 
     @Override
-    public boolean saveItemToCart(User user, Product product, Integer quantity) {
-        Optional<Cart> cart = Optional.ofNullable(cartRepo.getCartByUserAndProduct(user, product));
-        if(!cart.isPresent()){
+    public boolean saveItemToCart(Product product, Integer quantity) {
+        if (quantity == 0) return false;
+        User user = userService.getCurrentUser();
+        Optional<Cart> cart = Optional.ofNullable(cartRepo.getCartByUserAndProductAndIsDelete(user, product, false));
+        if (!cart.isPresent()) {
             Cart newCart = new Cart();
             newCart.setUser(user);
             newCart.setProduct(product);
             newCart.setQuantity(quantity);
             cartRepo.save(newCart);
             return true;
-        }
-        else {
+        } else {
             Cart currentCart = cart.get();
             int newQuantity = currentCart.getQuantity() + quantity;
             currentCart.setQuantity(newQuantity);
@@ -50,20 +46,56 @@ public class CartServiceImp implements CartService  {
     }
 
     @Override
-    public List<Cart> getAllCartByUser(String email) {
-        return cartRepo.getCartByUser(userRepo.findUserByEmail(email));
+    public List<Cart> getAllCartByUser() {
+        return cartRepo.getCartByUserAndIsDelete(userService.getCurrentUser(), false);
     }
 
     @Override
     public Integer countNumberOfItemInCart() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) return 0;
-        if(authentication.isAuthenticated()){
-            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-            String email = userDetails.getUsername();
-            Integer number = cartRepo.countCartByUser(userRepo.findUserByEmail(email));
-            return number;
+        if (authentication.isAuthenticated()) {
+            return cartRepo.countCartByUserAndIsDelete(userService.getCurrentUser(), false);
         }
         return 0;
+    }
+
+    @Override
+    public boolean deleteAllItemInCart() {
+        List<Cart> cartList = getAllCartByUser();
+        for (Cart cart : cartList
+        ) {
+            cart.setDelete(true);
+            cartRepo.save(cart);
+        }
+        return true;
+    }
+
+    @Override
+    public void saveNewQuantity(List<Cart> cartList, List<Integer> soluong) {
+        for (int i = 0; i < cartList.size(); i++) {
+            cartList.get(i).setQuantity(soluong.get(i));
+            cartRepo.save(cartList.get(i));
+        }
+    }
+
+    @Override
+    public boolean deleteAnItemInCart(int productId) {
+        List<Cart> cartList = getAllCartByUser();
+        cartList.forEach(cart -> {
+            if (cart.getProduct().getId().equals(productId)) {
+                cart.setDelete(true);
+                cartRepo.save(cart);
+            }
+        });
+        return true;
+    }
+
+    @Override
+    public void saveItemToCartByOrder(Orders orders) {
+        Set<OrderDetail> orderDetails = orders.getOrderDetails();
+        List<Cart> cartList = new ArrayList<>();
+        orderDetails.forEach(orderDetail -> cartList.add(new Cart(orderDetail)));
+        cartRepo.saveAll(cartList);
     }
 }

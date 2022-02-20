@@ -181,8 +181,8 @@
             </div>
 
         </div>
-        <button type="button" class="btn btn-warning" style="margin: 0 46%;
-              height: 50px;"><a th:href="@{'/category/1'}" style="text-decoration: none; color: #232323;">MUA NGAY</a></button>
+        <button type="button" class="btn btn-warning" style="margin: 0 auto; display: flex;
+          "><a th:href="@{'/category/1'}" style="text-decoration: none; color: #232323;">MUA NGAY</a></button>
     </section>
     <div class="gallery">
         <div class="container">
@@ -204,7 +204,7 @@
                                 </div>
                                 <a th:href="@{'/product/' + *{saleProduct.getId()}}">
                                     <div class="fader">
-                                        <img class="w-100 card-img-top" th:src="@{'/image/ImageOrFarm/' + ${saleProduct.getImage()}}" alt="">
+                                        <img class=" card-img-top" th:src="@{'/image/ImageOrFarm/' + ${saleProduct.getImage()}}" alt="">
                                         <img class="w-100 card-img-top" th:src="@{'/image/ImageOrFarm/' + ${saleProduct.getImage()}}" alt="" style="display: none;">
                                     </div>
                                 </a>
@@ -214,12 +214,21 @@
                                         <a th:href="@{'/product/' + *{saleProduct.getId()}}" th:text="*{saleProduct.getName()}"></a>
                                     </h3>
                                     <div class="box-pro-prices">
-                                        <p class="pro-price highlight">
-                                            <span th:text="${getListDiscount.get(saleProduct.getId())}"></span>
-                                            <span class="pro-price-del">
-                                                    <del class="compare-price" th:text="${getListSale.get(saleProduct.getId())}"></del>
+                                        <th:block th:if="${saleProduct.percentDiscount!=0}">
+                                            <p class="pro-price highlight">
+                                                <th:block th:with="discountPrice=${(saleProduct.salePrice * (100 - saleProduct.percentDiscount))/100}">
+                                                    <span th:text="${format.formatPrice(discountPrice)}"></span><sup>đ</sup>
+                                                </th:block>
+                                                <span class="pro-price-del">
+                                                    <del class="compare-price" th:text="${format.formatPrice(saleProduct.salePrice)}+'đ'"></del>
                                                 </span>
-                                        </p>
+                                            </p>
+                                        </th:block>
+                                        <th:block th:unless="${saleProduct.percentDiscount!=0}">
+                                            <p class="pro-price highlight">
+                                                <span th:text="${format.formatPrice(saleProduct.salePrice)}"></span><sup>đ</sup>
+                                            </p>
+                                        </th:block>
                                     </div>
                                 </div>
                             </div>

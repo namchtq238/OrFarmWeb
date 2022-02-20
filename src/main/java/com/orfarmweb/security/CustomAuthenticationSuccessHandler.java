@@ -6,7 +6,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Configuration
@@ -18,14 +17,11 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
         String redirectURL = request.getContextPath();
-        if (userDetails.hasRole("ADMIN")) {
-            redirectURL = "admin";
-        } else if (userDetails.hasRole("CUSTOMER")) {
+        if (userDetails.hasRole("CUSTOMER")) {
             redirectURL = "home";
+        } else {
+            redirectURL = "admin";
         }
-//        HttpSession session =  request.getSession();
-//        session.setAttribute("username", userDetails.getUsername());
-
         response.sendRedirect(redirectURL);
 
     }

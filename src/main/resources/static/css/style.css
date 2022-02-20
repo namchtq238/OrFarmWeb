@@ -35,7 +35,7 @@ img{
     background-size: cover;
 }
 .lazyloaded{
-    transition: transform 8s cubic-bezier(0.25, 0.46, 0.);
+    transition: transform 8s cubic-bezier(0.25, 0.46, 0.0,0.0);
    -webkit-transition-duration: 2s;
 }
 .lazyloaded:hover{

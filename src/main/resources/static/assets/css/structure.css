@@ -529,7 +529,6 @@
     padding-top: 18px;
 }
 .profile-sidebar .profile-content .user-links li a {
-    padding-left: 71px;
     font-weight: 600;
     color: #888ea8;
 }
@@ -699,7 +698,7 @@
 }
 .modernSidebar-nav.header nav#modernSidebar ul.menu-categories li.menu .submenu {
     position: fixed;
-    top: 91px;
+    top: 535px;
     background-color: #fff;
     color: #1f212d;
     text-align: left;
@@ -708,7 +707,7 @@
     margin-left: auto;
     left: 125px;
     width: 255px;
-    height: 100vh;
+    height: 100px;
     -webkit-animation-duration: 0.3s;
     animation-duration: 0.3s;
     -webkit-animation-fill-mode: both;
