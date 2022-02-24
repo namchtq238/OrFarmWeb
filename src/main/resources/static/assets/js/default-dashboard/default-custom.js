@@ -34,7 +34,7 @@ $(".top-search-scroll").mCustomScrollbar({
 */
 let url = 'http://localhost:8080/get-chart-information'
 const option = {
-    method: "POST",
+    method: "GET",
     headers: {
         "Content-Type": "application/json",
     },
@@ -55,6 +55,21 @@ fetch(url, option)
             showLabel: true
         });
     })
+
+
+function getDataAfterFill(revenue, cost) {
+    let percentProfit = 100*(revenue-cost)/revenue
+    new Chartist.Pie('.s-r', {
+        series: [percentProfit.toFixed(2), (100-percentProfit).toFixed(2)]
+    }, {
+        donut: true,
+        donutWidth: 40,
+        donutSolid: true,
+        startAngle: 270,
+        showLabel: true
+    });
+}
+
 
 
 var bar = new ProgressBar.Circle("#daily", {
