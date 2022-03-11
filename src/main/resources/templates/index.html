@@ -148,7 +148,7 @@
                         <a th:href="@{'/product/' + ${product.getId()}}">
                             <div class="card">
                                 <img class="card-img-top" th:src="@{'/image/ImageOrFarm/' + ${product.getImage()}}" alt="Card image cap">
-                                <div class="card-body">
+                                <div class="card-body" style="height: 130px !important;">
                                     <h5 class="card-title" th:text="${product.getName()}"></h5>
                                     <h6 th:text="${product.getBriefDesc()}"></h6>
                                 </div>

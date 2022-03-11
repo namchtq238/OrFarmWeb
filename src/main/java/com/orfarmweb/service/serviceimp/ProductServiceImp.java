@@ -99,7 +99,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public boolean addProduct(Product product) {
-        product.setQuantityProd(0);
+//        product.setQuantityProd(0);
         productRepo.save(product);
         return true;
     }
