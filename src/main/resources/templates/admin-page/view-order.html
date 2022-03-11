@@ -102,7 +102,14 @@
                         <td class="text-center"><img class="product-list-img" th:src="@{'/image/ImageOrFarm/'+ *{od.product.image}}"></td>
                         <td th:text="*{od.product.name}">Tao Xanh</td>
                         <td th:text="*{od.product.category.name}">Hoa Qua Sach</td>
-                        <td th:text="*{format.formatPrice(od.product.salePrice)}">45000đ</td>
+                        <th:block th:if="${od.product.percentDiscount!=0}">
+                                <th:block th:with="discountPrice=${(od.product.salePrice * (100 - od.product.percentDiscount))/100}">
+                                    <td th:text="*{format.formatPrice(discountPrice)}">45000đ</td>
+                                </th:block>
+                        </th:block>
+                        <th:block th:unless="${od.product.percentDiscount!=0}">
+                                <td th:text="${format.formatPrice(od.product.salePrice)}"></td>
+                        </th:block>
                         <td th:text="*{od.quantity}">2</td>
 
                     </tr>
