@@ -18,7 +18,7 @@ public class ProductFilterDTO {
         this.name = orderDetail.getProduct().getName();
         this.cateName = orderDetail.getProduct().getCategory().getName();
         this.quantity = quantity;
-        this.totalPrice = orderDetail.getProduct().getSalePrice()*quantity;
+        this.totalPrice = orderDetail.getProduct().getSalePrice()* (100-orderDetail.getProduct().getPercentDiscount())/100 * quantity;
         this.importPrice = orderDetail.getProduct().getCost()*quantity;
     }
 }

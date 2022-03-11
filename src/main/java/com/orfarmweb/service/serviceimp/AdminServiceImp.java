@@ -212,6 +212,12 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Float getImportPriceByDate(Date s, Date e) {
+        if(s.compareTo(e)>0){
+            Date temp = s;
+            s = e;
+            e = temp;
+        }
+        e = dateFormat.addOneDay(e);
         List<ProductFilterDTO> lists = findOrderDetailByDay(s,e);
         float sum = 0f;
         for(ProductFilterDTO product:lists){
@@ -222,6 +228,12 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Float getTotalPriceByDate(Date s, Date e) {
+        if(s.compareTo(e)>0){
+            Date temp = s;
+            s = e;
+            e = temp;
+        }
+        e = dateFormat.addOneDay(e);
         List<ProductFilterDTO> lists = findOrderDetailByDay(s,e);
         float sum = 0f;
         for(ProductFilterDTO product:lists){
@@ -232,11 +244,24 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Integer getTotalOrdersByDate(Date s, Date e) {
+
+        if(s.compareTo(e)>0){
+            Date temp = s;
+            s = e;
+            e = temp;
+        }
+        e = dateFormat.addOneDay(e);
         return orderDetailRepo.getTotalOrderByDate(s,e);
     }
 
     @Override
     public Integer getTotalUserId(Date s, Date e) {
+        if(s.compareTo(e)>0){
+            Date temp = s;
+            s = e;
+            e = temp;
+        }
+        e = dateFormat.addOneDay(e);
         return userRepo.getTotalUserId(s,e);
     }
 }
