@@ -1,8 +1,11 @@
 package com.orfarmweb.modelutil;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ChartDTO {
     private Float cost;
     private Float revenue;

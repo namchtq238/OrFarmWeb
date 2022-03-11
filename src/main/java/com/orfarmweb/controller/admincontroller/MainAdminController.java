@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -41,29 +43,40 @@ public class MainAdminController {
     @PostMapping("/admin/fill")
     public String getViewStatisticAdmin(Model model, @ModelAttribute DateFilterDTO dateFilterDTO, BindingResult bindingResult) {
         if (dateFilterDTO.getStartFill() == null || dateFilterDTO.getEndFill() == null || bindingResult.hasErrors()) return "redirect:/admin";
-        model.addAttribute("totalFill", adminService.getTotalPriceByDate(dateFilterDTO.getStartFill(),dateFilterDTO.getEndFill()));
-        model.addAttribute("importFill", adminService.getImportPriceByDate(dateFilterDTO.getStartFill(),dateFilterDTO.getEndFill()));
+        ChartDTO chartDTO = new ChartDTO();
+        chartDTO.setRevenue(adminService.getTotalPriceByDate(dateFilterDTO.getStartFill(),dateFilterDTO.getEndFill()));
+        chartDTO.setCost(adminService.getImportPriceByDate(dateFilterDTO.getStartFill(),dateFilterDTO.getEndFill()));
+        model.addAttribute("totalFill", chartDTO.getRevenue());
+        model.addAttribute("importFill", chartDTO.getCost());
         model.addAttribute("countOrdersFill", adminService.getTotalOrdersByDate(dateFilterDTO.getStartFill(),dateFilterDTO.getEndFill()));
         model.addAttribute("countUserFill", adminService.getTotalUserId(dateFilterDTO.getStartFill(),dateFilterDTO.getEndFill()));
         model.addAttribute("dateFill", dateFilterDTO);
         model.addAttribute("dateParam", dateFilterDTO);
+        model.addAttribute("chartDTO", chartDTO);
         adminService.findOrderDetailByDay(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()).forEach(orderAdmin -> System.err.println(orderAdmin.toString()));
         model.addAttribute("dsProduct", adminService.findOrderDetailByDay(dateFilterDTO.getStartFill(), dateFilterDTO.getEndFill()));
 
         return "admin-page/admin2";
     }
 
-    @PostMapping("/get-chart-information")
+    @GetMapping("/get-chart-information")
     @ResponseBody
     public ChartDTO handleChartInformation() {
         return adminService.getInformationForChart();
     }
-    @PostMapping("/getFillChartInformation")
-    @ResponseBody
-    public ResponseEntity<ChartDTO> handleChartFillterInformation(@RequestParam Date s, @RequestParam Date e){
-        ChartDTO chartDTO = new ChartDTO();
-        chartDTO.setRevenue(adminService.getTotalPriceByDate(s,e));
-        chartDTO.setCost(adminService.getImportPriceByDate(s,e));
-        return new ResponseEntity<ChartDTO>(chartDTO,HttpStatus.OK);
-    }
+//    @GetMapping("/getFillChartInformation/{fromdate}/{todate}")
+//    @ResponseBody
+//    public ChartDTO handleChartFillterInformation(@PathVariable("fromdate") String fromdate,
+//                                                  @PathVariable("todate") String todate) throws ParseException {
+//        ChartDTO chartDTO = new ChartDTO();
+//        System.out.println(fromdate);
+//        System.out.println(todate);
+//        Date start =new SimpleDateFormat("yyyy-dd-MM").parse(fromdate);
+//        Date end =new SimpleDateFormat("yyyy-dd-MM").parse(todate);
+//        chartDTO.setRevenue(adminService.getTotalPriceByDate(start, end));
+//        chartDTO.setCost(adminService.getImportPriceByDate(start,end));
+//        System.out.println(chartDTO.getCost());
+//        System.out.println(chartDTO.getRevenue());
+//        return chartDTO;
+//    }
 }
